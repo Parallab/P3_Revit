@@ -82,6 +82,7 @@
     </Compile>
     <Compile Include="Scripts\Migra_AreaIsolamento.cs" />
     <Compile Include="Scripts\Par_Sismici.cs" />
+    <Compile Include="Scripts\Staffaggio.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ospedale-mestre.jpg" />

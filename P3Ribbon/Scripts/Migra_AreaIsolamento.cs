@@ -8,7 +8,6 @@ using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Mechanical;
 using Autodesk.Revit.UI;
-using Autodesk.Revit.DB.Mechanical;
 using System.Windows;
 using Application = Autodesk.Revit.ApplicationServices.Application;
 using System.Xml;
@@ -42,6 +41,7 @@ namespace P3Ribbon.Scripts
                     td.MainInstruction = "Isolamenti mancanti";
                     td.MainContent = "Non ci sono isolamenti in questo progetto";
                     TaskDialogResult result = td.Show();
+                    
                     
                     return Result.Cancelled;
                 }

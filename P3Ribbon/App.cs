@@ -1,6 +1,8 @@
-﻿using Autodesk.Revit.UI;
+﻿using Autodesk.Revit.DB;
+using Autodesk.Revit.UI;
 using System;
 using System.Reflection;
+using System.Security.Cryptography.X509Certificates;
 using System.Windows.Media.Imaging;
 
 namespace P3Ribbon
@@ -33,13 +35,23 @@ namespace P3Ribbon
             //STAFFAGGIO//
             #region 
             // Creo il bottone e lo collego alla classe
-            PushButtonData b2Data = new PushButtonData("cmdstaff", "Dimensionamento" + System.Environment.NewLine + "  staffe  ", thisAssemblyPath, "P3Ribbon.Staffaggio");
+            PushButtonData b2Data = new PushButtonData("cmdstaff", "Dimensionamento" + System.Environment.NewLine + "  staffe  ", thisAssemblyPath, "P3Ribbon.Scripts.Staffaggio");
             //carico l'icona
             PushButton pb2 = ribbonPanelGetsisci.AddItem(b2Data) as PushButton;
             pb2.ToolTip = "dimensionamento della staffatura dei condotti";
             BitmapImage pb2Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/staff.png"));
             pb2.LargeImage = pb2Image;
             #endregion
+
+            // void AddSplitbuttonGroup(RibbonPanel panel) 
+            //{
+            //    panel = ribbonPanelGetsisci;
+            //    SplitButtonData group1Data = new SplitButtonData("SplitGroup1", "Split Group 1");
+            //    SplitButton group1 = panel.AddItem(group1Data) as SplitButton;
+
+
+            //}
+           
 
             //AREA ISOLAMENTO//
             #region 
