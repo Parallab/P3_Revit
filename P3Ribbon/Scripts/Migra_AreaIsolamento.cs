@@ -32,14 +32,29 @@ namespace P3Ribbon.Scripts
                 // come verificare se il parametro è dentro il binding...definition
                 // doc.ParameterBindings.Contains();
                 IList<Element> dicoll = new FilteredElementCollector(doc).OfClass(typeof(DuctInsulation)).ToElements();
+                try
+                {
+                    Element try_di = dicoll[0];
+                }
+                catch 
+                {
+                    TaskDialog td = new TaskDialog("Errore");
+                    td.MainInstruction = "Isolamenti mancanti";
+                    td.MainContent = "Non ci sono isolamenti in questo progetto";
+                    TaskDialogResult result = td.Show();
+                    
+                    return Result.Cancelled;
+                }
+
                 Element di = dicoll[0];
+
                 Parameter sup_dyn = di.LookupParameter("P3_Sup_S.app_dyn");
 
                 if (sup_dyn == null)
                 {
                     TaskDialog td = new TaskDialog("Errore");
                     td.MainInstruction = "Parametro associato non esistente ";
-                    td.MainContent = "Parametro associato all'isolamento non esistente ";
+                    td.MainContent = "Parametro associato all'isolamento non esistente, inserirlo nel progetto corrente? ";
                     td.CommonButtons = TaskDialogCommonButtons.Yes | TaskDialogCommonButtons.No;
 
                     TaskDialogResult result = td.Show();
