@@ -66,7 +66,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Scripts\Crea_ParSism.cs" />
     <Compile Include="Scripts\FinestraInfo.cs" />
     <Compile Include="Scripts\Form\Form_Def_Acc.cs">
       <SubType>Form</SubType>
@@ -83,6 +82,7 @@
     </Compile>
     <Compile Include="Scripts\Migra_AreaIsolamento.cs" />
     <Compile Include="Scripts\Par_Sismici.cs" />
+    <Compile Include="Scripts\Staffaggio.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ospedale-mestre.jpg" />
@@ -114,6 +114,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>"C:\Users\Simone Maioli\source\repos\P3Ribbon\sposta_dll.bat"</PostBuildEvent>
+    <PostBuildEvent>"C:\Users\Simone Maioli\Documents\GitHub\P3Plugin\sposta_dll.bat"</PostBuildEvent>
   </PropertyGroup>
 </Project>

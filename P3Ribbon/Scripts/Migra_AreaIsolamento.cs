@@ -8,7 +8,6 @@ using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Mechanical;
 using Autodesk.Revit.UI;
-using Autodesk.Revit.DB.Mechanical;
 using System.Windows;
 using Application = Autodesk.Revit.ApplicationServices.Application;
 using System.Xml;
@@ -25,95 +24,91 @@ namespace P3Ribbon.Scripts
             Document doc = uiDoc.Document;
             Application app = uiApp.Application;
 
-            //CONTROLLARE PRIMA SE SON PRESENTI, SE NON SON PRESENTI AGGIUNGERLI
-            bool parametri_presenti = CreaParametriIsolamento(doc, app);
-
-            if (parametri_presenti)
+            using (var t = new Transaction(doc, "Proj_Info_Scrivi_Parametri"))
             {
-                Category c_condotti = doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctCurves);
-                Category c_raccordi = doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctFitting);
+                bool parametri_presenti = false;
 
-                using (var t = new Transaction(doc, "Proj_Info_Scrivi_Parametri"))
+                // come verificare se il parametro è dentro il binding...definition
+                // doc.ParameterBindings.Contains();
+                IList<Element> dicoll = new FilteredElementCollector(doc).OfClass(typeof(DuctInsulation)).ToElements();
+                try
                 {
+                    Element try_di = dicoll[0];
+                }
+                catch 
+                {
+                    TaskDialog td = new TaskDialog("Errore");
+                    td.MainInstruction = "Isolamenti mancanti";
+                    td.MainContent = "Non ci sono isolamenti in questo progetto";
+                    TaskDialogResult result = td.Show();
+                    
+                    
+                    return Result.Cancelled;
+                }
 
-                    t.Start();
-                    IList<Element> coll = new FilteredElementCollector(doc).OfClass(typeof(DuctInsulation)).ToElements();
+                Element di = dicoll[0];
 
-                    int i_f = 0;
-                    int i_c = 0;
-                    int i = 0;
-                    foreach (Element el in coll)
+                Parameter sup_dyn = di.LookupParameter("P3_Sup_S.app_dyn");
+
+                if (sup_dyn == null)
+                {
+                    TaskDialog td = new TaskDialog("Errore");
+                    td.MainInstruction = "Parametro associato non esistente ";
+                    td.MainContent = "Parametro associato all'isolamento non esistente, inserirlo nel progetto corrente? ";
+                    td.CommonButtons = TaskDialogCommonButtons.Yes | TaskDialogCommonButtons.No;
+
+                    TaskDialogResult result = td.Show();
+                    if (result == TaskDialogResult.Yes)
                     {
-                        try
-                        {
-                            InsulationLiningBase insul = el as InsulationLiningBase;
-                            Element host = doc.GetElement(insul.HostElementId);
-                            i++;
-
-
-
-                            if (host.Category.Id == c_raccordi.Id)
-                            {
-                                double area_rac = host.LookupParameter("P3_Sup_S.app").AsDouble();
-                                insul.LookupParameter("P3_Sup_S.app_dyn").Set(area_rac);
-                                i_f++;
-                            }
-
-
-                            if (host.Category.Id == c_condotti.Id)
-                            {
-                                Parameter area_condotto = insul.get_Parameter(BuiltInParameter.RBS_CURVE_SURFACE_AREA);
-                                insul.LookupParameter("P3_Sup_S.app_dyn").Set(area_condotto.AsDouble());
-                                i_c++;
-                            }
-                        }
-                        catch
-                        {
-
-                        }
+                        parametri_presenti = CreaParametriIsolamento(doc, app);
                     }
-                   //MessageBox.Show(i + " isolamenti trovati", "numero di isolamento condotti");
-                    System.Windows.MessageBox.Show("È stato migrato il parametro di area a " + i_c + " condotti isolati "  + System.Environment.NewLine + "e "+ i_f + " raccordi isolati"  , "numero di condotti e raccordi isolati" );
+                }
+                else
+                {
+                    parametri_presenti = true;
+                }
 
+                if (parametri_presenti)
+                {
+                    t.Start();
+                    MigraParaetriIsolamento(doc);
                     t.Commit();
                 }
             }
+
             return Result.Succeeded;
         }
 
 
-        static public bool CreaParametriIsolamento(Document doc, Application app)
+        static public bool CreaParametriIsolamento(Document _doc, Application _app)
         {
             bool output = false;
-            //prendo la categoria di condotti
-            //Category c_co = doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctCurves);
-            //Category c_ra = doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctFitting);
 
-            CategorySet categorySet = app.Create.NewCategorySet();
-            //categorySet.Insert(c_co);
-            //categorySet.Insert(c_ra);
-            categorySet.Insert(doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctInsulations));
 
-            string originalFile = app.SharedParametersFilename;
+            CategorySet categorySet = _app.Create.NewCategorySet();
+
+            categorySet.Insert(_doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctInsulations));
+
+            string originalFile = _app.SharedParametersFilename;
 
             //RISOLVERE E TROVARE IL MODO PER PRENDERSELO DA VISUAL STUDIO\
             string tempfie = @"C:\Users\Simone Maioli\Desktop\17017_ParamCondivisi.txt";
 
             try
             {
-                app.SharedParametersFilename = tempfie;
-                DefinitionFile SharedParameterFile = app.OpenSharedParameterFile();
+                _app.SharedParametersFilename = tempfie;
+                DefinitionFile SharedParameterFile = _app.OpenSharedParameterFile();
                 foreach (DefinitionGroup dg in SharedParameterFile.Groups)
                 {
                     if (dg.Name == "Materiale riciclato")
                     {
                         ExternalDefinition externalDefinitionS_App = dg.Definitions.get_Item("P3_Sup_S.app_dyn") as ExternalDefinition;
 
-                        using (Transaction t = new Transaction(doc, "Aggiungi parametro P3"))
+                        using (Transaction t = new Transaction(_doc, "Aggiungi parametro P3"))
                         {
                             t.Start();
-                            InstanceBinding newIB = app.Create.NewInstanceBinding(categorySet);
-                            doc.ParameterBindings.Insert(externalDefinitionS_App, newIB, BuiltInParameterGroup.PG_AREA);
+                            InstanceBinding newIB = _app.Create.NewInstanceBinding(categorySet);
+                            _doc.ParameterBindings.Insert(externalDefinitionS_App, newIB, BuiltInParameterGroup.PG_AREA);
                             t.Commit();
                         }
                         output = true;
@@ -127,10 +122,52 @@ namespace P3Ribbon.Scripts
             finally
             {
                 //reset alla fine il fileoriginale
-                app.SharedParametersFilename = originalFile;
+                _app.SharedParametersFilename = originalFile;
             }
             return output;
         }
 
+        static public void MigraParaetriIsolamento(Document _doc)
+        {
+            Category c_condotti = _doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctCurves);
+            Category c_raccordi = _doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctFitting);
+
+            int i_f = 0;
+            int i_c = 0;
+            int i = 0;
+            IList<Element> coll = new FilteredElementCollector(_doc).OfClass(typeof(DuctInsulation)).ToElements();
+
+            foreach (Element el in coll)
+            {
+                try
+                {
+                    InsulationLiningBase insul = el as InsulationLiningBase;
+                    Element host = _doc.GetElement(insul.HostElementId);
+                    i++;
+
+
+
+                    if (host.Category.Id == c_raccordi.Id)
+                    {
+                        double area_rac = host.LookupParameter("P3_Sup_S.app").AsDouble();
+                        insul.LookupParameter("P3_Sup_S.app_dyn").Set(area_rac);
+                        i_f++;
+                    }
+
+                    if (host.Category.Id == c_condotti.Id)
+                    {
+                        Parameter area_condotto = insul.get_Parameter(BuiltInParameter.RBS_CURVE_SURFACE_AREA);
+                        insul.LookupParameter("P3_Sup_S.app_dyn").Set(area_condotto.AsDouble());
+                        i_c++;
+                    }
+                }
+                catch
+                {
+
+                }
+            }
+
+            System.Windows.MessageBox.Show("È stato migrato il parametro di area a " + i_c + " isolamenti di condotti" + System.Environment.NewLine + "e " + i_f + " isolamenti di raccordi", "numero di isolamenti di raccordo e condotti");
+        }
     }
 }
