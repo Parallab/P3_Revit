@@ -1,0 +1,131 @@
+[Autodesk.Revit.Attributes.Transaction(Autodesk.Revit.Attributes.TransactionMode.Manual)]
+	[Autodesk.Revit.DB.Macros.AddInId("19886906-4725-44C9-B742-64550A805BEE")]
+	public partial class ThisDocument
+	{
+		private void Module_Startup(object sender, EventArgs e)
+		{
+
+		}
+
+		private void Module_Shutdown(object sender, EventArgs e)
+		{
+
+		}
+
+		#region Revit Macros generated code
+		private void InternalStartup()
+		{
+			this.Startup += new System.EventHandler(Module_Startup);
+			this.Shutdown += new System.EventHandler(Module_Shutdown);
+		}
+		#endregion
+		
+		IList<Element> dclist = new List<Element>();
+		public IList<Element> Seleziona_condotti()
+		{
+
+			TaskDialog td = new TaskDialog("P3 staffaggio canali");
+			td.MainInstruction = "Selezionare la modalità di input";
+			string a1 = "Seleziona tutti i condotti all'interno del progetto Revit corrente";
+			string b1 = "Selezione manuale da schermo";
+			td.AddCommandLink(TaskDialogCommandLinkId.CommandLink1, a1);
+			td.AddCommandLink(TaskDialogCommandLinkId.CommandLink2, b1);
+			TaskDialogResult result = td.Show();
+			
+			if (result == TaskDialogResult.CommandLink1)
+			{
+				IList<Element> du_coll = new FilteredElementCollector(Document).OfCategory(BuiltInCategory.OST_DuctCurves).WhereElementIsNotElementType().ToElements();
+				//lista vuota
+				List<Element> newsel = new List<Element>();
+				foreach (Element el in du_coll)
+				{
+					newsel.Add(el);
+				}
+				return newsel;
+			}
+			else
+			{
+				return null;
+			}
+			
+		}
+		
+		
+		public IList<Element> FiltraCondottiVerticali()
+		{
+			dclist = (List<Element>)Seleziona_condotti();
+			
+			XYZ dir = XYZ.Zero;
+			int i = 0;
+			foreach (Element dc in dclist)
+			{
+				//Ricavo il parametro di lunghezza per ogni condotto
+				string s_dclengh = dc.LookupParameter("Lunghezza").AsValueString();
+				double dcleght = double.Parse(s_dclengh);
+				//Leggo le coordinate dei punti inizali e finali del condotto e calcolo la direzione
+				LocationCurve Lp = dc.Location as LocationCurve;
+				Curve c = Lp.Curve;
+				XYZ pt1 =  c.GetEndPoint(0);
+				XYZ pt2 =  c.GetEndPoint(1);
+				dir = pt2.Subtract(pt1).Normalize();
+				
+				//condizione se verticale o minore di 250 mm
+				if (dir.Z == 1 || dcleght < 250 )
+				{
+					i++;
+					dclist.Remove(dc);
+				}
+				
+			}
+			TaskDialog td = new TaskDialog("P3 staffaggio canali");
+			td.MainInstruction = "sono stati indivituati " + i + " canali verticali o troppo corti";
+			TaskDialogResult result = td.Show();
+			
+			return dclist;
+		}
+		
+		public void CalcolaPerimetro()
+		{
+			dclist = (List<Element>)Seleziona_condotti();
+			
+			foreach (Element dc in dclist)
+			{
+				double per;
+				
+				double dc_spiso = CalcolaSpessoreIsolamento(dc);
+				double dc_largh = CalcolaLarghezza(dc);
+				double dc_alt = CalcolaAltezza(dc);
+				
+				per = (dc_largh + dc_alt);
+			}
+			
+		}
+		
+		#region funzioni che mi calcolano i parametri nel sistema metrico 
+		public double CalcolaSpessoreIsolamento(Element dc)
+		{
+			double dc_spiso_IM = dc.LookupParameter("Spessore isolamento").AsDouble()*2;
+			double dc_spiso = UnitUtils.ConvertFromInternalUnits(dc_spiso_IM,DisplayUnitType.DUT_MILLIMETERS);
+			return dc_spiso;
+		}
+		public double CalcolaLarghezza(Element dc)
+		{
+			double dc_largh_IM = dc.LookupParameter("Larghezza").AsDouble()*2;
+			double dc_largh = UnitUtils.ConvertFromInternalUnits(dc_largh_IM,DisplayUnitType.DUT_MILLIMETERS);
+			return dc_largh;
+		}
+			public double CalcolaAltezza(Element dc)
+		{
+			double dc_alt_IM = dc.LookupParameter("Altezza").AsDouble()*2;
+			double dc_alt = UnitUtils.ConvertFromInternalUnits(dc_alt_IM,DisplayUnitType.DUT_MILLIMETERS);
+			return dc_alt;
+		}
+	
+		#endregion
+		
+		public void Staffaggio()
+		{
+			dclist = (List<Element>)FiltraCondottiVerticali();
+		}
+		
+	}

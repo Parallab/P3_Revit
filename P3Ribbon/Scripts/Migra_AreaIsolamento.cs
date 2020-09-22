@@ -146,7 +146,6 @@ namespace P3Ribbon.Scripts
                     i++;
 
 
-
                     if (host.Category.Id == c_raccordi.Id)
                     {
                         double area_rac = host.LookupParameter("P3_Sup_S.app").AsDouble();
