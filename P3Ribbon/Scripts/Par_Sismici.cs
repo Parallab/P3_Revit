@@ -90,7 +90,6 @@ namespace P3Ribbon
 
         }
 
-
         public void Proj_Info_Scrivi_Parametri(int _classe, bool _eng, int _vita, int _zona, Document _doc)
         {
             if (Form_Def_Acc.ok_premuto == true)
@@ -115,7 +114,7 @@ namespace P3Ribbon
         static public bool CreaParametriCondivisi(Document doc, Application app)
         {
             bool output = false;
-            //prendo la categoria di infromaizone di progetto
+            //prendo la categoria di informaizone di progetto
             Category category = doc.Settings.Categories.get_Item(BuiltInCategory.OST_ProjectInformation);
             CategorySet categorySet = app.Create.NewCategorySet();
             categorySet.Insert(category);

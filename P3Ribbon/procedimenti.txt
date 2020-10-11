@@ -1,0 +1,55 @@
+prendimi tutti i condotti
+per ogni condotto
+	guarda se non è vertivcale o corto
+		ecc
+				dfsf
+					xfdfg
+						sdgdfgd
+							sfgdfgd
+								sfgdfgd
+		
+		
+		
+		
+-------------------------------------------
+creami una lista vuota
+funzione filtra corti e verticali
+
+
+
+
+//
+Metodo inizale che mi restituisce il parametro di perimetro minimo in funzione della classe
+d'uso e zona sismica [trovare il modo per leggere il file excel]
+//
+
+//
+prendimi tutti i condotti e mettili nella lista vuota
+//
+
+//
+funzione filtra corti e verticali per togliere gli elemetni dalla stessa lista di prima 
+//
+
+//
+unico Metodo che mi restitusce il passo min per ogni condotto
+-legge parametri dimensionali (largh, alt, spessore isolamento) per ogni elemento dalla listabuona
+-sommare lo spessore di isolamento al parametro di largh e alt (b, a)
+
+creare un parametro che mi restituisca il perimetro di ogni elemento per = (b + a)*2
+
+if se per è minore o maggiore del permin(resituito dalla funzione precedente)
+(individuare in funzione di questo le caratteristiche dei controventi per ciascun condotti e il passo degli staffaggi)
+//
+
+//
+metodo che restituisce  la geometria dei condotti (coordiante vettoriali di ogni staffa per condotto)in funzione del passo calcolato 
+-leggo la lunghezza del condotto sempre dalla lista filtrata e divido per il passo corrispondente, quindi approssimo per eccesso con un intero
+- per ogni elemento prendo la location, e ricavo una tripla di coorinate (XYZ) agli estremi con un offset di 100 mm +
+  le coordinate corrispondenti al numero di parti uguali ottenuta dal numero intero.
+-ottengo così le coordinate vettoriali dei punti dove andranno le staffe sempre per ogni elemento
+//
+
+//
+metodo che trova e restituisce il pavimento al di sopra delle coordinate individuate
+//
