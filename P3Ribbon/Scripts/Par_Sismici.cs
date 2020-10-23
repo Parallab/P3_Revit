@@ -4,9 +4,12 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using P3Ribbon.Scripts;
 using System;
+using System.IO;
+using System.Reflection;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using Application = Autodesk.Revit.ApplicationServices.Application;
+using System.Text.RegularExpressions;
 
 namespace P3Ribbon
 {
@@ -18,9 +21,6 @@ namespace P3Ribbon
         public static bool eng;
         public static int vita;
         public static int zona;
-
-       
-
 
         //FORM//
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
@@ -46,7 +46,7 @@ namespace P3Ribbon
                     Parameter Vn = proj_info.LookupParameter("P3_InfoProg_VitaNominale");
                     Parameter Zs = proj_info.LookupParameter("P3_InfoProg_ZonaSismica");
 
-
+                
                     if (Cu == null || En == null || Vn == null || Zs == null)
                     {
                         TaskDialog td = new TaskDialog("Errore");
@@ -90,7 +90,7 @@ namespace P3Ribbon
 
         }
 
-        public void Proj_Info_Scrivi_Parametri(int _classe, bool _eng, int _vita, int _zona, Document _doc)
+        public static void Proj_Info_Scrivi_Parametri(int _classe, bool _eng, int _vita, int _zona, Document _doc)
         {
             if (Form_Def_Acc.ok_premuto == true)
             {
@@ -111,6 +111,15 @@ namespace P3Ribbon
 
         }
 
+        public static string TrovaPercorsoRisorsa(string NomeFile)
+        {
+             Assembly a = Assembly.GetExecutingAssembly();
+            string PathAssembly = Assembly.GetExecutingAssembly().Location;
+            string PercorsoRisorsa = PathAssembly.Replace("P3Ribbon.dll", "P3_Resouces\\" + NomeFile);
+            return PercorsoRisorsa;
+        }
+       
+
         static public bool CreaParametriCondivisi(Document doc, Application app)
         {
             bool output = false;
@@ -121,7 +130,8 @@ namespace P3Ribbon
 
             string originalFile = app.SharedParametersFilename;
             //RISOLVERE E TROVARE IL MODO PER PRENDERSELO DA VISUAL STUDIO\
-            string tempfie = @"C:\Users\Simone Maioli\Desktop\17017_ParamCondivisi.txt";
+
+            string tempfie = TrovaPercorsoRisorsa( "17017_ParamCondivisi.txt");
 
             try
             {
@@ -149,7 +159,6 @@ namespace P3Ribbon
                             doc.ParameterBindings.Insert(externalDefinitionZS, newIB, BuiltInParameterGroup.INVALID);
                             doc.ParameterBindings.Insert(externalDefinitionEN, newIB, BuiltInParameterGroup.INVALID);
                             t.Commit();
-
                         }
 
                     }
@@ -168,7 +177,7 @@ namespace P3Ribbon
             return output;
         }
 
-        private void Migra_Parametri_Presenti(Document doc)
+        public static void Migra_Parametri_Presenti(Document doc)
         {
             IList<Element> proj_infos = new FilteredElementCollector(doc).OfClass(typeof(ProjectInfo)).ToElements();
             Element proj_info = proj_infos[0];

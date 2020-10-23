@@ -1,44 +1,118 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Forms;
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
+using Autodesk.Revit.DB.Structure;
 using Autodesk.Revit.DB.Mechanical;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Selection;
-using Microsoft.Office.Interop.Excel;
-using _Excel = Microsoft.Office.Interop.Excel;
+using Autodesk.Revit.DB.Events;
+using Application = Autodesk.Revit.ApplicationServices.Application;
+
 
 namespace P3Ribbon.Scripts
 {
-	[Transaction(TransactionMode.Manual)]
-	class Staffaggio : IExternalCommand
+	class Supporto
     {
-		IList<Element> dclist = new List<Element>();
+		public static List<List<double>> ValoriTabella;
+	}
+
+	
+	[Transaction(TransactionMode.Manual)]
+
+
+	class Staffaggio : IExternalCommand
+	{
+		Scripts.Form_Def_Acc frm = new Scripts.Form_Def_Acc();
+		public static FamilySymbol fs;
+		public static List<Element> dclist = new List<Element>();
+		public static List<Condotto> condotti = new List<Condotto>();
+		public static List<Tabella> tabella = new List<Tabella>();
+		public bool Parametri_presenti = false;
+
+
 		public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
-        {
+		{
 			UIApplication uiApp = commandData.Application;
 			UIDocument uiDoc = uiApp.ActiveUIDocument;
 			Document doc = uiDoc.Document;
+			//Application app = uiApp.Application;
+
+			//verifica presenza parametri, ovvero ricicla bottone già fatto
+			//ControllaParametri(doc, app);
+			
+				Supporto.ValoriTabella = Tabella.leggitabella(doc);
+				List<Condotto> Condotti = FiltraCondottiCortiVert(doc, uiDoc);
+				AttivaFamiglia(doc);
 
 
-			P3Ribbon.Scripts.Parametrigeometrici IParametri = new P3Ribbon.Scripts.Parametrigeometrici();
-			IParametri.CalcolaPerimetro(doc, uiDoc);
+				using (var t = new Transaction(doc, "Posiziona staffaggio"))
+				{
+					t.Start();
+					if (condotti.Count != 0)
+					{
+						foreach (Condotto c in Condotti)
+						{
+							c.DimensionaDaTabella(doc);
+							c.CalcolaPuntiStaffe();
+							c.TrovaPavimento(doc);
+							c.PosizionaStaffe(doc, fs);
+						}
+						t.Commit();
 
-
-			return Result.Succeeded;
+					}
+					else
+					{
+						return Result.Cancelled;
+					}
+				}
+				condotti.Clear();
+				return Result.Succeeded;
+			
+			
 		}
-
-
-		
-		public static IList<Element> Seleziona_condotti(Document doc, UIDocument uiDoc)
+			public void ControllaParametri(Document doc, Application app )
 		{
+			IList<Element> proj_infos = new FilteredElementCollector(doc).OfClass(typeof(ProjectInfo)).ToElements();
+			Element proj_info = proj_infos[0];
 
-			TaskDialog td =  new TaskDialog("P3 staffaggio canali");
+			Parameter Cu = proj_info.LookupParameter("P3_InfoProg_ClasseUso");
+			Parameter En = proj_info.LookupParameter("P3_InfoProg_Eng");
+			Parameter Vn = proj_info.LookupParameter("P3_InfoProg_VitaNominale");
+			Parameter Zs = proj_info.LookupParameter("P3_InfoProg_ZonaSismica");
+			if (Cu == null || En == null || Vn == null || Zs == null)
+			{
+				TaskDialog td = new TaskDialog("Errore");
+				td.MainInstruction = "Parametri sismici non inseriti nel progetto";
+				td.MainContent = "Parametri sismici non inseriti nel progetto, inserire i parametri sismici?";
+				td.CommonButtons = TaskDialogCommonButtons.Yes | TaskDialogCommonButtons.No;
+
+				TaskDialogResult result = td.Show();
+
+				if (result == TaskDialogResult.Yes)
+				{
+					P3Ribbon.Par_Sismici.CreaParametriCondivisi(doc, app);
+
+					//Par_Sismici.Migra_Parametri_Presenti(doc);
+					//frm.ShowDialog();
+					//if (Form_Def_Acc.ok_premuto == true)
+					//{
+					//	Par_Sismici.Proj_Info_Scrivi_Parametri(Par_Sismici.classe, Par_Sismici.eng, Par_Sismici.vita, Par_Sismici.zona, doc);
+					//}
+				
+					Parametri_presenti = true;
+				}
+				else
+				{
+					Parametri_presenti = false;
+				}
+			}
+
+		}
+			public static IList<Element> Seleziona_condotti(Document doc, UIDocument uiDoc)
+		{
+			TaskDialog td = new TaskDialog("P3 staffaggio canali");
 			td.MainInstruction = "Selezionare la modalità di input";
 			string a1 = "Seleziona tutti i condotti all'interno del progetto Revit corrente";
 			string b1 = "Selezione manuale da schermo";
@@ -57,19 +131,30 @@ namespace P3Ribbon.Scripts
 				{
 					i++;
 					dclist1.Add(el);
-				}
-				System.Windows.MessageBox.Show("Nel progetto corrente ci sono " + i + " condotti");
+				}            
+
+				TaskDialog td1 = new TaskDialog("P3 staffaggio canali");
+				td1.MainInstruction = "Nel proggetto corrente ci sono " + dclist1.Count + " condotti";
+				TaskDialogResult result2 = td1.Show();
 				return dclist1;
-                
+
 			}
 			//Seleziono i condotti da finestra 
-			else
+			else if (result == TaskDialogResult.CommandLink2)
 			{
 				IList<Element> dclist2 = SelSoloCondottiDaFinestra(uiDoc);
-				System.Windows.MessageBox.Show("Hai selezionato " + dclist2.Count() +" condotti");
+
+				TaskDialog td2 = new TaskDialog("P3 staffaggio canali");
+				td2.MainInstruction = "hai selezionato " + dclist2.Count + " condotti";
+				TaskDialogResult result2 = td2.Show();
 				return dclist2;
 			}
-			
+			else
+			{
+				List<Element> ListaVuota = new List<Element>();
+				return ListaVuota;
+			}
+
 		}
 		#region  Funzione che seleziona solo i condotti da finestra con un selection filter     
 		public static IList<Element> SelSoloCondottiDaFinestra(UIDocument uidoc)
@@ -81,11 +166,11 @@ namespace P3Ribbon.Scripts
 		}
 
 
-        public class FiltraCondotti : ISelectionFilter
+		public class FiltraCondotti : ISelectionFilter
 		{
-			public bool  AllowElement(Element element)
+			public bool AllowElement(Element element)
 			{
-				
+
 				if (element.Category.Name == "Condotto")
 				{
 					return true;
@@ -98,94 +183,392 @@ namespace P3Ribbon.Scripts
 				return false;
 			}
 		}
-        #endregion
-
+		#endregion
 
 		//filtro elementi verticali e lugni < di 250 mm
-        public static IList<Element> FiltraCondottiCortiVert(Document doc, UIDocument uiDoc)
-        {
-			IList<Element> dclist = new List<Element>();
+		public static List<Condotto> FiltraCondottiCortiVert(Document doc, UIDocument uiDoc)
+		{
 			dclist = (List<Element>)Seleziona_condotti(doc, uiDoc);
+			;
 			int i = 0;
-			XYZ dir = XYZ.Zero;
-			foreach (Element dc in dclist.ToList())
+			if (dclist.Count != 0)
 			{
-				
-				//Ricavo il parametro di lunghezza per ogni condotto
-				double dc_lungh_IM = dc.LookupParameter("Lunghezza").AsDouble();
-				double dc_lungh = UnitUtils.ConvertFromInternalUnits(dc_lungh_IM, DisplayUnitType.DUT_MILLIMETERS);
-				//Leggo le coordinate dei punti inizali e finali del condotto e calcolo la direzione
-				LocationCurve Lp = dc.Location as LocationCurve;
-				Curve c = Lp.Curve;
-				XYZ pt1 = c.GetEndPoint(0);
-				XYZ pt2 = c.GetEndPoint(1);
-				dir = pt2.Subtract(pt1).Normalize();
 
-				//condizione se verticale o minore di 250 mm
-				if (dir.Z == 1 || dc_lungh < 250)
+				foreach (Element dc in dclist)
 				{
-					dclist.Remove(dc);
-					i++;
+					Condotto condotto = new Condotto(doc, dc);
+					//condizione se verticale o minore di 250 mm
+					if (condotto.dir.Z == 1 || condotto.lungh < 25)
+					{
+						i++;
+					}
+					else
+					{
+						condotti.Add(condotto);
+					}
 				}
+				TaskDialog td = new TaskDialog("P3 staffaggio canali");
+				td.MainInstruction = "sono stati indivituati " + i + " canali verticali o troppo corti";
+				TaskDialogResult result = td.Show();
+				return condotti;
 			}
-			TaskDialog td = new TaskDialog("P3 staffaggio canali");
-			td.MainInstruction = "sono stati indivituati " + i + " canali verticali o troppo corti";
-			TaskDialogResult result = td.Show();
-			return dclist;
-		}
-
-		//Classe per leggere parametri geometrici e calcolare il perimetro 
-		
-	}
-	public class Parametrigeometrici
-	{
-		public void CalcolaPerimetro(Document doc, UIDocument uiDoc)
-		{
-			IList<Element> dclist = Staffaggio.FiltraCondottiCortiVert(doc, uiDoc);
-			List<double> dc_spiso_list = new List<double>();
-			List<double> dc_largh_list = new List<double>();
-			List<double> dc_alt_list = new List<double>();
-			List<double> dc_per_list = new List<double>();
-
-
-			foreach (Element dc in dclist)
+            else 
 			{
-				double per;
-
-				double dc_spiso = CalcolaSpessoreIsolamento(dc);
-				dc_spiso_list.Add(dc_spiso);
-				double dc_largh = CalcolaLarghezza(dc);
-				dc_largh_list.Add(dc_largh);
-				double dc_alt = CalcolaAltezza(dc);
-				dc_alt_list.Add(dc_alt);
-
-				per = (dc_largh + dc_alt);
-				dc_per_list.Add(per);
+				return null;
 			}
-
+		
 		}
+		public static List<XYZ> coordinate = new List<XYZ>();
 
-		#region funzioni che mi calcolano i parametri nel sistema metrico 
-		public double CalcolaSpessoreIsolamento(Element dc)
+		public void AttivaFamiglia(Document doc)
 		{
-			double dc_spiso_IM = dc.LookupParameter("Spessore isolamento").AsDouble() * 2;
-			double dc_spiso = UnitUtils.ConvertFromInternalUnits(dc_spiso_IM, DisplayUnitType.DUT_MILLIMETERS);
+			fs = doc.GetElement(new ElementId(2415672)) as FamilySymbol;
+			if (!fs.IsActive)
+			{
+				fs.Activate();
+			}
+		}
+	}
+
+	public class Condotto
+	{
+		public Element el;
+		public ElementId Id;
+		public double spiso = 0;
+		public double spiso_IM = 0;
+		public double alt = 0;
+		public double alt_IM = 0;
+		public double largh = 0;
+		public double largh_IM = 0;
+		public double per = 0;
+		public double lungh = 0;
+		public double lungh_of1 = 0;
+		public double inlcinazioneZ = 0;
+		public double passoMin = 0;
+		public double passoMax = 0;
+		//public int inclinazioneXY = 0;
+
+		public LocationCurve lc;
+
+		public List<XYZ> pts = new List<XYZ>();
+		public XYZ dir = XYZ.Zero;
+		public XYZ vectorX = XYZ.BasisX;
+		
+		////////////valori dimensionali excel////////////
+		public double InterasseControventoTras = 0;
+		public double InterasseControventoLong = 0;
+		public double StaffaSupLato = 0;
+		public double StaffaSupDist = 0;
+		public double ControventoBarre = 0;
+		///////////////////////////////////////////////
+		
+		public List<XYZ> ptspavimenti = new List<XYZ>();
+		public List<FamilyInstance> staffaggi = new List<FamilyInstance>(); //sarebbe meglio emlement? in caso castare?
+
+
+		public Element livello;
+
+		public Condotto(Document doc, Element _el)
+		{
+			this.el = _el;
+			this.Id = _el.Id;
+			this.spiso = CalcolaSpessoreIsolamento(_el, true);
+			this.spiso_IM = CalcolaSpessoreIsolamento(_el, false);
+			this.alt = CalcolaAltezza(_el, true) + this.spiso;
+			this.alt_IM = CalcolaAltezza(_el, false);
+			this.largh = CalcolaLarghezza(_el, true) + this.spiso;
+			this.largh_IM = CalcolaLarghezza(_el, false);
+			this.lungh = CalcolaLunghezza(_el);
+            this.per = CalcolaPerimetro(alt, largh);
+			this.passoMin = CalcolaPassoMinMax(true);
+			this.passoMax = CalcolaPassoMinMax(false);
+			this.dir = CalcolaDirezione(_el);
+			this.lc = _el.Location as LocationCurve;
+			this.livello = CalcolaLivello(doc, _el);
+			//this.inclinazioneXY = CalcolaInclinazioneSuXY();
+			this.inlcinazioneZ = CalcolaInclinazione(_el);
+		}
+		#region funzioni che mi calcolano gli attributti belli della classe condotto
+		public double CalcolaSpessoreIsolamento(Element dc, Boolean metrico)
+		{
+			double dc_spiso = dc.get_Parameter(BuiltInParameter.RBS_REFERENCE_INSULATION_THICKNESS).AsDouble() * 2;
+			if (metrico)
+			{
+				dc_spiso = UnitUtils.ConvertFromInternalUnits(dc_spiso, DisplayUnitType.DUT_CENTIMETERS);
+			}
 			return dc_spiso;
 		}
-		public double CalcolaLarghezza(Element dc)
+		public double CalcolaLarghezza(Element dc, Boolean metrico)
 		{
-			double dc_largh_IM = dc.LookupParameter("Larghezza").AsDouble() * 2;
-			double dc_largh = UnitUtils.ConvertFromInternalUnits(dc_largh_IM, DisplayUnitType.DUT_MILLIMETERS);
+			double dc_largh = dc.get_Parameter(BuiltInParameter.RBS_CURVE_WIDTH_PARAM).AsDouble();
+			if (metrico)
+			{
+				dc_largh = UnitUtils.ConvertFromInternalUnits(dc_largh, DisplayUnitType.DUT_CENTIMETERS);
+			}
 			return dc_largh;
 		}
-		public double CalcolaAltezza(Element dc)
+		public double CalcolaAltezza(Element dc, Boolean metrico)
 		{
-			double dc_alt_IM = dc.LookupParameter("Altezza").AsDouble() * 2;
-			double dc_alt = UnitUtils.ConvertFromInternalUnits(dc_alt_IM, DisplayUnitType.DUT_MILLIMETERS);
+			double dc_alt = dc.get_Parameter(BuiltInParameter.RBS_CURVE_HEIGHT_PARAM).AsDouble();
+			if (metrico)
+			{
+				dc_alt = UnitUtils.ConvertFromInternalUnits(dc_alt, DisplayUnitType.DUT_CENTIMETERS);
+			}
 			return dc_alt;
+
 		}
+		public double CalcolaLunghezza(Element dc)
+		{
+			double dc_lungh_IM = dc.get_Parameter(BuiltInParameter.CURVE_ELEM_LENGTH).AsDouble();
+			double dc_lungh = UnitUtils.ConvertFromInternalUnits(dc_lungh_IM, DisplayUnitType.DUT_CENTIMETERS);
+			return dc_lungh;
+		}
+		public double CalcolaPerimetro(double largh, double alt)
+		{
+			per = (largh * 2 + alt * 2);
+			return per;
+		}
+		public double CalcolaLunghezzaNormalizzata(double x, bool dall_inizio)
+		{
+			if (dall_inizio)
+			{
+				lungh_of1 = x / lungh;
+			}
+			else
+			{
+				lungh_of1 = (lungh - x) / lungh;
+			}
+			return lungh_of1;
+		}
+		public Element CalcolaLivello(Document doc, Element dc)
+		{
+			Element livello = doc.GetElement(dc.get_Parameter(BuiltInParameter.RBS_START_LEVEL_PARAM).AsElementId());
+			return livello;
+
+		}
+
+		public XYZ CalcolaDirezione(Element dc)
+		{
+			//Leggo le coordinate dei punti inizali e finali del condotto e calcolo la direzione
+			LocationCurve Lp = dc.Location as LocationCurve;
+			Curve c = Lp.Curve;
+			XYZ pt1 = c.GetEndPoint(0);
+			XYZ pt2 = c.GetEndPoint(1);
+			dir = pt2.Subtract(pt1).Normalize();
+			return dir;
+		}
+
+		//public int CalcolaInclinazioneSuXY()
+		//{
+		//	double deltaY = (dir.Y - vectorX.Y);
+		//	double deltaX = (dir.X - vectorX.X);
+
+		//	double angle = Math.Atan2(deltaY, deltaX) * (180 / Math.PI);
+
+		//	return (int)Math.Ceiling(angle);
+		//}
+		public double CalcolaInclinazione(Element dc)
+		{
+			double inclinazione = dc.get_Parameter(BuiltInParameter.RBS_DUCT_SLOPE).AsDouble();
+			double inclinazioneZ = Math.Atan(inclinazione);
+			return inlcinazioneZ;
+		}
+
+		public double CalcolaPassoMinMax(bool CalcolaPassominimo)
+        {
+			double passotemp = 0;
+            if (Math.Max(this.alt, this.largh) > 100)
+            {
+                passotemp = 400;
+
+            }
+            else
+            {
+                passotemp = 200;
+
+            }
+
+            if (CalcolaPassominimo = true)
+            {
+				double Passomin = (Math.Min(InterasseControventoTras, passotemp));
+				return Passomin;
+            }
+			else
+			{
+				double Passomax = (Math.Max(InterasseControventoTras, passotemp));
+				return Passomax;
+			}
+        }
+
+		public List<Element> TrovaRaccordi90Gradi(Document doc)
+        {
+			IList<Element> ra_coll = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_DuctFitting).WhereElementIsNotElementType().ToElements();
+			//Creo una lista vuota
+			List<Element> raccordi = new List<Element>();
+			foreach (Element el in ra_coll)
+			{
+				double angolo = el.LookupParameter("P3 - Angle").AsDouble();
+				double angolo_dx = el.LookupParameter("P3 - Angle_SX").AsDouble();
+				double angolo_sx = el.LookupParameter("P3 - Angle_DX").AsDouble();
+
+				if (angolo == 90 || angolo_dx == 90 || angolo_sx == 90)
+                {
+					raccordi.Add(el);
+                }
+			}
+			return raccordi;
+		}
+
 
 		#endregion
 
+
+		public void CalcolaPuntiStaffe()
+		{	
+
+			//pt_iniz
+			double offset_iniz = this.CalcolaLunghezzaNormalizzata(10, true);
+			pts.Add(this.lc.Curve.Evaluate(offset_iniz, true));
+
+			if (this.lungh > passoMin)
+			{
+				//calcolare punti intermedi
+				// stiamo ignorando l'offset sia nel calcolo delle suddivisioni(facile) che nel calcolo dei punti (più incasinato)
+				int n_suddivisioni_lineari = (int)Math.Ceiling(this.lungh / passoMin);
+				for (int i = 1; i < n_suddivisioni_lineari; i++)
+				{
+					double x = (this.lungh / n_suddivisioni_lineari) * i;
+
+					pts.Add(this.lc.Curve.Evaluate((x / this.lungh), true));
+				}
+			}
+
+			if (this.lungh > 40.666)
+			{
+				//pt_finale
+				pts.Add(this.lc.Curve.Evaluate(this.CalcolaLunghezzaNormalizzata(10, false), true));
+			}
+		}
+
+		public void TrovaPavimento(Document doc)
+		{
+
+			View3D view3d;
+			//Prima vista3d o quella di defoult, Eccezione se ci non ci sono viste 3d nel progetto?
+			view3d = new FilteredElementCollector(doc).OfClass(typeof(View3D)).Cast<View3D>().FirstOrDefault();
+
+			Category p_cat = doc.Settings.Categories.get_Item(BuiltInCategory.OST_Floors);
+			ElementCategoryFilter filter = new ElementCategoryFilter(BuiltInCategory.OST_Floors);
+			ReferenceIntersector ri = new ReferenceIntersector(filter, FindReferenceTarget.All, view3d);
+			//beccami anche i modelli linkati
+			ri.FindReferencesInRevitLinks = true;
+
+			foreach (XYZ pt in pts)
+			{
+				ReferenceWithContext _ref = ri.FindNearest(pt, XYZ.BasisZ);
+				if (_ref == null)
+				{
+					ptspavimenti.Add(null);
+				}
+				else
+				{
+					Reference refel = _ref.GetReference();
+					RevitLinkInstance linkinstance = (RevitLinkInstance)doc.GetElement(refel.ElementId);
+						XYZ refp = refel.GlobalPoint;
+						ptspavimenti.Add(refp);
+					
+				}
+
+			}
+
+		}
+		// Create an axis in the Z direction 
+
+		public void PosizionaStaffe(Document doc, FamilySymbol _fs)
+		{
+			XYZ pt;
+			XYZ pt_pav;
+			FamilyInstance fi;
+			for (int i = 0; i < pts.Count; i++)
+			{
+				pt = pts[i];
+				pt_pav = ptspavimenti[i];
+
+				if (pt_pav == null)
+				{
+					// cosa vogliamo fare?
+					this.staffaggi.Add(null);
+				}
+				else
+				{
+					fi = doc.Create.NewFamilyInstance(pt, _fs, this.livello, StructuralType.NonStructural);
+					this.staffaggi.Add(fi);
+					fi.LookupParameter("P3_Dynamo_Center2Ceiling").Set(Math.Abs(pt.Z - pt_pav.Z));
+					fi.LookupParameter("P3_Duct_Width").Set(this.largh_IM);
+					fi.LookupParameter("P3_Duct_Height").Set(this.alt_IM);
+					fi.LookupParameter("P3_Duct_Slope").Set(this.inlcinazioneZ);
+					Line asseZ = Line.CreateBound(pt, pt.Add(new XYZ(0, 0, 1)));
+					ElementTransformUtils.RotateElement(doc, fi.Id, asseZ, dir.AngleTo(XYZ.BasisY));
+
+				}
+			}
+		}
+
+		public void DimensionaDaTabella(Document doc)
+        {
+		
+			for (int i_r = 0; i_r < Supporto.ValoriTabella.Count; i_r++)
+			{
+				List<double> riga = Supporto.ValoriTabella[i_r];
+
+				//altro metodo??
+				if ( this.per > riga[3])
+				{
+					InterasseControventoTras = riga[4];
+					InterasseControventoLong = riga[5];
+					StaffaSupLato = riga[6];
+					StaffaSupDist = riga[7];
+					ControventoBarre = riga[8];
+				}
+			}
+
+		}
+
 	}
+	public class Tabella 
+	{
+		public static List<List<double>> leggitabella(Document doc)
+		{
+			IList<Element> proj_infos = new FilteredElementCollector(doc).OfClass(typeof(ProjectInfo)).ToElements();
+			Element proj_info = proj_infos[0];
+
+
+			int ClasseUso = proj_info.LookupParameter("P3_InfoProg_ClasseUso").AsInteger();
+			int ZonaSismica = proj_info.LookupParameter("P3_InfoProg_ZonaSismica").AsInteger();
+			
+				List<List<double>> tabella_leggera = new List<List<double>>();
+				var lines = System.IO.File.ReadAllLines(Par_Sismici.TrovaPercorsoRisorsa("20020_P3_TabelleDiPredimensionamento.txt"));
+				for (int i_r = 0; i_r < lines.Length; i_r++)
+				{
+					List<double> sotto_lista = new List<double>();
+
+					var fields = lines[i_r].Split(';');
+					if (fields[1] == ClasseUso.ToString() && fields[3] == ZonaSismica.ToString())
+					{
+						for (int i = 1; i < fields.Count(); i++ )
+						{
+							 string field = fields[i];
+						
+							sotto_lista.Add(double.Parse(field));
+						
+						}
+						tabella_leggera.Add(sotto_lista);
+
+					}
+				}
+			
+            return tabella_leggera;
+		}
+	}
+
 }
