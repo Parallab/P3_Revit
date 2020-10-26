@@ -18,7 +18,6 @@ namespace P3Ribbon.Scripts
 		public static List<List<double>> ValoriTabella;
 	}
 
-	
 	[Transaction(TransactionMode.Manual)]
 
 
@@ -42,7 +41,8 @@ namespace P3Ribbon.Scripts
 			//verifica presenza parametri, ovvero ricicla bottone già fatto
 			//ControllaParametri(doc, app);
 			
-				Supporto.ValoriTabella = Tabella.leggitabella(doc);
+				
+			Supporto.ValoriTabella = Tabella.leggitabella(doc);
 				List<Condotto> Condotti = FiltraCondottiCortiVert(doc, uiDoc);
 				AttivaFamiglia(doc);
 
@@ -60,7 +60,6 @@ namespace P3Ribbon.Scripts
 							c.PosizionaStaffe(doc, fs);
 						}
 						t.Commit();
-
 					}
 					else
 					{
@@ -69,8 +68,7 @@ namespace P3Ribbon.Scripts
 				}
 				condotti.Clear();
 				return Result.Succeeded;
-			
-			
+
 		}
 			public void ControllaParametri(Document doc, Application app )
 		{
@@ -275,13 +273,13 @@ namespace P3Ribbon.Scripts
 			this.spiso = CalcolaSpessoreIsolamento(_el, true);
 			this.spiso_IM = CalcolaSpessoreIsolamento(_el, false);
 			this.alt = CalcolaAltezza(_el, true) + this.spiso;
-			this.alt_IM = CalcolaAltezza(_el, false);
+			this.alt_IM = CalcolaAltezza(_el, false) + this.spiso_IM;
 			this.largh = CalcolaLarghezza(_el, true) + this.spiso;
-			this.largh_IM = CalcolaLarghezza(_el, false);
+			this.largh_IM = CalcolaLarghezza(_el, false) + this.spiso_IM;
 			this.lungh = CalcolaLunghezza(_el);
             this.per = CalcolaPerimetro(alt, largh);
-			this.passoMin = CalcolaPassoMinMax(true);
-			this.passoMax = CalcolaPassoMinMax(false);
+			//this.passoMin = CalcolaPassoMinMax(true);
+			//this.passoMax = CalcolaPassoMinMax(false);
 			this.dir = CalcolaDirezione(_el);
 			this.lc = _el.Location as LocationCurve;
 			this.livello = CalcolaLivello(doc, _el);
@@ -315,7 +313,6 @@ namespace P3Ribbon.Scripts
 				dc_alt = UnitUtils.ConvertFromInternalUnits(dc_alt, DisplayUnitType.DUT_CENTIMETERS);
 			}
 			return dc_alt;
-
 		}
 		public double CalcolaLunghezza(Element dc)
 		{
@@ -344,7 +341,6 @@ namespace P3Ribbon.Scripts
 		{
 			Element livello = doc.GetElement(dc.get_Parameter(BuiltInParameter.RBS_START_LEVEL_PARAM).AsElementId());
 			return livello;
-
 		}
 
 		public XYZ CalcolaDirezione(Element dc)
@@ -374,21 +370,19 @@ namespace P3Ribbon.Scripts
 			return inlcinazioneZ;
 		}
 
-		public double CalcolaPassoMinMax(bool CalcolaPassominimo)
+		public double CalcolaPassoMinMax(bool CalcolaPassoMin)
         {
 			double passotemp = 0;
-            if (Math.Max(this.alt, this.largh) > 100)
+            if (Math.Max(this.alt, this.largh) < 100)
             {
                 passotemp = 400;
-
             }
             else
             {
                 passotemp = 200;
-
             }
 
-            if (CalcolaPassominimo = true)
+            if (CalcolaPassoMin == true)
             {
 				double Passomin = (Math.Min(InterasseControventoTras, passotemp));
 				return Passomin;
@@ -424,9 +418,9 @@ namespace P3Ribbon.Scripts
 
 
 		public void CalcolaPuntiStaffe()
-		{	
-
+		{
 			//pt_iniz
+			double passoMin = CalcolaPassoMinMax(true);
 			double offset_iniz = this.CalcolaLunghezzaNormalizzata(10, true);
 			pts.Add(this.lc.Curve.Evaluate(offset_iniz, true));
 
@@ -452,7 +446,6 @@ namespace P3Ribbon.Scripts
 
 		public void TrovaPavimento(Document doc)
 		{
-
 			View3D view3d;
 			//Prima vista3d o quella di defoult, Eccezione se ci non ci sono viste 3d nel progetto?
 			view3d = new FilteredElementCollector(doc).OfClass(typeof(View3D)).Cast<View3D>().FirstOrDefault();
@@ -472,13 +465,11 @@ namespace P3Ribbon.Scripts
 				}
 				else
 				{
-					Reference refel = _ref.GetReference();
-					RevitLinkInstance linkinstance = (RevitLinkInstance)doc.GetElement(refel.ElementId);
-						XYZ refp = refel.GlobalPoint;
-						ptspavimenti.Add(refp);
-					
+				Reference refel = _ref.GetReference();
+				RevitLinkInstance linkinstance = (RevitLinkInstance)doc.GetElement(refel.ElementId);
+				XYZ refp = refel.GlobalPoint;
+				ptspavimenti.Add(refp);
 				}
-
 			}
 
 		}
@@ -509,19 +500,16 @@ namespace P3Ribbon.Scripts
 					fi.LookupParameter("P3_Duct_Slope").Set(this.inlcinazioneZ);
 					Line asseZ = Line.CreateBound(pt, pt.Add(new XYZ(0, 0, 1)));
 					ElementTransformUtils.RotateElement(doc, fi.Id, asseZ, dir.AngleTo(XYZ.BasisY));
-
 				}
 			}
 		}
 
 		public void DimensionaDaTabella(Document doc)
         {
-		
 			for (int i_r = 0; i_r < Supporto.ValoriTabella.Count; i_r++)
 			{
 				List<double> riga = Supporto.ValoriTabella[i_r];
 
-				//altro metodo??
 				if ( this.per > riga[3])
 				{
 					InterasseControventoTras = riga[4];
@@ -531,7 +519,6 @@ namespace P3Ribbon.Scripts
 					ControventoBarre = riga[8];
 				}
 			}
-
 		}
 
 	}
@@ -559,8 +546,7 @@ namespace P3Ribbon.Scripts
 						{
 							 string field = fields[i];
 						
-							sotto_lista.Add(double.Parse(field));
-						
+							sotto_lista.Add(double.Parse(field));	
 						}
 						tabella_leggera.Add(sotto_lista);
 
