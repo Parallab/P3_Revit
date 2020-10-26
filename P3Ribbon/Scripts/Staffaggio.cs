@@ -550,8 +550,6 @@ namespace P3Ribbon.Scripts
             }
 
         }
-
-
         public static List<Element> SelezionaRaccordi90(Document doc)
         {
             #region collettore delle diverse famiglie di raccordi P3;
