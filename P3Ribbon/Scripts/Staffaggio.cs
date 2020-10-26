@@ -545,7 +545,6 @@ namespace P3Ribbon.Scripts
                             fi.LookupParameter("P3_Braces_Longitudinal").Set(0);
                         }
                         i_L++;
-
                     }
                 }
             }
