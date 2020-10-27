@@ -39,11 +39,11 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="RevitAPI">
-      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\RevitAPI.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\RevitAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPIUI">
-      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\RevitAPIUI.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\RevitAPIUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -66,7 +66,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Scripts\Excel.cs" />
     <Compile Include="Scripts\FinestraInfo.cs" />
     <Compile Include="Scripts\Form\Form_Def_Acc.cs">
       <SubType>Form</SubType>
@@ -84,6 +83,7 @@
     <Compile Include="Scripts\Migra_AreaIsolamento.cs" />
     <Compile Include="Scripts\Par_Sismici.cs" />
     <Compile Include="Scripts\Staffaggio.cs" />
+    <Compile Include="Scripts\TabellaExcel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\17017_ParamCondivisi.txt" />

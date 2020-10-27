@@ -28,7 +28,6 @@ namespace P3Ribbon.Scripts
         public static FamilySymbol fs;
         public static List<Element> dclist = new List<Element>();
         public static List<Condotto> condotti = new List<Condotto>();
-        public static List<Tabella> tabella = new List<Tabella>();
         public bool Parametri_presenti = false;
         public static List<Element> raccordi90;
 
@@ -43,7 +42,7 @@ namespace P3Ribbon.Scripts
             //ControllaParametri(doc, app);
 
 
-            Supporto.ValoriTabella = Tabella.leggitabella(doc);
+            Supporto.ValoriTabella = TabellaExcel.leggitabella(doc);
             List<Condotto> Condotti = FiltraCondottiCortiVert(doc, uiDoc);
             AttivaFamiglia(doc);
 
@@ -552,60 +551,10 @@ namespace P3Ribbon.Scripts
         }
         public static List<Element> SelezionaRaccordi90(Document doc)
         {
-            #region collettore delle diverse famiglie di raccordi P3;
-            //	IList<Element> ra_coll1 = (IList<Element>)new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_DuctFitting).Cast<FamilyInstance>()
-
-            //	IList<Element> ra_coll2 = (IList<Element>)new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_DuctFitting).Cast<FamilyInstance>()
-            // .Where(x => x.Symbol.FamilyName.Contains("P3 - Dynamic Reduction with 2 Rectangular Curves"));
-
-            //	IList<Element> ra_coll3 = (IList<Element>)new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_DuctFitting).Cast<FamilyInstance>()
-            // .Where(x => x.Symbol.FamilyName.Contains("P3 - Rectangular Connector"));
-
-            //	IList<Element> ra_coll4 = (IList<Element>)new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_DuctFitting).Cast<FamilyInstance>()
-            //.Where(x => x.Symbol.FamilyName.Contains("P3 - Rectangular Curve"));
-
-            //	IList<Element> ra_coll5 = (IList<Element>)new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_DuctFitting).Cast<FamilyInstance>()
-            //.Where(x => x.Symbol.FamilyName.Contains("P3 - Rectangular Takeoff"));
-
-            //	IList<Element> ra_coll6 = (IList<Element>)new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_DuctFitting).Cast<FamilyInstance>()
-            //.Where(x => x.Symbol.FamilyName.Contains("P3 - Reduction with Rectangular Curve"));
-            #endregion
-
-            // sarebbe più efficace cercare solo a) famiglie P3 e b) solo i raccordi collegati con ConnectorManager..ToDo
-            //IList<Element> ra_coll = (IList<Element>)new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_DuctFitting)
-            //    .Select(x => x as FamilyInstance) //tanto valeva lasciare cast...
-            //    .Where(x => (x.Symbol.FamilyName.Contains("P3")
-            //    && !x.Symbol.FamilyName.Contains("deviation")
-            //    && !x.Symbol.FamilyName.Contains("Endcap")
-            //    ));//ToElements();
-            //       //IList<Element> ra_coll = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_DuctFitting).WhereElementIsNotElementType().ToElements();
             List<Element> raccordi90 = new List<Element>();
-            //foreach (FamilyInstance ra in ra_coll)
-            //{
-            //    //double angoloRaccordo = ra.LookupParameter("P3 - Angle").AsDouble();
-            //    double angoloRaccordo = 666;
-            //    foreach (Parameter p in ra.Parameters)
-            //    {
-            //        if (p.Definition.Name.Contains("Angle")) //questo perche ogni tanto c è angle sx dx lt rt...
-            //        {
-            //            angoloRaccordo = ra.LookupParameter("P3 - Angle").AsDouble();
-            //            // schifo
-            //            if (angoloRaccordo == 90)
-            //            {
-            //                raccordi90.Add(ra);
-            //                break;
-            //            }
-            //        }
-            //    }
 
-            //    if (angoloRaccordo == 666)
-            //    {
-            //        raccordi90.Add(ra);
-            //    }
-            //}
             return raccordi90;
-        } // sarà da cancellare!!!!
-
+        }
         public bool StaffaVicinaRaccordo90()
         {
             // INVECE DI SLEZIONARE TUTI I RACCORDI DEVO:
@@ -635,41 +584,6 @@ namespace P3Ribbon.Scripts
             }
         }
 
-    }
-
-    public class Tabella
-    {
-        public static List<List<double>> leggitabella(Document doc)
-        {
-            IList<Element> proj_infos = new FilteredElementCollector(doc).OfClass(typeof(ProjectInfo)).ToElements();
-            Element proj_info = proj_infos[0];
-
-
-            int ClasseUso = proj_info.LookupParameter("P3_InfoProg_ClasseUso").AsInteger();
-            int ZonaSismica = proj_info.LookupParameter("P3_InfoProg_ZonaSismica").AsInteger();
-
-            List<List<double>> tabella_leggera = new List<List<double>>();
-            var lines = System.IO.File.ReadAllLines(Par_Sismici.TrovaPercorsoRisorsa("20020_P3_TabelleDiPredimensionamento.txt"));
-            for (int i_r = 0; i_r < lines.Length; i_r++)
-            {
-                List<double> sotto_lista = new List<double>();
-
-                var fields = lines[i_r].Split(';');
-                if (fields[1] == ClasseUso.ToString() && fields[3] == ZonaSismica.ToString())
-                {
-                    for (int i = 1; i < fields.Count(); i++)
-                    {
-                        string field = fields[i];
-
-                        sotto_lista.Add(double.Parse(field));
-                    }
-                    tabella_leggera.Add(sotto_lista);
-
-                }
-            }
-
-            return tabella_leggera;
-        }
     }
 
 }
