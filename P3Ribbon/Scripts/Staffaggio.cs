@@ -24,7 +24,7 @@ namespace P3Ribbon.Scripts
 
     class Staffaggio : IExternalCommand
     {
-        Scripts.Form_Def_Acc frm = new Scripts.Form_Def_Acc();
+        //Scripts.Form_Def_Acc frm = new Scripts.Form_Def_Acc();
         public static FamilySymbol fs;
         public static List<Element> dclist = new List<Element>();
         public static List<Condotto> condotti = new List<Condotto>();
@@ -46,7 +46,6 @@ namespace P3Ribbon.Scripts
             List<Condotto> Condotti = FiltraCondottiCortiVert(doc, uiDoc);
             AttivaFamiglia(doc);
 
-            raccordi90 = Condotto.SelezionaRaccordi90(doc);
             using (var t = new Transaction(doc, "Posiziona staffaggio"))
             {
                 t.Start();
@@ -107,7 +106,6 @@ namespace P3Ribbon.Scripts
                     Parametri_presenti = false;
                 }
             }
-
         }
         public static IList<Element> Seleziona_condotti(Document doc, UIDocument uiDoc)
         {
@@ -228,7 +226,6 @@ namespace P3Ribbon.Scripts
             }
         }
 
-
     }
 
     public class Condotto
@@ -244,7 +241,7 @@ namespace P3Ribbon.Scripts
         public double per = 0;
         public double lungh = 0;
         public double lungh_of1 = 0;
-        public double inlcinazioneZ = 0;
+        public double inlcinazioneZ = 0; 
         //public double passoMin = 0;
         //public double passoMax = 0;
         public int rappT;
@@ -268,7 +265,6 @@ namespace P3Ribbon.Scripts
         public List<XYZ> ptspavimenti = new List<XYZ>();
         public static List<Element> staffeDaControventare = new List<Element>();
         public List<FamilyInstance> staffaggi = new List<FamilyInstance>(); //sarebbe meglio emlement? in caso castare?
-
 
         public Element livello;
 
@@ -468,7 +464,6 @@ namespace P3Ribbon.Scripts
                     ptspavimenti.Add(refp);
                 }
             }
-
         }
 
         public void PosizionaStaffe(Document doc, FamilySymbol _fs)
@@ -515,15 +510,13 @@ namespace P3Ribbon.Scripts
                     // controventamento long e trasv
                     if (this.per >= 200 || distanzaControff > this.ControventoBarre)
                     {
-                        if (i == 0 || i == pts.Count - 1)
+
+                        // se son vicino ad un 90 gradi non serve longitudinale
+                        // ma quando parto? non dal 1° ma dal 2°? o dall'rappL-esimo o rappL-esimo + 1?
+                        // parto da rappL-1....
+                        if (StaffaVicinaRaccordo90(pt))
                         {
-                            // se son vicino ad un 90 gradi non serve longitudinale
-                            // ma quando parto? non dal 1° ma dal 2°? o dall'rappL-esimo o rappL-simo + 1?
-                            // parto da rappT-1....
-                            if (StaffaVicinaRaccordo90())
-                            {
-                                i_L += this.rappL - 1;
-                            }
+                            i_L += this.rappL - 1;
                         }
                         // controvento trasversale
                         if (i % this.rappT == 0 || i == pts.Count - 1)
@@ -543,19 +536,14 @@ namespace P3Ribbon.Scripts
                         {
                             fi.LookupParameter("P3_Braces_Longitudinal").Set(0);
                         }
-                        i_L++;
+
                     }
                 }
             }
 
         }
-        public static List<Element> SelezionaRaccordi90(Document doc)
-        {
-            List<Element> raccordi90 = new List<Element>();
-
-            return raccordi90;
-        }
-        public bool StaffaVicinaRaccordo90()
+ 
+        public bool StaffaVicinaRaccordo90(XYZ pt)
         {
             // INVECE DI SLEZIONARE TUTI I RACCORDI DEVO:
             // 1) partire dal condotto
@@ -563,10 +551,49 @@ namespace P3Ribbon.Scripts
             // 3) per ogni connettore guardo l'owner (se ha P3 nel nome ma non "deviation" o "endcap" (ma non è bello perche se qualcuno rinomina le famiglie non funziona più. usare i codici interni? ToDo))
             // 4) se l'origine del connettore è vicina al punto pt (in cui posiziono la staffa)
             // 5) se il parametro angle (o un parametro che contiene "angle" con il loop già scritto)
-            // 6) se l'angle é 666 (nullo) oppure maggiore di 80 allora ritorna true
-            return true;
-        }
+            // 6) se l'angle é 666 (nullo) oppure maggiore di 80 allora ritorna true.
 
+            ConnectorSet conns_condotto;
+            ConnectorSet conns_collegati;
+            Element owner;
+            double angoloRaccordo = 666;
+            conns_condotto = (this.el as Duct).ConnectorManager.Connectors;
+            foreach (Connector conn_condotto in conns_condotto)
+            {
+                // dobbiamo cercare i connettori collegati, perche voglio quello del rfaccordo
+                // prima guardo il connettore vicino
+                //dovrebbe essere l'offset iniziale (quei 100mm) piu qualche otllerana, occhio alle unità di misura
+               if (conn_condotto.Origin.DistanceTo(pt) < 5)
+                {
+                    conns_collegati = conn_condotto.AllRefs;
+                    foreach (Connector conn_collegato in conns_collegati)
+                    {
+                        owner = conn_collegato.Owner;
+                        //non riesco a leggere in nome P3 da family etc..
+                        if  (owner.Category.Name == "Raccordi condotto" )
+                        {
+                            foreach (Parameter p in owner.Parameters)
+                            {
+                                if (p.Definition.Name.Contains("Angle")) //questo perche ogni tanto c è angle sx dx lt rt...
+                                {
+                                    angoloRaccordo = owner.LookupParameter("P3 - Angle").AsDouble();
+                                    double angologradi = angoloRaccordo * 180 / Math.PI;
+                                    if (angologradi  > 80 || angoloRaccordo == 0);
+                                    {
+                                        return true;
+                                    }
+                                }
+                                
+                            }
+                        }
+                        
+                    }
+                     
+                }
+                
+            }
+            return false;
+        }
         public void DimensionaDaTabella(Document doc)
         {
             for (int i_r = 0; i_r < Supporto.ValoriTabella.Count; i_r++)
@@ -583,7 +610,5 @@ namespace P3Ribbon.Scripts
                 }
             }
         }
-
     }
-
 }
