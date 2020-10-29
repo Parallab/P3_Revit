@@ -517,6 +517,7 @@ namespace P3Ribbon.Scripts
                                 i_L += this.rappL - 1;
                             }
                         }
+
                         // controvento trasversale
                         if (i % this.rappT == 0 || i == pts.Count - 1)
                         
