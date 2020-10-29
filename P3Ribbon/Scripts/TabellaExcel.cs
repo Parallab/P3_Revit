@@ -34,11 +34,10 @@ namespace P3Ribbon.Scripts
                         sotto_lista.Add(double.Parse(field));
                     }
                     tabella_leggera.Add(sotto_lista);
-
                 }
             }
             return tabella_leggera;
         }
     }
 }
-}
+

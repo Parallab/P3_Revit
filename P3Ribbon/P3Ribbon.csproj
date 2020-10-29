@@ -148,6 +148,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>"C:\Users\Simone Maioli\Documents\GitHub\P3Plugin\sposta_dll.bat"</PostBuildEvent>
+    <PostBuildEvent>"C:\Users\maisi\OneDrive - Università degli Studi di Padova\Documenti\GitHub\P3Plugin\sposta_dll.bat"</PostBuildEvent>
   </PropertyGroup>
 </Project>
