@@ -29,7 +29,6 @@ namespace P3Ribbon.Scripts
         public static List<Element> dclist = new List<Element>();
         public static List<Condotto> condotti = new List<Condotto>();
         public bool Parametri_presenti = false;
-        public static List<Element> raccordi90;
 
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
@@ -385,27 +384,25 @@ namespace P3Ribbon.Scripts
                 return Passomax;
             }
         }
+        //public List<Element> TrovaRaccordi90Gradi(Document doc)
+        //{
+        //    IList<Element> ra_coll = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_DuctFitting).WhereElementIsNotElementType().ToElements();
+        //    //Creo una lista vuota
+        //    List<Element> raccordi = new List<Element>();
+        //    foreach (Element el in ra_coll)
+        //    {
+        //        double angolo = el.LookupParameter("P3 - Angle").AsDouble();
+        //        double angolo_dx = el.LookupParameter("P3 - Angle_SX").AsDouble();
+        //        double angolo_sx = el.LookupParameter("P3 - Angle_DX").AsDouble();
 
-        public List<Element> TrovaRaccordi90Gradi(Document doc)
-        {
-            IList<Element> ra_coll = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_DuctFitting).WhereElementIsNotElementType().ToElements();
-            //Creo una lista vuota
-            List<Element> raccordi = new List<Element>();
-            foreach (Element el in ra_coll)
-            {
-                double angolo = el.LookupParameter("P3 - Angle").AsDouble();
-                double angolo_dx = el.LookupParameter("P3 - Angle_SX").AsDouble();
-                double angolo_sx = el.LookupParameter("P3 - Angle_DX").AsDouble();
-
-                if (angolo == 90 || angolo_dx == 90 || angolo_sx == 90)
-                {
-                    raccordi.Add(el);
-                }
-            }
-            return raccordi;
-        }
+        //        if (angolo == 90 || angolo_dx == 90 || angolo_sx == 90)
+        //        {
+        //            raccordi.Add(el);
+        //        }
+        //    }
+        //    return raccordi;
+        //}
         #endregion
-
 
         public void CalcolaPuntiStaffe()
         {
@@ -471,10 +468,10 @@ namespace P3Ribbon.Scripts
             XYZ pt;
             XYZ pt_pav;
             FamilyInstance fi;
-            int i_L;
+            int i_L = 0;
+
             for (int i = 0; i < pts.Count; i++)
-            {
-                i_L = i;
+            {    
                 pt = pts[i];
                 pt_pav = ptspavimenti[i];
 
@@ -510,16 +507,20 @@ namespace P3Ribbon.Scripts
                     // controventamento long e trasv
                     if (this.per >= 200 || distanzaControff > this.ControventoBarre)
                     {
-
                         // se son vicino ad un 90 gradi non serve longitudinale
                         // ma quando parto? non dal 1° ma dal 2°? o dall'rappL-esimo o rappL-esimo + 1?
                         // parto da rappL-1....
-                        if (StaffaVicinaRaccordo90(pt))
+                        if (i == 0 || i == pts.Count -1 )
                         {
-                            i_L += this.rappL - 1;
+                            if (StaffaVicinaRaccordo90(pt))
+                            {
+                                i_L += this.rappL - 1;
+                            }
                         }
                         // controvento trasversale
                         if (i % this.rappT == 0 || i == pts.Count - 1)
+                        
+                        
                         {
                             fi.LookupParameter("P3_Braces_Cross").Set(1);
                         }
@@ -536,7 +537,7 @@ namespace P3Ribbon.Scripts
                         {
                             fi.LookupParameter("P3_Braces_Longitudinal").Set(0);
                         }
-
+                        i_L++;
                     }
                 }
             }
@@ -571,22 +572,22 @@ namespace P3Ribbon.Scripts
                         owner = conn_collegato.Owner;
                         //non riesco a leggere in nome P3 da family etc..
                         if  (owner.Category.Name == "Raccordi condotto" )
-                        {
+                        {//schifo
                             foreach (Parameter p in owner.Parameters)
                             {
                                 if (p.Definition.Name.Contains("Angle")) //questo perche ogni tanto c è angle sx dx lt rt...
                                 {
-                                    angoloRaccordo = owner.LookupParameter("P3 - Angle").AsDouble();
-                                    double angologradi = angoloRaccordo * 180 / Math.PI;
-                                    if (angologradi  > 80 || angoloRaccordo == 0);
+                                    angoloRaccordo = p.AsDouble() * (180 / Math.PI); 
+
+                                    if (angoloRaccordo > 80 || angoloRaccordo == 0) ;
                                     {
                                         return true;
                                     }
                                 }
-                                
+
                             }
                         }
-                        
+
                     }
                      
                 }
