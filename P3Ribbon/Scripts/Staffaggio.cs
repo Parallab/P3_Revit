@@ -29,6 +29,7 @@ namespace P3Ribbon.Scripts
         public static List<Element> dclist = new List<Element>();
         public static List<Condotto> condotti = new List<Condotto>();
         public bool Parametri_presenti = false;
+        public static double offset_iniz_cm = 10;
 
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
@@ -80,10 +81,12 @@ namespace P3Ribbon.Scripts
             Parameter Zs = proj_info.LookupParameter("P3_InfoProg_ZonaSismica");
             if (Cu == null || En == null || Vn == null || Zs == null)
             {
-                TaskDialog td = new TaskDialog("Errore");
-                td.MainInstruction = "Parametri sismici non inseriti nel progetto";
-                td.MainContent = "Parametri sismici non inseriti nel progetto, inserire i parametri sismici?";
-                td.CommonButtons = TaskDialogCommonButtons.Yes | TaskDialogCommonButtons.No;
+                TaskDialog td = new TaskDialog("Errore")
+                {
+                    MainInstruction = "Parametri sismici non inseriti nel progetto",
+                    MainContent = "Parametri sismici non inseriti nel progetto, inserire i parametri sismici?",
+                    CommonButtons = TaskDialogCommonButtons.Yes | TaskDialogCommonButtons.No
+                };
 
                 TaskDialogResult result = td.Show();
 
@@ -108,10 +111,13 @@ namespace P3Ribbon.Scripts
         }
         public static IList<Element> Seleziona_condotti(Document doc, UIDocument uiDoc)
         {
-            TaskDialog td = new TaskDialog("P3 staffaggio canali");
-            td.MainInstruction = "Selezionare la modalità di input";
-            string a1 = "Seleziona tutti i condotti all'interno del progetto Revit corrente";
+             string a1 = "Seleziona tutti i condotti all'interno del progetto Revit corrente";
             string b1 = "Selezione manuale da schermo";
+            TaskDialog td = new TaskDialog("P3 staffaggio canali")
+            {
+                MainInstruction = "Selezionare la modalità di input"
+            };
+         
             td.AddCommandLink(TaskDialogCommandLinkId.CommandLink1, a1);
             td.AddCommandLink(TaskDialogCommandLinkId.CommandLink2, b1);
             TaskDialogResult result = td.Show();
@@ -140,9 +146,9 @@ namespace P3Ribbon.Scripts
             {
                 IList<Element> dclist2 = SelSoloCondottiDaFinestra(uiDoc);
 
-                TaskDialog td2 = new TaskDialog("P3 staffaggio canali");
-                td2.MainInstruction = "hai selezionato " + dclist2.Count + " condotti";
-                TaskDialogResult result2 = td2.Show();
+                //TaskDialog td2 = new TaskDialog("P3 staffaggio canali");
+                //td2.MainInstruction = "hai selezionato " + dclist2.Count + " condotti";
+                //TaskDialogResult result2 = td2.Show();
                 return dclist2;
             }
             else
@@ -167,7 +173,7 @@ namespace P3Ribbon.Scripts
             public bool AllowElement(Element element)
             {
 
-                if (element.Category.Name == "Condotto")
+                if (element.Category.Name == "Condotto") // USARE CLASSI TYPE OF E NON NOMI ITALIANI!
                 {
                     return true;
                 }
@@ -203,9 +209,9 @@ namespace P3Ribbon.Scripts
                         condotti.Add(condotto);
                     }
                 }
-                TaskDialog td = new TaskDialog("P3 staffaggio canali");
-                td.MainInstruction = "sono stati indivituati " + i + " canali verticali o troppo corti";
-                TaskDialogResult result = td.Show();
+                //TaskDialog td = new TaskDialog("P3 staffaggio canali");
+                //td.MainInstruction = "sono stati indivituati " + i + " canali verticali o troppo corti";
+                //TaskDialogResult result = td.Show();
                 return condotti;
             }
             else
@@ -411,8 +417,8 @@ namespace P3Ribbon.Scripts
             double passoMax = CalcolaPassoMinMax(false);
             this.rappT = (int)Math.Floor(passoMax / passoMin);
             this.rappL = (int)Math.Floor(InterasseControventoLong / passoMin);
-            double offset_iniz = this.CalcolaLunghezzaNormalizzata(10, true);
-            pts.Add(this.lc.Curve.Evaluate(offset_iniz, true));
+            double offset_iniz_normalizzato = this.CalcolaLunghezzaNormalizzata(Staffaggio.offset_iniz_cm, true); //studiare parametri globali??
+            pts.Add(this.lc.Curve.Evaluate(offset_iniz_normalizzato, true));
 
             if (this.lungh > passoMin)
             {
@@ -514,10 +520,9 @@ namespace P3Ribbon.Scripts
                         {
                             if (StaffaVicinaRaccordo90(pt))
                             {
-                                i_L += this.rappL - 1;
+                                i_L = this.rappL - 1;
                             }
                         }
-
                         // controvento trasversale
                         if (i % this.rappT == 0 || i == pts.Count - 1)
                         
@@ -554,33 +559,53 @@ namespace P3Ribbon.Scripts
             // 4) se l'origine del connettore è vicina al punto pt (in cui posiziono la staffa)
             // 5) se il parametro angle (o un parametro che contiene "angle" con il loop già scritto)
             // 6) se l'angle é 666 (nullo) oppure maggiore di 80 allora ritorna true.
-
+            bool bool_temp = false;
             ConnectorSet conns_condotto;
             ConnectorSet conns_collegati;
             Element owner;
-            double angoloRaccordo = 666;
+            double angoloRaccordo = -666;
             conns_condotto = (this.el as Duct).ConnectorManager.Connectors;
             foreach (Connector conn_condotto in conns_condotto)
             {
-                // dobbiamo cercare i connettori collegati, perche voglio quello del rfaccordo
+                // dobbiamo cercare i connettori collegati, perche voglio quello del raccordo
                 // prima guardo il connettore vicino
                 //dovrebbe essere l'offset iniziale (quei 100mm) piu qualche otllerana, occhio alle unità di misura
-               if (conn_condotto.Origin.DistanceTo(pt) < 5)
+               if (conn_condotto.Origin.DistanceTo(pt) < Staffaggio.offset_iniz_cm*1.05/30.48)
                 {
                     conns_collegati = conn_condotto.AllRefs;
                     foreach (Connector conn_collegato in conns_collegati)
                     {
                         owner = conn_collegato.Owner;
-                        //non riesco a leggere in nome P3 da family etc..
-                        if  (owner.Category.Name == "Raccordi condotto" )
+                        
+                        if  (owner.Category.Name == "Raccordi condotto" ) // USARE TYPE OF E NON NOMI ITALIANI nazi usare CATEGORY == bUILTINcATEGORY.oST_dUT FITTING??
                         {//schifo
+
+
+                            //
+                            //
+                            // fareeeeeeee:
+                            //
+
+
+
+                            //IF nome contiene P3 ma non conteien endcap e rectangular forse...boh
+
+                            // ElementType = doc.GetElement(owner.GetTypeId())
+                            // e poi cerco tra il nome della family o qualcosa del genree (guardare lookup per avere piu chiarezza)
+
+                            //oppure cercare tra le proprietà dell istanza se c è qualcosa che richiama family symbol.
+
+                            //potremmo addirittura guardare con un altro if se il raccordo ha un facingorientation con | Z | > 0.1 perche vorrebbe dire che il raccordo è verticale (da testare)
+
+
+                            angoloRaccordo = 666;
                             foreach (Parameter p in owner.Parameters)
                             {
                                 if (p.Definition.Name.Contains("Angle")) //questo perche ogni tanto c è angle sx dx lt rt...
                                 {
                                     angoloRaccordo = p.AsDouble() * (180 / Math.PI); 
 
-                                    if (angoloRaccordo > 80 || angoloRaccordo == 0) ;
+                                    if (angoloRaccordo > 80) ;
                                     {
                                         return true;
                                     }
@@ -594,7 +619,9 @@ namespace P3Ribbon.Scripts
                 }
                 
             }
-            return false;
+            if (angoloRaccordo > 80) return true;            
+            else return false; 
+
         }
         public void DimensionaDaTabella(Document doc)
         {
