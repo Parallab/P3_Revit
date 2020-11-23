@@ -106,6 +106,19 @@
     <Compile Include="Scripts\TabellaExcel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale_bianco.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoMateriali.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoPezzi.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoPezzi_2.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_2.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Libreria_1_logo+P3ductbim.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Libreria_2_logoP3+ductbim.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Libreria_3_logoP3.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Lingua.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Quantità.png" />
     <EmbeddedResource Include="Resources\17017_ParamCondivisi.txt" />
     <None Include="Resources\ospedale-mestre.jpg" />
     <None Include="Resources\Annotazione 2020-08-04 1455321.png" />
