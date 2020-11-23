@@ -43,16 +43,6 @@ namespace P3Ribbon
             pb2.LargeImage = pb2Image;
             #endregion
 
-            // void AddSplitbuttonGroup(RibbonPanel panel) 
-            //{
-            //    panel = ribbonPanelGetsisci;
-            //    SplitButtonData group1Data = new SplitButtonData("SplitGroup1", "Split Group 1");
-            //    SplitButton group1 = panel.AddItem(group1Data) as SplitButton;
-
-
-            //}
-           
-
             //AREA ISOLAMENTO//
             #region 
             // Creo il bottone e lo collego alla classe
