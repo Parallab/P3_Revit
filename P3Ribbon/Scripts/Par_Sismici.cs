@@ -76,6 +76,10 @@ namespace P3Ribbon
                         {
                             Proj_Info_Scrivi_Parametri(classe, eng, vita, zona, doc);
                         }
+                        else
+                        {
+                            return Result.Cancelled;
+                        }
                         t.Commit();
                         return Result.Succeeded;
                     }
@@ -83,6 +87,7 @@ namespace P3Ribbon
                     {
                         return Result.Cancelled;
                     }
+
                 }
 
             }
