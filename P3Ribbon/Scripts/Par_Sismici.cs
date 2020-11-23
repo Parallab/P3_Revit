@@ -83,6 +83,7 @@ namespace P3Ribbon
                         t.Commit();
                         return Result.Succeeded;
                     }
+
                     else
                     {
                         return Result.Cancelled;

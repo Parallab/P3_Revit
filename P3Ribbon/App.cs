@@ -17,6 +17,7 @@ namespace P3Ribbon
 			// Get dll assembly path
 			string thisAssemblyPath = Assembly.GetExecutingAssembly().Location;
 
+
 			// MODELLAZIONE
 			RibbonPanel ribbonPanelModellazione = a.CreateRibbonPanel(tabName, "Modellazione");
 			#region bottone: lingua WIP
