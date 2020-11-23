@@ -112,13 +112,13 @@ namespace P3Ribbon.Scripts
         }
         public static IList<Element> Seleziona_condotti(Document doc, UIDocument uiDoc)
         {
-             string a1 = "Seleziona tutti i condotti all'interno del progetto Revit corrente";
+            string a1 = "Seleziona tutti i condotti all'interno del progetto Revit corrente";
             string b1 = "Selezione manuale da schermo";
             TaskDialog td = new TaskDialog("P3 staffaggio canali")
             {
                 MainInstruction = "Selezionare la modalità di input"
             };
-         
+
             td.AddCommandLink(TaskDialogCommandLinkId.CommandLink1, a1);
             td.AddCommandLink(TaskDialogCommandLinkId.CommandLink2, b1);
             td.AddCommandLink(TaskDialogCommandLinkId.CommandLink2, b1);
@@ -171,7 +171,7 @@ namespace P3Ribbon.Scripts
 
         public class FiltraCondotti : ISelectionFilter
         {
-            public bool AllowElement(Element element )
+            public bool AllowElement(Element element)
             {
 
                 if (element.Category.Name == "Condotto")
@@ -247,7 +247,7 @@ namespace P3Ribbon.Scripts
         public double per = 0;
         public double lungh = 0;
         public double lungh_of1 = 0;
-        public double inlcinazioneZ = 0; 
+        public double inlcinazioneZ = 0;
         //public double passoMin = 0;
         //public double passoMax = 0;
         public int rappT;
@@ -478,7 +478,7 @@ namespace P3Ribbon.Scripts
             int i_L = 0;
 
             for (int i = 0; i < pts.Count; i++)
-            {    
+            {
                 pt = pts[i];
                 pt_pav = ptspavimenti[i];
 
@@ -517,7 +517,7 @@ namespace P3Ribbon.Scripts
                         // se son vicino ad un 90 gradi non serve longitudinale
                         // ma quando parto? non dal 1° ma dal 2°? o dall'rappL-esimo o rappL-esimo + 1?
                         // parto da rappL-1....
-                        if (i == 0 || i == pts.Count -1 )
+                        if (i == 0 || i == pts.Count - 1)
                         {
                             if (StaffaVicinaRaccordo90(pt, doc))
                             {
@@ -526,8 +526,8 @@ namespace P3Ribbon.Scripts
                         }
                         // controvento trasversale
                         if (i % this.rappT == 0 || i == pts.Count - 1)
-                        
-                        
+
+
                         {
                             fi.LookupParameter("P3_Braces_Cross").Set(1);
                         }
@@ -555,23 +555,23 @@ namespace P3Ribbon.Scripts
             ConnectorSet conns_condotto;
             ConnectorSet conns_collegati;
             Element owner;
-            double  DirCondotto;
-            
+            double DirCondotto;
+
             double angoloRaccordo = -666;
             conns_condotto = (this.el as Duct).ConnectorManager.Connectors;
             foreach (Connector conn_condotto in conns_condotto)
             {
-               if (conn_condotto.Origin.DistanceTo(pt) < Staffaggio.offset_iniz_cm*1.05/30.48)
+                if (conn_condotto.Origin.DistanceTo(pt) < Staffaggio.offset_iniz_cm * 1.05 / 30.48)
                 {
                     conns_collegati = conn_condotto.AllRefs;
                     foreach (Connector conn_collegato in conns_collegati)
                     {
                         owner = conn_collegato.Owner;
-                        
+
                         //BuiltInCategory ownnerBuiltin = System.Enum.ToObject(owner.Category.Id, BuiltInCategory.OST_DuctFitting);
                         //Category.GetCategory(doc, BuiltInCategory.OST_DuctFitting
                         //doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctFitting
-                        if  (owner.Category.Id.IntegerValue == doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctFitting).Id.IntegerValue)
+                        if (owner.Category.Id.IntegerValue == doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctFitting).Id.IntegerValue)
                         {
                             Element e = doc.GetElement(owner.GetTypeId());
                             string NameFittingFamily = (e as FamilySymbol).FamilyName;
@@ -586,7 +586,6 @@ namespace P3Ribbon.Scripts
                                 DirCondotto = fi.FacingOrientation.Z;
                                 if (Math.Abs(DirCondotto) < 0.1)
                                 {
-
                                     angoloRaccordo = 666;
                                     foreach (Parameter p in owner.Parameters)
                                     {
@@ -601,17 +600,17 @@ namespace P3Ribbon.Scripts
 
                                     }
                                 }
-                               
+
                             }
                         }
 
                     }
-                     
+
                 }
-                
+
             }
-            if (angoloRaccordo > 80) return true;            
-            else return false; 
+            if (angoloRaccordo > 80) return true;
+            else return false;
 
         }
         public void DimensionaDaTabella(Document doc)

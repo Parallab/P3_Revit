@@ -86,6 +86,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Resources\str_EN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>str_EN.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\str_IT.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>str_IT.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Scripts\CambaLingua.cs" />
     <Compile Include="Scripts\FinestraInfo.cs" />
     <Compile Include="Scripts\Form\Form_Def_Acc.cs">
       <SubType>Form</SubType>
@@ -140,6 +151,14 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Resources\str_EN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>str_EN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\str_IT.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>str_IT.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Scripts\Form\Form_Def_Acc.resx">
       <DependentUpon>Form_Def_Acc.cs</DependentUpon>
     </EmbeddedResource>
@@ -181,6 +200,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>"C:\Users\maisi\OneDrive - Università degli Studi di Padova\Documenti\GitHub\P3Plugin\sposta_dll.bat"</PostBuildEvent>
+    <PostBuildEvent>‪\\Plab\Lavori_Attivi\20041_P3 Plugin\0_Digitalizzazione\P3_Addin\WIP\P3Plugin\sposta_dll.bat</PostBuildEvent>
   </PropertyGroup>
 </Project>

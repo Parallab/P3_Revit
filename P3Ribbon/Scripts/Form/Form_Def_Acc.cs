@@ -46,7 +46,7 @@ namespace P3Ribbon.Scripts
             if (classe_form != 666)
             {
                 Button bc = TrovaBottoneClasse(classe_form);
-                Colora_bottone_classe(bc,classe_form);
+                Colora_bottone_classe(bc, classe_form);
             }
             if (zona_form != 666)
             {
@@ -143,7 +143,7 @@ namespace P3Ribbon.Scripts
             c_2.BackColor = System.Drawing.Color.LightSteelBlue;
             c_3.BackColor = System.Drawing.Color.LightSteelBlue;
             c_4.BackColor = System.Drawing.Color.LightSteelBlue;
-            
+
             bottone.BackColor = System.Drawing.Color.SteelBlue;
             classe_form = c;
 
@@ -151,29 +151,29 @@ namespace P3Ribbon.Scripts
 
         private void z1_Click(object sender, EventArgs e)
         {
-          
+
             Colora_bottone_zona(z1, 1);
 
         }
 
         private void z2_Click(object sender, EventArgs e)
         {
-           
+
             Colora_bottone_zona(z2, 2);
         }
 
         private void z3_Click(object sender, EventArgs e)
         {
-          
+
             Colora_bottone_zona(z3, 3);
         }
 
-        private void z4_Click(object sender, EventArgs e) {Colora_bottone_zona(z4, 4);}
-        private void c_1_Click(object sender, EventArgs e){ Colora_bottone_classe(c_1, 1);}
-        private void c_2_Click(object sender, EventArgs e){ Colora_bottone_classe(c_2, 2); }
-        private void c_3_Click(object sender, EventArgs e){Colora_bottone_classe(c_3, 3);}
-        private void c_4_Click(object sender, EventArgs e){Colora_bottone_classe(c_4, 4);}
+        private void z4_Click(object sender, EventArgs e) { Colora_bottone_zona(z4, 4); }
+        private void c_1_Click(object sender, EventArgs e) { Colora_bottone_classe(c_1, 1); }
+        private void c_2_Click(object sender, EventArgs e) { Colora_bottone_classe(c_2, 2); }
+        private void c_3_Click(object sender, EventArgs e) { Colora_bottone_classe(c_3, 3); }
+        private void c_4_Click(object sender, EventArgs e) { Colora_bottone_classe(c_4, 4); }
 
-       
+
     }
 }

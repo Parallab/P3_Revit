@@ -35,14 +35,14 @@ namespace P3Ribbon.Scripts
                 {
                     Element try_di = dicoll[0];
                 }
-                catch 
+                catch
                 {
                     TaskDialog td = new TaskDialog("Errore");
                     td.MainInstruction = "Isolamenti mancanti";
                     td.MainContent = "Non ci sono isolamenti in questo progetto";
                     TaskDialogResult result = td.Show();
-                    
-                    
+
+
                     return Result.Cancelled;
                 }
 
