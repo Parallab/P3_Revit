@@ -16,6 +16,7 @@ namespace P3Ribbon.Scripts
     class Supporto
     {
         public static List<List<double>> ValoriTabella;
+        public static Document doc;
 
     }
 
@@ -120,6 +121,7 @@ namespace P3Ribbon.Scripts
          
             td.AddCommandLink(TaskDialogCommandLinkId.CommandLink1, a1);
             td.AddCommandLink(TaskDialogCommandLinkId.CommandLink2, b1);
+            td.AddCommandLink(TaskDialogCommandLinkId.CommandLink2, b1);
             TaskDialogResult result = td.Show();
 
             //Seleziono tutti i condotti nel progetto corrente
@@ -167,13 +169,12 @@ namespace P3Ribbon.Scripts
             return dc_coll;
         }
 
-
         public class FiltraCondotti : ISelectionFilter
         {
-            public bool AllowElement(Element element)
+            public bool AllowElement(Element element )
             {
 
-                if (element.Category.Name == "Condotto") // USARE CLASSI TYPE OF E NON NOMI ITALIANI!
+                if (element.Category.Name == "Condotto")
                 {
                     return true;
                 }
@@ -518,7 +519,7 @@ namespace P3Ribbon.Scripts
                         // parto da rappL-1....
                         if (i == 0 || i == pts.Count -1 )
                         {
-                            if (StaffaVicinaRaccordo90(pt))
+                            if (StaffaVicinaRaccordo90(pt, doc))
                             {
                                 i_L = this.rappL - 1;
                             }
@@ -549,27 +550,17 @@ namespace P3Ribbon.Scripts
             }
 
         }
- 
-        public bool StaffaVicinaRaccordo90(XYZ pt)
+        public bool StaffaVicinaRaccordo90(XYZ pt, Document doc)
         {
-            // INVECE DI SLEZIONARE TUTI I RACCORDI DEVO:
-            // 1) partire dal condotto
-            // 2) mi leggo i connettori con : .ConnectorManager.Connectors
-            // 3) per ogni connettore guardo l'owner (se ha P3 nel nome ma non "deviation" o "endcap" (ma non è bello perche se qualcuno rinomina le famiglie non funziona più. usare i codici interni? ToDo))
-            // 4) se l'origine del connettore è vicina al punto pt (in cui posiziono la staffa)
-            // 5) se il parametro angle (o un parametro che contiene "angle" con il loop già scritto)
-            // 6) se l'angle é 666 (nullo) oppure maggiore di 80 allora ritorna true.
-            bool bool_temp = false;
             ConnectorSet conns_condotto;
             ConnectorSet conns_collegati;
             Element owner;
+            double  DirCondotto;
+            
             double angoloRaccordo = -666;
             conns_condotto = (this.el as Duct).ConnectorManager.Connectors;
             foreach (Connector conn_condotto in conns_condotto)
             {
-                // dobbiamo cercare i connettori collegati, perche voglio quello del raccordo
-                // prima guardo il connettore vicino
-                //dovrebbe essere l'offset iniziale (quei 100mm) piu qualche otllerana, occhio alle unità di misura
                if (conn_condotto.Origin.DistanceTo(pt) < Staffaggio.offset_iniz_cm*1.05/30.48)
                 {
                     conns_collegati = conn_condotto.AllRefs;
@@ -577,40 +568,40 @@ namespace P3Ribbon.Scripts
                     {
                         owner = conn_collegato.Owner;
                         
-                        if  (owner.Category.Name == "Raccordi condotto" ) // USARE TYPE OF E NON NOMI ITALIANI nazi usare CATEGORY == bUILTINcATEGORY.oST_dUT FITTING??
-                        {//schifo
-
-
-                            //
-                            //
-                            // fareeeeeeee:
-                            //
-
-
-
-                            //IF nome contiene P3 ma non conteien endcap e rectangular forse...boh
-
-                            // ElementType = doc.GetElement(owner.GetTypeId())
-                            // e poi cerco tra il nome della family o qualcosa del genree (guardare lookup per avere piu chiarezza)
-
-                            //oppure cercare tra le proprietà dell istanza se c è qualcosa che richiama family symbol.
-
-                            //potremmo addirittura guardare con un altro if se il raccordo ha un facingorientation con | Z | > 0.1 perche vorrebbe dire che il raccordo è verticale (da testare)
-
-
-                            angoloRaccordo = 666;
-                            foreach (Parameter p in owner.Parameters)
+                        //BuiltInCategory ownnerBuiltin = System.Enum.ToObject(owner.Category.Id, BuiltInCategory.OST_DuctFitting);
+                        //Category.GetCategory(doc, BuiltInCategory.OST_DuctFitting
+                        //doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctFitting
+                        if  (owner.Category.Id.IntegerValue == doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctFitting).Id.IntegerValue)
+                        {
+                            Element e = doc.GetElement(owner.GetTypeId());
+                            string NameFittingFamily = (e as FamilySymbol).FamilyName;
+                            if (NameFittingFamily.Contains("P3")
+                                && !NameFittingFamily.Contains("deviation")
+                                && !NameFittingFamily.Contains("Endcap"))
                             {
-                                if (p.Definition.Name.Contains("Angle")) //questo perche ogni tanto c è angle sx dx lt rt...
-                                {
-                                    angoloRaccordo = p.AsDouble() * (180 / Math.PI); 
+                                //oppure cercare tra le proprietà dell istanza se c è qualcosa che richiama family symbol.
 
-                                    if (angoloRaccordo > 80) ;
+                                //potremmo addirittura guardare con un altro if se il raccordo ha un facingorientation con | Z | > 0.1 perche vorrebbe dire che il raccordo è verticale (da testare)
+                                FamilyInstance fi = owner as FamilyInstance;
+                                DirCondotto = fi.FacingOrientation.Z;
+                                if (Math.Abs(DirCondotto) < 0.1)
+                                {
+
+                                    angoloRaccordo = 666;
+                                    foreach (Parameter p in owner.Parameters)
                                     {
-                                        return true;
+                                        if (p.Definition.Name.Contains("Angle")) //questo perche ogni tanto c è angle sx dx lt rt...
+                                        {
+                                            angoloRaccordo = p.AsDouble() * (180 / Math.PI);
+                                            if (angoloRaccordo > 80) ;
+                                            {
+                                                return true;
+                                            }
+                                        }
+
                                     }
                                 }
-
+                               
                             }
                         }
 
