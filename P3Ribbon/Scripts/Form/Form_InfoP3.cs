@@ -13,10 +13,10 @@ namespace P3Ribbon.Scripts
     {
         public Form_InfoP3()
         {
-            
+
             InitializeComponent();
             pictureBox1.Hide();
-            
+
             try
             {
                 webBrowser1.Navigate(indirizzo.ToString());
@@ -25,7 +25,7 @@ namespace P3Ribbon.Scripts
             {
                 webBrowser1.Hide();
                 pictureBox1.Show();
-                
+
             }
         }
 

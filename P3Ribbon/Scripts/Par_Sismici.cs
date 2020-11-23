@@ -46,7 +46,7 @@ namespace P3Ribbon
                     Parameter Vn = proj_info.LookupParameter("P3_InfoProg_VitaNominale");
                     Parameter Zs = proj_info.LookupParameter("P3_InfoProg_ZonaSismica");
 
-                
+
                     if (Cu == null || En == null || Vn == null || Zs == null)
                     {
                         TaskDialog td = new TaskDialog("Errore");
@@ -119,12 +119,12 @@ namespace P3Ribbon
 
         public static string TrovaPercorsoRisorsa(string NomeFile)
         {
-             Assembly a = Assembly.GetExecutingAssembly();
+            Assembly a = Assembly.GetExecutingAssembly();
             string PathAssembly = Assembly.GetExecutingAssembly().Location;
             string PercorsoRisorsa = PathAssembly.Replace("P3Ribbon.dll", "P3_Resouces\\" + NomeFile);
             return PercorsoRisorsa;
         }
-       
+
 
         static public bool CreaParametriCondivisi(Document doc, Application app)
         {
@@ -137,7 +137,7 @@ namespace P3Ribbon
             string originalFile = app.SharedParametersFilename;
             //RISOLVERE E TROVARE IL MODO PER PRENDERSELO DA VISUAL STUDIO\
 
-            string tempfie = TrovaPercorsoRisorsa( "17017_ParamCondivisi.txt");
+            string tempfie = TrovaPercorsoRisorsa("17017_ParamCondivisi.txt");
 
             try
             {
