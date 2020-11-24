@@ -97,6 +97,7 @@
       <DependentUpon>str_IT.resx</DependentUpon>
     </Compile>
     <Compile Include="Scripts\CambaLingua.cs" />
+    <Compile Include="Scripts\CreaCanale.cs" />
     <Compile Include="Scripts\FinestraInfo.cs" />
     <Compile Include="Scripts\Form\Form_Def_Acc.cs">
       <SubType>Form</SubType>
@@ -117,6 +118,8 @@
     <Compile Include="Scripts\TabellaExcel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaItaliana.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaInglese.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale_bianco.png" />
@@ -200,6 +203,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>‪\\Plab\Lavori_Attivi\20041_P3 Plugin\0_Digitalizzazione\P3_Addin\WIP\P3Plugin\sposta_dll.bat</PostBuildEvent>
+    <PostBuildEvent>"\\Plab\Lavori_Attivi\20041_P3 Plugin\0_Digitalizzazione\P3_Addin\WIP\P3Plugi\sposta_dll.bat"</PostBuildEvent>
   </PropertyGroup>
 </Project>
