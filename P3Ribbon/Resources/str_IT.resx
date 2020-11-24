@@ -117,20 +117,39 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="cmdAreaisolamento" xml:space="preserve">
+    <value>Elenco
+Materiali</value>
+  </data>
+  <data name="cmdAreaisolamento_tt" xml:space="preserve">
+    <value>Elenca i materiali utilizzati nei canali P3 e le relative superfici</value>
+  </data>
+  <data name="cmdcanale" xml:space="preserve">
+    <value>Canale</value>
+  </data>
+  <data name="cmdcanale_tt" xml:space="preserve">
+    <value>Posiziona i canali preisolati P3</value>
+  </data>
   <data name="cmdelencopezzi" xml:space="preserve">
-    <value>Elenco Prezzi</value>
+    <value>Elenco
+Prezzi</value>
   </data>
   <data name="cmdelencopezzi_tt" xml:space="preserve">
     <value>Elenca i canali e i pezzi speciali P3</value>
   </data>
+  <data name="cmdelencostaffaggi" xml:space="preserve">
+    <value>Elenco
+Staffaggio</value>
+  </data>
   <data name="cmdinfo" xml:space="preserve">
-    <value>Info</value>
+    <value>Contatti</value>
   </data>
   <data name="cmdinfo_tt" xml:space="preserve">
     <value>Informazioni e contatti P3</value>
   </data>
   <data name="cmdlibreria" xml:space="preserve">
-    <value>Carica Libreria</value>
+    <value>Carica
+Libreria</value>
   </data>
   <data name="cmdlibreria_tt" xml:space="preserve">
     <value>Carica le famiglie e i materiali P3</value>
@@ -138,14 +157,29 @@
   <data name="cmdlingua" xml:space="preserve">
     <value>Inglese</value>
   </data>
+  <data name="cmdLinguaENG" xml:space="preserve">
+    <value>Inglese</value>
+  </data>
+  <data name="cmdLinguaIT" xml:space="preserve">
+    <value>Italiano</value>
+  </data>
   <data name="cmdlingua_tt" xml:space="preserve">
     <value>Cambia la lingua in inglese</value>
   </data>
+  <data name="cmdmateriale" xml:space="preserve">
+    <value>Cambia 
+Materiale</value>
+  </data>
+  <data name="cmdmateriale_tt" xml:space="preserve">
+    <value>Cambia il materiale dei canali P3</value>
+  </data>
   <data name="cmdParsism" xml:space="preserve">
-    <value>Parametri Sismici</value>
+    <value>Parametri 
+Sismici</value>
   </data>
   <data name="cmdParsism_tt" xml:space="preserve">
-    <value>Compilazione dei parametri sismici per dimensionare le staffe dei condotti</value>
+    <value>Compilazione dei parametri sismici per dimensionare
+ le staffe dei condotti</value>
   </data>
   <data name="cmdquantità" xml:space="preserve">
     <value>Quantità</value>
@@ -154,10 +188,14 @@
     <value>Elenca la quantità di materiale riciclato nei canali P3</value>
   </data>
   <data name="cmdstaff" xml:space="preserve">
-    <value>Predimensionamento Staffaggio</value>
+    <value>Predimensionamento
+Staffaggio</value>
   </data>
   <data name="cmdstaff_tt" xml:space="preserve">
     <value>Posizionamento e dimensionamento automatico dei canali alle strutture</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Info</value>
   </data>
   <data name="Informazioni" xml:space="preserve">
     <value>Info</value>
@@ -169,10 +207,7 @@
     <value>Modellazione</value>
   </data>
   <data name="Quantità" xml:space="preserve">
-    <value>Quantità
-Sisma
-Materiale Riciclato
-Informazioni</value>
+    <value>Quantità </value>
   </data>
   <data name="Sisma" xml:space="preserve">
     <value>Sisma</value>

@@ -61,7 +61,45 @@ namespace P3Ribbon.Resources {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Elenco Prezzi.
+        ///   Cerca una stringa localizzata simile a Elenco
+        ///Materiali.
+        /// </summary>
+        internal static string cmdAreaisolamento {
+            get {
+                return ResourceManager.GetString("cmdAreaisolamento", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Elenca i materiali utilizzati nei canali P3 e le relative superfici.
+        /// </summary>
+        internal static string cmdAreaisolamento_tt {
+            get {
+                return ResourceManager.GetString("cmdAreaisolamento_tt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Canale.
+        /// </summary>
+        internal static string cmdcanale {
+            get {
+                return ResourceManager.GetString("cmdcanale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Posiziona i canali preisolati P3.
+        /// </summary>
+        internal static string cmdcanale_tt {
+            get {
+                return ResourceManager.GetString("cmdcanale_tt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Elenco
+        ///Prezzi.
         /// </summary>
         internal static string cmdelencopezzi {
             get {
@@ -79,7 +117,17 @@ namespace P3Ribbon.Resources {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Info.
+        ///   Cerca una stringa localizzata simile a Elenco
+        ///Staffaggio.
+        /// </summary>
+        internal static string cmdelencostaffaggi {
+            get {
+                return ResourceManager.GetString("cmdelencostaffaggi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Contatti.
         /// </summary>
         internal static string cmdinfo {
             get {
@@ -97,7 +145,8 @@ namespace P3Ribbon.Resources {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Carica Libreria.
+        ///   Cerca una stringa localizzata simile a Carica
+        ///Libreria.
         /// </summary>
         internal static string cmdlibreria {
             get {
@@ -133,7 +182,45 @@ namespace P3Ribbon.Resources {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Parametri Sismici.
+        ///   Cerca una stringa localizzata simile a Inglese.
+        /// </summary>
+        internal static string cmdLinguaENG {
+            get {
+                return ResourceManager.GetString("cmdLinguaENG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Italiano.
+        /// </summary>
+        internal static string cmdLinguaIT {
+            get {
+                return ResourceManager.GetString("cmdLinguaIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Cambia 
+        ///Materiale.
+        /// </summary>
+        internal static string cmdmateriale {
+            get {
+                return ResourceManager.GetString("cmdmateriale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Cambia il materiale dei canali P3.
+        /// </summary>
+        internal static string cmdmateriale_tt {
+            get {
+                return ResourceManager.GetString("cmdmateriale_tt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Parametri 
+        ///Sismici.
         /// </summary>
         internal static string cmdParsism {
             get {
@@ -142,7 +229,8 @@ namespace P3Ribbon.Resources {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Compilazione dei parametri sismici per dimensionare le staffe dei condotti.
+        ///   Cerca una stringa localizzata simile a Compilazione dei parametri sismici per dimensionare
+        /// le staffe dei condotti.
         /// </summary>
         internal static string cmdParsism_tt {
             get {
@@ -169,7 +257,8 @@ namespace P3Ribbon.Resources {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Predimensionamento Staffaggio.
+        ///   Cerca una stringa localizzata simile a Predimensionamento
+        ///Staffaggio.
         /// </summary>
         internal static string cmdstaff {
             get {
@@ -183,6 +272,15 @@ namespace P3Ribbon.Resources {
         internal static string cmdstaff_tt {
             get {
                 return ResourceManager.GetString("cmdstaff_tt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Info.
+        /// </summary>
+        internal static string Info {
+            get {
+                return ResourceManager.GetString("Info", resourceCulture);
             }
         }
         
@@ -214,10 +312,7 @@ namespace P3Ribbon.Resources {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Quantità
-        ///Sisma
-        ///Materiale Riciclato
-        ///Informazioni.
+        ///   Cerca una stringa localizzata simile a Quantità .
         /// </summary>
         internal static string Quantità {
             get {

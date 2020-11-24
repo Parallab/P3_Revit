@@ -61,6 +61,100 @@ namespace P3Ribbon.Resources {
         }
         
         /// <summary>
+        ///   Cerca una stringa localizzata simile a Material
+        ///List.
+        /// </summary>
+        internal static string cmdAreaisolamento {
+            get {
+                return ResourceManager.GetString("cmdAreaisolamento", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Duct.
+        /// </summary>
+        internal static string cmdcanale {
+            get {
+                return ResourceManager.GetString("cmdcanale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Place the P3 pre-insulated ducts .
+        /// </summary>
+        internal static string cmdcanale_tt {
+            get {
+                return ResourceManager.GetString("cmdcanale_tt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Price
+        ///List.
+        /// </summary>
+        internal static string cmdelencopezzi {
+            get {
+                return ResourceManager.GetString("cmdelencopezzi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a List the P3 ducts and special pieces.
+        /// </summary>
+        internal static string cmdelencopezzi_tt {
+            get {
+                return ResourceManager.GetString("cmdelencopezzi_tt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Bracketing
+        ///List.
+        /// </summary>
+        internal static string cmdelencostaffaggi {
+            get {
+                return ResourceManager.GetString("cmdelencostaffaggi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Info.
+        /// </summary>
+        internal static string cmdinfo {
+            get {
+                return ResourceManager.GetString("cmdinfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a P3 Information and contacts .
+        /// </summary>
+        internal static string cmdinfo_tt {
+            get {
+                return ResourceManager.GetString("cmdinfo_tt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Load
+        ///Library.
+        /// </summary>
+        internal static string cmdlibreria {
+            get {
+                return ResourceManager.GetString("cmdlibreria", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Load P3 families and materials.
+        /// </summary>
+        internal static string cmdlibreria_tt {
+            get {
+                return ResourceManager.GetString("cmdlibreria_tt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Cerca una stringa localizzata simile a Italian.
         /// </summary>
         internal static string cmdlingua {
@@ -75,6 +169,108 @@ namespace P3Ribbon.Resources {
         internal static string cmdlingua_tt {
             get {
                 return ResourceManager.GetString("cmdlingua_tt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a English.
+        /// </summary>
+        internal static string cmdLinguaENG {
+            get {
+                return ResourceManager.GetString("cmdLinguaENG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Italian.
+        /// </summary>
+        internal static string cmdLinguaIT {
+            get {
+                return ResourceManager.GetString("cmdLinguaIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Change
+        ///Material.
+        /// </summary>
+        internal static string cmdmateriale {
+            get {
+                return ResourceManager.GetString("cmdmateriale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Change the material of the P3 ducts.
+        /// </summary>
+        internal static string cmdmateriale_tt {
+            get {
+                return ResourceManager.GetString("cmdmateriale_tt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Seismic
+        ///Parameters.
+        /// </summary>
+        internal static string cmdParsism {
+            get {
+                return ResourceManager.GetString("cmdParsism", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Compilation of seismic parameters to set the ducts brackets.
+        /// </summary>
+        internal static string cmdParsism_tt {
+            get {
+                return ResourceManager.GetString("cmdParsism_tt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Quantities.
+        /// </summary>
+        internal static string cmdquantità {
+            get {
+                return ResourceManager.GetString("cmdquantità", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a List the amount of recycled material in the P3 ducts.
+        /// </summary>
+        internal static string cmdquantità_tt {
+            get {
+                return ResourceManager.GetString("cmdquantità_tt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Bracket
+        ///Pre-sizing.
+        /// </summary>
+        internal static string cmdstaff {
+            get {
+                return ResourceManager.GetString("cmdstaff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Automatic positioning and sizing of channels to structures.
+        /// </summary>
+        internal static string cmdstaff_tt {
+            get {
+                return ResourceManager.GetString("cmdstaff_tt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Info.
+        /// </summary>
+        internal static string Info {
+            get {
+                return ResourceManager.GetString("Info", resourceCulture);
             }
         }
         

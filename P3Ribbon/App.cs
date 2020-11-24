@@ -3,6 +3,7 @@ using Autodesk.Revit.UI;
 using System;
 using System.Globalization;
 using System.Resources;
+using Autodesk.Revit.ApplicationServices;
 using System.Threading;
 using System.Collections.Generic;
 using System.Reflection;
@@ -18,6 +19,7 @@ namespace P3Ribbon
     {
         public enum Lingua
         {
+
             ITA = 0,
             ENG = 1
         }
@@ -29,20 +31,21 @@ namespace P3Ribbon
 
         public static void AddRibbonPanel(UIControlledApplication a)
         {
+
             // Create a custom ribbon tab
-            
             a.CreateRibbonTab(tabName);
             // Get dll assembly path
             string thisAssemblyPath = Assembly.GetExecutingAssembly().Location;
 
             // MODELLAZIONE
             RibbonPanel ribbonPanelModellazione = a.CreateRibbonPanel(tabName, res_valore("Modellazione"));
+            AggiungiSplitButton(ribbonPanelModellazione, thisAssemblyPath);
             #region bottone: lingua WIP
-            PushButtonData b8Data = new PushButtonData("cmdlingua", "Lingua", thisAssemblyPath, "P3Ribbon.Scripts.CambaLingua");
-            PushButton pb8 = ribbonPanelModellazione.AddItem(b8Data) as PushButton;
-            pb8.ToolTip = "Seleziona tra inglese e italiano";
-            BitmapImage pb8Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Lingua.png"));
-            pb8.LargeImage = pb8Image;
+            //PushButtonData b8Data = new PushButtonData("cmdlingua", "Lingua", thisAssemblyPath, "P3Ribbon.Scripts.CambaLingua");
+            //PushButton pb8 = ribbonPanelModellazione.AddItem(b8Data) as PushButton;
+            //pb8.ToolTip = "Seleziona tra inglese e italiano";
+            //BitmapImage pb8Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Lingua.png"));
+            //pb8.LargeImage = pb8Image;
             #endregion
             #region bottone: carica libreria WIP
             PushButtonData b9Data = new PushButtonData("cmdlibreria", "Carica" + System.Environment.NewLine + "Libreria", thisAssemblyPath, "P3Ribbon.Scripts.Staffaggio");
@@ -52,7 +55,7 @@ namespace P3Ribbon
             pb9.LargeImage = pb9Image;
             #endregion
             #region bottone: canale WIP
-            PushButtonData b10Data = new PushButtonData("cmdcanale", "Canale", thisAssemblyPath, "P3Ribbon.Scripts.Staffaggio");
+            PushButtonData b10Data = new PushButtonData("cmdcanale", "Canale", thisAssemblyPath, "P3Ribbon.Scripts.CreaCanale");
             PushButton pb10 = ribbonPanelModellazione.AddItem(b10Data) as PushButton;
             pb10.ToolTip = "Posiziona i canali preisolati P3";
             BitmapImage pb10Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Canale.png"));
@@ -149,6 +152,12 @@ namespace P3Ribbon
 
             MigraRibbonPanelName2Titolo(a);
         }
+        public Result OnStartup(ControlledApplication application)
+        {
+            LeggiLingua(application);
+
+            return Result.Succeeded;
+        }
 
         static void MigraRibbonPanelName2Titolo(UIControlledApplication a)
         {
@@ -166,6 +175,7 @@ namespace P3Ribbon
 
         public Result OnStartup(UIControlledApplication application)
         {
+
             AddRibbonPanel(application);
             UICapp = application;
             return Result.Succeeded;
@@ -195,9 +205,46 @@ namespace P3Ribbon
 
         public static string res_valore(string Var)
         {
-            // inr ealtà sarebbe da leggere la lingua di revit, MA SOLO PER NOMINARE I BOTTONI LA PRIMA VOLTA!!!
-            ResourceSet rs = Resources.str_IT.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
-            return rs.GetObject(Var).ToString();
+            //ricordarsi di modificare nel caso di altra lingua
+            if (lingua_plugin == Lingua.ITA)
+            {
+                ResourceSet rs = Resources.str_IT.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
+                return rs.GetObject(Var).ToString();
+            }
+            else 
+            {
+                ResourceSet rs = Resources.str_EN.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
+                return rs.GetObject(Var).ToString();
+            }
+        }
+        private static void AggiungiSplitButton(RibbonPanel rp, string Assemblypath)
+        {
+            PushButtonData BOne = new PushButtonData("cmdLinguaIT", "Italiano", Assemblypath, "P3Ribbon.Scripts.CambaLingua");
+            BOne.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_LinguaItaliana.png"));
+
+            PushButtonData BTwo = new PushButtonData("cmdLinguaENG", "Inglese", Assemblypath, "P3Ribbon.Scripts.CambaLingua");
+            BTwo.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_LinguaInglese.png"));
+
+            SplitButtonData sb1 = new SplitButtonData("splitButton1", "Split");
+            SplitButton sb = rp.AddItem(sb1) as SplitButton;
+            sb.AddPushButton(BOne);
+            sb.AddPushButton(BTwo);
+
+        }
+       public static void LeggiLingua(ControlledApplication Capp)
+        {
+            //leggo la lingua di partenza
+            LanguageType linguapartenza = Capp.Language;
+            if(linguapartenza == LanguageType.Italian)
+            {
+                lingua_plugin = Lingua.ITA;
+            }
+            else if(linguapartenza == LanguageType.English_GB || linguapartenza == LanguageType.English_GB )
+            {
+                lingua_plugin = Lingua.ENG;
+            }
+
+
         }
 
 
