@@ -99,6 +99,7 @@
     <Compile Include="Scripts\CambaLingua.cs" />
     <Compile Include="Scripts\CreaCanale.cs" />
     <Compile Include="Scripts\FinestraInfo.cs" />
+    <Compile Include="Scripts\FinestraLibreria.cs" />
     <Compile Include="Scripts\Form\Form_Def_Acc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,13 +113,38 @@
     <Compile Include="Scripts\Form\Form_InfoP3.Designer.cs">
       <DependentUpon>Form_InfoP3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Scripts\Form\Form_Libreria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Scripts\Form\Form_Libreria.Designer.cs">
+      <DependentUpon>Form_Libreria.cs</DependentUpon>
+    </Compile>
     <Compile Include="Scripts\Migra_AreaIsolamento.cs" />
     <Compile Include="Scripts\Par_Sismici.cs" />
     <Compile Include="Scripts\Staffaggio.cs" />
     <Compile Include="Scripts\TabellaExcel.cs" />
+    <Compile Include="Scripts\TrasferisciStandard.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaItaliana.png" />
+    <Resource Include="Resources\Code 802 - 3D insulated.JPG" />
+    <Resource Include="Resources\Code 803 - 3D insulated.JPG" />
+    <Resource Include="Resources\Code 804 - 3D insulated.JPG" />
+    <Resource Include="Resources\Code 802 - 3D insulated1.jpg" />
+    <Resource Include="Resources\Code 803 - 3D insulated.png" />
+    <Resource Include="Resources\Code 804 - 3D insulated.png" />
+    <Resource Include="Resources\Code 802 - 3D insulated2.jpg" />
+    <Resource Include="Resources\Code 802 - 3D insulated.png" />
+    <Resource Include="Resources\Code 827 - 3D insulated.png" />
+    <Resource Include="Resources\Code 843 - 3D insulated.png" />
+    <Resource Include="Resources\Code 847 - 3D insulated.png" />
+    <Resource Include="Resources\Code 853 - 3D insulated.png" />
+    <Resource Include="Resources\Code 854 - 3D insulated.png" />
+    <Resource Include="Resources\Code 843 - 3D insulated1.png" />
+    <Resource Include="Resources\Code 847 - 3D insulated1.png" />
+    <Resource Include="Resources\Code 853 - 3D insulated1.png" />
+    <EmbeddedResource Include="Scripts\Form\Form_Libreria.resx">
+      <DependentUpon>Form_Libreria.cs</DependentUpon>
+    </EmbeddedResource>
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaInglese.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale.png" />

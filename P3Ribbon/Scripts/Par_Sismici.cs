@@ -121,7 +121,7 @@ namespace P3Ribbon
         {
             Assembly a = Assembly.GetExecutingAssembly();
             string PathAssembly = Assembly.GetExecutingAssembly().Location;
-            string PercorsoRisorsa = PathAssembly.Replace("P3Ribbon.dll", "P3_Resouces\\" + NomeFile);
+            string PercorsoRisorsa = PathAssembly.Replace("P3Ribbon.dll", "P3_Resources\\" + NomeFile);
             return PercorsoRisorsa;
         }
 
