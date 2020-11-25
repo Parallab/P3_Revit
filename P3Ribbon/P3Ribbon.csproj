@@ -229,6 +229,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>"\\Plab\Lavori_Attivi\20041_P3 Plugin\0_Digitalizzazione\P3_Addin\WIP\P3Plugi\sposta_dll.bat"</PostBuildEvent>
+    <PostBuildEvent>"\\Plab\Lavori_Attivi\20041_P3 Plugin\0_Digitalizzazione\P3_Addin\WIP\P3Plugin\sposta_dll.bat"</PostBuildEvent>
   </PropertyGroup>
 </Project>

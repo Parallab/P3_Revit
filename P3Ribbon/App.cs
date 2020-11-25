@@ -25,9 +25,26 @@ namespace P3Ribbon
         }
         public static Lingua lingua_plugin = Lingua.ITA; // LEGGERE LINGUA REVIT!!! ocio se c è lingua tipo francese
         public static UIControlledApplication UICapp;
+        public static ControlledApplication Capp;
         public static string tabName = "P3ductBIM";
         public static ResourceSet res_ita = Resources.str_IT.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
         public static ResourceSet res_eng = Resources.str_EN.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
+       
+        public static void LeggiLingua(ControlledApplication Capp)
+        {
+            //leggo la lingua di partenza
+            LanguageType linguapartenza = Capp.Language;
+            if (linguapartenza == LanguageType.Italian)
+            {
+                lingua_plugin = Lingua.ITA;
+            }
+            else if (linguapartenza == LanguageType.English_GB || linguapartenza == LanguageType.English_GB)
+            {
+                lingua_plugin = Lingua.ENG;
+            }
+
+
+        }
 
         public static void AddRibbonPanel(UIControlledApplication a)
         {
@@ -62,7 +79,7 @@ namespace P3Ribbon
             pb10.LargeImage = pb10Image;
             #endregion
             #region bottone: cambia materiale WIP
-            PushButtonData b11Data = new PushButtonData("cmdmateriale", "Cambia" + System.Environment.NewLine + "Materiale", thisAssemblyPath, "P3Ribbon.Scripts.Staffaggio");
+            PushButtonData b11Data = new PushButtonData("cmdmateriale", "Cambia" + System.Environment.NewLine + "Materiale", thisAssemblyPath, "P3Ribbon.Scripts.TrasferisciStandard");
             PushButton pb11 = ribbonPanelModellazione.AddItem(b11Data) as PushButton;
             pb11.ToolTip = "Cambia il materiale dei canali P3";
             BitmapImage pb11Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Canale_Materiale.png"));
@@ -132,24 +149,6 @@ namespace P3Ribbon
             pb4.LargeImage = pb4Image;
             #endregion
 
-            // void CambiaLingua(UIControlledApplication application)
-            //{
-            //    List<RibbonPanel> rPanels = new List<RibbonPanel>();
-            //    rPanels = application.GetRibbonPanels();
-            //    foreach (RibbonPanel rp in rPanels)
-            //    {
-            //        if (rp.Name == "Sisma")
-            //        {
-            //            rp.Title = "Sismic";
-            //            foreach (RibbonItem ris in rp.GetItems())
-            //            {
-            //                ris.ItemText = "prova";
-            //                ris.ToolTip = "Provaaadsaads";
-            //            }
-            //        }
-            //    }
-            //}
-
             MigraRibbonPanelName2Titolo(a);
         }
         static void MigraRibbonPanelName2Titolo(UIControlledApplication a)
@@ -177,8 +176,6 @@ namespace P3Ribbon
             return Result.Succeeded;
         }
 
-
-
         public static string res_valore(string Var, Lingua l)
         {
             
@@ -203,6 +200,7 @@ namespace P3Ribbon
                 return rs.GetObject(Var).ToString();
       
         }
+
         private static void AggiungiSplitButton(RibbonPanel rp, string Assemblypath)
         {
             PushButtonData BOne = new PushButtonData("cmdLinguaIT", "Italiano", Assemblypath, "P3Ribbon.Scripts.CambaLingua");
@@ -217,22 +215,6 @@ namespace P3Ribbon
             sb.AddPushButton(BTwo);
 
         }
-        public static void LeggiLingua(ControlledApplication Capp)
-        {
-            //leggo la lingua di partenza
-            LanguageType linguapartenza = Capp.Language;
-            if (linguapartenza == LanguageType.Italian)
-            {
-                lingua_plugin = Lingua.ITA;
-            }
-            else if (linguapartenza == LanguageType.English_GB || linguapartenza == LanguageType.English_GB)
-            {
-                lingua_plugin = Lingua.ENG;
-            }
-
-
-        }
-
-
+ 
     }
 }
