@@ -9,7 +9,8 @@ using System.Windows.Forms;
 
 namespace P3Ribbon.Scripts
 {
-    public partial class Form_InfoP3 : Form
+    public partial class Form_InfoP3 : System.Windows.Forms.Form
+
     {
         public Form_InfoP3()
         {
@@ -55,5 +56,6 @@ namespace P3Ribbon.Scripts
         {
 
         }
+
     }
 }
