@@ -13,12 +13,7 @@ using Application = Autodesk.Revit.ApplicationServices.Application;
 
 namespace P3Ribbon.Scripts
 {
-    class Supporto
-    {
-        public static List<List<double>> ValoriTabella;
-        public static Document doc;
-
-    }
+   
 
     [Transaction(TransactionMode.Manual)]
 
@@ -592,7 +587,7 @@ namespace P3Ribbon.Scripts
                                         if (p.Definition.Name.Contains("Angle")) //questo perche ogni tanto c è angle sx dx lt rt...
                                         {
                                             angoloRaccordo = p.AsDouble() * (180 / Math.PI);
-                                            if (angoloRaccordo > 80) ;
+                                            if (angoloRaccordo > 80);
                                             {
                                                 return true;
                                             }

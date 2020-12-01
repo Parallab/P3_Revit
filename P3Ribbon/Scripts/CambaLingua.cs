@@ -1,4 +1,5 @@
-﻿using Autodesk.Revit.Attributes;
+﻿using Autodesk.Revit.ApplicationServices;
+using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using System.Collections;
@@ -28,13 +29,11 @@ namespace P3Ribbon.Scripts
             //using (var t = new Transaction(doc, "CambiaLingua"))
             //{
             //    t.Start();
-               
-                CambiaLingua(App.UICapp);
+            CambiaLingua(App.UICapp);
             //    t.Commit();
             //}
             return Result.Succeeded;
         }
-
 
 
         static void CambiaLingua(UIControlledApplication a)
