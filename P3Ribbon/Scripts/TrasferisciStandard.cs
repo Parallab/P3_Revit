@@ -33,15 +33,9 @@ namespace P3Ribbon.Scripts
         {
             using (var t = new Transaction(doc, "TransferType"))
             {
-                IList<ElementFilter> catfilters = new List<ElementFilter>();
                 List<string> TipiPresenti_nomi = new List<string>();
 
-                catfilters.Add(new ElementCategoryFilter(BuiltInCategory.OST_DuctCurves));
-                catfilters.Add(new ElementCategoryFilter(BuiltInCategory.OST_DuctInsulations));
-
-                LogicalOrFilter filter = new LogicalOrFilter(catfilters);
-
-                FilteredElementCollector CTypes_presenti = new FilteredElementCollector(doc).WherePasses(filter).WhereElementIsElementType();
+                FilteredElementCollector CTypes_presenti = new FilteredElementCollector(doc).WherePasses(Supporto.CatFilterDuctAndInsul).WhereElementIsElementType();
 
                 // guardo tutti i tipi che mi interessamno presenti nel mio doc
                 foreach (ElementType type in CTypes_presenti)
@@ -50,15 +44,15 @@ namespace P3Ribbon.Scripts
                     if (nome.StartsWith("P3"))
                     {
                         TipiPresenti_nomi.Add(nome);
-                    }
+                     }
                 }
 
 
                 // guardo i tipi nel documento template
-                ICollection<ElementId> copytypeids = new Collection<ElementId>();
+                ICollection<ElementId> copytypeids = new Collection<ElementId>();           
 
                 Document docSource = app.OpenDocumentFile(Par_Sismici.TrovaPercorsoRisorsa("P3 - Duct system template2020.rte"));
-                FilteredElementCollector CSourceTypes = new FilteredElementCollector(docSource).WherePasses(filter).WhereElementIsElementType();
+                FilteredElementCollector CSourceTypes = new FilteredElementCollector(docSource).WherePasses(Supporto.CatFilterDuctAndInsul).WhereElementIsElementType();
                 CopyPasteOptions option = new CopyPasteOptions();
                
                 foreach (ElementType type in CSourceTypes)
@@ -80,19 +74,21 @@ namespace P3Ribbon.Scripts
                 //abachi presenti nel doc source
                 IList<Element> sc_coll = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Schedules).WhereElementIsNotElementType().ToElements();
                 List<string> AbachiPresenti_nomi = new List<string>();
+                
 
-           
+
                 foreach (Element schedule in sc_coll)
                 {
                     string nome = schedule.Name;
                     if (nome.StartsWith("P3"))
                     {
                         AbachiPresenti_nomi.Add(nome);
+                      
                     }
                 }
 
                 //leggo gli abachi nella risorsa
-                ICollection<ElementId> copycheduleids = new Collection<ElementId>();
+                ICollection<ElementId> copyscheduleids = new Collection<ElementId>();
                 IList<Element> sc_sources = new FilteredElementCollector(docSource).OfCategory(BuiltInCategory.OST_Schedules).WhereElementIsNotElementType().ToElements();
                 
                 foreach (Element schedule in sc_sources)
@@ -103,15 +99,15 @@ namespace P3Ribbon.Scripts
                         // contollRE SE ESISTE NEL DOC
                         if (!(AbachiPresenti_nomi.Contains(nome))) //perchè non va?
                         {
-                            copycheduleids.Add(schedule.Id);
+                            copyscheduleids.Add(schedule.Id);
                         }
 
                     }
                 }
                 t.Start();
                 ElementTransformUtils.CopyElements(docSource, copytypeids, doc, Transform.Identity, option); 
-                ElementTransformUtils.CopyElements(docSource,copycheduleids,doc, Transform.Identity, option);
-                copycheduleids.Clear();
+                ElementTransformUtils.CopyElements(docSource,copyscheduleids,doc, Transform.Identity, option);
+                copyscheduleids.Clear();
                 copytypeids.Clear();
                 t.Commit();
             }

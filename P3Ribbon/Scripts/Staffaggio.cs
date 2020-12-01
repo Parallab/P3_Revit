@@ -13,12 +13,7 @@ using Application = Autodesk.Revit.ApplicationServices.Application;
 
 namespace P3Ribbon.Scripts
 {
-    class Supporto
-    {
-        public static List<List<double>> ValoriTabella;
-        public static Document doc;
-
-    }
+   
 
     [Transaction(TransactionMode.Manual)]
 
