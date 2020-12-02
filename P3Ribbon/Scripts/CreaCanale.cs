@@ -29,18 +29,19 @@ namespace P3Ribbon.Scripts
 
             using (Transaction t = new Transaction(doc, "CreaParamCondivisi"))
             {
+
                 t.Start(); //serve?
 
+                ScriviParametro(doc);
                 // SBAGLIATO FARLO ANDARE SEMPRE:
                 CreaCanale.temp_inizializza_isolante(doc);
-                ////
-                CreaCondotto(uiApp, app);
-                CreaMuro(doc);
+
+                //CreaCondotto(uiApp, app);
 
                 t.Commit();
             }
-
             return Result.Succeeded;
+        
         }
 
 
@@ -73,24 +74,15 @@ namespace P3Ribbon.Scripts
             {
                 TaskDialog.Show("Debug", debug);
                 //temp(nuovi_id);
-                CreaMuro(doc);
             }
         }
-        public static void CreaMuro(Document document)
-        {
-            var level_id = new ElementId(1526);
-            XYZ point_a = new XYZ(-10, 0, 0);
-            XYZ point_b = new XYZ(10, 10, 10);
-            Line line = Line.CreateBound(point_a, point_b);
 
-       
-                Wall wall = Wall.Create(doc, line, level_id, false);
-                var position = new XYZ(0, 0, 0);
-                WallType wType = new FilteredElementCollector(doc).OfClass(typeof(WallType)).Cast<WallType>().FirstOrDefault();
-                var symbol = document.GetElement(wType.Id) as FamilySymbol;
-                var level = (Level)document.GetElement(wall.LevelId);
-                document.Create.NewFamilyInstance(position, symbol, wall, level, StructuralType.NonStructural);
-            
+        public static void ScriviParametro(Document doc)
+        {
+
+            Element el = doc.GetElement(new ElementId(2564396));
+            el.LookupParameter("Commenti").Set("Test");
+            TaskDialog.Show("Debug", "test");
 
         }
 
@@ -109,12 +101,13 @@ namespace P3Ribbon.Scripts
             //DuctInsulation.Create(doc, new ElementId(2518792), insul_tipo_scelto, insul_spessore_Scelto); 
             //RevitCommandId cmdid = RevitCommandId.LookupPostableCommandId(PostableCommand.Duct);
             //uiApp.PostCommand(cmdid);
-
             //app.DocumentChanged -= new EventHandler<DocumentChangedEventArgs>(OnDocumentChanged);
         }
 
 
     }
 
-    }
+  
+
+}
 

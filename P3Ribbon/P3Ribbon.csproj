@@ -97,6 +97,7 @@
       <DependentUpon>str_IT.resx</DependentUpon>
     </Compile>
     <Compile Include="Scripts\CambaLingua.cs" />
+    <Compile Include="Scripts\DynamicModelUpdater.cs" />
     <Compile Include="Scripts\Supporto.cs" />
     <Compile Include="Scripts\CreaCanale.cs" />
     <Compile Include="Scripts\FinestraInfo.cs" />

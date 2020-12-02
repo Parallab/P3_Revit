@@ -19,7 +19,6 @@ namespace P3Ribbon
     {
         public enum Lingua
         {
-
             ITA = 0,
             ENG = 1
         }
@@ -132,7 +131,7 @@ namespace P3Ribbon
             // MATERIALE RICICLATO
             RibbonPanel ribbonPanelMaterialeRiciclato = a.CreateRibbonPanel(tabName, "Materiale Riciclato");
             #region bottone: quantità WIP
-            PushButtonData b7Data = new PushButtonData("cmdquantità", "Quantità", thisAssemblyPath, "P3Ribbon.Scripts.Staffaggio");
+            PushButtonData b7Data = new PushButtonData("cmdquantità", "Quantità", thisAssemblyPath, "P3Ribbon.Scripts.DynamicModelUpdater");
             PushButton pb7 = ribbonPanelMaterialeRiciclato.AddItem(b7Data) as PushButton;
             pb7.ToolTip = "Elenca la quantità di materiale riciclato nei canali P3";
             BitmapImage pb7Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Quantità.png"));
