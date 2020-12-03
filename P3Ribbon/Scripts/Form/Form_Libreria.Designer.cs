@@ -48,7 +48,7 @@ namespace P3Ribbon.Scripts.Form
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BottonContinua = new System.Windows.Forms.Button();
             this.cboMateriali = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel1.SuspendLayout();
@@ -304,7 +304,7 @@ namespace P3Ribbon.Scripts.Form
             this.tableLayoutPanel3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.52941F));
-            this.tableLayoutPanel3.Controls.Add(this.button1, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.BottonContinua, 0, 0);
             this.tableLayoutPanel3.Location = new System.Drawing.Point(584, 259);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
@@ -312,16 +312,16 @@ namespace P3Ribbon.Scripts.Form
             this.tableLayoutPanel3.Size = new System.Drawing.Size(187, 30);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
-            // button1
+            // BottonContinua
             // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button1.Location = new System.Drawing.Point(3, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(181, 24);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Carica";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.BottonContinua.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.BottonContinua.Location = new System.Drawing.Point(3, 3);
+            this.BottonContinua.Name = "BottonContinua";
+            this.BottonContinua.Size = new System.Drawing.Size(181, 24);
+            this.BottonContinua.TabIndex = 0;
+            this.BottonContinua.Text = "Carica";
+            this.BottonContinua.UseVisualStyleBackColor = true;
+            this.BottonContinua.Click += new System.EventHandler(this.B_Continua);
             // 
             // cboMateriali
             // 
@@ -391,7 +391,7 @@ namespace P3Ribbon.Scripts.Form
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BottonContinua;
         private System.Windows.Forms.ComboBox cboMateriali;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label8;

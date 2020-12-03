@@ -8,14 +8,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Autodesk.Revit.DB;
+using Autodesk.Revit.UI;
 using Application = Autodesk.Revit.ApplicationServices.Application;
 
 namespace P3Ribbon.Scripts.Form
 {
     public partial class Form_Libreria : System.Windows.Forms.Form
     {
-        public Form_Libreria()
+        public static IList<ComboBoxMemberData> comboBoxMemberDatas = new List<ComboBoxMemberData>();
+        private Document m_doc;
+        private Application m_app;
+        public Form_Libreria(ExternalCommandData commandData)
         {
+            UIApplication uiApp = commandData.Application;
+            m_app = uiApp.Application;
+            UIDocument uiDoc = uiApp.ActiveUIDocument;
+            m_doc = uiDoc.Document;
+
             InitializeComponent();
         }
 
@@ -25,44 +34,83 @@ namespace P3Ribbon.Scripts.Form
         }
 
 
-        private void button1_Click(object sender, EventArgs e)
+        private void B_Continua(object sender, EventArgs e)
         {
-            //TrasferisciStandard.TrasferisciTipiDoc(app, doc);
-           // CreaCanale.temp_inizializza_isolante(doc);
+            TrasferisciStandard.TrasferisciTipiDoc(m_app, m_doc);
+
+        }
+
+        public void Materiale_ComboBox_Aggiorna()
+        {
+            List<MaterialeIsolante> list = new List<MaterialeIsolante>();
+            List<ElementId> P3InsulationTypeIds = new List<ElementId>();
+
+
+            P3InsulationTypeIds = (List<ElementId>)new FilteredElementCollector(m_doc).WhereElementIsElementType().OfCategory(BuiltInCategory.OST_DuctInsulations).ToElementIds();
+            if (P3InsulationTypeIds.Count != 0)
+            {
+                double _spessore;
+                int i = 0;
+
+                foreach (ElementId id in P3InsulationTypeIds)
+                {
+                    Element el = m_doc.GetElement(id);
+                    if (el.Name.Contains("P3"))
+                    {
+                        //i++; // "Combo item " + i
+                        try
+                        {
+                            ComboBoxMemberData cmbInsualtionData = new ComboBoxMemberData(el.Id.ToString(), "" + el.Name);
+                            comboBoxMemberDatas.Add(cmbInsualtionData);
+                            _spessore = el.LookupParameter("P3_Insulation_Thickness").AsDouble();
+                            list.Add(new MaterialeIsolante() { ID = el.Id, Name = el.Name, Spessore = _spessore });
+                        }
+                        catch
+                        {
+
+                        }
+                    }
+                }
+
+                cboMateriali.DataSource = list;
+            }
+            else
+            {
+                cboMateriali.Items.Add("Libreria P3 non caricata");
+            }
         }
 
         private void Form_Libreria_Load(object sender, EventArgs e)
         {
-
-            // sistemare porcoeido
-            List<Materiale> list = new List<Materiale>();
-            list.Add(new Materiale() { ID = "01", Name = "P3 - 150L31PLUS - 30 mm " });
-            list.Add(new Materiale() { ID = "02", Name = "P3 - 15HL21PLUS - 20 mm" });
-            list.Add(new Materiale() { ID = "03", Name = "P3 - 15HN21PLUS - 20 mm" });
-            list.Add(new Materiale() { ID = "04", Name = "P3 - 150L31PLUS - 30 mm" });
-            list.Add(new Materiale() { ID = "05", Name = "P3 - 15HR31PLUS - 30 mm" });
-
-            cboMateriali.DataSource = list;
-            cboMateriali.ValueMember = "ID";
-            cboMateriali.DisplayMember = "Name";
+            Materiale_ComboBox_Aggiorna();
+            cboMateriali.DisplayMember = "name";
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
+            MaterialeIsolante obj = cboMateriali.SelectedItem as MaterialeIsolante;
+
+            WatcherUpdater.IdInsulTipoPreferito = obj.ID;
+            WatcherUpdater.SpessoreIsolante = obj.Spessore;
+            //App.comboMat.
+            App.comboMat.AddItems(Scripts.Form.Form_Libreria.comboBoxMemberDatas); // SISTEMARE
+            try
+            {
+                //App.comboMat.Current =  //cerca quello con l id uguale a quello appena selezionato tra i combobox presenti
+            }
+            catch
+            {
+
+            }
+        }
+
+        class MaterialeIsolante
+        {
+            public ElementId ID { get; set; }
+            public string Name { get; set; }
+            public double Spessore { get; set; }
 
         }
     }
 
-    class Materiale
-    {
-        public string ID { get; set; }
-        public string Name { get; set; }
-    }
-
-    public class SupportoDoc 
-    {
-        public static Document doc;
-        public static Application app;
-    }
-    
 }

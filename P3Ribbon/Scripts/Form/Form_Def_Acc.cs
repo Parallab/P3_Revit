@@ -146,7 +146,6 @@ namespace P3Ribbon.Scripts
 
             bottone.BackColor = System.Drawing.Color.SteelBlue;
             classe_form = c;
-
         }
 
         private void z1_Click(object sender, EventArgs e)

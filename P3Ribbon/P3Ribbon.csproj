@@ -96,6 +96,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>str_IT.resx</DependentUpon>
     </Compile>
+    <Compile Include="Scripts\AggiornaComboBox.cs" />
     <Compile Include="Scripts\CambaLingua.cs" />
     <Compile Include="Scripts\DynamicModelUpdater.cs" />
     <Compile Include="Scripts\Supporto.cs" />

@@ -9,14 +9,16 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Security.Cryptography.X509Certificates;
 using System.Windows.Media.Imaging;
-using System.Resources;
 using System.Collections;
+using Autodesk.Revit.UI.Events;
 
 namespace P3Ribbon
 {
      
     class App : IExternalApplication
     {
+        Document doc = Scripts.Supporto.doc;
+        public static ComboBox comboMat;
         public enum Lingua
         {
             ITA = 0,
@@ -41,11 +43,9 @@ namespace P3Ribbon
             {
                 lingua_plugin = Lingua.ENG;
             }
-
-
         }
 
-        public static void AddRibbonPanel(UIControlledApplication a)
+        public static object AddRibbonPanel(UIControlledApplication a)
         {
 
             // Create a custom ribbon tab
@@ -78,7 +78,7 @@ namespace P3Ribbon
             pb10.LargeImage = pb10Image;
             #endregion
             #region bottone: cambia materiale WIP
-            PushButtonData b11Data = new PushButtonData("cmdmateriale", "Cambia" + System.Environment.NewLine + "Materiale", thisAssemblyPath, "P3Ribbon.Scripts.TrasferisciStandard");
+            PushButtonData b11Data = new PushButtonData("cmdmateriale", "Cambia" + System.Environment.NewLine + "Materiale", thisAssemblyPath, "P3Ribbon.Scripts.AggiornaComboBox");
             PushButton pb11 = ribbonPanelModellazione.AddItem(b11Data) as PushButton;
             pb11.ToolTip = "Cambia il materiale dei canali P3";
             BitmapImage pb11Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Canale_Materiale.png"));
@@ -103,7 +103,6 @@ namespace P3Ribbon
             #endregion
 
             // SISMA
-            
             RibbonPanel ribbonPanelSisma = a.CreateRibbonPanel(tabName, "Sisma");
             #region bottone: parametri sismici
             PushButtonData b1Data = new PushButtonData("cmdParsism", "Parametri" + System.Environment.NewLine + "  Sisimici  ", thisAssemblyPath, "P3Ribbon.Par_Sismici");
@@ -148,8 +147,38 @@ namespace P3Ribbon
             pb4.LargeImage = pb4Image;
             #endregion
 
+            //MODIFICA
+            RibbonPanel ribbonPanelModifica = a.CreateRibbonPanel(tabName, "Modifica Materiale");
+            #region
+            ComboBoxData cbData = new ComboBoxData("Combo1");
+            comboMat = ribbonPanelModifica.AddItem(cbData) as ComboBox;
+
+            comboMat.AddItems(Scripts.Form.Form_Libreria.comboBoxMemberDatas);
+
+            comboMat.CurrentChanged += new EventHandler<Autodesk.Revit.UI.Events.ComboBoxCurrentChangedEventArgs>(comboBx_CurrentChanged);
+            
+            //ComboBoxMemberData cbMatMemData1 = new ComboBoxMemberData("com1Mem1", "Combo1 item 1");
+            //ComboBoxMember cbMatMem1 = comboMat.AddItem(cbMatMemData1);
+
+            //ComboBoxMemberData cbmatMemData2 = new ComboBoxMemberData("com1Mem2", "Combo1 item 2");
+            //ComboBoxMember cbMatMem2 = comboMat.AddItem(cbmatMemData2);
+
+            #endregion
+
+
             MigraRibbonPanelName2Titolo(a);
+            return Result.Succeeded;
         }
+
+        private static void comboBx_CurrentChanged(object sender, ComboBoxCurrentChangedEventArgs e)
+        {
+            var test =  comboMat.Current;
+            // aggiornare parametro globale
+            TaskDialog.Show("test", test.Name );
+            Scripts.WatcherUpdater.IdInsulTipoPreferito = new ElementId(Int32.Parse(comboMat.Current.Name));
+            Scripts.WatcherUpdater.SpessoreIsolante = doc.GetElement(Scripts.WatcherUpdater.IdInsulTipoPreferito).LookupParameter("P3_Insulation_Thickness").AsDouble(); //finire
+        }
+
         static void MigraRibbonPanelName2Titolo(UIControlledApplication a)
         {
             List<RibbonPanel> rPanels = a.GetRibbonPanels(App.tabName);
@@ -159,19 +188,28 @@ namespace P3Ribbon
             }
         }
 
-        internal static List<RibbonPanel> AddRibbonPanel()
-        {
-            throw new NotImplementedException();
-        }
 
         public Result OnStartup(UIControlledApplication application)
         {
+     
             AddRibbonPanel(application);
             UICapp = application;
+
+          //attiva i registri all'avvio di revit
+                Scripts.WatcherUpdater updater = new Scripts.WatcherUpdater(application.ActiveAddInId);
+                UpdaterRegistry.RegisterUpdater(updater);
+                LogicalOrFilter f =  Scripts.Supporto.CatFilterDuctAndFitting;
+                UpdaterRegistry.AddTrigger(updater.GetUpdaterId(), f, Element.GetChangeTypeElementAddition());
+                
+
+
             return Result.Succeeded;
+
         }
         public Result OnShutdown(UIControlledApplication application)
         {
+            Scripts.WatcherUpdater updater = new Scripts.WatcherUpdater(application.ActiveAddInId);
+            UpdaterRegistry.UnregisterUpdater(updater.GetUpdaterId());
             return Result.Succeeded;
         }
 

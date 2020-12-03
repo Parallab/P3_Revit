@@ -16,6 +16,7 @@ namespace P3Ribbon.Scripts
     {
         public static List<List<double>> ValoriTabella;
         public static Document doc;
+        public static Application app;
 
         public static LogicalOrFilter CatFilter(bool insul_or_racc)
         {

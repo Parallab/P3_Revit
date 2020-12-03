@@ -31,8 +31,7 @@ namespace P3Ribbon.Scripts
         }
         public static void TrasferisciTipiDoc(Application app, Document doc)
         {
-            using (var t = new Transaction(doc, "TransferType"))
-            {
+           
                 List<string> TipiPresenti_nomi = new List<string>();
 
                 FilteredElementCollector CTypes_presenti = new FilteredElementCollector(doc).WherePasses(Supporto.CatFilterDuctAndInsul).WhereElementIsElementType();
@@ -51,7 +50,7 @@ namespace P3Ribbon.Scripts
                 // guardo i tipi nel documento template
                 ICollection<ElementId> copytypeids = new Collection<ElementId>();           
 
-                Document docSource = app.OpenDocumentFile(Par_Sismici.TrovaPercorsoRisorsa("P3 - Duct system template2020.rte"));
+                Document docSource = app.OpenDocumentFile(Par_Sismici.TrovaPercorsoRisorsa("P3 - Duct system template20.rte"));
                 FilteredElementCollector CSourceTypes = new FilteredElementCollector(docSource).WherePasses(Supporto.CatFilterDuctAndInsul).WhereElementIsElementType();
                 CopyPasteOptions option = new CopyPasteOptions();
                
@@ -104,13 +103,13 @@ namespace P3Ribbon.Scripts
 
                     }
                 }
-                t.Start();
+          
                 ElementTransformUtils.CopyElements(docSource, copytypeids, doc, Transform.Identity, option); 
                 ElementTransformUtils.CopyElements(docSource,copyscheduleids,doc, Transform.Identity, option);
                 copyscheduleids.Clear();
                 copytypeids.Clear();
-                t.Commit();
-            }
+             
+          
         }
     }
 }
