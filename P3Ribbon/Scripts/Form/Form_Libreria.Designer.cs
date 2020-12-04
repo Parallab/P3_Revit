@@ -48,9 +48,11 @@ namespace P3Ribbon.Scripts.Form
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.BottonContinua = new System.Windows.Forms.Button();
             this.cboMateriali = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.button1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -61,6 +63,7 @@ namespace P3Ribbon.Scripts.Form
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.tableLayoutPanel3.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -304,24 +307,24 @@ namespace P3Ribbon.Scripts.Form
             this.tableLayoutPanel3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 23.52941F));
-            this.tableLayoutPanel3.Controls.Add(this.button1, 0, 0);
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(584, 259);
+            this.tableLayoutPanel3.Controls.Add(this.BottonContinua, 0, 0);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(592, 255);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(187, 30);
             this.tableLayoutPanel3.TabIndex = 2;
             // 
-            // button1
+            // BottonContinua
             // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button1.Location = new System.Drawing.Point(3, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(181, 24);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Carica";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.BottonContinua.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.BottonContinua.Location = new System.Drawing.Point(3, 3);
+            this.BottonContinua.Name = "BottonContinua";
+            this.BottonContinua.Size = new System.Drawing.Size(181, 24);
+            this.BottonContinua.TabIndex = 0;
+            this.BottonContinua.Text = "Carica libreria";
+            this.BottonContinua.UseVisualStyleBackColor = true;
+            this.BottonContinua.Click += new System.EventHandler(this.B_Continua);
             // 
             // cboMateriali
             // 
@@ -329,10 +332,10 @@ namespace P3Ribbon.Scripts.Form
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cboMateriali.FormattingEnabled = true;
-            this.cboMateriali.Location = new System.Drawing.Point(15, 263);
+            this.cboMateriali.Location = new System.Drawing.Point(15, 261);
             this.cboMateriali.Margin = new System.Windows.Forms.Padding(0);
             this.cboMateriali.Name = "cboMateriali";
-            this.cboMateriali.Size = new System.Drawing.Size(567, 21);
+            this.cboMateriali.Size = new System.Drawing.Size(389, 21);
             this.cboMateriali.TabIndex = 0;
             this.cboMateriali.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
@@ -341,26 +344,49 @@ namespace P3Ribbon.Scripts.Form
             this.tableLayoutPanel4.ColumnCount = 2;
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(417, 15);
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(407, 15);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
             this.tableLayoutPanel4.RowCount = 2;
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(354, 240);
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(364, 237);
             this.tableLayoutPanel4.TabIndex = 3;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.button1, 0, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(407, 255);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 1;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(182, 29);
+            this.tableLayoutPanel2.TabIndex = 4;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(3, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(176, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Scegli Materiale";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form_Libreria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 297);
+            this.ClientSize = new System.Drawing.Size(784, 291);
+            this.Controls.Add(this.tableLayoutPanel2);
             this.Controls.Add(this.cboMateriali);
             this.Controls.Add(this.tableLayoutPanel4);
             this.Controls.Add(this.tableLayoutPanel3);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(800, 380);
-            this.MinimumSize = new System.Drawing.Size(800, 300);
+            this.MaximumSize = new System.Drawing.Size(800, 330);
+            this.MinimumSize = new System.Drawing.Size(800, 330);
             this.Name = "Form_Libreria";
             this.Text = "Libreira P3";
             this.Load += new System.EventHandler(this.Form_Libreria_Load);
@@ -375,6 +401,7 @@ namespace P3Ribbon.Scripts.Form
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -391,7 +418,7 @@ namespace P3Ribbon.Scripts.Form
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button BottonContinua;
         private System.Windows.Forms.ComboBox cboMateriali;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label8;
@@ -402,5 +429,7 @@ namespace P3Ribbon.Scripts.Form
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Button button1;
     }
 }

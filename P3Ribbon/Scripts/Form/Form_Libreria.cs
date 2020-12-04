@@ -8,14 +8,25 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Autodesk.Revit.DB;
+using Autodesk.Revit.UI;
 using Application = Autodesk.Revit.ApplicationServices.Application;
+using P3Ribbon.Scripts;
 
 namespace P3Ribbon.Scripts.Form
 {
     public partial class Form_Libreria : System.Windows.Forms.Form
     {
-        public Form_Libreria()
+        List<MaterialeIsolante> list = new List<MaterialeIsolante>();
+        public static System.Windows.Forms.ComboBox _cboMateriali;
+        private Document m_doc;
+        private Application m_app;
+        public Form_Libreria(ExternalCommandData commandData)
         {
+            UIApplication uiApp = commandData.Application;
+            m_app = uiApp.Application;
+            UIDocument uiDoc = uiApp.ActiveUIDocument;
+            m_doc = uiDoc.Document;
+
             InitializeComponent();
         }
 
@@ -24,45 +35,41 @@ namespace P3Ribbon.Scripts.Form
 
         }
 
-
-        private void button1_Click(object sender, EventArgs e)
+        private void B_Continua(object sender, EventArgs e)
         {
-            //TrasferisciStandard.TrasferisciTipiDoc(app, doc);
-           // CreaCanale.temp_inizializza_isolante(doc);
+            TrasferisciStandard.TrasferisciTipiDoc(m_app, m_doc);
+
         }
 
         private void Form_Libreria_Load(object sender, EventArgs e)
         {
-
-            // sistemare porcoeido
-            List<Materiale> list = new List<Materiale>();
-            list.Add(new Materiale() { ID = "01", Name = "P3 - 150L31PLUS - 30 mm " });
-            list.Add(new Materiale() { ID = "02", Name = "P3 - 15HL21PLUS - 20 mm" });
-            list.Add(new Materiale() { ID = "03", Name = "P3 - 15HN21PLUS - 20 mm" });
-            list.Add(new Materiale() { ID = "04", Name = "P3 - 150L31PLUS - 30 mm" });
-            list.Add(new Materiale() { ID = "05", Name = "P3 - 15HR31PLUS - 30 mm" });
-
+            list = Materiale.PreAggiorna(m_doc);
             cboMateriali.DataSource = list;
-            cboMateriali.ValueMember = "ID";
-            cboMateriali.DisplayMember = "Name";
+            cboMateriali.DisplayMember = "name";
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            MaterialeIsolante obj = cboMateriali.SelectedItem as MaterialeIsolante;
+
+            Materiale.IdInsulTipoPreferito = obj.ID;
+            Materiale.SpessoreIsolante = obj.Spessore;
+            //App.comboMat.
+            App.comboMat.AddItems(Materiale.comboBoxMemberDatas); // SISTEMARE
+            try
+            {
+                //App.comboMat.Current =  //cerca quello con l id uguale a quello appena selezionato tra i combobox presenti
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
         {
 
         }
     }
 
-    class Materiale
-    {
-        public string ID { get; set; }
-        public string Name { get; set; }
-    }
-
-    public class SupportoDoc 
-    {
-        public static Document doc;
-        public static Application app;
-    }
-    
 }
