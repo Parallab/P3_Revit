@@ -51,12 +51,6 @@ namespace P3Ribbon.Scripts
   
         }
 
-        //public static void temp_inizializza_isolante(Document doc)
-        //{
-        //    insul_spessore_Scelto = 10 / 308.8; //1=304.8mm
-        //    insul_tipo_scelto = new FilteredElementCollector(doc).WhereElementIsElementType().OfCategory(BuiltInCategory.OST_DuctInsulations).ToElementIds().First();
-        //}
-
 
     }
 

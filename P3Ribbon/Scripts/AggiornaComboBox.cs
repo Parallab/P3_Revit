@@ -23,7 +23,7 @@ namespace P3Ribbon.Scripts
 
             try
             {
-                App.comboMat.AddItems(Scripts.Form.Form_Libreria.comboBoxMemberDatas);
+                App.comboMat.AddItems(Scripts.Materiale.comboBoxMemberDatas);
             }
             catch
             {

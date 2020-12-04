@@ -11,17 +11,15 @@ using Application = Autodesk.Revit.ApplicationServices.Application;
 
 namespace P3Ribbon.Scripts
 {
-    public class WatcherUpdater : IUpdater
+    public class DynamicModelUpdater : IUpdater
     {
        
         static AddInId _appId;
         static UpdaterId _updaterId;
 
-        public static ElementId IdInsulTipoPreferito;
-        public static double SpessoreIsolante;
 
 
-        public WatcherUpdater(AddInId id)
+        public DynamicModelUpdater(AddInId id)
         {
             _appId = id;
             _updaterId = new UpdaterId(_appId, new Guid("604b1052-f742-4951-8576-c261d1993108"));
@@ -29,11 +27,12 @@ namespace P3Ribbon.Scripts
 
      
 
+
         public void Execute(UpdaterData data)
         {
             Document doc = data.GetDocument();
 
-            if (IdInsulTipoPreferito != null)
+            if (Scripts.Materiale.IdInsulTipoPreferito != null)
                 {
                 foreach (ElementId id in data.GetAddedElementIds())
                 {
@@ -50,11 +49,9 @@ namespace P3Ribbon.Scripts
                             nome = (doc.GetElement(el.GetTypeId()) as ElementType).FamilyName;
                         }
 
-
-
                         if (nome.Contains("P3")) // IN FUTURO USARE UN PARAMETO (NASCOSTO?)
                         {
-                            DuctInsulation.Create(doc, id, IdInsulTipoPreferito, SpessoreIsolante);
+                            DuctInsulation.Create(doc, id, Materiale.IdInsulTipoPreferito, Materiale.SpessoreIsolante);
                         }
                     }
                     catch (System.Exception ex)
@@ -87,6 +84,6 @@ namespace P3Ribbon.Scripts
         }
         #endregion
 
-        public static WatcherUpdater _updater = null;
+        public static DynamicModelUpdater _updater = null;
     }
 }

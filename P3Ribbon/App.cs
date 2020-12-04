@@ -17,7 +17,11 @@ namespace P3Ribbon
      
     class App : IExternalApplication
     {
-        Document doc = Scripts.Supporto.doc;
+      
+        public static UIControlledApplication UICapp;
+        public static ControlledApplication Capp;
+   
+
         public static ComboBox comboMat;
         public enum Lingua
         {
@@ -25,12 +29,13 @@ namespace P3Ribbon
             ENG = 1
         }
         public static Lingua lingua_plugin = Lingua.ITA; // LEGGERE LINGUA REVIT!!! ocio se c è lingua tipo francese
-        public static UIControlledApplication UICapp;
-        public static ControlledApplication Capp;
+      
+        
         public static string tabName = "P3ductBIM";
         public static ResourceSet res_ita = Resources.str_IT.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
         public static ResourceSet res_eng = Resources.str_EN.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
-       
+        private object commandData;
+
         public static void LeggiLingua(ControlledApplication Capp)
         {
             //leggo la lingua di partenza
@@ -77,13 +82,29 @@ namespace P3Ribbon
             BitmapImage pb10Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Canale.png"));
             pb10.LargeImage = pb10Image;
             #endregion
+            #region ComboBoxIsoalnte
+            ComboBoxData cbData = new ComboBoxData("Combo1");
+            comboMat = ribbonPanelModellazione.AddItem(cbData) as ComboBox;
+
+            comboMat.AddItems(Scripts.Materiale.comboBoxMemberDatas);
+
+            comboMat.CurrentChanged += new EventHandler<Autodesk.Revit.UI.Events.ComboBoxCurrentChangedEventArgs>(comboBx_CurrentChanged);
+
+            //ComboBoxMemberData cbMatMemData1 = new ComboBoxMemberData("com1Mem1", "Combo1 item 1");
+            //ComboBoxMember cbMatMem1 = comboMat.AddItem(cbMatMemData1);
+
+            //ComboBoxMemberData cbmatMemData2 = new ComboBoxMemberData("com1Mem2", "Combo1 item 2");
+            //ComboBoxMember cbMatMem2 = comboMat.AddItem(cbmatMemData2);
+            #endregion
             #region bottone: cambia materiale WIP
-            PushButtonData b11Data = new PushButtonData("cmdmateriale", "Cambia" + System.Environment.NewLine + "Materiale", thisAssemblyPath, "P3Ribbon.Scripts.AggiornaComboBox");
+            PushButtonData b11Data = new PushButtonData("cmdmateriale", "Cambia" + System.Environment.NewLine + "Materiale", thisAssemblyPath, "P3Ribbon.Scripts.CambiaMateriale");
             PushButton pb11 = ribbonPanelModellazione.AddItem(b11Data) as PushButton;
             pb11.ToolTip = "Cambia il materiale dei canali P3";
             BitmapImage pb11Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Canale_Materiale.png"));
             pb11.LargeImage = pb11Image;
             #endregion
+
+
 
             // QUANTITÀ
             RibbonPanel ribbonPanelQuantità = a.CreateRibbonPanel(tabName, "Quantità");
@@ -147,23 +168,8 @@ namespace P3Ribbon
             pb4.LargeImage = pb4Image;
             #endregion
 
-            //MODIFICA
-            RibbonPanel ribbonPanelModifica = a.CreateRibbonPanel(tabName, "Modifica Materiale");
-            #region
-            ComboBoxData cbData = new ComboBoxData("Combo1");
-            comboMat = ribbonPanelModifica.AddItem(cbData) as ComboBox;
 
-            comboMat.AddItems(Scripts.Form.Form_Libreria.comboBoxMemberDatas);
-
-            comboMat.CurrentChanged += new EventHandler<Autodesk.Revit.UI.Events.ComboBoxCurrentChangedEventArgs>(comboBx_CurrentChanged);
-            
-            //ComboBoxMemberData cbMatMemData1 = new ComboBoxMemberData("com1Mem1", "Combo1 item 1");
-            //ComboBoxMember cbMatMem1 = comboMat.AddItem(cbMatMemData1);
-
-            //ComboBoxMemberData cbmatMemData2 = new ComboBoxMemberData("com1Mem2", "Combo1 item 2");
-            //ComboBoxMember cbMatMem2 = comboMat.AddItem(cbmatMemData2);
-
-            #endregion
+ 
 
 
             MigraRibbonPanelName2Titolo(a);
@@ -172,11 +178,11 @@ namespace P3Ribbon
 
         private static void comboBx_CurrentChanged(object sender, ComboBoxCurrentChangedEventArgs e)
         {
-            var test =  comboMat.Current;
-            // aggiornare parametro globale
-            TaskDialog.Show("test", test.Name );
-            Scripts.WatcherUpdater.IdInsulTipoPreferito = new ElementId(Int32.Parse(comboMat.Current.Name));
-            Scripts.WatcherUpdater.SpessoreIsolante = doc.GetElement(Scripts.WatcherUpdater.IdInsulTipoPreferito).LookupParameter("P3_Insulation_Thickness").AsDouble(); //finire
+            //var debug =  comboMat.Current;
+            string nome = comboMat.Current.Name;
+            int indice_ = nome.IndexOf("_");
+            Scripts.Materiale.AggiornaTendinaRibbon(nome);
+
         }
 
         static void MigraRibbonPanelName2Titolo(UIControlledApplication a)
@@ -191,24 +197,24 @@ namespace P3Ribbon
 
         public Result OnStartup(UIControlledApplication application)
         {
-     
+          
+
             AddRibbonPanel(application);
             UICapp = application;
+            
 
           //attiva i registri all'avvio di revit
-                Scripts.WatcherUpdater updater = new Scripts.WatcherUpdater(application.ActiveAddInId);
+                Scripts.DynamicModelUpdater updater = new Scripts.DynamicModelUpdater(application.ActiveAddInId);
                 UpdaterRegistry.RegisterUpdater(updater);
                 LogicalOrFilter f =  Scripts.Supporto.CatFilterDuctAndFitting;
                 UpdaterRegistry.AddTrigger(updater.GetUpdaterId(), f, Element.GetChangeTypeElementAddition());
-                
-
-
+       
             return Result.Succeeded;
 
         }
         public Result OnShutdown(UIControlledApplication application)
         {
-            Scripts.WatcherUpdater updater = new Scripts.WatcherUpdater(application.ActiveAddInId);
+            Scripts.DynamicModelUpdater updater = new Scripts.DynamicModelUpdater(application.ActiveAddInId);
             UpdaterRegistry.UnregisterUpdater(updater.GetUpdaterId());
             return Result.Succeeded;
         }
