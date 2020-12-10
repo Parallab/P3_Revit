@@ -89,8 +89,8 @@ namespace P3Ribbon.Scripts
                 //leggo gli abachi nella risorsa
                 ICollection<ElementId> copyscheduleids = new Collection<ElementId>();
                 IList<Element> sc_sources = new FilteredElementCollector(docSource).OfCategory(BuiltInCategory.OST_Schedules).WhereElementIsNotElementType().ToElements();
-                
-                foreach (Element schedule in sc_sources)
+           
+            foreach (Element schedule in sc_sources)
                 {
                     string nome = schedule.Name;
                     if (nome.StartsWith("P3"))
@@ -103,9 +103,24 @@ namespace P3Ribbon.Scripts
 
                     }
                 }
-          
-                ElementTransformUtils.CopyElements(docSource, copytypeids, doc, Transform.Identity, option); 
-                ElementTransformUtils.CopyElements(docSource,copyscheduleids,doc, Transform.Identity, option);
+
+                //gestione delle eccezioni se sono già presenti i tipi e le viste
+            try
+            {
+                ElementTransformUtils.CopyElements(docSource, copytypeids, doc, Transform.Identity, option);
+            }
+            catch
+            {
+
+            }
+            try
+            {
+                ElementTransformUtils.CopyElements(docSource, copyscheduleids, doc, Transform.Identity, option);
+            }
+            catch
+            {
+
+            }
                 copyscheduleids.Clear();
                 copytypeids.Clear();
              

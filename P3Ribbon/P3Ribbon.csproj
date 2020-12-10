@@ -81,11 +81,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Resources\str_EN.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -98,6 +93,8 @@
     </Compile>
     <Compile Include="Scripts\AggiornaComboBox.cs" />
     <Compile Include="Scripts\CambiaMateriale.cs" />
+    <Compile Include="Scripts\ElencoPezzi.cs" />
+    <Compile Include="Scripts\IexternalComand.cs" />
     <Compile Include="Scripts\Materiale.cs" />
     <Compile Include="Scripts\CambaLingua.cs" />
     <Compile Include="Scripts\DynamicModelUpdater.cs" />
@@ -131,6 +128,7 @@
     <Compile Include="Scripts\TrasferisciStandard.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale16.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaItaliana.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaInglese.png" />
     <Resource Include="Resources\Code 802 - 3D insulated.JPG" />
@@ -166,7 +164,6 @@
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Lingua.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Quantità.png" />
     <EmbeddedResource Include="Resources\17017_ParamCondivisi.txt" />
-    <None Include="Resources\ospedale-mestre.jpg" />
     <None Include="Resources\Annotazione 2020-08-04 1455321.png" />
     <None Include="Resources\Annotazione 2020-08-04 145532.png" />
     <Resource Include="Resources\Area_Iso.png" />
@@ -184,7 +181,6 @@
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\str_EN.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -235,6 +231,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>"\\Plab\Lavori_Attivi\20041_P3 Plugin\0_Digitalizzazione\P3_Addin\WIP\P3Plugin\sposta_dll.bat"</PostBuildEvent>
+    <PostBuildEvent>"C:\Users\maisi\source\repos\P3Plugin\sposta_dll.bat"</PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -58,15 +58,14 @@ namespace P3Ribbon
             // Get dll assembly path
             string thisAssemblyPath = Assembly.GetExecutingAssembly().Location;
 
-            // MODELLAZIONE
+          
             RibbonPanel ribbonPanelModellazione = a.CreateRibbonPanel(tabName, res_valore("Modellazione"));
-            AggiungiSplitButton(ribbonPanelModellazione, thisAssemblyPath);
+
+
+            // MODELLAZIONE
             #region bottone: lingua WIP
-            //PushButtonData b8Data = new PushButtonData("cmdlingua", "Lingua", thisAssemblyPath, "P3Ribbon.Scripts.CambaLingua");
-            //PushButton pb8 = ribbonPanelModellazione.AddItem(b8Data) as PushButton;
-            //pb8.ToolTip = "Seleziona tra inglese e italiano";
-            //BitmapImage pb8Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Lingua.png"));
-            //pb8.LargeImage = pb8Image;
+            AggiungiSplitButton(ribbonPanelModellazione, thisAssemblyPath);
+           
             #endregion
             #region bottone: carica libreria WIP
             PushButtonData b9Data = new PushButtonData("cmdlibreria", "Carica" + System.Environment.NewLine + "Libreria", thisAssemblyPath, "P3Ribbon.Scripts.FinestraLibreria");
@@ -82,34 +81,33 @@ namespace P3Ribbon
             BitmapImage pb10Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Canale.png"));
             pb10.LargeImage = pb10Image;
             #endregion
-            #region ComboBoxIsoalnte
+            #region Panello cambia materiale più ribbonbox
             ComboBoxData cbData = new ComboBoxData("Combo1");
-            comboMat = ribbonPanelModellazione.AddItem(cbData) as ComboBox;
+            PushButtonData b11Data = new PushButtonData("cmdmateriale", "Cambia" + System.Environment.NewLine + "Materiale", thisAssemblyPath, "P3Ribbon.Scripts.CambiaMateriale");
 
+            IList<RibbonItem> MaerialeItems = ribbonPanelModellazione.AddStackedItems(b11Data, cbData);
+
+            PushButton pb11 = MaerialeItems[0] as PushButton;
+            BitmapImage pb11LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Canale_Materiale.png"));
+            pb11.LargeImage = pb11LargeImage;
+            BitmapImage pb11Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Canale_Materiale16.png"));
+            pb11.Image = pb11Image;
+            pb11.ToolTip = "Cambia il materiale dei canali P3";
+
+
+            comboMat = MaerialeItems[1] as ComboBox;
             comboMat.AddItems(Scripts.Materiale.comboBoxMemberDatas);
 
             comboMat.CurrentChanged += new EventHandler<Autodesk.Revit.UI.Events.ComboBoxCurrentChangedEventArgs>(comboBx_CurrentChanged);
-
-            //ComboBoxMemberData cbMatMemData1 = new ComboBoxMemberData("com1Mem1", "Combo1 item 1");
-            //ComboBoxMember cbMatMem1 = comboMat.AddItem(cbMatMemData1);
-
-            //ComboBoxMemberData cbmatMemData2 = new ComboBoxMemberData("com1Mem2", "Combo1 item 2");
-            //ComboBoxMember cbMatMem2 = comboMat.AddItem(cbmatMemData2);
+     
             #endregion
-            #region bottone: cambia materiale WIP
-            PushButtonData b11Data = new PushButtonData("cmdmateriale", "Cambia" + System.Environment.NewLine + "Materiale", thisAssemblyPath, "P3Ribbon.Scripts.CambiaMateriale");
-            PushButton pb11 = ribbonPanelModellazione.AddItem(b11Data) as PushButton;
-            pb11.ToolTip = "Cambia il materiale dei canali P3";
-            BitmapImage pb11Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Canale_Materiale.png"));
-            pb11.LargeImage = pb11Image;
-            #endregion
-
+    
 
 
             // QUANTITÀ
             RibbonPanel ribbonPanelQuantità = a.CreateRibbonPanel(tabName, "Quantità");
             #region bottone: elenco pezzi WIP
-            PushButtonData b5Data = new PushButtonData("cmdelencopezzi", "Elenco" + System.Environment.NewLine + "Pezzi", thisAssemblyPath, "P3Ribbon.Scripts.Migra_AreaIsolamento");
+            PushButtonData b5Data = new PushButtonData("cmdelencopezzi", "Elenco" + System.Environment.NewLine + "Pezzi", thisAssemblyPath, "P3Ribbon.Scripts.ElencoPezzi");
             PushButton pb5 = ribbonPanelQuantità.AddItem(b5Data) as PushButton;
             pb5.ToolTip = "Elenca i canali e i pezzi speciali P3";
             BitmapImage pb5Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_ElencoPezzi.png"));

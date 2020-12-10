@@ -70,6 +70,11 @@ namespace P3Ribbon.Scripts.Form
         {
 
         }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }
