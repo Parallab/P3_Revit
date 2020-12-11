@@ -81,6 +81,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Resources\str_EN.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -93,14 +98,25 @@
     </Compile>
     <Compile Include="Scripts\AggiornaComboBox.cs" />
     <Compile Include="Scripts\CambiaMateriale.cs" />
-    <Compile Include="Scripts\ElencoPezzi.cs" />
-    <Compile Include="Scripts\IexternalComand.cs" />
+    <Compile Include="Scripts\ApriAbaco.cs" />
+    <Compile Include="Scripts\Form\Form_Impostazioni.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Scripts\Form\Form_Impostazioni.Designer.cs">
+      <DependentUpon>Form_Impostazioni.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scripts\Form\Form_Quantità.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Scripts\Form\Form_Quantità.Designer.cs">
+      <DependentUpon>Form_Quantità.cs</DependentUpon>
+    </Compile>
     <Compile Include="Scripts\Materiale.cs" />
     <Compile Include="Scripts\CambaLingua.cs" />
     <Compile Include="Scripts\DynamicModelUpdater.cs" />
     <Compile Include="Scripts\Supporto.cs" />
     <Compile Include="Scripts\CreaCanale.cs" />
-    <Compile Include="Scripts\FinestraInfo.cs" />
+    <Compile Include="Scripts\Finestre.cs" />
     <Compile Include="Scripts\FinestraLibreria.cs" />
     <Compile Include="Scripts\Form\Form_Def_Acc.cs">
       <SubType>Form</SubType>
@@ -128,6 +144,20 @@
     <Compile Include="Scripts\TrasferisciStandard.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Scripts\Form\Form_Quantità.resx">
+      <DependentUpon>Form_Quantità.cs</DependentUpon>
+    </EmbeddedResource>
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoComponenti.png" />
+    <EmbeddedResource Include="Scripts\Form\Form_Impostazioni.resx">
+      <DependentUpon>Form_Impostazioni.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scripts\Form\Form_Libreria.resx">
+      <DependentUpon>Form_Libreria.cs</DependentUpon>
+    </EmbeddedResource>
+    <Resource Include="Resources\Icons\20041_p3_inkscape_icona_Setting.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Setting16.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Info.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_info16.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale16.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaItaliana.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaInglese.png" />
@@ -147,9 +177,6 @@
     <Resource Include="Resources\Code 843 - 3D insulated1.png" />
     <Resource Include="Resources\Code 847 - 3D insulated1.png" />
     <Resource Include="Resources\Code 853 - 3D insulated1.png" />
-    <EmbeddedResource Include="Scripts\Form\Form_Libreria.resx">
-      <DependentUpon>Form_Libreria.cs</DependentUpon>
-    </EmbeddedResource>
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale_bianco.png" />
@@ -167,8 +194,6 @@
     <None Include="Resources\Annotazione 2020-08-04 1455321.png" />
     <None Include="Resources\Annotazione 2020-08-04 145532.png" />
     <Resource Include="Resources\Area_Iso.png" />
-    <Resource Include="Resources\info32.png" />
-    <Resource Include="Resources\info16.png" />
     <Resource Include="Resources\staff.png" />
     <None Include="App.config" />
     <Content Include="P3Ribbon.addin">
@@ -181,6 +206,8 @@
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\str_EN.resx">
       <Generator>ResXFileCodeGenerator</Generator>

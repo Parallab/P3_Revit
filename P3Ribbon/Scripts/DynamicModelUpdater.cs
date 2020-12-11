@@ -11,6 +11,7 @@ using Application = Autodesk.Revit.ApplicationServices.Application;
 
 namespace P3Ribbon.Scripts
 {
+    [Transaction(TransactionMode.Manual)]
     public class DynamicModelUpdater : IUpdater
     {
        
@@ -24,9 +25,6 @@ namespace P3Ribbon.Scripts
             _appId = id;
             _updaterId = new UpdaterId(_appId, new Guid("604b1052-f742-4951-8576-c261d1993108"));
         }
-
-     
-
 
         public void Execute(UpdaterData data)
         {
@@ -86,4 +84,19 @@ namespace P3Ribbon.Scripts
 
         public static DynamicModelUpdater _updater = null;
     }
+
+    public class ChiudiUpdater : IExternalCommand
+    {
+        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
+        {
+
+        return Result.Succeeded;
+        }
+    }
+
+    public class EventHandlerIsolamenti
+    {
+
+    }
+
 }

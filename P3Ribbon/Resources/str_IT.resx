@@ -130,6 +130,13 @@ Materiali</value>
   <data name="cmdcanale_tt" xml:space="preserve">
     <value>Posiziona i canali preisolati P3</value>
   </data>
+  <data name="cmdelencocomp" xml:space="preserve">
+    <value>Elenco
+Componenti</value>
+  </data>
+  <data name="cmdelencocomp_tt" xml:space="preserve">
+    <value>Elenca i componenti P3</value>
+  </data>
   <data name="cmdelencopezzi" xml:space="preserve">
     <value>Elenco
 Prezzi</value>
@@ -140,6 +147,12 @@ Prezzi</value>
   <data name="cmdelencostaffaggi" xml:space="preserve">
     <value>Elenco
 Staffaggio</value>
+  </data>
+  <data name="cmdimpo" xml:space="preserve">
+    <value>Impostazioni</value>
+  </data>
+  <data name="cmdimpo_tt" xml:space="preserve">
+    <value>Impostazioni sull'applicativo P3</value>
   </data>
   <data name="cmdinfo" xml:space="preserve">
     <value>Contatti</value>

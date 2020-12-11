@@ -89,6 +89,25 @@ namespace P3Ribbon.Resources {
         }
         
         /// <summary>
+        ///   Cerca una stringa localizzata simile a Components 
+        ///Lists.
+        /// </summary>
+        internal static string cmdelencocomp {
+            get {
+                return ResourceManager.GetString("cmdelencocomp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a List P3 components.
+        /// </summary>
+        internal static string cmdelencocomp_tt {
+            get {
+                return ResourceManager.GetString("cmdelencocomp_tt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Cerca una stringa localizzata simile a Price
         ///List.
         /// </summary>
@@ -114,6 +133,24 @@ namespace P3Ribbon.Resources {
         internal static string cmdelencostaffaggi {
             get {
                 return ResourceManager.GetString("cmdelencostaffaggi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Settings.
+        /// </summary>
+        internal static string cmdimpo {
+            get {
+                return ResourceManager.GetString("cmdimpo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Settings on the P3 application.
+        /// </summary>
+        internal static string cmdimpo_tt {
+            get {
+                return ResourceManager.GetString("cmdimpo_tt", resourceCulture);
             }
         }
         

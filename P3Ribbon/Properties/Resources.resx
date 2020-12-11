@@ -124,15 +124,6 @@
   <data name="Annotazione 2020-08-04 145532" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Annotazione 2020-08-04 145532.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="settings-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\settings-icon1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ospedale-mestre" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\ospedale-mestre.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="settingIco" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\settingIco.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Code 843 - 3D insulated1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Code 843 - 3D insulated1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -156,8 +147,5 @@
   </data>
   <data name="Code 827 - 3D insulated" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Code 827 - 3D insulated.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="settings-icon-14956(2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\settings-icon-14956(2).jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

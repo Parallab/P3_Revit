@@ -50,12 +50,8 @@ namespace P3Ribbon.Scripts.Form
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            MaterialeIsolante obj = cboMateriali.SelectedItem as MaterialeIsolante;
 
-            Materiale.IdInsulTipoPreferito = obj.ID;
-            Materiale.SpessoreIsolante = obj.Spessore;
-            //App.comboMat.
-            App.comboMat.AddItems(Materiale.comboBoxMemberDatas); // SISTEMARE
+             // SISTEMARE
             try
             {
                 //App.comboMat.Current =  //cerca quello con l id uguale a quello appena selezionato tra i combobox presenti
@@ -66,15 +62,22 @@ namespace P3Ribbon.Scripts.Form
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void impostazioni_Click(object sender, EventArgs e)
         {
+           
 
         }
 
-        private void label4_Click(object sender, EventArgs e)
+        private void ScegliMat_Click(object sender, EventArgs e)
         {
+            MaterialeIsolante obj = cboMateriali.SelectedItem as MaterialeIsolante;
+            Materiale.IdInsulTipoPreferito = obj.ID;
+            Materiale.SpessoreIsolante = obj.Spessore;
 
+            App.comboMat.AddItems(Materiale.comboBoxMemberDatas);
         }
+
+     
     }
 
 }

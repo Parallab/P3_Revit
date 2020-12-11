@@ -37,6 +37,7 @@ namespace P3Ribbon.Scripts
                         {
                             if (tempComBoxCompilato == false)
                             {
+                                //parametro aggiunto nel nuovo tempalte
                                 ComboBoxMemberData cmbInsualtionData = new ComboBoxMemberData(el.Id.ToString() + "_" + el.LookupParameter("P3_Insulation_Thickness").AsDouble().ToString(), "" + el.Name);
                                 comboBoxMemberDatas.Add(cmbInsualtionData);
                             }
