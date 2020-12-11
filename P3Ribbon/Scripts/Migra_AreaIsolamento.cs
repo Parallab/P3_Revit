@@ -17,6 +17,7 @@ namespace P3Ribbon.Scripts
     [Transaction(TransactionMode.Manual)]
     class Migra_AreaIsolamento : IExternalCommand
     {
+       public static bool parametri_presenti = false;
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             UIApplication uiApp = commandData.Application;
@@ -26,47 +27,8 @@ namespace P3Ribbon.Scripts
 
             using (var t = new Transaction(doc, "Proj_Info_Scrivi_Parametri"))
             {
-                bool parametri_presenti = false;
-
-                // come verificare se il parametro è dentro il binding...definition
-                // doc.ParameterBindings.Contains();
-                IList<Element> dicoll = new FilteredElementCollector(doc).OfClass(typeof(DuctInsulation)).ToElements();
-                try
-                {
-                    Element try_di = dicoll[0];
-                }
-                catch
-                {
-                    TaskDialog td = new TaskDialog("Errore");
-                    td.MainInstruction = "Isolamenti mancanti";
-                    td.MainContent = "Non ci sono isolamenti in questo progetto";
-                    TaskDialogResult result = td.Show();
-
-
-                    return Result.Cancelled;
-                }
-
-                Element di = dicoll[0];
-
-                Parameter sup_dyn = di.LookupParameter("P3_Sup_S.app_dyn");
-
-                if (sup_dyn == null)
-                {
-                    TaskDialog td = new TaskDialog("Errore");
-                    td.MainInstruction = "Parametro associato non esistente ";
-                    td.MainContent = "Parametro associato all'isolamento non esistente, inserirlo nel progetto corrente? ";
-                    td.CommonButtons = TaskDialogCommonButtons.Yes | TaskDialogCommonButtons.No;
-
-                    TaskDialogResult result = td.Show();
-                    if (result == TaskDialogResult.Yes)
-                    {
-                        parametri_presenti = CreaParametriIsolamento(doc, app);
-                    }
-                }
-                else
-                {
-                    parametri_presenti = true;
-                }
+               
+                Controlla_Parametri(doc, app);
 
                 if (parametri_presenti)
                 {
@@ -135,7 +97,8 @@ namespace P3Ribbon.Scripts
             int i_f = 0;
             int i_c = 0;
             int i = 0;
-            IList<Element> coll = new FilteredElementCollector(_doc).OfClass(typeof(DuctInsulation)).ToElements();
+            IList<Element> coll = new FilteredElementCollector(_doc).OfClass(typeof(DuctInsulation)).ToElements().Where(x => x.Name.Contains("P3")).ToList();
+            //List<Element> P3Insulation = (List<Element>)new FilteredElementCollector(_doc).WhereElementIsNotElementType().OfCategory(BuiltInCategory.OST_DuctInsulations).ToElements().Where(x => x.Name.Contains("P3"));
 
             foreach (Element el in coll)
             {
@@ -167,6 +130,49 @@ namespace P3Ribbon.Scripts
             }
 
             System.Windows.MessageBox.Show("È stato migrato il parametro di area a " + i_c + " isolamenti di condotti" + System.Environment.NewLine + "e " + i_f + " isolamenti di raccordi", "numero di isolamenti di raccordo e condotti");
+        }
+
+        static public void Controlla_Parametri(Document doc, Application app)
+        {
+         
+                // come verificare se il parametro è dentro il binding...definition
+                // doc.ParameterBindings.Contains();
+                IList<Element> dicoll = new FilteredElementCollector(doc).OfClass(typeof(DuctInsulation)).ToElements();
+                try
+                {
+                    Element try_di = dicoll[0];
+                }
+                catch
+                {
+                    TaskDialog td = new TaskDialog("Errore");
+                    td.MainInstruction = "Isolamenti mancanti";
+                    td.MainContent = "Non ci sono isolamenti in questo progetto";
+                    TaskDialogResult result = td.Show();
+                }
+
+                Element di = dicoll[0];
+
+                Parameter sup_dyn = di.LookupParameter("P3_Sup_S.app_dyn");
+
+                if (sup_dyn == null)
+                {
+                    TaskDialog td = new TaskDialog("Errore");
+                    td.MainInstruction = "Parametro associato non esistente ";
+                    td.MainContent = "Parametro associato all'isolamento non esistente, inserirlo nel progetto corrente? ";
+                    td.CommonButtons = TaskDialogCommonButtons.Yes | TaskDialogCommonButtons.No;
+
+                    TaskDialogResult result = td.Show();
+                    if (result == TaskDialogResult.Yes)
+                    {
+                        parametri_presenti = CreaParametriIsolamento(doc, app);
+                    }
+                }
+                else
+                {
+                    parametri_presenti = true;
+                }
+
+            
         }
     }
 }

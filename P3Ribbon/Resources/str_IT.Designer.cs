@@ -98,6 +98,62 @@ namespace P3Ribbon.Resources {
         }
         
         /// <summary>
+        ///   Cerca una stringa localizzata simile a Canale
+        ///Dinamico.
+        /// </summary>
+        internal static string cmdcanaledinamico {
+            get {
+                return ResourceManager.GetString("cmdcanaledinamico", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Crea un condotto di tipo: Dinamico.
+        /// </summary>
+        internal static string cmdcanaledinamico_tt {
+            get {
+                return ResourceManager.GetString("cmdcanaledinamico_tt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Canale
+        ///Scarpette.
+        /// </summary>
+        internal static string cmdcanalescarpette {
+            get {
+                return ResourceManager.GetString("cmdcanalescarpette", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Crea un condotto di tipo: Scarpette.
+        /// </summary>
+        internal static string cmdcanalescarpette_tt {
+            get {
+                return ResourceManager.GetString("cmdcanalescarpette_tt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Carica Materiale.
+        /// </summary>
+        internal static string cmdcaricamaterial {
+            get {
+                return ResourceManager.GetString("cmdcaricamaterial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Carica i materiali nel ribbonbox.
+        /// </summary>
+        internal static string cmdcaricamaterial_tt {
+            get {
+                return ResourceManager.GetString("cmdcaricamaterial_tt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Cerca una stringa localizzata simile a Elenco
         ///Componenti.
         /// </summary>

@@ -127,8 +127,28 @@ Materiali</value>
   <data name="cmdcanale" xml:space="preserve">
     <value>Canale</value>
   </data>
+  <data name="cmdcanaledinamico" xml:space="preserve">
+    <value>Canale
+Dinamico</value>
+  </data>
+  <data name="cmdcanaledinamico_tt" xml:space="preserve">
+    <value>Crea un condotto di tipo: Dinamico</value>
+  </data>
+  <data name="cmdcanalescarpette" xml:space="preserve">
+    <value>Canale
+Scarpette</value>
+  </data>
+  <data name="cmdcanalescarpette_tt" xml:space="preserve">
+    <value>Crea un condotto di tipo: Scarpette</value>
+  </data>
   <data name="cmdcanale_tt" xml:space="preserve">
     <value>Posiziona i canali preisolati P3</value>
+  </data>
+  <data name="cmdcaricamaterial" xml:space="preserve">
+    <value>Carica Materiale</value>
+  </data>
+  <data name="cmdcaricamaterial_tt" xml:space="preserve">
+    <value>Carica i materiali nel ribbonbox</value>
   </data>
   <data name="cmdelencocomp" xml:space="preserve">
     <value>Elenco

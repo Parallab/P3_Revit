@@ -77,6 +77,7 @@ namespace P3Ribbon.Scripts
         public ElementId ID { get; set; }
         public string Name { get; set; }
         public double Spessore { get; set; }
+        public string Peso { get; set; }
 
     }
 }

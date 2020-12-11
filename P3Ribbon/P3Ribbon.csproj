@@ -144,6 +144,8 @@
     <Compile Include="Scripts\TrasferisciStandard.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_FrecciaGiù.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_FrecciaGiù16.png" />
     <EmbeddedResource Include="Scripts\Form\Form_Quantità.resx">
       <DependentUpon>Form_Quantità.cs</DependentUpon>
     </EmbeddedResource>

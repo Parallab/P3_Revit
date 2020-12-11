@@ -33,9 +33,9 @@ namespace P3Ribbon.Scripts.Form
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Quantità));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.AbacoQuantità = new System.Windows.Forms.DataGridView();
-            this.butt_DettagliQuantità = new System.Windows.Forms.Button();
             this.Materiale = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Kg = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.butt_DettagliQuantità = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AbacoQuantità)).BeginInit();
             this.SuspendLayout();
@@ -68,15 +68,6 @@ namespace P3Ribbon.Scripts.Form
             this.AbacoQuantità.TabIndex = 0;
             this.AbacoQuantità.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.AbacoQuantità_CellContentClick);
             // 
-            // butt_DettagliQuantità
-            // 
-            this.butt_DettagliQuantità.Location = new System.Drawing.Point(336, 404);
-            this.butt_DettagliQuantità.Name = "butt_DettagliQuantità";
-            this.butt_DettagliQuantità.Size = new System.Drawing.Size(168, 25);
-            this.butt_DettagliQuantità.TabIndex = 1;
-            this.butt_DettagliQuantità.Text = "Dettagli";
-            this.butt_DettagliQuantità.UseVisualStyleBackColor = true;
-            // 
             // Materiale
             // 
             this.Materiale.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -89,6 +80,16 @@ namespace P3Ribbon.Scripts.Form
             // 
             this.Kg.HeaderText = "Tot Kg";
             this.Kg.Name = "Kg";
+            // 
+            // butt_DettagliQuantità
+            // 
+            this.butt_DettagliQuantità.Location = new System.Drawing.Point(336, 404);
+            this.butt_DettagliQuantità.Name = "butt_DettagliQuantità";
+            this.butt_DettagliQuantità.Size = new System.Drawing.Size(168, 25);
+            this.butt_DettagliQuantità.TabIndex = 1;
+            this.butt_DettagliQuantità.Text = "Dettagli";
+            this.butt_DettagliQuantità.UseVisualStyleBackColor = true;
+            this.butt_DettagliQuantità.Click += new System.EventHandler(this.butt_DettagliQuantità_Click);
             // 
             // Form_Quantità
             // 

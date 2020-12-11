@@ -10,8 +10,10 @@ using System.Text;
 using System.Threading.Tasks;
 using Application = Autodesk.Revit.ApplicationServices.Application;
 
+
 namespace P3Ribbon.Scripts
 {
+   
     [Transaction(TransactionMode.Manual)]
     class CambiaMateriale : IExternalCommand
     {
@@ -103,10 +105,6 @@ namespace P3Ribbon.Scripts
             }
         }
 
-
-
-
-
         public static IList<ElementId> Seleziona(UIDocument uiDoc, string msg, ISelectionFilter _filtro)
         {
             //Preparo una lista vuota
@@ -124,6 +122,32 @@ namespace P3Ribbon.Scripts
                 sel = uiDoc.Selection.PickElementsByRectangle(_filtro, msg).Select(e => e.Id).ToList();
             }
             return sel;
+        }
+    }
+    
+    [Transaction(TransactionMode.Manual)]
+    public class PopolaComboBox_temp : IExternalCommand
+    {
+        private static bool comboboxcaricato = false;
+
+        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
+        {
+            UIApplication uiApp = commandData.Application;
+            UIDocument uiDoc = uiApp.ActiveUIDocument;
+            Document doc = uiDoc.Document;
+
+            if (comboboxcaricato == false)
+            {
+                comboboxcaricato = true;
+                Materiale.PreAggiorna(doc);
+                App.comboMat.AddItems(Materiale.comboBoxMemberDatas);
+            }
+            else
+            {
+                TaskDialog.Show("Errore","Il menù a tendina dei materiali è stato già popolato");
+            }
+
+            return Result.Succeeded;
         }
     }
 }

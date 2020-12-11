@@ -14,8 +14,8 @@ using Application = Autodesk.Revit.ApplicationServices.Application;
 namespace P3Ribbon.Scripts.Form
 {
     public partial class Form_Impostazioni : System.Windows.Forms.Form
-           
-    {
+
+    {   
         private Document m_doc;
         private Application m_app;
         public Form_Impostazioni(ExternalCommandData commandData)
@@ -27,25 +27,40 @@ namespace P3Ribbon.Scripts.Form
             InitializeComponent();
         }
 
-        private void OnOffUpdater_SelectedIndexChanged(object sender, EventArgs e)
+        //private void OnOffUpdater_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    if(OnOffUpdater.SelectedItem == OnOffUpdater.Items[0] )
+        //    {
+        //        Scripts.DynamicModelUpdater updater = new Scripts.DynamicModelUpdater(m_app.ActiveAddInId);
+        //        UpdaterRegistry.UnregisterUpdater(updater.GetUpdaterId());
+        //    }
+        //    if (OnOffUpdater.SelectedItem == OnOffUpdater.Items[1])
+        //    {
+        //        Scripts.DynamicModelUpdater updater = new Scripts.DynamicModelUpdater(m_app.ActiveAddInId);
+        //        UpdaterRegistry.RegisterUpdater(updater);
+        //    }
+
+        //}
+
+        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
         {
-            if(OnOffUpdater.SelectedItem == OnOffUpdater.Items[0] )
+
+
+        }
+
+        private void CkBoxUpgrade_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CkBoxUpgrade.CheckState == CheckState.Checked)
             {
                 Scripts.DynamicModelUpdater updater = new Scripts.DynamicModelUpdater(m_app.ActiveAddInId);
                 UpdaterRegistry.UnregisterUpdater(updater.GetUpdaterId());
             }
-            if (OnOffUpdater.SelectedItem == OnOffUpdater.Items[1])
+            if (CkBoxUpgrade.CheckState == CheckState.Unchecked)
             {
                 Scripts.DynamicModelUpdater updater = new Scripts.DynamicModelUpdater(m_app.ActiveAddInId);
                 UpdaterRegistry.RegisterUpdater(updater);
             }
 
-        }
-
-        private void Form_Impostazioni_Load(object sender, EventArgs e)
-        {
-            OnOffUpdater.Items.Add("Interrompi");
-            OnOffUpdater.Items.Add("Riprendi");
         }
     }
 }

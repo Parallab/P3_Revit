@@ -73,8 +73,7 @@ namespace P3Ribbon.Scripts.Form
             MaterialeIsolante obj = cboMateriali.SelectedItem as MaterialeIsolante;
             Materiale.IdInsulTipoPreferito = obj.ID;
             Materiale.SpessoreIsolante = obj.Spessore;
-
-            App.comboMat.AddItems(Materiale.comboBoxMemberDatas);
+            this.Close();
         }
 
      

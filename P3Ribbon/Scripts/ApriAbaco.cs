@@ -14,7 +14,7 @@ namespace P3Ribbon.Scripts
 {
        
     [Transaction(TransactionMode.Manual)]
-    class ElencoPezzi : IExternalCommand
+    class ElencoPrezzi : IExternalCommand
     {
 
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)

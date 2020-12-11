@@ -15,46 +15,75 @@ using Autodesk.Revit.DB.Structure;
 namespace P3Ribbon.Scripts
 {
     [Transaction(TransactionMode.Manual)]
-    class CreaCanale : IExternalCommand
+    class CreaCanaleDinamico : IExternalCommand
     {
 
         public static Document doc;
         public static Application app;
-
-        // INTANTO HARD CODE, ma poi dipenderà dal meùa  tendina
-        public static double insul_spessore_Scelto;
-        public static ElementId insul_tipo_scelto;
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             UIApplication uiApp = commandData.Application;
             UIDocument uiDoc = uiApp.ActiveUIDocument;
-            doc = uiDoc.Document;
-            app = uiApp.Application;
+            Document doc = uiDoc.Document;
+            Application app = uiApp.Application;
+            
+            DuctType DuctDynamicType = new FilteredElementCollector(doc).OfClass(typeof(DuctType)).FirstOrDefault(x => x.Name.Contains( "P3 - Preinsulated panels system - Dynamic")) as DuctType;
+            uiDoc.PostRequestForElementTypePlacement(DuctDynamicType);
 
-            using (Transaction t = new Transaction(doc, "CreaParamCondivisi"))
+            using (Transaction t = new Transaction(doc, "CanaleDinamico"))
             {
 
-                t.Start(); //serve?
+                t.Start(); //serve..sì
+              
+                RevitCommandId cmdid = RevitCommandId.LookupPostableCommandId(PostableCommand.Duct);
+                uiApp.PostCommand(cmdid);
 
-                CreaCondotto(uiApp, app);
 
                 t.Commit();
             }
             return Result.Succeeded;
-        
-        }
-        public static void CreaCondotto(UIApplication uiApp, Application app)
-        {
-       
-            RevitCommandId cmdid = RevitCommandId.LookupPostableCommandId(PostableCommand.Duct);
-            uiApp.PostCommand(cmdid);
-  
+
         }
 
 
     }
 
+    [Transaction(TransactionMode.Manual)]
+    class CreaCanaleScarpette : IExternalCommand
+    {
+
+        public static Document doc;
+        public static Application app;
+        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
+        {
+            UIApplication uiApp = commandData.Application;
+            UIDocument uiDoc = uiApp.ActiveUIDocument;
+            Document doc = uiDoc.Document;
+            Application app = uiApp.Application;
+
+            DuctType DuctDynamicType = new FilteredElementCollector(doc).OfClass(typeof(DuctType)).FirstOrDefault(x => x.Name.Contains("P3 - Preinsulated panels system - Tap")) as DuctType;
+            uiDoc.PostRequestForElementTypePlacement(DuctDynamicType);
+
+            using (Transaction t = new Transaction(doc, "CanaleScrpetta"))
+            {
+
+                t.Start(); 
+                
+                RevitCommandId cmdid = RevitCommandId.LookupPostableCommandId(PostableCommand.Duct);
+                uiApp.PostCommand(cmdid);
+
+
+                t.Commit();
+            }
+            return Result.Succeeded;
+
+        }
+
+
+    }
+}
+
   
 
-}
+
 
