@@ -496,7 +496,14 @@ namespace P3Ribbon.Scripts
                     fi.LookupParameter("P3_Duct_Slope").Set(this.inlcinazioneZ);
                     // ruota
                     Line asseZ = Line.CreateBound(pt, pt.Add(new XYZ(0, 0, 1)));
-                    ElementTransformUtils.RotateElement(doc, fi.Id, asseZ, dir.AngleTo(XYZ.BasisY));
+                    ElementTransformUtils.RotateElement(doc, fi.Id, asseZ, dir.AngleTo(XYZ.BasisY));        
+                    
+                    
+                    // forse non bisogna ruotare ma agire sulla trasformata? erche sui canali inclinati non a 90° ogni tanto la staffa è ruotata male (cambia il segno). però non possiamo agire manualmente sul segno, dobbiamo trovare un modo automatico. magari controllare anche lo script dynamo piu aggiornato nella cartella "pacchetto 2.1". forse moltiplicare angleTo con una funzione che mi dice se è pos o neg? secondo me in dynamo l ho gia fatto
+
+
+
+
                     // staffa superiore
                     double distanzaControff = fi.LookupParameter("P3_Dynamo_Top2Ceiling").AsDouble();
                     distanzaControff = UnitUtils.ConvertFromInternalUnits(distanzaControff, DisplayUnitType.DUT_CENTIMETERS);

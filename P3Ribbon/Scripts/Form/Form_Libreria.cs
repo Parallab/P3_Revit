@@ -12,12 +12,13 @@ using Autodesk.Revit.UI;
 using Application = Autodesk.Revit.ApplicationServices.Application;
 using P3Ribbon.Scripts;
 using Autodesk.Revit.UI.Events;
+using System.Collections.ObjectModel;
 
 namespace P3Ribbon.Scripts.Form
 {
     public partial class Form_Libreria : System.Windows.Forms.Form
     {
-        List<MaterialeIsolante> list = new List<MaterialeIsolante>();
+        ObservableCollection<Materiale> coll = new ObservableCollection<Materiale>();
         public static System.Windows.Forms.ComboBox _cboMateriali;
         private Document m_doc;
         private Application m_app;
@@ -34,8 +35,9 @@ namespace P3Ribbon.Scripts.Form
             InitializeComponent();
             if (cboMateriali.Items.Count == 1) // piuttosto da vedere se
             {
+
                 cboMateriali.SelectedIndex = 0;
-                //cboMateriali. italicoooooo
+                //cboMateriali. italicoooooo?
             }
         }
 
@@ -68,21 +70,17 @@ namespace P3Ribbon.Scripts.Form
             
 
         }
-        private static void dismissFloorQuestion(object o, DialogBoxShowingEventArgs e)
-        {
-
-            TaskDialogShowingEventArgs t = e as TaskDialogShowingEventArgs;
-
-
-            e.OverrideResult((int)TaskDialogResult.Ok);
-
-        }
+        //private static void dismissFloorQuestion(object o, DialogBoxShowingEventArgs e)
+        //{
+        //    TaskDialogShowingEventArgs t = e as TaskDialogShowingEventArgs;
+        //    e.OverrideResult((int)TaskDialogResult.Ok);
+        //}
 
 
         private void Form_Libreria_Combobox_Aggiorna()
         {
-            list = Materiale.PreAggiorna(m_doc);
-            cboMateriali.DataSource = list;
+            coll = Materiale.PreAggiorna(m_doc);
+            cboMateriali.DataSource = coll;
             cboMateriali.DisplayMember = "name";
         }
 
@@ -113,7 +111,7 @@ namespace P3Ribbon.Scripts.Form
 
         private void ScegliMat_Click(object sender, EventArgs e)
         {
-            MaterialeIsolante obj = cboMateriali.SelectedItem as MaterialeIsolante;
+            Materiale obj = cboMateriali.SelectedItem as Materiale;
             Materiale.IdInsulTipoPreferito = obj.ID;
             Materiale.SpessoreIsolante = obj.Spessore;
             this.Close();

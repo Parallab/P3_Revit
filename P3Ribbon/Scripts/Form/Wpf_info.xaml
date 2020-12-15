@@ -1,4 +1,4 @@
-﻿<Window x:Class="P3Ribbon.Scripts.Form.WpsInfo"
+﻿<Window x:Class="P3Ribbon.Scripts.Form.Wpf_info"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -14,6 +14,6 @@
         </Grid.RowDefinitions>
         <TextBox Height="222" TextWrapping="Wrap" Text="L'updater è una funzione appositamente sviluppata su questo applicativo che ti permetti di creare all'interno del progetto corrnete, canali P3 già dotati di isolante e caratteristiche di fabbrica.&#xA;Questa funzione legge in backround le operazione svolte sui condotti e interviene quando ne viene creato uno nuovo, se ritieni di non aver bisogno di questa funzione o riscontri eccessivi rallentamenti nel tuo progetto puoi interrompere temporaneamente questa funzionalità" VerticalAlignment="Top" TextAlignment="Justify" Background="#3BB5CAFF" TextChanged="TextBox_TextChanged_2" FontFamily="Calibri" FontSize="14" Grid.RowSpan="2" Width="274" HorizontalAlignment="Center" Margin="0,20,0,0"/>
         <CheckBox x:Name="CheckUpgrade" Content="Interrompi&#xD;&#xA;" HorizontalAlignment="Left" Margin="0,101,0,-17" VerticalAlignment="Top" Height="20" Width="92" Grid.Row="1" Checked="CheckBox_Checked"/>
-        <TextBlock HorizontalAlignment="Left" Margin="0,3,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="156" FontWeight="Bold"><Run Text="INTERRPOMP"/><Run Text="I"/><Run Text=" L'UPDATER"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="0,3,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="156" FontWeight="Bold"><Run Text="INTERROMP"/><Run Text="I"/><Run Text=" L'UPDATER"/></TextBlock>
     </Grid>
 </Window>

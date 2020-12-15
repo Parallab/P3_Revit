@@ -19,7 +19,7 @@ namespace P3Ribbon.Scripts.Form
         private Application m_app;
         private UIDocument m_uidoc;
 
-        List<MaterialeIsolante> listaQuantità = new List<MaterialeIsolante>();
+        List<Materiale> listaQuantità = new List<Materiale>();
 
         public Form_Quantità(ExternalCommandData commandData)
         {
@@ -85,7 +85,7 @@ namespace P3Ribbon.Scripts.Form
             {
                 List<string> riga = scheduleData[i_r];
 
-                listaQuantità.Add(new MaterialeIsolante() {Name = riga[iTipo], Peso = $"{riga[iPesoMatRiciclato]}" });
+                listaQuantità.Add(new Materiale() {Name = riga[iTipo], Peso = $"{riga[iPesoMatRiciclato]}" });
             }
 
             foreach (var item in listaQuantità)

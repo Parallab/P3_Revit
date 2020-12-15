@@ -38,15 +38,19 @@ namespace P3Ribbon.Scripts
                     {
                         Element el = doc.GetElement(id);
                         string nome = "";
+                        // CONTOLLARE SE C é P3 NEL NOME OPPURE QUEI PARAMETI NASCOSTI...
+
                         if (el.GetType() == typeof(Duct))
                         {
                             nome = doc.GetElement(el.GetTypeId()).Name;
                         }
-                        else
+                        else if (el.GetType() == typeof(FamilyInstance))
                         {
-                            nome = (doc.GetElement(el.GetTypeId()) as ElementType).FamilyName;
+                            if (el.Category.Id.IntegerValue == doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctFitting).Id.IntegerValue) //forse metterlo come param globale nella classe di supprto (lo usiamo anche per igra isolamento ma anche nell allow FiltraCondotti : ISelectionFilter
+                            {
+                                nome = (doc.GetElement(el.GetTypeId()) as ElementType).FamilyName;
+                            }
                         }
-
                         if (nome.Contains("P3")) // IN FUTURO USARE UN PARAMETO (NASCOSTO?)
                         {
                             DuctInsulation.Create(doc, id, Materiale.IdInsulTipoPreferito, Materiale.SpessoreIsolante);

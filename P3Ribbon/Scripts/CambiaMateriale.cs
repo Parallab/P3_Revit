@@ -87,12 +87,14 @@ namespace P3Ribbon.Scripts
         }
 
 
-        public class FiltraCondotti : ISelectionFilter
+        public class FiltraCondotti : ISelectionFilter 
         {
             public bool AllowElement(Element element)
             {
-
-                if (element.Category.Name == "Condotto" || element.Category.Name == "Raccordo")
+                double id = element.Category.Id.IntegerValue;
+                //if (element.Category.Name == "Condotto" || element.Category.Name == "Raccordo") // DA SISTEMARE
+                if (id == Supporto.doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctFitting).Id.IntegerValue 
+                    || id == Supporto.doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctCurves).Id.IntegerValue)
                 {
                     return true;
                 }
@@ -125,29 +127,29 @@ namespace P3Ribbon.Scripts
         }
     }
     
-    [Transaction(TransactionMode.Manual)]
-    public class PopolaComboBox_temp : IExternalCommand
-    {
-        private static bool comboboxcaricato = false;
+    //[Transaction(TransactionMode.Manual)]
+    //public class PopolaComboBox_temp : IExternalCommand
+    //{
+    //    private static bool comboboxcaricato = false;
 
-        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
-        {
-            UIApplication uiApp = commandData.Application;
-            UIDocument uiDoc = uiApp.ActiveUIDocument;
-            Document doc = uiDoc.Document;
+    //    public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
+    //    {
+    //        UIApplication uiApp = commandData.Application;
+    //        UIDocument uiDoc = uiApp.ActiveUIDocument;
+    //        Document doc = uiDoc.Document;
 
-            if (comboboxcaricato == false)
-            {
-                comboboxcaricato = true;
-                Materiale.PreAggiorna(doc);
-                App.comboMat.AddItems(Materiale.comboBoxMemberDatas);
-            }
-            else
-            {
-                TaskDialog.Show("Errore","Il menù a tendina dei materiali è stato già popolato");
-            }
+    //        if (comboboxcaricato == false)
+    //        {
+    //            comboboxcaricato = true;
+    //            Materiale.PreAggiorna(doc);
+    //            App.comboboxMembers_ribbon = App.comboMat.AddItems(Materiale.comboBoxMemberDatas);
+    //        }
+    //        else
+    //        {
+    //            TaskDialog.Show("Errore","Il menù a tendina dei materiali è stato già popolato");
+    //        }
 
-            return Result.Succeeded;
-        }
-    }
+    //        return Result.Succeeded;
+    //    }
+    //}
 }

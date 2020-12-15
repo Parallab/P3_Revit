@@ -95,7 +95,7 @@ namespace P3Ribbon.Scripts
             Document doc = uiDoc.Document;
             Application app = uiApp.Application;
 
-            Scripts.Form.WpsInfo wps = new Form.WpsInfo(commandData);
+            Scripts.Form.Wpf_info wps = new Form.Wpf_info(commandData);
             wps.ShowDialog();
 
             return Result.Succeeded;

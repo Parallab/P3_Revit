@@ -25,106 +25,123 @@ namespace P3Ribbon.Scripts
             Document doc = uiDoc.Document;
             Application app = uiApp.Application;
 
-            TrasferisciTipiDoc(app,doc);
+            TrasferisciTipiDoc(app, doc);
 
             return Result.Succeeded;
         }
         public static void TrasferisciTipiDoc(Application app, Document doc)
         {
-           
-                List<string> TipiPresenti_nomi = new List<string>();
 
-                FilteredElementCollector CTypes_presenti = new FilteredElementCollector(doc).WherePasses(Supporto.CatFilterDuctAndInsul).WhereElementIsElementType();
+            List<string> TipiPresenti_nomi = new List<string>();
 
-                // guardo tutti i tipi che mi interessamno presenti nel mio doc
-                foreach (ElementType type in CTypes_presenti)
+            FilteredElementCollector CTypes_presenti = new FilteredElementCollector(doc).WherePasses(Supporto.CatFilterDuctAndInsul).WhereElementIsElementType();
+
+            // guardo tutti i tipi che mi interessamno presenti nel mio doc
+            foreach (ElementType type in CTypes_presenti)
+            {
+                string nome = type.Name;
+                if (nome.StartsWith("P3"))
                 {
-                    string nome = type.Name;
-                    if (nome.StartsWith("P3"))
-                    {
-                        TipiPresenti_nomi.Add(nome);
-                     }
+                    TipiPresenti_nomi.Add(nome);
                 }
+            }
 
 
-                // guardo i tipi nel documento template
-                ICollection<ElementId> copytypeids = new Collection<ElementId>();           
+            // guardo i tipi nel documento template
+            ICollection<ElementId> copytypeids = new Collection<ElementId>();
 
-                Document docSource = app.OpenDocumentFile(Par_Sismici.TrovaPercorsoRisorsa("P3 - Duct system template20.rte"));
-                FilteredElementCollector CSourceTypes = new FilteredElementCollector(docSource).WherePasses(Supporto.CatFilterDuctAndInsul).WhereElementIsElementType();
-                CopyPasteOptions option = new CopyPasteOptions();
-               
-                foreach (ElementType type in CSourceTypes)
+            Document docSource = app.OpenDocumentFile(Par_Sismici.TrovaPercorsoRisorsa("P3 - Duct system template20.rte"));
+            FilteredElementCollector CSourceTypes = new FilteredElementCollector(docSource).WherePasses(Supporto.CatFilterDuctAndInsul).WhereElementIsElementType();
+            CopyPasteOptions option = new CopyPasteOptions();
+            option.SetDuplicateTypeNamesHandler(new HideAndAcceptDuplicateTypeNamesHandler());
+
+
+
+
+            foreach (ElementType type in CSourceTypes)
+            {
+                string nome = type.Name;
+                if (nome.StartsWith("P3"))
                 {
-                    string nome = type.Name;
-                    if (nome.StartsWith("P3"))
+                    // contollRE SE ESISTE NEL DOC
+                    if (!(TipiPresenti_nomi.Contains(nome))) //perchè non va?
                     {
-                        // contollRE SE ESISTE NEL DOC
-                        if (!(TipiPresenti_nomi.Contains(nome))) //perchè non va?
-                        { 
-                            copytypeids.Add(type.Id);
-                        }
-
-                    }  
-                }
-
-                //importare gli abachi
-
-                //abachi presenti nel doc source
-                IList<Element> sc_coll = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Schedules).WhereElementIsNotElementType().ToElements();
-                List<string> AbachiPresenti_nomi = new List<string>();
-                
-
-
-                foreach (Element schedule in sc_coll)
-                {
-                    string nome = schedule.Name;
-                    if (nome.StartsWith("P3"))
-                    {
-                        AbachiPresenti_nomi.Add(nome);
-                      
+                        copytypeids.Add(type.Id);
                     }
-                }
 
-                //leggo gli abachi nella risorsa
-                ICollection<ElementId> copyscheduleids = new Collection<ElementId>();
-                IList<Element> sc_sources = new FilteredElementCollector(docSource).OfCategory(BuiltInCategory.OST_Schedules).WhereElementIsNotElementType().ToElements();
-           
+                }
+            }
+
+            //importare gli abachi
+
+            //abachi presenti nel doc source
+            IList<Element> sc_coll = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Schedules).WhereElementIsNotElementType().ToElements();
+            List<string> AbachiPresenti_nomi = new List<string>();
+
+
+
+            foreach (Element schedule in sc_coll)
+            {
+                string nome = schedule.Name;
+                if (nome.StartsWith("P3"))
+                {
+                    AbachiPresenti_nomi.Add(nome);
+
+                }
+            }
+
+            //leggo gli abachi nella risorsa
+            ICollection<ElementId> copyscheduleids = new Collection<ElementId>();
+            IList<Element> sc_sources = new FilteredElementCollector(docSource).OfCategory(BuiltInCategory.OST_Schedules).WhereElementIsNotElementType().ToElements();
+
             foreach (Element schedule in sc_sources)
+            {
+                string nome = schedule.Name;
+                if (nome.StartsWith("P3"))
                 {
-                    string nome = schedule.Name;
-                    if (nome.StartsWith("P3"))
+                    // contollRE SE ESISTE NEL DOC
+                    if (!(AbachiPresenti_nomi.Contains(nome))) //perchè non va?
                     {
-                        // contollRE SE ESISTE NEL DOC
-                        if (!(AbachiPresenti_nomi.Contains(nome))) //perchè non va?
-                        {
-                            copyscheduleids.Add(schedule.Id);
-                        }
-
+                        copyscheduleids.Add(schedule.Id);
                     }
+
                 }
+            }
 
-                //gestione delle eccezioni se sono già presenti i tipi e le viste
+            //gestione delle eccezioni se sono già presenti i tipi e le viste
             try
             {
-                ElementTransformUtils.CopyElements(docSource, copytypeids, doc, Transform.Identity, option);
+                ICollection<ElementId> ids = ICollectionIds_Estendi(copytypeids, copyscheduleids);
+                ElementTransformUtils.CopyElements(docSource, ids, doc, Transform.Identity, option);
+                ids.Clear();
             }
-            catch
+            catch (Exception ex)
             {
+                
+            }
+            copyscheduleids.Clear();
+            copytypeids.Clear();
+            docSource.Close(false);
+        }
 
-            }
-            try
-            {
-                ElementTransformUtils.CopyElements(docSource, copyscheduleids, doc, Transform.Identity, option);
-            }
-            catch
-            {
+        class HideAndAcceptDuplicateTypeNamesHandler : IDuplicateTypeNamesHandler
+        {
 
+            public DuplicateTypeAction OnDuplicateTypeNamesFound(DuplicateTypeNamesHandlerArgs args)
+            {
+                return DuplicateTypeAction.UseDestinationTypes;
+                //e se volessi modificare il nome??
             }
-                copyscheduleids.Clear();
-                copytypeids.Clear();
-             
-          
+        }
+        private static ICollection<ElementId> ICollectionIds_Estendi(ICollection<ElementId> coll1, ICollection<ElementId> coll2)
+        {
+            ICollection<ElementId> unione = coll1;
+            foreach (ElementId id in coll2)
+            {
+                unione.Add(id);
+            }
+
+            return unione;
         }
     }
 }

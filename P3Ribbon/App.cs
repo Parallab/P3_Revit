@@ -25,6 +25,7 @@ namespace P3Ribbon
 
 
         public static ComboBox comboMat;
+        public static IList<ComboBoxMember> comboboxMembers_ribbon;
         public enum Lingua
         {
             ITA = 0,
@@ -98,8 +99,8 @@ namespace P3Ribbon
             pb11.ToolTip = "Cambia il materiale dei canali P3";
 
 
-            comboMat = MaerialeItems[1] as ComboBox;
-            comboMat.AddItems(Scripts.Materiale.comboBoxMemberDatas);
+            comboMat = MaerialeItems[1] as ComboBox; 
+            //comboboxMembers_ribbon = comboMat.AddItems(Materiale.comboBoxMemberDatas);
             comboMat.CurrentChanged += new EventHandler<Autodesk.Revit.UI.Events.ComboBoxCurrentChangedEventArgs>(comboBx_CurrentChanged);
 
             #endregion
@@ -214,7 +215,7 @@ namespace P3Ribbon
             //var debug =  comboMat.Current;
             string nome = comboMat.Current.Name;
             int indice_ = nome.IndexOf("_");
-            Scripts.Materiale.AggiornaTendinaRibbon(nome);
+            Materiale.AggiornaTendinaRibbon(nome);
 
         }
 
@@ -234,6 +235,7 @@ namespace P3Ribbon
             try
             {
                 application.ControlledApplication.DocumentOpened += new EventHandler<Autodesk.Revit.DB.Events.DocumentOpenedEventArgs>(Application_DocumentOpened);
+                application.ControlledApplication.DocumentCreated += new EventHandler<Autodesk.Revit.DB.Events.DocumentCreatedEventArgs>(Application_DocumentCreated);
             }
             catch
             {
@@ -255,10 +257,13 @@ namespace P3Ribbon
 
         }
 
+
+
         public Result OnShutdown(UIControlledApplication application)
         {
             Scripts.DynamicModelUpdater updater = new Scripts.DynamicModelUpdater(application.ActiveAddInId);
             UpdaterRegistry.UnregisterUpdater(updater.GetUpdaterId());
+            application.ControlledApplication.DocumentOpened -= new EventHandler<Autodesk.Revit.DB.Events.DocumentOpenedEventArgs>(App.Application_DocumentOpened);
             return Result.Succeeded;
         }
 
@@ -267,19 +272,37 @@ namespace P3Ribbon
         {
             Document doc = args.Document;
             Application app = doc.Application;
+            Supporto.doc = doc; // SPERIAMO CHE CI RISOLVA TUTTI I PROBLEMI DEL MONDO
+            Supporto.app = app;
             try
             {
-
                 Materiale.PreAggiorna(doc);
-                comboMat.AddItems(Materiale.comboBoxMemberDatas);
+                comboboxMembers_ribbon = comboMat.AddItems(Materiale.comboBoxMemberDatas);
             }
             catch (Exception ex)
             {
-
-                throw;
+               // throw;
             }
 
 
+        }
+
+        private void Application_DocumentCreated(object sender, DocumentCreatedEventArgs e)
+        {
+            Document doc = e.Document;
+            Application app = doc.Application;
+            Supporto.doc = doc; // SPERIAMO CHE CI RISOLVA TUTTI I PROBLEMI DEL MONDO
+            Supporto.app = app;
+            //lascio cmq quanto segue perche anche se è un fil enuovo magari uso come template qualcosa ocn già i materiali P3 e quindi devo controllarli e compilare i combobox vari:
+            try
+            {
+                Materiale.PreAggiorna(doc);
+                comboboxMembers_ribbon = comboMat.AddItems(Materiale.comboBoxMemberDatas);
+            }
+            catch (Exception ex)
+            {
+                //throw;
+            }
         }
 
         public static string res_valore(string Var, Lingua l)
