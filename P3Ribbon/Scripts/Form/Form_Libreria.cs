@@ -11,6 +11,7 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Application = Autodesk.Revit.ApplicationServices.Application;
 using P3Ribbon.Scripts;
+using Autodesk.Revit.UI.Events;
 
 namespace P3Ribbon.Scripts.Form
 {
@@ -20,14 +21,22 @@ namespace P3Ribbon.Scripts.Form
         public static System.Windows.Forms.ComboBox _cboMateriali;
         private Document m_doc;
         private Application m_app;
+        private UIDocument m_UiDoc;
+        UIApplication m_uiApp;
         public Form_Libreria(ExternalCommandData commandData)
         {
-            UIApplication uiApp = commandData.Application;
-            m_app = uiApp.Application;
-            UIDocument uiDoc = uiApp.ActiveUIDocument;
-            m_doc = uiDoc.Document;
+            m_uiApp = commandData.Application;
+            m_app = m_uiApp.Application;
+            m_UiDoc = m_uiApp.ActiveUIDocument;
+            m_doc = m_UiDoc.Document;
+
 
             InitializeComponent();
+            if (cboMateriali.Items.Count == 1) // piuttosto da vedere se
+            {
+                cboMateriali.SelectedIndex = 0;
+                //cboMateriali. italicoooooo
+            }
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
@@ -37,21 +46,55 @@ namespace P3Ribbon.Scripts.Form
 
         private void B_Continua(object sender, EventArgs e)
         {
+
+            m_app.DocumentOpened -= new EventHandler<Autodesk.Revit.DB.Events.DocumentOpenedEventArgs>(App.Application_DocumentOpened);
+
+            // m_uiApp.DialogBoxShowing += new EventHandler(dismissFloorQuestion);
             TrasferisciStandard.TrasferisciTipiDoc(m_app, m_doc);
+            Materiale.PreAggiorna(m_doc);
+
+
+            Form_Libreria_Combobox_Aggiorna();
+            //TEMP DA SISTEARE CON BOOLEANI
+            try
+            {
+                App.comboMat.AddItems(Materiale.comboBoxMemberDatas);
+            }
+            catch
+            { }
+           // this.Close();
+
+            m_doc.Regenerate();
+            
+
+        }
+        private static void dismissFloorQuestion(object o, DialogBoxShowingEventArgs e)
+        {
+
+            TaskDialogShowingEventArgs t = e as TaskDialogShowingEventArgs;
+
+
+            e.OverrideResult((int)TaskDialogResult.Ok);
 
         }
 
-        private void Form_Libreria_Load(object sender, EventArgs e)
+
+        private void Form_Libreria_Combobox_Aggiorna()
         {
             list = Materiale.PreAggiorna(m_doc);
             cboMateriali.DataSource = list;
             cboMateriali.DisplayMember = "name";
         }
 
+        private void Form_Libreria_Load(object sender, EventArgs e)
+        {
+            Form_Libreria_Combobox_Aggiorna();
+        }
+
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-             // SISTEMARE
+            // SISTEMARE
             try
             {
                 //App.comboMat.Current =  //cerca quello con l id uguale a quello appena selezionato tra i combobox presenti
@@ -64,7 +107,7 @@ namespace P3Ribbon.Scripts.Form
 
         private void impostazioni_Click(object sender, EventArgs e)
         {
-           
+
 
         }
 
@@ -76,7 +119,10 @@ namespace P3Ribbon.Scripts.Form
             this.Close();
         }
 
-     
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 }

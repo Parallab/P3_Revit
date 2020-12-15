@@ -19,13 +19,15 @@ namespace P3Ribbon.Scripts.Form
         private Application m_app;
         private UIDocument m_uidoc;
 
+        List<MaterialeIsolante> listaQuantità = new List<MaterialeIsolante>();
+
         public Form_Quantità(ExternalCommandData commandData)
         {
             UIApplication uiApp = commandData.Application;
             m_uidoc= uiApp.ActiveUIDocument;
             m_doc = m_uidoc.Document;
             m_app = uiApp.Application;
-            using (var t = new Transaction(m_doc, "Proj_Info_Scrivi_Parametri"))
+            using (var t = new Transaction(m_doc, "Calcolo area"))
             {
                 t.Start();
                 Migra_AreaIsolamento.Controlla_Parametri(m_doc, m_app);
@@ -41,72 +43,83 @@ namespace P3Ribbon.Scripts.Form
             //mi serve il peso specifico per ottenere i Kg??
             
         }
-
-        private void Form_Quantità_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void AbacoQuantità_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+     
         private void LeggoAbacoQuantità()
         {
-            ViewSchedule viewSchedule = new FilteredElementCollector(m_doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.Name == "P3 - Duct Insulation Schedule - DYNAMO") as ViewSchedule;
+            ViewSchedule AbacoQuantità = new FilteredElementCollector(m_doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.Name  == "P3 - Duct Insulation Schedule - DYNAMO") as ViewSchedule;
 
-            TableData table = viewSchedule.GetTableData();
+            TableData table = AbacoQuantità.GetTableData();
             TableSectionData section = table.GetSectionData(SectionType.Body);
             int nRows = section.NumberOfRows;
             int nColumns = section.NumberOfColumns;
-            //mi conviene farlo con i dizionari?? key duplicate
+
+            ////mi conviene farlo con i dizionari?? key duplicate
             //Dictionary<string, string> MaterialiPesi = new Dictionary<string, string>();
-            List<MaterialeIsolante> list = new List<MaterialeIsolante>();
-            string tipomateriale = "";
-
-
-            List<List<string>> rowData = new List<List<string>>();
-
+           
+            int ir = 0;
+            int cr = nColumns;
 
             List<List<string>> scheduleData = new List<List<string>>();
-            for (int i_r = 0; i_r < nRows; i_r++)
-            { 
-                 
-
+            for (int i = 0; i < nRows; i++)
+            {
+                List<string> rowDatatemp = new List<string>();
+                List<string> rowData = new List<string>();
+              
                 for (int j = 0; j < nColumns; j++)
                 {
-                 
-                    rowData.Add(new viewSchedule.GetCellText(SectionType.Body, i_r, j));
-                    
+
+                    rowData.Add(AbacoQuantità.GetCellText(SectionType.Body, i, j));
+
                 }
-                scheduleData.Add(rowData);
+                    scheduleData.Add(rowData);
+
             }
 
-           int iTipo = scheduleData[0].FindIndex(x => x.Contains("Type"));
-           int iPesoSchiuma = scheduleData[0].FindIndex(x => x.Contains("Peso schiuma totale"));
-           int iPesoPannelli =  scheduleData[0].FindIndex(x => x.Contains("Peso pannello totale")); 
-           int iPesoMatRiciclato = scheduleData[0].FindIndex(x => x.Contains("Peso materiale riciclato"));
-
-            for (int i_r = 2; i_r < scheduleData.Count; i_r++)
+           int iTipo = scheduleData[0].FindIndex(x => x == "Type");
+           //int iPesoSchiuma = scheduleData[0].FindIndex(x => x == "Peso schiuma totale");
+           //int iPesoPannelli =  scheduleData[0].FindIndex(x => x == "Peso pannello totale"); 
+           int iPesoMatRiciclato = scheduleData[0].FindIndex(x => x == "Peso materiale riciclato");
+            
+            
+            for (int i_r =3; i_r < scheduleData.Count; i_r++)
             {
                 List<string> riga = scheduleData[i_r];
 
-               if( riga[iTipo] != tipomateriale);
-                {
-                    list.Add(new MaterialeIsolante() {Name = riga[iTipo], Peso = $"{riga[iPesoMatRiciclato]} {riga[iPesoPannelli]} {riga[iPesoMatRiciclato]}" });
-                }
-                
+                listaQuantità.Add(new MaterialeIsolante() {Name = riga[iTipo], Peso = $"{riga[iPesoMatRiciclato]}" });
             }
-           
-               // MaterialiPesi.Add(riga[iTipo], $"{riga[iPesoMatRiciclato]} {riga[iPesoPannelli]} {riga[iPesoMatRiciclato]}");
-            
+
+            foreach (var item in listaQuantità)
+            {
+
+            }
+        }
+
+        private void Form_Quantità_Load(object sender, EventArgs e)
+        {
+            string nomeprecedente = "";
+            int n = 0;
+            foreach (var Materiale in listaQuantità)
+            {
+                if (int.TryParse(Materiale.Name, out n))
+                {
+                    AbacoQuantità.Rows.Add(nomeprecedente, Materiale.Peso);
+                }
+                nomeprecedente = Materiale.Name;
+
+            }
+               
+
         }
 
         private void butt_DettagliQuantità_Click(object sender, EventArgs e)
         {
-            ViewSchedule viewSchedule = new FilteredElementCollector(m_doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.Name == "P3 - Duct Insulation Schedule - DYNAMO") as ViewSchedule;
             this.Close();
+
+            ViewSchedule viewSchedule = new FilteredElementCollector(m_doc).OfClass(typeof(ViewSchedule)).FirstOrDefault
+                (x => x.Name == "P3 - Duct Insulation Schedule - DYNAMO") as ViewSchedule;
+           
             m_uidoc.ActiveView = viewSchedule;
+            
 
         }
     }

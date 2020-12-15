@@ -21,15 +21,34 @@ namespace P3Ribbon.Scripts
             Application app = uiApp.Application;
 
             Scripts.Form.Form_Libreria frm = new Form.Form_Libreria( commandData);
-            using (frm)
-            {
+            //using (frm)
+            //{
+
                 using (var t = new Transaction(doc, "FinestraInfo"))
                 {
                     t.Start();
                     frm.ShowDialog();
                     t.Commit();
                 }
-            }
+
+
+
+                // sarebbe nteressnte inserire tutto questo in un metodo solo per avere ordine qui
+                Autodesk.Revit.DB.View CurrView = doc.ActiveView;
+                //m_UiDoc.RequestViewChange(CurrView);
+                IList<UIView> UlViews = uiDoc.GetOpenUIViews();
+                if (UlViews.Count > 1)
+                {
+                    foreach (UIView pView in UlViews)
+                    {
+                        if (pView.ViewId.IntegerValue == CurrView.Id.IntegerValue)
+                            //if ((m_doc.GetElement(View.ViewId) as View). )
+                            pView.Close();
+                    }
+                }
+
+
+            //}
             return Result.Succeeded;
         }
 

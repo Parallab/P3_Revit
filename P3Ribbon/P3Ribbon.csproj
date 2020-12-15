@@ -86,6 +86,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Resources\str_EN.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -110,6 +115,9 @@
     </Compile>
     <Compile Include="Scripts\Form\Form_Quantità.Designer.cs">
       <DependentUpon>Form_Quantità.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scripts\Form\WpsInfo.xaml.cs">
+      <DependentUpon>WpsInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Scripts\Materiale.cs" />
     <Compile Include="Scripts\CambaLingua.cs" />
@@ -144,6 +152,7 @@
     <Compile Include="Scripts\TrasferisciStandard.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_MatRIciclato.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_FrecciaGiù.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_FrecciaGiù16.png" />
     <EmbeddedResource Include="Scripts\Form\Form_Quantità.resx">
@@ -193,6 +202,10 @@
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Lingua.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Quantità.png" />
     <EmbeddedResource Include="Resources\17017_ParamCondivisi.txt" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Resources\Annotazione 2020-08-04 1455321.png" />
     <None Include="Resources\Annotazione 2020-08-04 145532.png" />
     <Resource Include="Resources\Area_Iso.png" />
@@ -218,6 +231,7 @@
     <EmbeddedResource Include="Resources\str_IT.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>str_IT.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Scripts\Form\Form_Def_Acc.resx">
       <DependentUpon>Form_Def_Acc.cs</DependentUpon>
@@ -257,6 +271,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="FilesUploads\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Scripts\Form\WpsInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

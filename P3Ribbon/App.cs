@@ -11,6 +11,8 @@ using System.Security.Cryptography.X509Certificates;
 using System.Windows.Media.Imaging;
 using System.Collections;
 using Autodesk.Revit.UI.Events;
+using P3Ribbon.Scripts;
+using Autodesk.Revit.DB.Events;
 
 namespace P3Ribbon
 {
@@ -67,6 +69,7 @@ namespace P3Ribbon
             AggiungiSplitButtonLingua(ribbonPanelModellazione, thisAssemblyPath);
 
             #endregion
+
             #region bottone: carica libreria WIP
             PushButtonData b9Data = new PushButtonData("cmdlibreria", "Carica" + System.Environment.NewLine + "Libreria", thisAssemblyPath, "P3Ribbon.Scripts.FinestraLibreria");
             PushButton pb9 = ribbonPanelModellazione.AddItem(b9Data) as PushButton;
@@ -74,22 +77,18 @@ namespace P3Ribbon
             BitmapImage pb9Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Libreria_2_logoP3+ductbim.png"));
             pb9.LargeImage = pb9Image;
             #endregion
-            #region bottone: canale WIP
-            AggiungiSplitButtonCanale(ribbonPanelModellazione,thisAssemblyPath);
-            //PushButtonData b10Data = new PushButtonData("cmdcanale", "Canale", thisAssemblyPath, "P3Ribbon.Scripts.CreaCanale");
-            //PushButton pb10 = ribbonPanelModellazione.AddItem(b10Data) as PushButton;
-            //pb10.ToolTip = "Posiziona i canali preisolati P3";
-            //BitmapImage pb10Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Canale.png"));
-            //pb10.LargeImage = pb10Image;
-            #endregion
-            #region Panello cambia materiale più ribbonbox
-            ComboBoxData cbData = new ComboBoxData("Combo1");
-            PushButtonData b11Data = new PushButtonData("cmdmateriale", "Cambia" + System.Environment.NewLine + "Materiale", thisAssemblyPath,
-"P3Ribbon.Scripts.CambiaMateriale");
-            PushButtonData b15Data = new PushButtonData("cmdcaricamaterial", "Carica Materiale", thisAssemblyPath,
-"P3Ribbon.Scripts.PopolaComboBox_temp");
 
-            IList<RibbonItem> MaerialeItems = ribbonPanelModellazione.AddStackedItems(b11Data, cbData, b15Data);
+            #region bottone: canale WIP
+            AggiungiSplitButtonCanale(ribbonPanelModellazione, thisAssemblyPath);
+            #endregion
+
+            #region Panello cambia materiale più ribbonbox
+
+            ComboBoxData cbData = new ComboBoxData("Combo1");
+            PushButtonData b11Data = new PushButtonData("cmdmateriale", "Cambia" + System.Environment.NewLine + "Materiale", thisAssemblyPath,"P3Ribbon.Scripts.CambiaMateriale");
+
+
+            IList<RibbonItem> MaerialeItems = ribbonPanelModellazione.AddStackedItems(b11Data, cbData);
 
             PushButton pb11 = MaerialeItems[0] as PushButton;
             BitmapImage pb11LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Canale_Materiale.png"));
@@ -103,25 +102,14 @@ namespace P3Ribbon
             comboMat.AddItems(Scripts.Materiale.comboBoxMemberDatas);
             comboMat.CurrentChanged += new EventHandler<Autodesk.Revit.UI.Events.ComboBoxCurrentChangedEventArgs>(comboBx_CurrentChanged);
 
-
-            PushButton pb15 = MaerialeItems[2] as PushButton;
-            BitmapImage pb15LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_FrecciaGiù.png"));
-            pb15.LargeImage = pb15LargeImage;
-            BitmapImage pb15Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_FrecciaGiù16.png"));
-            pb15.Image = pb15Image;
-            pb15.ToolTip = "Carica i materiali nel ribbonbox";
-
-
-
-
             #endregion
 
 
 
             // QUANTITÀ
             RibbonPanel ribbonPanelQuantità = a.CreateRibbonPanel(tabName, "Quantità");
-            #region bottone: elenco prezzi WIP
-            PushButtonData b5Data = new PushButtonData("cmdelencopezzi", "Elenco" + System.Environment.NewLine + "Prezzi", thisAssemblyPath, "P3Ribbon.Scripts.ElencoPrezzi");
+            #region bottone: elenco pezzi WIP
+            PushButtonData b5Data = new PushButtonData("cmdelencopezzi", "Elenco" + System.Environment.NewLine + "Pezzi", thisAssemblyPath, "P3Ribbon.Scripts.ElencoPezzi");
             PushButton pb5 = ribbonPanelQuantità.AddItem(b5Data) as PushButton;
             pb5.ToolTip = "Elenca i canali e i pezzi speciali P3";
             BitmapImage pb5Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_ElencoPezzi.png"));
@@ -134,7 +122,7 @@ namespace P3Ribbon
             BitmapImage pb3Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_ElencoMateriali.png"));
             pb3.LargeImage = pb3Image;
             #endregion
-          
+
 
             // SISMA
             RibbonPanel ribbonPanelSisma = a.CreateRibbonPanel(tabName, "Sisma");
@@ -153,19 +141,26 @@ namespace P3Ribbon
             BitmapImage pb2Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/staff.png"));
             pb2.LargeImage = pb2Image;
             #endregion
+
+
+            #region Split button Elenco staffaggi
+            AggiungiSplitButtonElencostaff(ribbonPanelSisma, thisAssemblyPath);
+
             #region bottone:elenco staffaggi WIP
-            PushButtonData b6Data = new PushButtonData("cmdelencostaffaggi", "Elenco" + System.Environment.NewLine + "Staffaggio", thisAssemblyPath, "P3Ribbon.Scripts.ElencoStaffaggio");
-            PushButton pb6 = ribbonPanelSisma.AddItem(b6Data) as PushButton;
-            pb6.ToolTip = "Elenca gli staffaggi utilizzati e la relativa componentistica";
-            BitmapImage pb6Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_ElencoStaffaggio_2.png"));
-            pb6.LargeImage = pb6Image;
+            //PushButtonData b6Data = new PushButtonData("cmdelencostaff", "Elenco" + System.Environment.NewLine + "Punti", thisAssemblyPath, "P3Ribbon.Scripts.ElencoPunti");
+            //PushButton pb6 = ribbonPanelSisma.AddItem(b6Data) as PushButton;
+            //pb6.ToolTip = "Elenca gli staffaggi utilizzati e la relativa componentistica";
+            //BitmapImage pb6Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_ElencoStaffaggio_2.png"));
+            //pb6.LargeImage = pb6Image;
             #endregion
             #region bottone: elenco componenti WIP
-            PushButtonData b13Data = new PushButtonData("cmdelencocomp", "Elenco" + System.Environment.NewLine + "Componenti", thisAssemblyPath, "P3Ribbon.Scripts.ElencoComponenti");
-            PushButton pb13 = ribbonPanelSisma.AddItem(b13Data) as PushButton;
-            pb13.ToolTip = "Elenca i componenti P3";
-            BitmapImage pb13Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_ElencoComponenti.png"));
-            pb13.LargeImage = pb13Image;
+            //PushButtonData b13Data = new PushButtonData("cmdelencoco", "Elenco" + System.Environment.NewLine + "Componenti", thisAssemblyPath, "P3Ribbon.Scripts.ElencoComponenti");
+            //PushButton pb13 = ribbonPanelSisma.AddItem(b13Data) as PushButton;
+            //pb13.ToolTip = "Elenca i componenti P3";
+            //BitmapImage pb13Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_ElencoComponenti.png"));
+            //pb13.LargeImage = pb13Image;
+            #endregion
+
             #endregion
 
 
@@ -175,7 +170,7 @@ namespace P3Ribbon
             PushButtonData b7Data = new PushButtonData("cmdquantità", "Quantità", thisAssemblyPath, "P3Ribbon.Scripts.FinestraQuantità");
             PushButton pb7 = ribbonPanelMaterialeRiciclato.AddItem(b7Data) as PushButton;
             pb7.ToolTip = "Elenca la quantità di materiale riciclato nei canali P3";
-            BitmapImage pb7Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Quantità.png"));
+            BitmapImage pb7Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_MatRIciclato.png"));
             pb7.LargeImage = pb7Image;
             #endregion
 
@@ -184,7 +179,7 @@ namespace P3Ribbon
             RibbonPanel ribbonPanelInfo = a.CreateRibbonPanel(tabName, "Info");
             //inizializzo i due bottoni
             PushButtonData b4Data = new PushButtonData("cmdinfo", "Contatti", thisAssemblyPath, "P3Ribbon.Scripts.FinestraInfo");
-            PushButtonData b12Data = new PushButtonData("cmdimpo", "Impostazioni", thisAssemblyPath, "P3Ribbon.Scripts.FinestraImpo");
+            PushButtonData b12Data = new PushButtonData("cmdimpo", "Impostazioni", thisAssemblyPath, "P3Ribbon.Scripts.WPF");
             //
             IList<RibbonItem> InfoItems = ribbonPanelInfo.AddStackedItems(b4Data, b12Data);
 
@@ -235,11 +230,19 @@ namespace P3Ribbon
 
         public Result OnStartup(UIControlledApplication application)
         {
+            //creo l'event handelr all'apertura del documento
+            try
+            {
+                application.ControlledApplication.DocumentOpened += new EventHandler<Autodesk.Revit.DB.Events.DocumentOpenedEventArgs>(Application_DocumentOpened);
+            }
+            catch
+            {
+                return Result.Failed;
+            }
 
 
             AddRibbonPanel(application);
             UICapp = application;
-
 
             //attiva i registri all'avvio di revit
             Scripts.DynamicModelUpdater updater = new Scripts.DynamicModelUpdater(application.ActiveAddInId);
@@ -249,12 +252,34 @@ namespace P3Ribbon
 
             return Result.Succeeded;
 
+
         }
+
         public Result OnShutdown(UIControlledApplication application)
         {
             Scripts.DynamicModelUpdater updater = new Scripts.DynamicModelUpdater(application.ActiveAddInId);
             UpdaterRegistry.UnregisterUpdater(updater.GetUpdaterId());
             return Result.Succeeded;
+        }
+
+
+        public static  void Application_DocumentOpened(object sender, Autodesk.Revit.DB.Events.DocumentOpenedEventArgs args)
+        {
+            Document doc = args.Document;
+            Application app = doc.Application;
+            try
+            {
+
+                Materiale.PreAggiorna(doc);
+                comboMat.AddItems(Materiale.comboBoxMemberDatas);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+
         }
 
         public static string res_valore(string Var, Lingua l)
@@ -290,7 +315,7 @@ namespace P3Ribbon
             PushButtonData sb1BTwo = new PushButtonData("cmdLinguaENG", "Inglese", Assemblypath, "P3Ribbon.Scripts.CambaLingua");
             sb1BTwo.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_LinguaInglese.png"));
 
-            SplitButtonData sbd1 = new SplitButtonData("splitButton1", "Split");
+            SplitButtonData sbd1 = new SplitButtonData("splitButtonLingua", "Split");
             SplitButton sb1 = rp.AddItem(sbd1) as SplitButton;
             sb1.AddPushButton(sb1BOne);
             sb1.AddPushButton(sb1BTwo);
@@ -306,10 +331,27 @@ namespace P3Ribbon
             sb2BTwo.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Canale.png"));
             sb2BTwo.ToolTip = "Crea un condotto di tipo: Scarpette";
 
-            SplitButtonData sbd2 = new SplitButtonData("splitButton2", "Split");
+            SplitButtonData sbd2 = new SplitButtonData("splitButtonCanale", "Split");
             SplitButton sb2 = rp.AddItem(sbd2) as SplitButton;
             sb2.AddPushButton(sb2BOne);
             sb2.AddPushButton(sb2BTwo);
+
+        }
+
+        private static void AggiungiSplitButtonElencostaff(RibbonPanel rp, string Assemblypath)
+        {
+            PushButtonData sb3BOne = new PushButtonData("cmdstaff", "Elenco" + System.Environment.NewLine + "Staffaggio", Assemblypath, "P3Ribbon.Scripts.ElencoStaffaggio");
+            sb3BOne.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_ElencoStaffaggio.png"));
+            sb3BOne.ToolTip = "Elenca i componenti P3";
+
+            PushButtonData sb3BTwo = new PushButtonData("cmdelencopunti", "Elenco" + System.Environment.NewLine + "Punti", Assemblypath, "P3Ribbon.Scripts.ElencoPunti");
+            sb3BTwo.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_ElencoStaffaggio.png"));
+            sb3BTwo.ToolTip = "Elenca gli staffaggi utilizzati e la relativa componentistica";
+
+            SplitButtonData sbd3 = new SplitButtonData("splitButtonElencoStaffaggio", "Split");
+            SplitButton sb3 = rp.AddItem(sbd3) as SplitButton;
+            sb3.AddPushButton(sb3BOne);
+            sb3.AddPushButton(sb3BTwo);
 
         }
 

@@ -14,7 +14,7 @@ namespace P3Ribbon.Scripts
 {
        
     [Transaction(TransactionMode.Manual)]
-    class ElencoPrezzi : IExternalCommand
+    class ElencoPezzi : IExternalCommand
     {
 
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
@@ -66,7 +66,7 @@ namespace P3Ribbon.Scripts
     }
 
     [Transaction(TransactionMode.Manual)]
-    class ElencoStaffaggio : IExternalCommand
+    class ElencoPunti : IExternalCommand
     {
 
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
@@ -94,7 +94,19 @@ namespace P3Ribbon.Scripts
             UIApplication uiApp = commandData.Application;
             UIDocument uiDoc = uiApp.ActiveUIDocument;
             Document doc = uiDoc.Document;
-     
+            Application app = uiApp.Application;
+
+            using (var t = new Transaction(doc, "Calcolo area"))
+            {
+                t.Start();
+                Migra_AreaIsolamento.Controlla_Parametri(doc, app);
+                if (Migra_AreaIsolamento.parametri_presenti == true)
+                {
+                    Migra_AreaIsolamento.MigraParaetriIsolamento(doc);
+                }
+                t.Commit();
+            }
+
 
             ViewSchedule viewSchedule = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.Name == "P3 - Duct Insulation Schedule - DYNAMO") as ViewSchedule;
             uiDoc.ActiveView = viewSchedule;
@@ -104,7 +116,7 @@ namespace P3Ribbon.Scripts
     }
 
     [Transaction(TransactionMode.Manual)]
-    class ElencoComponenti : IExternalCommand
+    class ElencoStaffaggio : IExternalCommand
     {
         ControlledApplication _Capp;
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)

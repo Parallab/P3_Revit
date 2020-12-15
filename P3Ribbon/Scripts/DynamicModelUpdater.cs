@@ -94,9 +94,5 @@ namespace P3Ribbon.Scripts
         }
     }
 
-    public class EventHandlerIsolamenti
-    {
-
-    }
 
 }

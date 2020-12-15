@@ -98,6 +98,7 @@ namespace P3Ribbon.Scripts.Form
             this.label3.Size = new System.Drawing.Size(365, 138);
             this.label3.TabIndex = 1;
             this.label3.Text = resources.GetString("label3.Text");
+            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // CkBoxUpgrade
             // 
@@ -117,7 +118,7 @@ namespace P3Ribbon.Scripts.Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(397, 322);
+            this.ClientSize = new System.Drawing.Size(397, 334);
             this.Controls.Add(this.tableLayoutPanel2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form_Impostazioni";

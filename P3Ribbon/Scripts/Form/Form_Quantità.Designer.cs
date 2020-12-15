@@ -33,9 +33,9 @@ namespace P3Ribbon.Scripts.Form
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_Quantità));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.AbacoQuantità = new System.Windows.Forms.DataGridView();
+            this.butt_DettagliQuantità = new System.Windows.Forms.Button();
             this.Materiale = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Kg = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.butt_DettagliQuantità = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.AbacoQuantità)).BeginInit();
             this.SuspendLayout();
@@ -54,8 +54,11 @@ namespace P3Ribbon.Scripts.Form
             // 
             // AbacoQuantità
             // 
+            this.AbacoQuantità.AllowUserToAddRows = false;
+            this.AbacoQuantità.AllowUserToDeleteRows = false;
             this.AbacoQuantità.AllowUserToOrderColumns = true;
             this.AbacoQuantità.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.AbacoQuantità.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.AbacoQuantità.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.AbacoQuantità.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.AbacoQuantità.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -64,22 +67,9 @@ namespace P3Ribbon.Scripts.Form
             this.AbacoQuantità.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AbacoQuantità.Location = new System.Drawing.Point(3, 3);
             this.AbacoQuantità.Name = "AbacoQuantità";
+            this.AbacoQuantità.ReadOnly = true;
             this.AbacoQuantità.Size = new System.Drawing.Size(493, 387);
             this.AbacoQuantità.TabIndex = 0;
-            this.AbacoQuantità.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.AbacoQuantità_CellContentClick);
-            // 
-            // Materiale
-            // 
-            this.Materiale.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.Materiale.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Materiale.HeaderText = "Materiale";
-            this.Materiale.Name = "Materiale";
-            // 
-            // Kg
-            // 
-            this.Kg.HeaderText = "Tot Kg";
-            this.Kg.Name = "Kg";
             // 
             // butt_DettagliQuantità
             // 
@@ -90,6 +80,22 @@ namespace P3Ribbon.Scripts.Form
             this.butt_DettagliQuantità.Text = "Dettagli";
             this.butt_DettagliQuantità.UseVisualStyleBackColor = true;
             this.butt_DettagliQuantità.Click += new System.EventHandler(this.butt_DettagliQuantità_Click);
+            // 
+            // Materiale
+            // 
+            this.Materiale.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.Materiale.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Materiale.HeaderText = "Materiale";
+            this.Materiale.Name = "Materiale";
+            this.Materiale.ReadOnly = true;
+            // 
+            // Kg
+            // 
+            this.Kg.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Kg.HeaderText = "Tot Kg";
+            this.Kg.Name = "Kg";
+            this.Kg.ReadOnly = true;
             // 
             // Form_Quantità
             // 

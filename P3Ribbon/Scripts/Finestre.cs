@@ -67,17 +67,37 @@ namespace P3Ribbon.Scripts
             UIApplication uiApp = commandData.Application;
             UIDocument uiDoc = uiApp.ActiveUIDocument;
             Document doc = uiDoc.Document;
+            Application app = uiApp.Application;
+
 
             Scripts.Form.Form_Quantità frm = new Scripts.Form.Form_Quantità(commandData);
             using (frm)
             {
-                using (var t = new Transaction(doc, "FinestraImpostazini"))
-                {
-                    t.Start();
+                //using (var t = new Transaction(doc, "FinestraImpostazini"))
+               // {
+                   // t.Start();
                     frm.ShowDialog();
-                    t.Commit();
-                }
+                //    t.Commit();
+               // }
             }
+            return Result.Succeeded;
+        }
+
+    }
+
+    [Transaction(TransactionMode.Manual)]
+    class WPF : IExternalCommand
+    {
+        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
+        {
+            UIApplication uiApp = commandData.Application;
+            UIDocument uiDoc = uiApp.ActiveUIDocument;
+            Document doc = uiDoc.Document;
+            Application app = uiApp.Application;
+
+            Scripts.Form.WpsInfo wps = new Form.WpsInfo(commandData);
+            wps.ShowDialog();
+
             return Result.Succeeded;
         }
 

@@ -164,7 +164,7 @@ namespace P3Ribbon.Resources {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Price
+        ///   Cerca una stringa localizzata simile a Parts
         ///List.
         /// </summary>
         internal static string cmdelencopezzi {

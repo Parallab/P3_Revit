@@ -220,7 +220,9 @@ namespace P3Ribbon.Scripts
 
         public void AttivaFamiglia(Document doc)
         {
-            fs = doc.GetElement(new ElementId(2415672)) as FamilySymbol;
+            //2660
+            //2415672
+            fs = doc.GetElement(new ElementId(2660)) as FamilySymbol;
             if (!fs.IsActive)
             {
                 fs.Activate();
