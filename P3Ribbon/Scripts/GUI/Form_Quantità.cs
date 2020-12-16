@@ -78,14 +78,25 @@ namespace P3Ribbon.Scripts.Form
            int iTipo = scheduleData[0].FindIndex(x => x == "Type");
            //int iPesoSchiuma = scheduleData[0].FindIndex(x => x == "Peso schiuma totale");
            //int iPesoPannelli =  scheduleData[0].FindIndex(x => x == "Peso pannello totale"); 
-           int iPesoMatRiciclato = scheduleData[0].FindIndex(x => x == "peso materiale riciclato");
+           //int iPesoMatRiciclato = scheduleData[0].FindIndex(x => x == "Peso materiale riciclato"); perchè mi da indice -1??
+
+            int iPesoMatRiciclato = 0;
+            for (int i = 0; i < scheduleData[0].Count ; i++)
+            {
+                if (scheduleData[0][i] == "Peso materiale riciclato")
+                {
+                    iPesoMatRiciclato = i;
+                    break;
+                }
+            }
+          
             
             
             for (int i_r =3; i_r < scheduleData.Count; i_r++)
             {
                 List<string> riga = scheduleData[i_r];
 
-                listaQuantità.Add(new Materiale() {name = riga[iTipo], peso = $"{riga[iPesoMatRiciclato]}" });
+                listaQuantità.Add(new Materiale() {name = riga[iTipo], peso = $"{riga[iPesoMatRiciclato]}"});
             }
 
             foreach (var item in listaQuantità)

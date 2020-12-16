@@ -30,6 +30,7 @@ namespace P3Ribbon.Scripts
             //{
             //    t.Start();
             CambiaLingua(App.UICapp);
+          
             //    t.Commit();
             //}
             return Result.Succeeded;
@@ -69,6 +70,7 @@ namespace P3Ribbon.Scripts
                             bottone.ItemText = App.res_valore(bottone.Name, lingua_arrivo);
                             //bottone.ToolTip = resourceSet_arrivo.GetObject(bottone.Name+"_tt").ToString();
                             bottone.ToolTip = App.res_valore(bottone.Name + "_tt", lingua_arrivo);
+                           
                         }
                         catch
                         {
@@ -82,7 +84,17 @@ namespace P3Ribbon.Scripts
 
                 }
             }
+
+
             App.lingua_plugin = lingua_arrivo;
+            if (lingua_attuale == App.Lingua.ITA)
+            {
+                Supporto.CambiaSplitButton(App.sb1, 0);
+            }
+            else
+            {
+                Supporto.CambiaSplitButton(App.sb1, 1);
+            }        
         }
 
     }

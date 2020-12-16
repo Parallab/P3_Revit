@@ -88,13 +88,13 @@ namespace P3Ribbon.Scripts
 
                 if (result == TaskDialogResult.Yes)
                 {
-                    P3Ribbon.Par_Sismici.CreaParametriCondivisi(doc, app);
+                    P3Ribbon.ParSismici.CreaParametriCondivisi(doc, app);
 
-                    //Par_Sismici.Migra_Parametri_Presenti(doc);
+                    //ParSismici.Migra_Parametri_Presenti(doc);
                     //frm.ShowDialog();
                     //if (Form_Def_Acc.ok_premuto == true)
                     //{
-                    //	Par_Sismici.Proj_Info_Scrivi_Parametri(Par_Sismici.classe, Par_Sismici.eng, Par_Sismici.vita, Par_Sismici.zona, doc);
+                    //	ParSismici.Proj_Info_Scrivi_Parametri(ParSismici.classe, ParSismici.eng, ParSismici.vita, ParSismici.zona, doc);
                     //}
 
                     Parametri_presenti = true;

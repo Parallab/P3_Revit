@@ -17,7 +17,7 @@ namespace P3Ribbon.Scripts
     [Transaction(TransactionMode.Manual)]
     class MigraAreaIsolamento : IExternalCommand
     {
-       public static bool parPresenti = false;
+        public static bool parPresenti = false;
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             UIApplication uiApp = commandData.Application;
@@ -27,7 +27,7 @@ namespace P3Ribbon.Scripts
 
             using (var t = new Transaction(doc, "Proj_Info_Scrivi_Parametri"))
             {
-               
+
                 ControllaParametriSeEsistenti(doc, app);
 
                 if (parPresenti)
@@ -135,23 +135,12 @@ namespace P3Ribbon.Scripts
 
         static public void ControllaParametriSeEsistenti(Document doc, Application app)
         {
-         
-                // come verificare se il parametro è dentro il binding...definition
-                // doc.ParameterBindings.Contains();
-                IList<Element> dicoll = new FilteredElementCollector(doc).OfClass(typeof(DuctInsulation)).ToElements();
-                try
-                {
-                    Element try_di = dicoll[0];
-                }
-                catch
-                {
-                    TaskDialog td = new TaskDialog("Errore");
-                    td.MainInstruction = "Isolamenti mancanti";
-                    td.MainContent = "Non ci sono isolamenti in questo progetto";
-                    TaskDialogResult result = td.Show();
-                }
 
-
+            // come verificare se il parametro è dentro il binding...definition
+            // doc.ParameterBindings.Contains();
+            IList<Element> dicoll = new FilteredElementCollector(doc).OfClass(typeof(DuctInsulation)).ToElements();
+            if (dicoll.Count > 0)
+            {
                 Element di = dicoll[0];
                 Parameter sup_dyn = di.LookupParameter("P3_Sup_S.app_dyn");
                 if (sup_dyn == null)
@@ -171,6 +160,17 @@ namespace P3Ribbon.Scripts
                 {
                     parPresenti = true;
                 }
+            }
+            else
+            {
+                TaskDialog td = new TaskDialog("Errore");
+                td.MainInstruction = "Isolamenti mancanti";
+                td.MainContent = "Non ci sono isolamenti in questo progetto";
+                TaskDialogResult result = td.Show();
+            }
         }
+
     }
+
 }
+ 

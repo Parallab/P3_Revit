@@ -1,0 +1,92 @@
+﻿<Window x:Class="P3Ribbon.Scripts.Form.Wpf_ParamSismici"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:P3Ribbon.Scripts.Form"
+             mc:Ignorable="d" d:DesignWidth="800" Height="450">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="20*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="40*"/>
+            <ColumnDefinition Width="80*"/>
+            <ColumnDefinition Width="10*"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Grid.ColumnSpan="3" Grid.Column="3" Grid.Row="1" Grid.RowSpan="5" Stroke="Black" Width="353" Fill="#FFF4FFFC" Margin="28,0,0,0"/>
+
+        <Rectangle Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1" Grid.RowSpan="5" Stroke="Black" Width="353" Fill="#FFF4FFFC"/>
+
+        <TextBox Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="15" TextWrapping="Wrap" Text="DEFINIZIONI ACCELLERAZIONI SISMICHE" VerticalAlignment="Bottom" Width="353" FontWeight="Bold" FontFamily="Arial" Grid.Column="1" BorderBrush="#00ABADB3"/>
+        <Rectangle Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="2" Stroke="#00000000" Fill="#FFDDF1EE" Margin="1,0"/>
+        <Rectangle Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="4" Stroke="#00000000" Fill="#FFDDF1EE" Margin="0,0,1,0" HorizontalAlignment="Right" Width="351"/>
+        <Rectangle Grid.ColumnSpan="2" Grid.Column="4" Grid.Row="5" Stroke="#00000000" Fill="#FFDDF1EE" Margin="0,0,1,1"/>
+        <Rectangle Grid.ColumnSpan="2" Grid.Column="4" Grid.Row="2" Stroke="#00000000" Fill="#FFDDF1EE" Grid.RowSpan="2" Margin="0,0,1,0"/>
+
+
+
+        <Button x:Name="WpfbottZona1" Content="ZONA 1" Grid.Column="1" 
+                Margin="3,4,3,4" Grid.Row="2" Background="#FFC3DCE4" BorderBrush="#00FFFDFD" Click="WpfbottZona1_Click" FontWeight="Bold" FontFamily="Arial" FontSize="13" VerticalAlignment="Center"/>
+        <Button x:Name="WpfbottZona2" Content="ZONA 2" Grid.Column="1" 
+                Margin="3,4,3,4" Grid.Row="3" Background="#FFC3DCE4" BorderBrush="#00FFFDFD" FontWeight="Bold" FontFamily="Arial" FontSize="13" VerticalAlignment="Center" Click="WpfbottZona2_Click"/>
+        <Button x:Name="WpfbottZona3" Content="ZONA 3" Grid.Column="1" 
+                Margin="3,4,3,4" Grid.Row="4" Background="#FFC3DCE4" BorderBrush="#00FFFDFD" FontWeight="Bold" FontFamily="Arial" FontSize="13" VerticalAlignment="Center" Click="WpfbottZona3_Click"/>
+        <Button x:Name="WpfbottZona4" Content="ZONA 4" Grid.Column="1" 
+                Margin="3,4,3,4" Grid.Row="5" Background="#FFC3DCE4" BorderBrush="#00FFFDFD" FontWeight="Bold" FontFamily="Arial" FontSize="13" VerticalAlignment="Center" Click="WpfbottZona4_Click"/>
+        <TextBox Grid.Column="2" Grid.Row="2" 
+                 Text="Sisimicità alta (0.25 &lt; α  ≤ 0.35) " Width="235" 
+                 BorderBrush="#00ABADB3" Background="Transparent" Margin="0,0,0,0                  " TextAlignment="Center" TextChanged="wpfTextBoxAccell_TextChanged" FontFamily="Arial" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="11"/>
+        <TextBox Grid.Column="2" Grid.Row="3" 
+                 Text="Sisimicità alta (0.25 &lt; α  ≤ 0.35) " Width="235" 
+                 BorderBrush="#00ABADB3" Background="Transparent" Margin="0,0,0,0                  " TextAlignment="Center" TextChanged="wpfTextBoxAccell_TextChanged" FontFamily="Arial" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="11"/>
+        <TextBox Grid.Column="2" Grid.Row="4" 
+                 Text="Sisimicità alta (0.25 &lt; α  ≤ 0.35) " Width="235" 
+                 BorderBrush="#00ABADB3" Background="Transparent" Margin="0,0,0,0                  " TextAlignment="Center" TextChanged="wpfTextBoxAccell_TextChanged" FontFamily="Arial" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="11"/>
+        <TextBox Grid.Column="2" Grid.Row="5" 
+                 Text="Sisimicità alta (0.25 &lt; α  ≤ 0.35) " Width="235" 
+                 BorderBrush="#00ABADB3" Background="Transparent" Margin="0,0,0,0                  " TextAlignment="Center" TextChanged="wpfTextBoxAccell_TextChanged" FontFamily="Arial" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="11"/>
+        <TextBox Grid.Column="1" Grid.Row="1" 
+                 Text="ZONA SISMICA" 
+                 BorderBrush="#00ABADB3" Background="Transparent" Margin="0,0,0,0                  " TextAlignment="Center" TextChanged="wpfTextBoxAccell_TextChanged" FontFamily="Arial" FontWeight="Bold" VerticalAlignment="Center"/>
+        <TextBox Grid.Column="5" Grid.Row="2" 
+            Text="&#xD;&#xA;Costruzioni cui uso preveda normali &#xD;&#xA;affollamenti senza contenuti pericolosi per&#xD;&#xA; l'ambiente e senza funzioni pubbliche e &#xD;&#xA;sociali essenziali. Industie con attività non&#xD;&#xA; pericolose per l'ambiente | Uffici" 
+            BorderBrush="#00ABADB3" Background="Transparent" TextAlignment="Justify" TextChanged="wpfTextBoxAccell_TextChanged" FontFamily="Arial" Grid.RowSpan="2" FontSize="10" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="118"/>
+        <Button x:Name="WpfbottCUsoIII" Content="III" Grid.Column="4" 
+            Margin="1,0,0,0" Grid.Row="4" Background="#FFC3DCE4" BorderBrush="#00FFFDFD" FontWeight="Bold" FontFamily="Arial" FontSize="13" VerticalAlignment="Center" Click="WpfbottCUsoIII_Click"/>
+        <Button x:Name="WpfbottCUsoII" Content="II" Grid.Column="4" 
+            Grid.Row="2" Background="#FFC3DCE4" BorderBrush="#00FFFDFD" FontWeight="Bold" FontFamily="Arial" FontSize="13" Margin="1,25.5,0,25.5" Grid.RowSpan="2" VerticalAlignment="Center"/>
+        <TextBox Grid.Column="5" Grid.Row="4" 
+            Text="Costruzioni il cui uso preveda affollamenti &#xD;&#xA;signifficativi. Industrie con attività pericolose &#xD;&#xA;per l'ambiente | Centri commerciali" 
+            BorderBrush="#00ABADB3" Background="Transparent" TextAlignment="Justify" TextChanged="wpfTextBoxAccell_TextChanged" FontFamily="Arial" FontSize="10" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+        <Button x:Name="WpfbottCUsoIV" Content="IV" Grid.Column="4" 
+            Grid.Row="5" Background="#FFC3DCE4" BorderBrush="#00FFFDFD" FontWeight="Bold" FontFamily="Arial" FontSize="13" VerticalAlignment="Center" Margin="1,0,0,0" Click="WpfbottCUsoIV_Click"/>
+        <TextBox Grid.Column="5" Grid.Row="5" 
+            Text="Costruzioni con funzioni pubbliche &#xD;&#xA;o strategiche importanti, anche con &#xD;&#xA;riferimento alla gestione della protezione&#xD;&#xA; civile in caso di calimità. Industrie con &#xD;&#xA;attività particolarmente pericolose | Ospedali " 
+            BorderBrush="#00ABADB3" Background="Transparent" TextChanged="wpfTextBoxAccell_TextChanged" FontFamily="Arial" FontSize="10" VerticalContentAlignment="Center" TextAlignment="Justify" VerticalAlignment="Center" Margin="0,0,1,1" Height="60"/>
+        <Button x:Name="WpfbottCUsoI" Content="I" Grid.Column="4" 
+            Grid.Row="1" Background="#FFC3DCE4" BorderBrush="#00FFFDFD" FontWeight="Bold" FontFamily="Arial" FontSize="13" VerticalAlignment="Center" Margin="1,0,0,0" Click="WpfbottCUsoI_Click"/>
+        <TextBox Grid.Column="5" Grid.Row="1" 
+            Text="Costruzioni con presenza solo occasionale&#xD;&#xA; di persone | Edifici agricoli" 
+            BorderBrush="#00ABADB3" Background="Transparent" TextAlignment="Justify" TextChanged="wpfTextBoxAccell_TextChanged" FontFamily="Arial" FontSize="10" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+        <TextBox Grid.ColumnSpan="3" HorizontalAlignment="Left" Height="15" TextWrapping="Wrap" Text="DEFINIZIONE CLASSE D'USO" VerticalAlignment="Bottom" Width="353" FontWeight="Bold" FontFamily="Arial" Grid.Column="3" BorderBrush="#00ABADB3" Margin="28,0,0,0"/>
+        <TextBox x:Name="wpfTexBoxAccell" Grid.Column="2" Grid.Row="1" 
+            BorderBrush="#FFAAB0C1" Background="White" Margin="91,19,33,20" TextAlignment="Center" TextChanged="wpfTextBoxAccell_TextChanged" FontFamily="Arial" VerticalContentAlignment="Stretch" Height="22" VerticalAlignment="Center"/>
+        <TextBox Grid.Column="2" Grid.Row="1" 
+            BorderBrush="#00ABADB3" Background="Transparent" Margin="32,23,149,22" TextAlignment="Center" TextChanged="wpfTextBoxAccell_TextChanged" FontFamily="Arial" FontWeight="Bold" VerticalAlignment="Center" Text="α = αg/g&#x9;"/>
+        <Button x:Name="wpfButtAnnulla" Content="Annulla" Grid.Column="5" HorizontalAlignment="Left" Height="28" Margin="36,5,0,0" Grid.Row="6" VerticalAlignment="Top" Width="90" BorderBrush="#00707070" Click="wpfButtAnnulla_Click"/>
+        <Button x:Name="wpfButtOk" Content="Ok" Grid.Column="5" HorizontalAlignment="Left" Height="28" Margin="144,5,0,0" Grid.Row="6" VerticalAlignment="Top" Width="90" BorderBrush="#00707070" Click="wpfButtOk_Click"/>
+
+    </Grid>
+</Window>

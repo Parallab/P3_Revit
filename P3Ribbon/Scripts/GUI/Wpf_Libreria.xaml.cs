@@ -53,7 +53,7 @@ namespace P3Ribbon.Scripts.Form
 
         private void WpfBottCaricaLibreria_Click(object sender, RoutedEventArgs e)
         {
-      
+
             _app.DocumentOpened -= new EventHandler<Autodesk.Revit.DB.Events.DocumentOpenedEventArgs>(App.Application_DocumentOpened);
 
 
@@ -100,33 +100,36 @@ namespace P3Ribbon.Scripts.Form
                     }
                     else
                     {
-                        //foreach (var item in cboMateriali.Items) //combobox wpf App.
-                        int i = 0;
-                        foreach (ComboBoxMember cbm in App.ribbCboMembers)
-                        {
-                            //cmbContent observaclletion che alimenta il combobox
+                        wpfCboMateriali.SelectedIndex = App.ribbCboMembers.IndexOf(App.rbbCboMateriali.Current);
 
-                            //if ( item.ID.IntegerValue == Materiale.IdInsulTipoPreferito.IntegerValue)
+                        //20201216
+                        //////foreach (var item in cboMateriali.Items) //combobox wpf App.
+                        ////int i = 0;
+                        ////foreach (ComboBoxMember cbm in App.ribbCboMembers)
+                        ////{
+                        ////    //cmbContent observaclletion che alimenta il combobox
 
-                            string cbm_nome_totale = cbm.Name; // nel name del combo box member abbiamo concatenato l id e lo spessore (ma perche c è lo spessore nel name? non leggevamo lo spessore dal parametro di tipo dell isoalnte?)
-                            int indice_ = cbm_nome_totale.IndexOf("_");
-                            int cbm_id = Int32.Parse(cbm_nome_totale.Substring(0, indice_));
-                            if (cbm_id == Materiale.IdInsulTipoPreferito.IntegerValue)
-                            {
-                                //sono state create due classi diverse, bisogna collegarle
-                                wpfCboMateriali.SelectedIndex = i;
-                            }
+                        ////    //if ( item.ID.IntegerValue == Materiale.IdInsulTipoPreferito.IntegerValue)
 
-                            i++;
+                        ////    string cbm_nome_totale = cbm.Name; // nel name del combo box member abbiamo concatenato l id e lo spessore (ma perche c è lo spessore nel name? non leggevamo lo spessore dal parametro di tipo dell isoalnte?)
+                        ////    int indice_ = cbm_nome_totale.IndexOf("_");
+                        ////    int cbm_id = Int32.Parse(cbm_nome_totale.Substring(0, indice_));
+                        ////    if (cbm_id == Materiale.IdInsulTipoPreferito.IntegerValue)
+                        ////    {
+                        ////        //sono state create due classi diverse, bisogna collegarle
+                        ////        wpfCboMateriali.SelectedIndex = i;
+                        ////    }
 
-                        }
-
-
+                        ////    i++;
 
                     }
+
+
+
                 }
             }
         }
+
 
         private void cboMateriali_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -136,24 +139,6 @@ namespace P3Ribbon.Scripts.Form
         private void wpfBottScegliMateriale_Click(object sender, RoutedEventArgs e)
         {
             ImpostaMateriale();
-            this.Close();
-        }
-
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (wpfCboMateriali.Items.Count > 1) // da sistemare, perche appena all inizio aggiungo la stringa "caricare la libreria prima di scegliere il materiae" il comcbobox si aggiorna e parte sto metodo, ma se non ho ancora le famiglie non voglio che mi imposti il materiale!
-                                              // serve qualcosa di piu intelligente , il etodo ceh serve anche altrove che controlla se ho caricato, magari anceh solo con un booleano? o controlare velocemente tra i tip se c è QUEL PARAMETRO NASCOSTO CHE DOBBIAMO CREARE
-            {
-                ImpostaMateriale();
-            }
-        }
-
-        private void ImpostaMateriale()
-        {
-            Materiale obj = wpfCboMateriali.SelectedItem as Materiale;
-            Materiale.IdInsulTipoPreferito = obj.ID;
-            Materiale.SpessoreIsolante = obj.spessore;
-
             //combobox wpf -> combobox ribbon
             if (App.ribbCboMembers != null) //la prima volta che pocarico la libreria parte uesto ma non ho ancora scritto comboboxMembers_ribbon quindi giusto che salti
             {
@@ -168,7 +153,23 @@ namespace P3Ribbon.Scripts.Form
                     }
                 }
             }
+            this.Close();
+        }
 
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            //if (wpfCboMateriali.Items.Count > 1) // da sistemare, perche appena all inizio aggiungo la stringa "caricare la libreria prima di scegliere il materiae" il comcbobox si aggiorna e parte sto metodo, ma se non ho ancora le famiglie non voglio che mi imposti il materiale!
+            //                                  // serve qualcosa di piu intelligente , il etodo ceh serve anche altrove che controlla se ho caricato, magari anceh solo con un booleano? o controlare velocemente tra i tip se c è QUEL PARAMETRO NASCOSTO CHE DOBBIAMO CREARE
+            //{
+            //    ImpostaMateriale();
+            //}
+        }
+
+        private void ImpostaMateriale()
+        {
+            Materiale obj = wpfCboMateriali.SelectedItem as Materiale;
+            Materiale.IdInsulTipoPreferito = obj.ID;
+            Materiale.SpessoreIsolante = obj.spessore;
         }
 
         public void Dispose()
@@ -177,3 +178,5 @@ namespace P3Ribbon.Scripts.Form
         }
     }
 }
+
+

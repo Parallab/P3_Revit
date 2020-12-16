@@ -47,5 +47,11 @@ namespace P3Ribbon.Scripts
             string PercorsoRisorsa = PathAssembly.Replace("P3Ribbon.dll", "P3_Resources\\" + NomeFile);
             return PercorsoRisorsa;
         }
+
+        public static void CambiaSplitButton(SplitButton sb, int i)
+        {
+            IList<PushButton> spBottoni = sb.GetItems();
+            sb.CurrentButton = spBottoni[i];
+        }
     }
 }

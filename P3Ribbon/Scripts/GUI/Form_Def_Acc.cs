@@ -67,10 +67,10 @@ namespace P3Ribbon.Scripts
         {
             ok_premuto = true;
 
-            Par_Sismici.classe = classe_form;
-            Par_Sismici.eng = eng_form;
-            Par_Sismici.vita = vita_form;
-            Par_Sismici.zona = zona_form;
+            ParSismici.classe = classe_form;
+            ParSismici.eng = eng_form;
+            ParSismici.vita = vita_form;
+            ParSismici.zona = zona_form;
 
             this.Close();
         }

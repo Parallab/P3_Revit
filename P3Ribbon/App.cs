@@ -25,6 +25,7 @@ namespace P3Ribbon
 
 
         public static ComboBox rbbCboMateriali;
+        public static SplitButton sb1;
         public static IList<ComboBoxMember> ribbCboMembers;
         public enum Lingua
         {
@@ -127,7 +128,7 @@ namespace P3Ribbon
             // SISMA
             RibbonPanel ribbonPanelSisma = a.CreateRibbonPanel(tabName, "Sisma");
             #region bottone: parametri sismici
-            PushButtonData b1Data = new PushButtonData("cmdParsism", "Parametri" + System.Environment.NewLine + "  Sisimici  ", thisAssemblyPath, "P3Ribbon.Par_Sismici");
+            PushButtonData b1Data = new PushButtonData("cmdParsism", "Parametri" + System.Environment.NewLine + "  Sisimici  ", thisAssemblyPath, "P3Ribbon.ParSismici");
             PushButton pb1 = ribbonPanelSisma.AddItem(b1Data) as PushButton;
             pb1.ToolTip = "Compilazione dei parametri sismici per dimensionare le staffe dei condotti";
             BitmapImage pb1Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/config_sism.png"));
@@ -328,14 +329,14 @@ namespace P3Ribbon
 
         private static void AggiungiSplitButtonLingua(RibbonPanel rp, string Assemblypath)
         {
-            PushButtonData sb1BOne = new PushButtonData("cmdLinguaIT", "Italiano", Assemblypath, "P3Ribbon.Scripts.CambaLingua");
+            PushButtonData sb1BOne = new PushButtonData("cmdLinguaIT", "Italiano", Assemblypath, "P3Ribbon.Scripts.Lingua");
             sb1BOne.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_LinguaItaliana.png"));
 
-            PushButtonData sb1BTwo = new PushButtonData("cmdLinguaENG", "Inglese", Assemblypath, "P3Ribbon.Scripts.CambaLingua");
+            PushButtonData sb1BTwo = new PushButtonData("cmdLinguaENG", "Inglese", Assemblypath, "P3Ribbon.Scripts.Lingua");
             sb1BTwo.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_LinguaInglese.png"));
 
             SplitButtonData sbd1 = new SplitButtonData("splitButtonLingua", "Split");
-            SplitButton sb1 = rp.AddItem(sbd1) as SplitButton;
+            sb1 = rp.AddItem(sbd1) as SplitButton;
             sb1.AddPushButton(sb1BOne);
             sb1.AddPushButton(sb1BTwo);
 

@@ -15,7 +15,7 @@ namespace P3Ribbon
 {
 
     [Transaction(TransactionMode.Manual)]
-    class Par_Sismici : IExternalCommand
+    class ParSismici : IExternalCommand
     {
         public static int classe;
         public static bool eng;
