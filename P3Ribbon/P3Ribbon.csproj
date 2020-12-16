@@ -101,7 +101,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>str_IT.resx</DependentUpon>
     </Compile>
-    <Compile Include="Scripts\ZZZ_AggiornaComboBox.cs" />
     <Compile Include="Scripts\CambiaMateriale.cs" />
     <Compile Include="Scripts\ApriAbaco.cs" />
     <Compile Include="Scripts\Form\Form_Impostazioni.cs">
@@ -116,9 +115,6 @@
     <Compile Include="Scripts\Form\Form_Quantità.Designer.cs">
       <DependentUpon>Form_Quantità.cs</DependentUpon>
     </Compile>
-    <Compile Include="Scripts\Form\UserControl1.xaml.cs">
-      <DependentUpon>UserControl1.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Scripts\Form\Wpf_Libreria.xaml.cs">
       <DependentUpon>Wpf_Libreria.xaml</DependentUpon>
     </Compile>
@@ -126,7 +122,7 @@
       <DependentUpon>Wpf_info.xaml</DependentUpon>
     </Compile>
     <Compile Include="Scripts\Materiale.cs" />
-    <Compile Include="Scripts\CambaLingua.cs" />
+    <Compile Include="Scripts\Lingua.cs" />
     <Compile Include="Scripts\DynamicModelUpdater.cs" />
     <Compile Include="Scripts\Supporto.cs" />
     <Compile Include="Scripts\CreaCanale.cs" />
@@ -151,7 +147,7 @@
     <Compile Include="Scripts\Form\Form_Libreria.Designer.cs">
       <DependentUpon>Form_Libreria.cs</DependentUpon>
     </Compile>
-    <Compile Include="Scripts\Migra_AreaIsolamento.cs" />
+    <Compile Include="Scripts\MigraAreaIsolamento.cs" />
     <Compile Include="Scripts\Par_Sismici.cs" />
     <Compile Include="Scripts\Staffaggio.cs" />
     <Compile Include="Scripts\TabellaExcel.cs" />
@@ -272,10 +268,6 @@
     <Folder Include="FilesUploads\" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Scripts\Form\UserControl1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Scripts\Form\Wpf_Libreria.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

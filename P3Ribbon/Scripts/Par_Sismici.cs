@@ -29,22 +29,22 @@ namespace P3Ribbon
             UIDocument uiDoc = uiApp.ActiveUIDocument;
             Document doc = uiDoc.Document;
             Application app = uiApp.Application;
-
+            IList<Element> projInfos = new FilteredElementCollector(doc).OfClass(typeof(ProjectInfo)).ToElements();
+            Element projInfo = projInfos[0];
 
             Scripts.Form_Def_Acc frm = new Scripts.Form_Def_Acc();
             using (frm)
             {
-                using (var t = new Transaction(doc, "UsingFrmParam"))
+                using (var t = new Transaction(doc, "Form parametri sismici"))
                 {
                     bool parametri_presenti = false;
 
-                    IList<Element> proj_infos = new FilteredElementCollector(doc).OfClass(typeof(ProjectInfo)).ToElements();
-                    Element proj_info = proj_infos[0];
+                  
 
-                    Parameter Cu = proj_info.LookupParameter("P3_InfoProg_ClasseUso");
-                    Parameter En = proj_info.LookupParameter("P3_InfoProg_Eng");
-                    Parameter Vn = proj_info.LookupParameter("P3_InfoProg_VitaNominale");
-                    Parameter Zs = proj_info.LookupParameter("P3_InfoProg_ZonaSismica");
+                    Parameter Cu = projInfo.LookupParameter("P3_InfoProg_ClasseUso");
+                    Parameter En = projInfo.LookupParameter("P3_InfoProg_Eng");
+                    Parameter Vn = projInfo.LookupParameter("P3_InfoProg_VitaNominale");
+                    Parameter Zs = projInfo.LookupParameter("P3_InfoProg_ZonaSismica");
 
 
                     if (Cu == null || En == null || Vn == null || Zs == null)
@@ -74,7 +74,7 @@ namespace P3Ribbon
                         //t.Commit();
                         if (Form_Def_Acc.ok_premuto == true)
                         {
-                            Proj_Info_Scrivi_Parametri(classe, eng, vita, zona, doc);
+                            ProjInfoImpostaParametri(classe, eng, vita, zona, doc);
                         }
                         else
                         {
@@ -96,14 +96,11 @@ namespace P3Ribbon
 
         }
 
-        public static void Proj_Info_Scrivi_Parametri(int _classe, bool _eng, int _vita, int _zona, Document _doc)
+        public static void ProjInfoImpostaParametri(int _classe, bool _eng, int _vita, int _zona, Document _doc)
         {
             if (Form_Def_Acc.ok_premuto == true)
             {
-                //using (var t = new Transaction(_doc, "Proj_Info_Scrivi_Parametri"))
-                //{
-
-                //t.Start();
+         
                 IList<Element> proj_infos = new FilteredElementCollector(_doc).OfClass(typeof(ProjectInfo)).ToElements();
                 Element proj_info = proj_infos[0];
 
@@ -111,19 +108,12 @@ namespace P3Ribbon
                 //proj_info.LookupParameter("P3_InfoProg_Eng").Set(_eng);
                 proj_info.LookupParameter("P3_InfoProg_VitaNominale").Set(_vita);
                 proj_info.LookupParameter("P3_InfoProg_ZonaSismica").Set(_zona);
-                //t.Commit();
-                //}
+          
             }
 
         }
 
-        public static string TrovaPercorsoRisorsa(string NomeFile)
-        {
-            Assembly a = Assembly.GetExecutingAssembly();
-            string PathAssembly = Assembly.GetExecutingAssembly().Location;
-            string PercorsoRisorsa = PathAssembly.Replace("P3Ribbon.dll", "P3_Resources\\" + NomeFile);
-            return PercorsoRisorsa;
-        }
+    
 
 
         static public bool CreaParametriCondivisi(Document doc, Application app)
@@ -137,7 +127,7 @@ namespace P3Ribbon
             string originalFile = app.SharedParametersFilename;
             //RISOLVERE E TROVARE IL MODO PER PRENDERSELO DA VISUAL STUDIO\
 
-            string tempfie = TrovaPercorsoRisorsa("17017_ParamCondivisi.txt");
+            string tempfie = Supporto.TrovaPercorsoRisorsa("17017_ParamCondivisi.txt");
 
             try
             {

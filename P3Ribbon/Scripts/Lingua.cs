@@ -13,11 +13,11 @@ using Application = Autodesk.Revit.ApplicationServices.Application;
 
 namespace P3Ribbon.Scripts
 {
-    
+
     [Transaction(TransactionMode.Manual)]
-    class CambaLingua : IExternalCommand
+    class Lingua : IExternalCommand
     {
-        
+
         // private static UIControlledApplication UICapp;
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
@@ -66,7 +66,7 @@ namespace P3Ribbon.Scripts
                         try
                         {
                             //bottone.ItemText = resourceSet_arrivo.GetObject(bottone.Name).ToString();
-                            bottone.ItemText = App.res_valore(bottone.Name,lingua_arrivo);
+                            bottone.ItemText = App.res_valore(bottone.Name, lingua_arrivo);
                             //bottone.ToolTip = resourceSet_arrivo.GetObject(bottone.Name+"_tt").ToString();
                             bottone.ToolTip = App.res_valore(bottone.Name + "_tt", lingua_arrivo);
                         }
@@ -81,8 +81,6 @@ namespace P3Ribbon.Scripts
                 {
 
                 }
-
-
             }
             App.lingua_plugin = lingua_arrivo;
         }

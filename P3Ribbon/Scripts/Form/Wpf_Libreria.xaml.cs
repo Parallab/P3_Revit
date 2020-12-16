@@ -25,87 +25,84 @@ namespace P3Ribbon.Scripts.Form
     public partial class Wpf_Libreria : Window, IDisposable
     {
         List<Materiale> list = new List<Materiale>();
-        ObservableCollection<Materiale> cmbContent = new ObservableCollection<Materiale>();
-        private Document m_doc;
-        private Application m_app;
-        private UIDocument m_UiDoc;
-        UIApplication m_uiApp;
+        ObservableCollection<Materiale> wpfcboItems = new ObservableCollection<Materiale>();
+        private Document _doc;
+        private Application _app;
+        private UIDocument _UiDoc;
+        UIApplication _uiApp;
 
         public Wpf_Libreria(ExternalCommandData commandData)
         {
-            m_uiApp = commandData.Application;
-            m_app = m_uiApp.Application;
-            m_UiDoc = m_uiApp.ActiveUIDocument;
-            m_doc = m_UiDoc.Document;
+            _uiApp = commandData.Application;
+            _app = _uiApp.Application;
+            _UiDoc = _uiApp.ActiveUIDocument;
+            _doc = _UiDoc.Document;
 
             InitializeComponent();
 
 
             //controllare se qualche oaran globale è gia compilato
 
-            Form_Libreria_Combobox_Aggiorna();
-            if (cboMateriali.Items.Count == 0)
+            WpfAggiornaLibreria();
+            if (wpfCboMateriali.Items.Count == 0)
             {
-                cboMateriali.Items.Add("Caricare la libreria prima di scegliere il materiale");
-                cboMateriali.SelectedIndex = 0;
+                wpfCboMateriali.Items.Add("Caricare la libreria prima di scegliere il materiale");
+                wpfCboMateriali.SelectedIndex = 0;
             }
         }
 
-        private void buttCaricLibreria_Click(object sender, RoutedEventArgs e)
+        private void WpfBottCaricaLibreria_Click(object sender, RoutedEventArgs e)
         {
-            var test = 1;
-            //Form.UserControl1 frm = new Form.UserControl1();
-            //frm.ShowDialog();
-            m_app.DocumentOpened -= new EventHandler<Autodesk.Revit.DB.Events.DocumentOpenedEventArgs>(App.Application_DocumentOpened);
+      
+            _app.DocumentOpened -= new EventHandler<Autodesk.Revit.DB.Events.DocumentOpenedEventArgs>(App.Application_DocumentOpened);
 
-            // m_uiApp.DialogBoxShowing += new EventHandler(dismissFloorQuestion);
 
             // if non è stato già fatto, cioè fare un metodoche controlla se nei tipi del mio documento c è QUEL PARAMETRO NASCOSTO CHE USIAMO X IDENTIFICARE IL TUTTO...
             //{
             using (var t = new Transaction(Supporto.doc, "Carica libreria"))
             {
                 t.Start();
-                TrasferisciStandard.TrasferisciTipiDoc(m_app, m_doc);
+                TrasferisciStandard.TrasferisciTipiDoc(_app, _doc);
                 //Materiale.PreAggiorna(m_doc); //lo faccio gia andare in form_libreriac_combobox_aggiorna:  
-                Form_Libreria_Combobox_Aggiorna();
+                WpfAggiornaLibreria();
                 //TEMP DA SISTEARE CON BOOLEANI
                 try
                 {
-                    App.comboboxMembers_ribbon = App.comboMat.AddItems(Materiale.comboBoxMemberDatas);
+                    App.ribbCboMembers = App.rbbCboMateriali.AddItems(Materiale.comboBoxMemberDatas);
                 }
                 catch
                 { }
                 // this.Close();
                 //}
-                m_doc.Regenerate();
+                _doc.Regenerate();
                 t.Commit();
             }
 
-            m_app.DocumentOpened += new EventHandler<Autodesk.Revit.DB.Events.DocumentOpenedEventArgs>(App.Application_DocumentOpened);
+            _app.DocumentOpened += new EventHandler<Autodesk.Revit.DB.Events.DocumentOpenedEventArgs>(App.Application_DocumentOpened);
         }
 
 
-        public void Form_Libreria_Combobox_Aggiorna()
+        public void WpfAggiornaLibreria()
         {
-            cmbContent = Materiale.PreAggiorna(m_doc);
-            if (cmbContent != null)
+            wpfcboItems = Materiale.PreAggiorna(_doc);
+            if (wpfcboItems != null)
             {
-                if (cmbContent.Count > 0)
+                if (wpfcboItems.Count > 0)
                 {
-                    cboMateriali.Items.Clear();
-                    cboMateriali.ItemsSource = cmbContent;
-                    cboMateriali.DisplayMemberPath = "Name";
+                    wpfCboMateriali.Items.Clear();
+                    wpfCboMateriali.ItemsSource = wpfcboItems;
+                    wpfCboMateriali.DisplayMemberPath = "name";
 
                     // combobox ribbon -> combobox wpf
                     if (Materiale.IdInsulTipoPreferito == null)
                     {
-                        cboMateriali.SelectedIndex = 0;
+                        wpfCboMateriali.SelectedIndex = 0;
                     }
                     else
                     {
                         //foreach (var item in cboMateriali.Items) //combobox wpf App.
                         int i = 0;
-                        foreach (ComboBoxMember cbm in App.comboboxMembers_ribbon)
+                        foreach (ComboBoxMember cbm in App.ribbCboMembers)
                         {
                             //cmbContent observaclletion che alimenta il combobox
 
@@ -117,7 +114,7 @@ namespace P3Ribbon.Scripts.Form
                             if (cbm_id == Materiale.IdInsulTipoPreferito.IntegerValue)
                             {
                                 //sono state create due classi diverse, bisogna collegarle
-                                cboMateriali.SelectedIndex = i;
+                                wpfCboMateriali.SelectedIndex = i;
                             }
 
                             i++;
@@ -136,7 +133,7 @@ namespace P3Ribbon.Scripts.Form
 
         }
 
-        private void buttScegliMateriale_Click(object sender, RoutedEventArgs e)
+        private void wpfBottScegliMateriale_Click(object sender, RoutedEventArgs e)
         {
             ImpostaMateriale();
             this.Close();
@@ -144,7 +141,7 @@ namespace P3Ribbon.Scripts.Form
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cboMateriali.Items.Count > 1) // da sistemare, perche appena all inizio aggiungo la stringa "caricare la libreria prima di scegliere il materiae" il comcbobox si aggiorna e parte sto metodo, ma se non ho ancora le famiglie non voglio che mi imposti il materiale!
+            if (wpfCboMateriali.Items.Count > 1) // da sistemare, perche appena all inizio aggiungo la stringa "caricare la libreria prima di scegliere il materiae" il comcbobox si aggiorna e parte sto metodo, ma se non ho ancora le famiglie non voglio che mi imposti il materiale!
                                               // serve qualcosa di piu intelligente , il etodo ceh serve anche altrove che controlla se ho caricato, magari anceh solo con un booleano? o controlare velocemente tra i tip se c è QUEL PARAMETRO NASCOSTO CHE DOBBIAMO CREARE
             {
                 ImpostaMateriale();
@@ -153,21 +150,21 @@ namespace P3Ribbon.Scripts.Form
 
         private void ImpostaMateriale()
         {
-            Materiale obj = cboMateriali.SelectedItem as Materiale;
+            Materiale obj = wpfCboMateriali.SelectedItem as Materiale;
             Materiale.IdInsulTipoPreferito = obj.ID;
-            Materiale.SpessoreIsolante = obj.Spessore;
+            Materiale.SpessoreIsolante = obj.spessore;
 
             //combobox wpf -> combobox ribbon
-            if (App.comboboxMembers_ribbon != null) //la prima volta che pocarico la libreria parte uesto ma non ho ancora scritto comboboxMembers_ribbon quindi giusto che salti
+            if (App.ribbCboMembers != null) //la prima volta che pocarico la libreria parte uesto ma non ho ancora scritto comboboxMembers_ribbon quindi giusto che salti
             {
-                foreach (ComboBoxMember cbm in App.comboboxMembers_ribbon)
+                foreach (ComboBoxMember cbm in App.ribbCboMembers)
                 {
                     string cbm_nome_totale = cbm.Name; // nel name del combo box member abbiamo concatenato l id e lo spessore (ma perche c è lo spessore nel name? non leggevamo lo spessore dal parametro di tipo dell isoalnte?)
                     int indice_ = cbm_nome_totale.IndexOf("_");
                     int cbm_id = Int32.Parse(cbm_nome_totale.Substring(0, indice_));
                     if (cbm_id == Materiale.IdInsulTipoPreferito.IntegerValue)
                     {
-                        App.comboMat.Current = cbm;
+                        App.rbbCboMateriali.Current = cbm;
                     }
                 }
             }

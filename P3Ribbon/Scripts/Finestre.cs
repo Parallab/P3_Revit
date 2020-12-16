@@ -13,7 +13,6 @@ namespace P3Ribbon.Scripts
     [Transaction(TransactionMode.Manual)]
     class FinestraInfo : IExternalCommand
     {
-
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             UIApplication uiApp = commandData.Application;
@@ -86,7 +85,7 @@ namespace P3Ribbon.Scripts
     }
 
     [Transaction(TransactionMode.Manual)]
-    class WPF : IExternalCommand
+    class FinestraImpostazioni : IExternalCommand
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
@@ -95,8 +94,9 @@ namespace P3Ribbon.Scripts
             Document doc = uiDoc.Document;
             Application app = uiApp.Application;
 
-            Scripts.Form.Wpf_info wps = new Form.Wpf_info(commandData);
-            wps.ShowDialog();
+            Scripts.Form.Wpf_info wpf = new Form.Wpf_info(commandData);
+
+            wpf.ShowDialog();
 
             return Result.Succeeded;
         }

@@ -25,8 +25,8 @@ namespace P3Ribbon.Scripts
             Document doc = uiDoc.Document;
             Element nlist = null;
 
-            ViewSchedule viewSchedule = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.Name == "P3 - Duct Fitting Schedule - All") as ViewSchedule;
-            uiDoc.ActiveView = viewSchedule;
+            ViewSchedule vistaAbacoP3All = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.Name == "P3 - Duct Fitting Schedule - All") as ViewSchedule;
+            uiDoc.ActiveView = vistaAbacoP3All;
 
             #region TEST CREO UN NUOVO ABACO
             //TEST CREO UN NUOVO ABACO///
@@ -77,8 +77,8 @@ namespace P3Ribbon.Scripts
             Document doc = uiDoc.Document;
 
 
-            ViewSchedule viewSchedule = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.Name == "P3 - Duct Hangers") as ViewSchedule;
-            uiDoc.ActiveView = viewSchedule;
+            ViewSchedule vistaAbacoP3pts = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.Name == "P3 - Duct Hangers") as ViewSchedule;
+            uiDoc.ActiveView = vistaAbacoP3pts;
 
             return Result.Succeeded;
         }
@@ -96,20 +96,20 @@ namespace P3Ribbon.Scripts
             Document doc = uiDoc.Document;
             Application app = uiApp.Application;
 
-            using (var t = new Transaction(doc, "Calcolo area"))
+            using (var t = new Transaction(doc, "Migra Parametro Area Isolamento"))
             {
                 t.Start();
-                Migra_AreaIsolamento.Controlla_Parametri(doc, app);
-                if (Migra_AreaIsolamento.parametri_presenti == true)
+                MigraAreaIsolamento.ControllaParametriSeEsistenti(doc, app);
+                if (MigraAreaIsolamento.parPresenti == true)
                 {
-                    Migra_AreaIsolamento.MigraParaetriIsolamento(doc);
+                    MigraAreaIsolamento.MigraParaetriIsolamento(doc);
                 }
                 t.Commit();
             }
 
 
-            ViewSchedule viewSchedule = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.Name == "P3 - Duct Insulation Schedule - DYNAMO") as ViewSchedule;
-            uiDoc.ActiveView = viewSchedule;
+            ViewSchedule vistaAbacoP3insul = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.Name == "P3 - Duct Insulation Schedule - DYNAMO") as ViewSchedule;
+            uiDoc.ActiveView = vistaAbacoP3insul;
 
             return Result.Succeeded;
         }
@@ -126,13 +126,12 @@ namespace P3Ribbon.Scripts
             UIDocument uiDoc = uiApp.ActiveUIDocument;
             Document doc = uiDoc.Document;
             Application app = uiApp.Application;
-            ViewSchedule viewSchedule;
-            
+
 
             //if (App.lingua_plugin == App.Lingua.ITA)
             //{
-                viewSchedule = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.Name == "P3 - Duct Hangers - Components - ITA") as ViewSchedule;
-                uiDoc.ActiveView = viewSchedule;
+            ViewSchedule vistaAbacoP3staff = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.Name == "P3 - Duct Hangers - Components - ITA") as ViewSchedule;
+                uiDoc.ActiveView = vistaAbacoP3staff;
             //}
             //else 
             //{

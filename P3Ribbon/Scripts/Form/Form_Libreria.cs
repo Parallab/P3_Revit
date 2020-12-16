@@ -60,7 +60,7 @@ namespace P3Ribbon.Scripts.Form
             //TEMP DA SISTEARE CON BOOLEANI
             try
             {
-                App.comboMat.AddItems(Materiale.comboBoxMemberDatas);
+                App.rbbCboMateriali.AddItems(Materiale.comboBoxMemberDatas);
             }
             catch
             { }
@@ -95,7 +95,7 @@ namespace P3Ribbon.Scripts.Form
             // SISTEMARE
             try
             {
-                //App.comboMat.Current =  //cerca quello con l id uguale a quello appena selezionato tra i combobox presenti
+                //App.rbCboMat.Current =  //cerca quello con l id uguale a quello appena selezionato tra i combobox presenti
             }
             catch
             {
@@ -113,7 +113,7 @@ namespace P3Ribbon.Scripts.Form
         {
             Materiale obj = cboMateriali.SelectedItem as Materiale;
             Materiale.IdInsulTipoPreferito = obj.ID;
-            Materiale.SpessoreIsolante = obj.Spessore;
+            Materiale.SpessoreIsolante = obj.spessore;
             this.Close();
         }
 

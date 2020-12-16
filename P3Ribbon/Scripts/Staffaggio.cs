@@ -38,7 +38,7 @@ namespace P3Ribbon.Scripts
             //ControllaParametri(doc, app);
 
 
-            Supporto.ValoriTabella = TabellaExcel.leggitabella(doc);
+            Supporto.ValoriTabella = TabellaExcel.LeggiTabella(doc);
             List<Condotto> Condotti = FiltraCondottiCortiVert(doc, uiDoc);
             AttivaFamiglia(doc);
 
@@ -168,8 +168,9 @@ namespace P3Ribbon.Scripts
         {
             public bool AllowElement(Element element)
             {
+                double catId = element.Category.Id.IntegerValue;
 
-                if (element.Category.Name == "Condotto")
+                if (catId == Supporto.doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctFitting).Id.IntegerValue)
                 {
                     return true;
                 }

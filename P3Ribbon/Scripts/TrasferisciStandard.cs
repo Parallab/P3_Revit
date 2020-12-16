@@ -32,41 +32,38 @@ namespace P3Ribbon.Scripts
         public static void TrasferisciTipiDoc(Application app, Document doc)
         {
 
-            List<string> TipiPresenti_nomi = new List<string>();
+            List<string> nomiTipiPresenti = new List<string>();
 
-            FilteredElementCollector CTypes_presenti = new FilteredElementCollector(doc).WherePasses(Supporto.CatFilterDuctAndInsul).WhereElementIsElementType();
+            FilteredElementCollector collTipiPresenti = new FilteredElementCollector(doc).WherePasses(Supporto.CatFilterDuctAndInsul).WhereElementIsElementType();
 
             // guardo tutti i tipi che mi interessamno presenti nel mio doc
-            foreach (ElementType type in CTypes_presenti)
+            foreach (ElementType type in collTipiPresenti)
             {
                 string nome = type.Name;
                 if (nome.StartsWith("P3"))
                 {
-                    TipiPresenti_nomi.Add(nome);
+                    nomiTipiPresenti.Add(nome);
                 }
             }
 
 
             // guardo i tipi nel documento template
-            ICollection<ElementId> copytypeids = new Collection<ElementId>();
+            ICollection<ElementId> IdTipiDaCopiare = new Collection<ElementId>();
 
-            Document docSource = app.OpenDocumentFile(Par_Sismici.TrovaPercorsoRisorsa("P3 - Duct system template20.rte"));
-            FilteredElementCollector CSourceTypes = new FilteredElementCollector(docSource).WherePasses(Supporto.CatFilterDuctAndInsul).WhereElementIsElementType();
+            Document docSource = app.OpenDocumentFile(Supporto.TrovaPercorsoRisorsa("P3 - Duct system template20.rte"));
+            FilteredElementCollector collTipiRisorsa = new FilteredElementCollector(docSource).WherePasses(Supporto.CatFilterDuctAndInsul).WhereElementIsElementType();
             CopyPasteOptions option = new CopyPasteOptions();
             option.SetDuplicateTypeNamesHandler(new HideAndAcceptDuplicateTypeNamesHandler());
 
-
-
-
-            foreach (ElementType type in CSourceTypes)
+            foreach (ElementType type in collTipiRisorsa)
             {
                 string nome = type.Name;
                 if (nome.StartsWith("P3"))
                 {
                     // contollRE SE ESISTE NEL DOC
-                    if (!(TipiPresenti_nomi.Contains(nome))) //perchè non va?
+                    if (!(nomiTipiPresenti.Contains(nome))) //perchè non va?
                     {
-                        copytypeids.Add(type.Id);
+                        IdTipiDaCopiare.Add(type.Id);
                     }
 
                 }
@@ -75,34 +72,34 @@ namespace P3Ribbon.Scripts
             //importare gli abachi
 
             //abachi presenti nel doc source
-            IList<Element> sc_coll = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Schedules).WhereElementIsNotElementType().ToElements();
-            List<string> AbachiPresenti_nomi = new List<string>();
+            IList<Element> collAbachiPresenti = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Schedules).WhereElementIsNotElementType().ToElements();
+            List<string> nomiAbachiPresenti = new List<string>();
 
 
 
-            foreach (Element schedule in sc_coll)
+            foreach (Element schedule in collAbachiPresenti)
             {
                 string nome = schedule.Name;
                 if (nome.StartsWith("P3"))
                 {
-                    AbachiPresenti_nomi.Add(nome);
+                    nomiAbachiPresenti.Add(nome);
 
                 }
             }
 
             //leggo gli abachi nella risorsa
-            ICollection<ElementId> copyscheduleids = new Collection<ElementId>();
-            IList<Element> sc_sources = new FilteredElementCollector(docSource).OfCategory(BuiltInCategory.OST_Schedules).WhereElementIsNotElementType().ToElements();
+            ICollection<ElementId> collAbachiRisorsa = new Collection<ElementId>();
+            IList<Element> AbachiRisorsa = new FilteredElementCollector(docSource).OfCategory(BuiltInCategory.OST_Schedules).WhereElementIsNotElementType().ToElements();
 
-            foreach (Element schedule in sc_sources)
+            foreach (Element abaco in AbachiRisorsa)
             {
-                string nome = schedule.Name;
+                string nome = abaco.Name;
                 if (nome.StartsWith("P3"))
                 {
                     // contollRE SE ESISTE NEL DOC
-                    if (!(AbachiPresenti_nomi.Contains(nome))) //perchè non va?
+                    if (!(nomiAbachiPresenti.Contains(nome))) //perchè non va?
                     {
-                        copyscheduleids.Add(schedule.Id);
+                        collAbachiRisorsa.Add(abaco.Id);
                     }
 
                 }
@@ -111,7 +108,7 @@ namespace P3Ribbon.Scripts
             //gestione delle eccezioni se sono già presenti i tipi e le viste
             try
             {
-                ICollection<ElementId> ids = ICollectionIds_Estendi(copytypeids, copyscheduleids);
+                ICollection<ElementId> ids = ICollectionIds_Estendi(IdTipiDaCopiare, collAbachiRisorsa);
                 ElementTransformUtils.CopyElements(docSource, ids, doc, Transform.Identity, option);
                 ids.Clear();
             }
@@ -119,8 +116,8 @@ namespace P3Ribbon.Scripts
             {
                 
             }
-            copyscheduleids.Clear();
-            copytypeids.Clear();
+            collAbachiRisorsa.Clear();
+            IdTipiDaCopiare.Clear();
             docSource.Close(false);
         }
 

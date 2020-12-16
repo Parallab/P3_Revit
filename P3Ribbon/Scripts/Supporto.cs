@@ -10,6 +10,7 @@ using Autodesk.Revit.UI.Selection;
 using Autodesk.Revit.DB;
     
 using Application = Autodesk.Revit.ApplicationServices.Application;
+using System.Reflection;
 
 namespace P3Ribbon.Scripts
 {
@@ -39,5 +40,12 @@ namespace P3Ribbon.Scripts
         public static LogicalOrFilter CatFilterDuctAndInsul = CatFilter(true);
         public static LogicalOrFilter CatFilterDuctAndFitting = CatFilter(false);
 
+        public static string TrovaPercorsoRisorsa(string NomeFile)
+        {
+            Assembly a = Assembly.GetExecutingAssembly();
+            string PathAssembly = Assembly.GetExecutingAssembly().Location;
+            string PercorsoRisorsa = PathAssembly.Replace("P3Ribbon.dll", "P3_Resources\\" + NomeFile);
+            return PercorsoRisorsa;
+        }
     }
 }

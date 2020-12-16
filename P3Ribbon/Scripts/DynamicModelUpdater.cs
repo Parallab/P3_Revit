@@ -38,8 +38,8 @@ namespace P3Ribbon.Scripts
                     {
                         Element el = doc.GetElement(id);
                         string nome = "";
-                        // CONTOLLARE SE C é P3 NEL NOME OPPURE QUEI PARAMETI NASCOSTI...
 
+                        // CONTOLLARE SE C é P3 NEL NOME OPPURE QUEI PARAMETI NASCOSTI...
                         if (el.GetType() == typeof(Duct))
                         {
                             nome = doc.GetElement(el.GetTypeId()).Name;

@@ -18,8 +18,6 @@ namespace P3Ribbon.Scripts
     class CreaCanaleDinamico : IExternalCommand
     {
 
-        public static Document doc;
-        public static Application app;
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             UIApplication uiApp = commandData.Application;
@@ -27,17 +25,18 @@ namespace P3Ribbon.Scripts
             Document doc = uiDoc.Document;
             Application app = uiApp.Application;
             
-            DuctType DuctDynamicType = new FilteredElementCollector(doc).OfClass(typeof(DuctType)).FirstOrDefault(x => x.Name.Contains( "P3 - Preinsulated panels system - Dynamic")) as DuctType;
-            uiDoc.PostRequestForElementTypePlacement(DuctDynamicType);
+            DuctType ductDynamicType = new FilteredElementCollector(doc).OfClass(typeof(DuctType)).FirstOrDefault(x => x.Name.Contains( "P3 - Preinsulated panels system - Dynamic")) as DuctType;
 
-            using (Transaction t = new Transaction(doc, "CanaleDinamico"))
+            //richiedo che sia il prossimo tipo di default
+            uiDoc.PostRequestForElementTypePlacement(ductDynamicType);
+
+            using (Transaction t = new Transaction(doc, "Crea un canale di tipo dinamico"))
             {
 
-                t.Start(); //serve..sì
-              
-                RevitCommandId cmdid = RevitCommandId.LookupPostableCommandId(PostableCommand.Duct);
-                uiApp.PostCommand(cmdid);
-
+                t.Start(); 
+                
+                RevitCommandId cmdId = RevitCommandId.LookupPostableCommandId(PostableCommand.Duct);
+                uiApp.PostCommand(cmdId);
 
                 t.Commit();
             }
@@ -52,8 +51,6 @@ namespace P3Ribbon.Scripts
     class CreaCanaleScarpette : IExternalCommand
     {
 
-        public static Document doc;
-        public static Application app;
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             UIApplication uiApp = commandData.Application;
@@ -61,16 +58,18 @@ namespace P3Ribbon.Scripts
             Document doc = uiDoc.Document;
             Application app = uiApp.Application;
 
-            DuctType DuctDynamicType = new FilteredElementCollector(doc).OfClass(typeof(DuctType)).FirstOrDefault(x => x.Name.Contains("P3 - Preinsulated panels system - Tap")) as DuctType;
-            uiDoc.PostRequestForElementTypePlacement(DuctDynamicType);
+            DuctType ductTapType = new FilteredElementCollector(doc).OfClass(typeof(DuctType)).FirstOrDefault(x => x.Name.Contains("P3 - Preinsulated panels system - Tap")) as DuctType;
 
-            using (Transaction t = new Transaction(doc, "CanaleScrpetta"))
+            //richiedo che sia il prossimo tipo di default
+            uiDoc.PostRequestForElementTypePlacement(ductTapType);
+
+            using (Transaction t = new Transaction(doc, "Crea un canale di tipo scarpetta"))
             {
 
                 t.Start(); 
                 
-                RevitCommandId cmdid = RevitCommandId.LookupPostableCommandId(PostableCommand.Duct);
-                uiApp.PostCommand(cmdid);
+                RevitCommandId cmdId = RevitCommandId.LookupPostableCommandId(PostableCommand.Duct);
+                uiApp.PostCommand(cmdId);
 
 
                 t.Commit();

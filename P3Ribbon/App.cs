@@ -24,8 +24,8 @@ namespace P3Ribbon
         public static ControlledApplication Capp;
 
 
-        public static ComboBox comboMat;
-        public static IList<ComboBoxMember> comboboxMembers_ribbon;
+        public static ComboBox rbbCboMateriali;
+        public static IList<ComboBoxMember> ribbCboMembers;
         public enum Lingua
         {
             ITA = 0,
@@ -89,19 +89,18 @@ namespace P3Ribbon
             PushButtonData b11Data = new PushButtonData("cmdmateriale", "Cambia" + System.Environment.NewLine + "Materiale", thisAssemblyPath,"P3Ribbon.Scripts.CambiaMateriale");
 
 
-            IList<RibbonItem> MaerialeItems = ribbonPanelModellazione.AddStackedItems(b11Data, cbData);
+            IList<RibbonItem> ItemsMateriale = ribbonPanelModellazione.AddStackedItems(b11Data, cbData);
 
-            PushButton pb11 = MaerialeItems[0] as PushButton;
+            PushButton pb11 = ItemsMateriale[0] as PushButton;
             BitmapImage pb11LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Canale_Materiale.png"));
             pb11.LargeImage = pb11LargeImage;
             BitmapImage pb11Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Canale_Materiale16.png"));
             pb11.Image = pb11Image;
             pb11.ToolTip = "Cambia il materiale dei canali P3";
 
-
-            comboMat = MaerialeItems[1] as ComboBox; 
-            //comboboxMembers_ribbon = comboMat.AddItems(Materiale.comboBoxMemberDatas);
-            comboMat.CurrentChanged += new EventHandler<Autodesk.Revit.UI.Events.ComboBoxCurrentChangedEventArgs>(comboBx_CurrentChanged);
+            rbbCboMateriali = ItemsMateriale[1] as ComboBox; 
+            //comboboxMembers_ribbon = rbCboMat.AddItems(Materiale.comboBoxMemberDatas);
+            rbbCboMateriali.CurrentChanged += new EventHandler<Autodesk.Revit.UI.Events.ComboBoxCurrentChangedEventArgs>(comboBx_CurrentChanged);
 
             #endregion
 
@@ -185,7 +184,6 @@ namespace P3Ribbon
             IList<RibbonItem> InfoItems = ribbonPanelInfo.AddStackedItems(b4Data, b12Data);
 
             #region bottone: info
-
             PushButton pb4 = InfoItems[0] as PushButton;
             pb4.ToolTip = "Informazioni e contatti P3";
             BitmapImage pb4LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Info.png"));
@@ -193,15 +191,14 @@ namespace P3Ribbon
             BitmapImage pb4Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Info16.png"));
             pb4.Image = pb4Image;
             #endregion
-            #region impostazioni
 
+            #region impostazioni
             PushButton pb12 = InfoItems[1] as PushButton;
             pb12.ToolTip = "Impostazioni sull'applicativo P3";
             BitmapImage pb12LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_p3_inkscape_icona_Setting.png"));
             pb12.LargeImage = pb12LargeImage;
             BitmapImage pb12Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_p3_inkscape_icona_Setting16.png"));
             pb12.Image = pb12Image;
-
             #endregion
             #endregion
 
@@ -212,8 +209,8 @@ namespace P3Ribbon
 
         private static void comboBx_CurrentChanged(object sender, ComboBoxCurrentChangedEventArgs e)
         {
-            //var debug =  comboMat.Current;
-            string nome = comboMat.Current.Name;
+            //var debug =  rbCboMat.Current;
+            string nome = rbbCboMateriali.Current.Name;
             int indice_ = nome.IndexOf("_");
             Materiale.AggiornaTendinaRibbon(nome);
 
@@ -245,7 +242,6 @@ namespace P3Ribbon
 
             AddRibbonPanel(application);
             UICapp = application;
-
             //attiva i registri all'avvio di revit
             Scripts.DynamicModelUpdater updater = new Scripts.DynamicModelUpdater(application.ActiveAddInId);
             UpdaterRegistry.RegisterUpdater(updater);
@@ -277,7 +273,7 @@ namespace P3Ribbon
             try
             {
                 Materiale.PreAggiorna(doc);
-                comboboxMembers_ribbon = comboMat.AddItems(Materiale.comboBoxMemberDatas);
+                ribbCboMembers = rbbCboMateriali.AddItems(Materiale.comboBoxMemberDatas);
             }
             catch (Exception ex)
             {
@@ -297,7 +293,7 @@ namespace P3Ribbon
             try
             {
                 Materiale.PreAggiorna(doc);
-                comboboxMembers_ribbon = comboMat.AddItems(Materiale.comboBoxMemberDatas);
+                ribbCboMembers = rbbCboMateriali.AddItems(Materiale.comboBoxMemberDatas);
             }
             catch (Exception ex)
             {
@@ -360,7 +356,6 @@ namespace P3Ribbon
             sb2.AddPushButton(sb2BTwo);
 
         }
-
         private static void AggiungiSplitButtonElencostaff(RibbonPanel rp, string Assemblypath)
         {
             PushButtonData sb3BOne = new PushButtonData("cmdstaff", "Elenco" + System.Environment.NewLine + "Staffaggio", Assemblypath, "P3Ribbon.Scripts.ElencoStaffaggio");

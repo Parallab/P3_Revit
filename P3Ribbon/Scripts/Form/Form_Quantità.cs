@@ -30,10 +30,10 @@ namespace P3Ribbon.Scripts.Form
             using (var t = new Transaction(m_doc, "Calcolo area"))
             {
                 t.Start();
-                Migra_AreaIsolamento.Controlla_Parametri(m_doc, m_app);
-                if (Migra_AreaIsolamento.parametri_presenti == true)
+                MigraAreaIsolamento.ControllaParametriSeEsistenti(m_doc, m_app);
+                if (MigraAreaIsolamento.parPresenti == true)
                 {
-                    Migra_AreaIsolamento.MigraParaetriIsolamento(m_doc);
+                    MigraAreaIsolamento.MigraParaetriIsolamento(m_doc);
                 }
                 t.Commit();
             }
@@ -78,14 +78,14 @@ namespace P3Ribbon.Scripts.Form
            int iTipo = scheduleData[0].FindIndex(x => x == "Type");
            //int iPesoSchiuma = scheduleData[0].FindIndex(x => x == "Peso schiuma totale");
            //int iPesoPannelli =  scheduleData[0].FindIndex(x => x == "Peso pannello totale"); 
-           int iPesoMatRiciclato = scheduleData[0].FindIndex(x => x == "Peso materiale riciclato");
+           int iPesoMatRiciclato = scheduleData[0].FindIndex(x => x == "peso materiale riciclato");
             
             
             for (int i_r =3; i_r < scheduleData.Count; i_r++)
             {
                 List<string> riga = scheduleData[i_r];
 
-                listaQuantità.Add(new Materiale() {Name = riga[iTipo], Peso = $"{riga[iPesoMatRiciclato]}" });
+                listaQuantità.Add(new Materiale() {name = riga[iTipo], peso = $"{riga[iPesoMatRiciclato]}" });
             }
 
             foreach (var item in listaQuantità)
@@ -100,11 +100,11 @@ namespace P3Ribbon.Scripts.Form
             int n = 0;
             foreach (var Materiale in listaQuantità)
             {
-                if (int.TryParse(Materiale.Name, out n))
+                if (int.TryParse(Materiale.name, out n))
                 {
-                    AbacoQuantità.Rows.Add(nomeprecedente, Materiale.Peso);
+                    AbacoQuantità.Rows.Add(nomeprecedente, Materiale.peso);
                 }
-                nomeprecedente = Materiale.Name;
+                nomeprecedente = Materiale.name;
 
             }
                

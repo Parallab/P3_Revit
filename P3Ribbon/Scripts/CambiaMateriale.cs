@@ -18,8 +18,6 @@ namespace P3Ribbon.Scripts
     class CambiaMateriale : IExternalCommand
     {
         string msg = "Seleziona i canali a cui cambiare isolante";
-        private List<ElementId> P3InsulationTypeIds;
-
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
 
@@ -27,31 +25,27 @@ namespace P3Ribbon.Scripts
             UIDocument uiDoc = uiApp.ActiveUIDocument;
             Document doc = uiDoc.Document;
             Application app = uiApp.Application;
-            Element Insualtion;
-            ElementId CondottoId;
+            ElementId ductId;
             List<ElementId> InsulationTypeIds;
             double spiso = Materiale.SpessoreIsolante;
 
-        ISelectionFilter selFilterdc = new FiltraCondotti();
-            IList<ElementId> DuctsId = Seleziona(uiDoc, msg, selFilterdc);
+            ISelectionFilter selFilterdc = new FiltraCondotti();
+            IList<ElementId> selDuctids = Seleziona(uiDoc, msg, selFilterdc);
 
             InsulationTypeIds = (List<ElementId>)new FilteredElementCollector(doc).WhereElementIsNotElementType().OfCategory(BuiltInCategory.OST_DuctInsulations).ToElementIds();
-            //IList<Element> Dcinsul = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_DuctInsulations).WhereElementIsNotElementType().ToElements();
-            IList<Element> Dcinsul = new FilteredElementCollector(doc).OfClass(typeof(DuctInsulation)).WhereElementIsElementType().ToElements();
-            //ICollection<ElementId> DcinsulId = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_DuctInsulations).WhereElementIsNotElementType().ToElementIds();
 
-
-            using (Transaction t = new Transaction(doc, "CreaParamCondivisi"))
+            using (Transaction t = new Transaction(doc, "Cambia spessore isolante"))
             {
 
                 t.Start();
                 //potrei fare il contrario andandomi a prendere l'host  ma non riesco ad otterene la FamilyInstance dell'isol
+                //prendo tutti gli isolanti presenti e il loro rispettivo host(condotto) se il condotto coincide con la selezione 
                 foreach ( var insId in InsulationTypeIds)
                 {
-                    CondottoId = (doc.GetElement(insId) as DuctInsulation).HostElementId;
-                    foreach(var Dcid in DuctsId)
+                    ductId = (doc.GetElement(insId) as DuctInsulation).HostElementId;
+                    foreach(var selId in selDuctids)
                     {
-                        if (CondottoId.IntegerValue == Dcid.IntegerValue)
+                        if (ductId.IntegerValue == selId.IntegerValue)
                         {
            
                             try
@@ -91,10 +85,10 @@ namespace P3Ribbon.Scripts
         {
             public bool AllowElement(Element element)
             {
-                double id = element.Category.Id.IntegerValue;
+                double catId = element.Category.Id.IntegerValue;
                 //if (element.Category.Name == "Condotto" || element.Category.Name == "Raccordo") // DA SISTEMARE
-                if (id == Supporto.doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctFitting).Id.IntegerValue 
-                    || id == Supporto.doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctCurves).Id.IntegerValue)
+                if (catId == Supporto.doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctFitting).Id.IntegerValue 
+                    || catId == Supporto.doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctCurves).Id.IntegerValue)
                 {
                     return true;
                 }
@@ -126,30 +120,4 @@ namespace P3Ribbon.Scripts
             return sel;
         }
     }
-    
-    //[Transaction(TransactionMode.Manual)]
-    //public class PopolaComboBox_temp : IExternalCommand
-    //{
-    //    private static bool comboboxcaricato = false;
-
-    //    public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
-    //    {
-    //        UIApplication uiApp = commandData.Application;
-    //        UIDocument uiDoc = uiApp.ActiveUIDocument;
-    //        Document doc = uiDoc.Document;
-
-    //        if (comboboxcaricato == false)
-    //        {
-    //            comboboxcaricato = true;
-    //            Materiale.PreAggiorna(doc);
-    //            App.comboboxMembers_ribbon = App.comboMat.AddItems(Materiale.comboBoxMemberDatas);
-    //        }
-    //        else
-    //        {
-    //            TaskDialog.Show("Errore","Il menù a tendina dei materiali è stato già popolato");
-    //        }
-
-    //        return Result.Succeeded;
-    //    }
-    //}
 }

@@ -15,9 +15,9 @@ using System.Xml;
 namespace P3Ribbon.Scripts
 {
     [Transaction(TransactionMode.Manual)]
-    class Migra_AreaIsolamento : IExternalCommand
+    class MigraAreaIsolamento : IExternalCommand
     {
-       public static bool parametri_presenti = false;
+       public static bool parPresenti = false;
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             UIApplication uiApp = commandData.Application;
@@ -28,9 +28,9 @@ namespace P3Ribbon.Scripts
             using (var t = new Transaction(doc, "Proj_Info_Scrivi_Parametri"))
             {
                
-                Controlla_Parametri(doc, app);
+                ControllaParametriSeEsistenti(doc, app);
 
-                if (parametri_presenti)
+                if (parPresenti)
                 {
                     t.Start();
                     MigraParaetriIsolamento(doc);
@@ -42,13 +42,12 @@ namespace P3Ribbon.Scripts
         }
 
 
-        static public bool CreaParametriIsolamento(Document _doc, Application _app)
+        static public bool ImportaParametriIsolamento(Document _doc, Application _app)
         {
             bool output = false;
 
 
             CategorySet categorySet = _app.Create.NewCategorySet();
-
             categorySet.Insert(_doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctInsulations));
 
             string originalFile = _app.SharedParametersFilename;
@@ -91,12 +90,14 @@ namespace P3Ribbon.Scripts
 
         static public void MigraParaetriIsolamento(Document _doc)
         {
-            Category c_condotti = _doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctCurves);
-            Category c_raccordi = _doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctFitting);
+            Category ductCat = _doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctCurves);
+            Category fittCat = _doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctFitting);
 
             int i_f = 0;
             int i_c = 0;
             int i = 0;
+
+            //lista di isolanti contententi nome P3 
             IList<Element> coll = new FilteredElementCollector(_doc).OfClass(typeof(DuctInsulation)).ToElements().Where(x => x.Name.Contains("P3")).ToList();
             //List<Element> P3Insulation = (List<Element>)new FilteredElementCollector(_doc).WhereElementIsNotElementType().OfCategory(BuiltInCategory.OST_DuctInsulations).ToElements().Where(x => x.Name.Contains("P3"));
 
@@ -109,17 +110,17 @@ namespace P3Ribbon.Scripts
                     i++;
 
 
-                    if (host.Category.Id == c_raccordi.Id)
+                    if (host.Category.Id == fittCat.Id)
                     {
-                        double area_rac = host.LookupParameter("P3_Sup_S.app").AsDouble();
-                        insul.LookupParameter("P3_Sup_S.app_dyn").Set(area_rac);
+                        double fittArea = host.LookupParameter("P3_Sup_S.app").AsDouble();
+                        insul.LookupParameter("P3_Sup_S.app_dyn").Set(fittArea);
                         i_f++;
                     }
 
-                    if (host.Category.Id == c_condotti.Id)
+                    if (host.Category.Id == ductCat.Id)
                     {
-                        Parameter area_condotto = insul.get_Parameter(BuiltInParameter.RBS_CURVE_SURFACE_AREA);
-                        insul.LookupParameter("P3_Sup_S.app_dyn").Set(area_condotto.AsDouble());
+                        Parameter ductArea = insul.get_Parameter(BuiltInParameter.RBS_CURVE_SURFACE_AREA);
+                        insul.LookupParameter("P3_Sup_S.app_dyn").Set(ductArea.AsDouble());
                         i_c++;
                     }
                 }
@@ -132,7 +133,7 @@ namespace P3Ribbon.Scripts
             //System.Windows.MessageBox.Show("È stato migrato il parametro di area a " + i_c + " isolamenti di condotti" + System.Environment.NewLine + "e " + i_f + " isolamenti di raccordi", "numero di isolamenti di raccordo e condotti");
         }
 
-        static public void Controlla_Parametri(Document doc, Application app)
+        static public void ControllaParametriSeEsistenti(Document doc, Application app)
         {
          
                 // come verificare se il parametro è dentro il binding...definition
@@ -150,10 +151,9 @@ namespace P3Ribbon.Scripts
                     TaskDialogResult result = td.Show();
                 }
 
+
                 Element di = dicoll[0];
-
                 Parameter sup_dyn = di.LookupParameter("P3_Sup_S.app_dyn");
-
                 if (sup_dyn == null)
                 {
                     TaskDialog td = new TaskDialog("Errore");
@@ -164,15 +164,13 @@ namespace P3Ribbon.Scripts
                     TaskDialogResult result = td.Show();
                     if (result == TaskDialogResult.Yes)
                     {
-                        parametri_presenti = CreaParametriIsolamento(doc, app);
+                        parPresenti = ImportaParametriIsolamento(doc, app);
                     }
                 }
                 else
                 {
-                    parametri_presenti = true;
+                    parPresenti = true;
                 }
-
-            
         }
     }
 }
