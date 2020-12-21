@@ -93,6 +93,7 @@ namespace P3Ribbon.Scripts
                 else if (acc > 0.25 && acc <= 0.35)
                 {
                     Colora_bottone_zona(z1, 1);
+                    float_acc.BackColor = System.Drawing.Color.Red;
                 }
                 else if ((acc > 0.15 && acc <= 0.25))
                 {

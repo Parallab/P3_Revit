@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Autodesk.Revit.DB;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,8 +30,10 @@ namespace P3Ribbon.Scripts.GUI
         public Wpf_ParamSismici()
         {
             InitializeComponent();
+            DaPojInfoaWpf();
             ColoraBottoniSeParametriCompilati();
         }
+
 
         private Button TrovaBottoneClasseUso(int c)
         {
@@ -46,11 +50,69 @@ namespace P3Ribbon.Scripts.GUI
         {
             System.Windows.Controls.Button rtn = new Button();
             if (z == 1) rtn = wpfBottZona1;
-            else if (z == 2) rtn = wpfbBottZona2;
+            else if (z == 2) rtn = wpfBottZona2;
             else if (z == 3) rtn = wpfBottZona3;
             else if (z == 4) rtn = wpfBottZona4;
 
             return rtn;
+        }
+
+        private void DecimalTextBox_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            bool approvedDecimalPoint = false;
+
+            if (e.Text == ".")
+            {
+                if (!((TextBox)sender).Text.Contains("."))
+                    approvedDecimalPoint = true;
+            }
+
+            if (!(char.IsDigit(e.Text, e.Text.Length - 1) || approvedDecimalPoint))
+                e.Handled = true;
+        }
+
+        public void AccToClasseUso()
+        {
+        
+            try
+            {
+                //double acc;
+                //var texbox = double.TryParse(wpfTexBoxAccell.Text, out acc);
+                double acc;
+                bool b = double.TryParse(wpfTexBoxAccell.Text, NumberStyles.Any, new CultureInfo("en-US"), out acc);
+
+                if (acc > 0.35)
+                {
+                    ColoraBottoneZona(wpfBottZona1, 1);
+                    wpfTexBoxAccell.Background = Brushes.IndianRed;
+                }
+                else if (acc > 0.25 && acc <= 0.35)
+                {
+                    ColoraBottoneZona(wpfBottZona1, 1);
+                    wpfTexBoxAccell.Background = Brushes.White;
+                }
+                else if ((acc > 0.15 && acc <= 0.25))
+                {
+                    ColoraBottoneZona(wpfBottZona2, 2);
+                    wpfTexBoxAccell.Background = Brushes.White;
+                }
+                else if ((acc > 0.05 && acc <= 0.15))
+                {
+                    ColoraBottoneZona(wpfBottZona3, 3);
+                    wpfTexBoxAccell.Background = Brushes.White;
+                }
+                else if ((acc < 0.05))
+                {
+                    ColoraBottoneZona(wpfBottZona4, 4);
+                    wpfTexBoxAccell.Background = Brushes.White;
+                }
+            }
+            catch
+            {
+
+            }
+            
+         
         }
 
         private void ColoraBottoniSeParametriCompilati()
@@ -72,7 +134,7 @@ namespace P3Ribbon.Scripts.GUI
             //colora i bottoni non selezionati del loro colore originale
             BrushConverter bc = new BrushConverter();
             wpfBottZona1.Background = (Brush)bc.ConvertFrom("#FF81B2BF");
-            wpfbBottZona2.Background = (Brush)bc.ConvertFrom("#FF81B2BF");
+            wpfBottZona2.Background = (Brush)bc.ConvertFrom("#FF81B2BF");
             wpfBottZona3.Background = (Brush)bc.ConvertFrom("#FF81B2BF");
             wpfBottZona4.Background = (Brush)bc.ConvertFrom("#FF81B2BF");
 
@@ -97,7 +159,7 @@ namespace P3Ribbon.Scripts.GUI
 
         #region Eventi al click dei bottoni ClasseUso e Zona
         private void WpfbottZona1_Click(object sender, RoutedEventArgs e){ColoraBottoneZona(wpfBottZona1, 1);}
-        private void WpfbottZona2_Click(object sender, RoutedEventArgs e){ColoraBottoneZona(wpfbBottZona2, 2);}
+        private void WpfbottZona2_Click(object sender, RoutedEventArgs e){ColoraBottoneZona(wpfBottZona2, 2);}
         private void WpfbottZona3_Click(object sender, RoutedEventArgs e){ColoraBottoneZona(wpfBottZona3, 3);}
         private void WpfbottZona4_Click(object sender, RoutedEventArgs e){ColoraBottoneZona(wpfBottZona4, 4);}
         private void WpfbottCUsoI_Click(object sender, RoutedEventArgs e){ColoraBottoniClasse(wpfBottCUsoI, 1);}
@@ -108,6 +170,7 @@ namespace P3Ribbon.Scripts.GUI
 
         private void wpfTextBoxAccell_TextChanged(object sender, TextChangedEventArgs e)
         {
+          AccToClasseUso();
         }
         private void wpfBottOk_Click(object sender, RoutedEventArgs e)
         {
@@ -128,6 +191,19 @@ namespace P3Ribbon.Scripts.GUI
         {
             
         }
+        public void DaPojInfoaWpf()
+        {
+            Element proj_info = new FilteredElementCollector(Supporto.doc).OfClass(typeof(ProjectInfo)).FirstElement();
 
+           classe_wpf = proj_info.LookupParameter("P3_InfoProg_ClasseUso").AsInteger();
+            //proj_info.LookupParameter("P3_InfoProg_Eng").Set(_eng);
+            //proj_info.LookupParameter("P3_InfoProg_VitaNominale").Set(_vita);
+            zona_wpf = proj_info.LookupParameter("P3_InfoProg_ZonaSismica").AsInteger();
+        }
+
+        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

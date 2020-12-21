@@ -101,8 +101,8 @@ namespace P3Ribbon
             if (Scripts.GUI.Wpf_ParamSismici.ok_premuto == true)
             {
          
-                IList<Element> proj_infos = new FilteredElementCollector(_doc).OfClass(typeof(ProjectInfo)).ToElements();
-                Element proj_info = proj_infos[0];
+                Element proj_info = new FilteredElementCollector(_doc).OfClass(typeof(ProjectInfo)).FirstElement();
+                
 
                 proj_info.LookupParameter("P3_InfoProg_ClasseUso").Set(_classe);
                 //proj_info.LookupParameter("P3_InfoProg_Eng").Set(_eng);

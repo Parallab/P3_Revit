@@ -132,9 +132,9 @@ namespace P3Ribbon.Scripts
                     dclist1.Add(el);
                 }
 
-                TaskDialog td1 = new TaskDialog("P3 staffaggio canali");
-                td1.MainInstruction = "Nel proggetto corrente ci sono " + dclist1.Count + " condotti";
-                TaskDialogResult result2 = td1.Show();
+                //TaskDialog td1 = new TaskDialog("P3 staffaggio canali");
+                //td1.MainInstruction = "Nel proggetto corrente ci sono " + dclist1.Count + " condotti";
+                //TaskDialogResult result2 = td1.Show();
                 return dclist1;
 
             }
