@@ -32,10 +32,10 @@ namespace P3Ribbon
             IList<Element> projInfos = new FilteredElementCollector(doc).OfClass(typeof(ProjectInfo)).ToElements();
             Element projInfo = projInfos[0];
 
-            Scripts.Form_Def_Acc frm = new Scripts.Form_Def_Acc();
+            Scripts.GUI.Wpf_ParamSismici frm = new Scripts.GUI.Wpf_ParamSismici();
             using (frm)
             {
-                using (var t = new Transaction(doc, "Form parametri sismici"))
+                using (var t = new Transaction(doc, "GUI parametri sismici"))
                 {
                     bool parametri_presenti = false;
 
@@ -72,7 +72,7 @@ namespace P3Ribbon
                         Migra_Parametri_Presenti(doc);
                         frm.ShowDialog();
                         //t.Commit();
-                        if (Form_Def_Acc.ok_premuto == true)
+                        if (Scripts.GUI.Wpf_ParamSismici.ok_premuto == true)
                         {
                             ProjInfoImpostaParametri(classe, eng, vita, zona, doc);
                         }
@@ -98,7 +98,7 @@ namespace P3Ribbon
 
         public static void ProjInfoImpostaParametri(int _classe, bool _eng, int _vita, int _zona, Document _doc)
         {
-            if (Form_Def_Acc.ok_premuto == true)
+            if (Scripts.GUI.Wpf_ParamSismici.ok_premuto == true)
             {
          
                 IList<Element> proj_infos = new FilteredElementCollector(_doc).OfClass(typeof(ProjectInfo)).ToElements();
@@ -106,7 +106,7 @@ namespace P3Ribbon
 
                 proj_info.LookupParameter("P3_InfoProg_ClasseUso").Set(_classe);
                 //proj_info.LookupParameter("P3_InfoProg_Eng").Set(_eng);
-                proj_info.LookupParameter("P3_InfoProg_VitaNominale").Set(_vita);
+                //proj_info.LookupParameter("P3_InfoProg_VitaNominale").Set(_vita);
                 proj_info.LookupParameter("P3_InfoProg_ZonaSismica").Set(_zona);
           
             }
@@ -175,13 +175,14 @@ namespace P3Ribbon
 
         public static void Migra_Parametri_Presenti(Document doc)
         {
-            IList<Element> proj_infos = new FilteredElementCollector(doc).OfClass(typeof(ProjectInfo)).ToElements();
-            Element proj_info = proj_infos[0];
+
+            Element proj_info = new FilteredElementCollector(doc).OfClass(typeof(ProjectInfo)).FirstElement();
             Parameter Cu = proj_info.LookupParameter("P3_InfoProg_ClasseUso");
             Parameter Zs = proj_info.LookupParameter("P3_InfoProg_ZonaSismica");
 
-            Form_Def_Acc.zona_form = Zs.AsInteger();
-            Form_Def_Acc.classe_form = Cu.AsInteger();
+            Scripts.GUI.Wpf_ParamSismici.zona_wpf = Zs.AsInteger();
+            Scripts.GUI.Wpf_ParamSismici.classe_wpf = Cu.AsInteger();
+
         }
 
     }

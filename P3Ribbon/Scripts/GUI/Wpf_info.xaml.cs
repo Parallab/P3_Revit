@@ -6,7 +6,7 @@ using System.Windows.Controls;
 
 using Application = Autodesk.Revit.ApplicationServices.Application;
 
-namespace P3Ribbon.Scripts.Form
+namespace P3Ribbon.Scripts.GUI
 {
 
     /// <summary>

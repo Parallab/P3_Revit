@@ -61,17 +61,48 @@ namespace P3Ribbon.Scripts
                 if (nome.StartsWith("P3"))
                 {
                     // contollRE SE ESISTE NEL DOC
-                    if (!(nomiTipiPresenti.Contains(nome))) //perchè non va?
+                    if (!(nomiTipiPresenti.Contains(nome)))
                     {
                         IdTipiDaCopiare.Add(type.Id);
                     }
 
                 }
             }
+            
+            //COLLETTORE STAFFE 
+            //staffe presenti nel documento
+            FilteredElementCollector collStaffeDoc = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_SpecialityEquipment).WhereElementIsElementType();
+            foreach (var type in collStaffeDoc)
+            {
+                //da usare poi parametri nascosti
+                if (type.Name == "P3_DuctHanger")
+                {
+                    nomiTipiPresenti.Add(type.Name);
+                }
 
-            //importare gli abachi
+            }
 
-            //abachi presenti nel doc source
+            //staffe presenti nella risorsa
+            FilteredElementCollector collStaffeRisorsa = new FilteredElementCollector(docSource).OfCategory(BuiltInCategory.OST_SpecialityEquipment).WhereElementIsElementType();
+            foreach (var type in collStaffeRisorsa)
+            {
+                //da usare poi parametri nascosti
+                string typeName = type.Name;
+                if (typeName == "P3_DuctHanger")
+                {
+                    if (!(nomiTipiPresenti.Contains(typeName)))
+                    {
+                         IdTipiDaCopiare.Add(type.Id);
+                        
+                    }
+                }
+
+            }
+
+
+            //IMPORTO ABACHI
+
+            //abachi presenti nel documento corrente
             IList<Element> collAbachiPresenti = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Schedules).WhereElementIsNotElementType().ToElements();
             List<string> nomiAbachiPresenti = new List<string>();
 
@@ -87,7 +118,7 @@ namespace P3Ribbon.Scripts
                 }
             }
 
-            //leggo gli abachi nella risorsa
+            //abachi presenti nel documento risorsa
             ICollection<ElementId> collAbachiRisorsa = new Collection<ElementId>();
             IList<Element> AbachiRisorsa = new FilteredElementCollector(docSource).OfCategory(BuiltInCategory.OST_Schedules).WhereElementIsNotElementType().ToElements();
 

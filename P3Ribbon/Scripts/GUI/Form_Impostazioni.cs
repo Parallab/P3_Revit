@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Application = Autodesk.Revit.ApplicationServices.Application;
 
-namespace P3Ribbon.Scripts.Form
+namespace P3Ribbon.Scripts.GUI
 {
     public partial class Form_Impostazioni : System.Windows.Forms.Form
 

@@ -1,5 +1,5 @@
 ﻿
-namespace P3Ribbon.Scripts.Form
+namespace P3Ribbon.Scripts.GUI
 {
     partial class Form_Quantità
     {

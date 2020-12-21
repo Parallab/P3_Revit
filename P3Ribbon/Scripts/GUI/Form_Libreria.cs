@@ -14,7 +14,7 @@ using P3Ribbon.Scripts;
 using Autodesk.Revit.UI.Events;
 using System.Collections.ObjectModel;
 
-namespace P3Ribbon.Scripts.Form
+namespace P3Ribbon.Scripts.GUI
 {
     public partial class Form_Libreria : System.Windows.Forms.Form
     {

@@ -13,7 +13,7 @@ using Application = Autodesk.Revit.ApplicationServices.Application;
 
 namespace P3Ribbon.Scripts
 {
-   
+
 
     [Transaction(TransactionMode.Manual)]
 
@@ -221,13 +221,16 @@ namespace P3Ribbon.Scripts
 
         public void AttivaFamiglia(Document doc)
         {
-            //2660
-            //2415672
-            fs = doc.GetElement(new ElementId(2660)) as FamilySymbol;
+            //eccezione se non c'è
+            Element StaffaP3 = new FilteredElementCollector(doc).OfClass(typeof(FamilySymbol)).FirstOrDefault(x => x.Name == "P3_DuctHanger");
+            int id = StaffaP3.Id.IntegerValue;
+            fs = doc.GetElement(new ElementId(id)) as FamilySymbol;
             if (!fs.IsActive)
             {
                 fs.Activate();
             }
+
+
         }
 
     }
@@ -446,6 +449,7 @@ namespace P3Ribbon.Scripts
             view3d = new FilteredElementCollector(doc).OfClass(typeof(View3D)).Cast<View3D>().FirstOrDefault();
 
             Category p_cat = doc.Settings.Categories.get_Item(BuiltInCategory.OST_Floors);
+           
             ElementCategoryFilter filter = new ElementCategoryFilter(BuiltInCategory.OST_Floors);
             ReferenceIntersector ri = new ReferenceIntersector(filter, FindReferenceTarget.All, view3d);
             //beccami anche i modelli linkati
@@ -454,6 +458,7 @@ namespace P3Ribbon.Scripts
             foreach (XYZ pt in pts)
             {
                 ReferenceWithContext _ref = ri.FindNearest(pt, XYZ.BasisZ);
+
                 if (_ref == null)
                 {
                     ptspavimenti.Add(null);
@@ -461,7 +466,9 @@ namespace P3Ribbon.Scripts
                 else
                 {
                     Reference refel = _ref.GetReference();
-                    RevitLinkInstance linkinstance = (RevitLinkInstance)doc.GetElement(refel.ElementId);
+                    
+                   
+                    //RevitLinkInstance linkinstance = (RevitLinkInstance)doc.GetElement(refel.ElementId); //non serve
                     XYZ refp = refel.GlobalPoint;
                     ptspavimenti.Add(refp);
                 }
@@ -497,10 +504,10 @@ namespace P3Ribbon.Scripts
                     fi.LookupParameter("P3_Duct_Slope").Set(this.inlcinazioneZ);
                     // ruota
                     Line asseZ = Line.CreateBound(pt, pt.Add(new XYZ(0, 0, 1)));
-                    ElementTransformUtils.RotateElement(doc, fi.Id, asseZ, dir.AngleTo(XYZ.BasisY));        
-                    
-                    
-                    // forse non bisogna ruotare ma agire sulla trasformata? erche sui canali inclinati non a 90° ogni tanto la staffa è ruotata male (cambia il segno). però non possiamo agire manualmente sul segno, dobbiamo trovare un modo automatico. magari controllare anche lo script dynamo piu aggiornato nella cartella "pacchetto 2.1". forse moltiplicare angleTo con una funzione che mi dice se è pos o neg? secondo me in dynamo l ho gia fatto
+                    ElementTransformUtils.RotateElement(doc, fi.Id, asseZ, dir.AngleTo(XYZ.BasisY));
+
+
+                    //forse non bisogna ruotare ma agire sulla trasformata? erche sui canali inclinati non a 90° ogni tanto la staffa è ruotata male (cambia il segno). però non possiamo agire manualmente sul segno, dobbiamo trovare un modo automatico. magari controllare anche lo script dynamo piu aggiornato nella cartella "pacchetto 2.1". forse moltiplicare angleTo con una funzione che mi dice se è pos o neg? secondo me in dynamo l ho gia fatto
 
 
 
@@ -597,7 +604,7 @@ namespace P3Ribbon.Scripts
                                         if (p.Definition.Name.Contains("Angle")) //questo perche ogni tanto c è angle sx dx lt rt...
                                         {
                                             angoloRaccordo = p.AsDouble() * (180 / Math.PI);
-                                            if (angoloRaccordo > 80);
+                                            if (angoloRaccordo > 80) ;
                                             {
                                                 return true;
                                             }

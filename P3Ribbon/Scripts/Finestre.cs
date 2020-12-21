@@ -43,7 +43,7 @@ namespace P3Ribbon.Scripts
             UIDocument uiDoc = uiApp.ActiveUIDocument;
             Document doc = uiDoc.Document;
 
-            Scripts.Form.Form_Impostazioni frm = new Scripts.Form.Form_Impostazioni(commandData);
+            Scripts.GUI.Form_Impostazioni frm = new Scripts.GUI.Form_Impostazioni(commandData);
             using (frm)
             {
                 using (var t = new Transaction(doc, "FinestraImpostazini"))
@@ -69,7 +69,7 @@ namespace P3Ribbon.Scripts
             Application app = uiApp.Application;
 
 
-            Scripts.Form.Form_Quantità frm = new Scripts.Form.Form_Quantità(commandData);
+            Scripts.GUI.Form_Quantità frm = new Scripts.GUI.Form_Quantità(commandData);
             using (frm)
             {
                 //using (var t = new Transaction(doc, "FinestraImpostazini"))
@@ -94,7 +94,7 @@ namespace P3Ribbon.Scripts
             Document doc = uiDoc.Document;
             Application app = uiApp.Application;
 
-            Scripts.Form.Wpf_info wpf = new Form.Wpf_info(commandData);
+            Scripts.GUI.Wpf_info wpf = new GUI.Wpf_info(commandData);
 
             wpf.ShowDialog();
 
@@ -116,7 +116,7 @@ namespace P3Ribbon.Scripts
             doc = uiDoc.Document;
             Application app = uiApp.Application;
 
-            Form.Wpf_Libreria wpf = new Form.Wpf_Libreria(commandData);
+            GUI.Wpf_Libreria wpf = new GUI.Wpf_Libreria(commandData);
             using (wpf)
             {
 

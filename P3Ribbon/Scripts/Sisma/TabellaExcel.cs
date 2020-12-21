@@ -14,7 +14,7 @@ namespace P3Ribbon.Scripts
         {
             IList<Element> proj_infos = new FilteredElementCollector(doc).OfClass(typeof(ProjectInfo)).ToElements();
             Element proj_info = proj_infos[0];
-
+            //eccezione prametri sismici
             int ClasseUso = proj_info.LookupParameter("P3_InfoProg_ClasseUso").AsInteger();
             int ZonaSismica = proj_info.LookupParameter("P3_InfoProg_ZonaSismica").AsInteger();
 

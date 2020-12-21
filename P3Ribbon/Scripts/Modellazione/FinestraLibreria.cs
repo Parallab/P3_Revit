@@ -23,7 +23,7 @@ namespace P3Ribbon.Scripts
     //        doc = uiDoc.Document;
     //        Application app = uiApp.Application;
 
-    //        Form.Wpf_Libreria wpf = new Form.Wpf_Libreria(commandData);
+    //        GUI.Wpf_Libreria wpf = new GUI.Wpf_Libreria(commandData);
     //        using (wpf)
     //        {
 
