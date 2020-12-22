@@ -193,12 +193,19 @@ namespace P3Ribbon.Scripts.GUI
         }
         public void DaPojInfoaWpf()
         {
-            Element proj_info = new FilteredElementCollector(Supporto.doc).OfClass(typeof(ProjectInfo)).FirstElement();
+            try
+            {
+                Element proj_info = new FilteredElementCollector(Supporto.doc).OfClass(typeof(ProjectInfo)).FirstElement();
 
-           classe_wpf = proj_info.LookupParameter("P3_InfoProg_ClasseUso").AsInteger();
-            //proj_info.LookupParameter("P3_InfoProg_Eng").Set(_eng);
-            //proj_info.LookupParameter("P3_InfoProg_VitaNominale").Set(_vita);
-            zona_wpf = proj_info.LookupParameter("P3_InfoProg_ZonaSismica").AsInteger();
+                classe_wpf = proj_info.LookupParameter("P3_InfoProg_ClasseUso").AsInteger();
+                //proj_info.LookupParameter("P3_InfoProg_Eng").Set(_eng);
+                //proj_info.LookupParameter("P3_InfoProg_VitaNominale").Set(_vita);
+                zona_wpf = proj_info.LookupParameter("P3_InfoProg_ZonaSismica").AsInteger();
+            }
+            catch
+            {
+
+            }
         }
 
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
