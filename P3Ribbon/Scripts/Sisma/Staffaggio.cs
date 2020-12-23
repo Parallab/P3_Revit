@@ -37,73 +37,41 @@ namespace P3Ribbon.Scripts
             //verifica presenza parametri, ovvero ricicla bottone già fatto
             //ControllaParametri(doc, app);
 
-
-            Supporto.ValoriTabella = TabellaExcel.LeggiTabella(doc);
-            List<Condotto> Condotti = FiltraCondottiCortiVert(doc, uiDoc);
-            AttivaFamiglia(doc);
-
-            using (var t = new Transaction(doc, "Posiziona staffaggio"))
+            if (Supporto.ControllaSePresentiParamSismici())
             {
-                t.Start();
-                if (condotti.Count != 0)
-                {
-                    foreach (Condotto c in Condotti)
-                    {
-                        c.DimensionaDaTabella(doc);
-                        c.CalcolaPuntiStaffe();
-                        c.TrovaPavimento(doc);
-                        c.PosizionaStaffe(doc, fs);
+                Supporto.ValoriTabella = TabellaExcel.LeggiTabella(doc);
+                List<Condotto> Condotti = FiltraCondottiCortiVert(doc, uiDoc);
+                AttivaFamiglia(doc);
 
-                    }
-                    t.Commit();
-                }
-                else
+
+                using (var t = new Transaction(doc, "Posiziona staffaggio"))
                 {
-                    return Result.Cancelled;
+                    t.Start();
+                    if (condotti.Count != 0)
+                    {
+                        foreach (Condotto c in Condotti)
+                        {
+                            c.DimensionaDaTabella(doc);
+                            c.CalcolaPuntiStaffe();
+                            c.TrovaPavimento(doc);
+                            c.PosizionaStaffe(doc, fs);
+                        }
+                        t.Commit();
+                    }
+                    else
+                    {
+                        return Result.Cancelled;
+                    }
                 }
+            }
+            else
+            {
+                return Result.Cancelled;
+
             }
             condotti.Clear();
             return Result.Succeeded;
 
-        }
-        public void ControllaParametri(Document doc, Application app)
-        {
-            IList<Element> proj_infos = new FilteredElementCollector(doc).OfClass(typeof(ProjectInfo)).ToElements();
-            Element proj_info = proj_infos[0];
-
-            Parameter Cu = proj_info.LookupParameter("P3_InfoProg_ClasseUso");
-            Parameter En = proj_info.LookupParameter("P3_InfoProg_Eng");
-            Parameter Vn = proj_info.LookupParameter("P3_InfoProg_VitaNominale");
-            Parameter Zs = proj_info.LookupParameter("P3_InfoProg_ZonaSismica");
-            if (Cu == null || En == null || Vn == null || Zs == null)
-            {
-                TaskDialog td = new TaskDialog("Errore")
-                {
-                    MainInstruction = "Parametri sismici non inseriti nel progetto",
-                    MainContent = "Parametri sismici non inseriti nel progetto, inserire i parametri sismici?",
-                    CommonButtons = TaskDialogCommonButtons.Yes | TaskDialogCommonButtons.No
-                };
-
-                TaskDialogResult result = td.Show();
-
-                if (result == TaskDialogResult.Yes)
-                {
-                    P3Ribbon.ParSismici.CreaParametriCondivisi(doc, app);
-
-                    //ParSismici.Migra_Parametri_Presenti(doc);
-                    //frm.ShowDialog();
-                    //if (Form_Def_Acc.ok_premuto == true)
-                    //{
-                    //	ParSismici.Proj_Info_Scrivi_Parametri(ParSismici.classe, ParSismici.eng, ParSismici.vita, ParSismici.zona, doc);
-                    //}
-
-                    Parametri_presenti = true;
-                }
-                else
-                {
-                    Parametri_presenti = false;
-                }
-            }
         }
         public static IList<Element> Seleziona_condotti(Document doc, UIDocument uiDoc)
         {
@@ -248,7 +216,7 @@ namespace P3Ribbon.Scripts
         public double per = 0;
         public double lungh = 0;
         public double lungh_of1 = 0;
-        public double inlcinazioneZ = 0;
+        public double angoloRispY = 0;
         //public double passoMin = 0;
         //public double passoMax = 0;
         public int rappT;
@@ -293,7 +261,7 @@ namespace P3Ribbon.Scripts
             this.lc = _el.Location as LocationCurve;
             this.livello = CalcolaLivello(doc, _el);
             //this.inclinazioneXY = CalcolaInclinazioneSuXY();
-            this.inlcinazioneZ = CalcolaInclinazione(_el);
+            this.angoloRispY = CalcolaAngolosuY(_el);
         }
         #region funzioni che mi calcolano gli attributti belli della classe condotto
         public double CalcolaSpessoreIsolamento(Element dc, Boolean metrico)
@@ -361,12 +329,28 @@ namespace P3Ribbon.Scripts
             XYZ pt2 = c.GetEndPoint(1);
             dir = pt2.Subtract(pt1).Normalize();
             return dir;
+
         }
-        public double CalcolaInclinazione(Element dc)
+
+        public double CalcolaAngolosuY(Element dc)
         {
-            double inclinazione = dc.get_Parameter(BuiltInParameter.RBS_DUCT_SLOPE).AsDouble();
-            double inclinazioneZ = Math.Atan(inclinazione);
-            return inlcinazioneZ;
+            LocationCurve Lp = dc.Location as LocationCurve;
+            Curve c = Lp.Curve;
+            XYZ pt1 = c.GetEndPoint(0);
+            XYZ pt2 = c.GetEndPoint(1);
+
+            angoloRispY = pt1.AngleTo(pt2);
+            //double xp1 = pt1.X;
+            //double yp1 = pt1.Y;
+            //double xp2 = pt2.X;
+            //double yp2 = pt2.Y;
+
+            //double ipo = Math.Sqrt(Math.Pow((xp2 - xp1), 2) + Math.Pow((yp2 - yp1), 2));
+            //double diff_y = Math.Abs(yp2 - yp1);
+
+            //double rads = Math.Acos(diff_y / ipo);
+            //angoloRispY = rads * (180 / Math.PI);
+            return angoloRispY;
         }
 
         public double CalcolaPassoMinMax(bool CalcolaPassoMin)
@@ -449,7 +433,7 @@ namespace P3Ribbon.Scripts
             view3d = new FilteredElementCollector(doc).OfClass(typeof(View3D)).Cast<View3D>().FirstOrDefault();
 
             Category p_cat = doc.Settings.Categories.get_Item(BuiltInCategory.OST_Floors);
-           
+
             ElementCategoryFilter filter = new ElementCategoryFilter(BuiltInCategory.OST_Floors);
             ReferenceIntersector ri = new ReferenceIntersector(filter, FindReferenceTarget.All, view3d);
             //beccami anche i modelli linkati
@@ -466,8 +450,8 @@ namespace P3Ribbon.Scripts
                 else
                 {
                     Reference refel = _ref.GetReference();
-                    
-                   
+
+
                     //RevitLinkInstance linkinstance = (RevitLinkInstance)doc.GetElement(refel.ElementId); //non serve
                     XYZ refp = refel.GlobalPoint;
                     ptspavimenti.Add(refp);
@@ -489,7 +473,6 @@ namespace P3Ribbon.Scripts
 
                 if (pt_pav == null)
                 {
-                    // cosa vogliamo fare?
                     this.staffaggi.Add(null);
                 }
                 else
@@ -501,16 +484,16 @@ namespace P3Ribbon.Scripts
                     fi.LookupParameter("P3_Dynamo_Center2Ceiling").Set(Math.Abs(pt.Z - pt_pav.Z));
                     fi.LookupParameter("P3_Duct_Width").Set(this.largh_IM);
                     fi.LookupParameter("P3_Duct_Height").Set(this.alt_IM);
-                    fi.LookupParameter("P3_Duct_Slope").Set(this.inlcinazioneZ);
+                    //fi.LookupParameter("P3_Duct_Slope").Set(this.angoloRispY);
                     // ruota
                     Line asseZ = Line.CreateBound(pt, pt.Add(new XYZ(0, 0, 1)));
+                    double angolo = dir.AngleTo(XYZ.BasisX) * (180 / Math.PI);
+
+
                     ElementTransformUtils.RotateElement(doc, fi.Id, asseZ, dir.AngleTo(XYZ.BasisY));
 
 
                     //forse non bisogna ruotare ma agire sulla trasformata? erche sui canali inclinati non a 90° ogni tanto la staffa è ruotata male (cambia il segno). però non possiamo agire manualmente sul segno, dobbiamo trovare un modo automatico. magari controllare anche lo script dynamo piu aggiornato nella cartella "pacchetto 2.1". forse moltiplicare angleTo con una funzione che mi dice se è pos o neg? secondo me in dynamo l ho gia fatto
-
-
-
 
                     // staffa superiore
                     double distanzaControff = fi.LookupParameter("P3_Dynamo_Top2Ceiling").AsDouble();
