@@ -12,12 +12,12 @@ namespace P3Ribbon.Scripts.GUI
     /// <summary>
     /// Logica di interazione per UserControl1.xaml
     /// </summary>
-    public partial class Wpf_info : Window
+    public partial class Wpf_impo : Window
     {
         private Document m_doc;
         private Application m_app;
         bool checkBoxState = false;
-        public Wpf_info(ExternalCommandData commandData)
+        public Wpf_impo(ExternalCommandData commandData)
         {
             UIApplication uiApp = commandData.Application;
             m_app = uiApp.Application;

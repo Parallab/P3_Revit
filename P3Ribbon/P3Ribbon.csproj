@@ -101,6 +101,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>str_IT.resx</DependentUpon>
     </Compile>
+    <Compile Include="Scripts\GUI\Wpf_InfoP3.xaml.cs">
+      <DependentUpon>Wpf_InfoP3.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Scripts\GUI\Wpf_ParamSismici.xaml.cs">
       <DependentUpon>Wpf_ParamSismici.xaml</DependentUpon>
     </Compile>
@@ -121,8 +124,8 @@
     <Compile Include="Scripts\GUI\Wpf_Libreria.xaml.cs">
       <DependentUpon>Wpf_Libreria.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Scripts\GUI\Wpf_info.xaml.cs">
-      <DependentUpon>Wpf_info.xaml</DependentUpon>
+    <Compile Include="Scripts\GUI\Wpf_impo.xaml.cs">
+      <DependentUpon>Wpf_impo.xaml</DependentUpon>
     </Compile>
     <Compile Include="Scripts\Modellazione\Materiale.cs" />
     <Compile Include="Scripts\Modellazione\Lingua.cs" />
@@ -270,11 +273,15 @@
     <Folder Include="FilesUploads\" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Scripts\GUI\Wpf_InfoP3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Scripts\GUI\Wpf_Libreria.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Scripts\GUI\Wpf_info.xaml">
+    <Page Include="Scripts\GUI\Wpf_impo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -20,15 +20,13 @@ namespace P3Ribbon.Scripts
             Document doc = uiDoc.Document;
             Application app = uiApp.Application;
 
-            Scripts.Form_InfoP3 frm = new Scripts.Form_InfoP3();
-            using (frm)
+            Scripts.GUI.Wpf_InfoP3 wpf = new Scripts.GUI.Wpf_InfoP3();
+            using (wpf)
             {
-                using (var t = new Transaction(doc, "FinestraInfo"))
-                {
-                    t.Start();
-                    frm.ShowDialog();
-                    t.Commit();
-                }
+
+
+                wpf.ShowDialog();
+
             }
             return Result.Succeeded;
         }
@@ -94,7 +92,7 @@ namespace P3Ribbon.Scripts
             Document doc = uiDoc.Document;
             Application app = uiApp.Application;
 
-            Scripts.GUI.Wpf_info wpf = new GUI.Wpf_info(commandData);
+            Scripts.GUI.Wpf_impo wpf = new GUI.Wpf_impo(commandData);
 
             wpf.ShowDialog();
 

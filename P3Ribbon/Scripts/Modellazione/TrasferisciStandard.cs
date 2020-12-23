@@ -36,7 +36,7 @@ namespace P3Ribbon.Scripts
 
             FilteredElementCollector collTipiPresenti = new FilteredElementCollector(doc).WherePasses(Supporto.CatFilterDuctAndInsul).WhereElementIsElementType();
 
-            // guardo tutti i tipi che mi interessamno presenti nel mio doc
+            //guardo tutti i tipi che mi interessamno presenti nel mio doc
             foreach (ElementType type in collTipiPresenti)
             {
                 string nome = type.Name;

@@ -57,5 +57,9 @@ namespace P3Ribbon.Scripts
 
         }
 
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

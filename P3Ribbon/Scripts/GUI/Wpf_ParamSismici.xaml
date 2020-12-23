@@ -64,8 +64,8 @@
                  TextChanged="wpfTextBoxAccell_TextChanged" FontFamily="Arial" PreviewTextInput="DecimalTextBox_PreviewTextInput" TextWrapping="Wrap" VerticalAlignment="Center" Width="118" VerticalContentAlignment="Center"/>
         <TextBlock Grid.Column="2" HorizontalAlignment="Center"  Height="15" Margin="35,31,128,25" Grid.Row="1" TextWrapping="Wrap" Text="α = αg/g&#x9;" VerticalAlignment="Center" Width="62" FontWeight="Bold" FontFamily="Arial" FontSize="13"/>
         <TextBlock Grid.Column="1" HorizontalAlignment="Center" Height="12" Margin="0,33,0,26" Grid.Row="1" TextWrapping="Wrap" Text="ZONA SISMICA" VerticalAlignment="Center" Width="113" FontFamily="Arial" FontWeight="Bold" TextAlignment="Center"/>
-        <TextBlock HorizontalAlignment="Center" Height="12" Margin="0,15,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="338" FontFamily="Arial" FontWeight="Bold" Grid.ColumnSpan="2" Grid.Column="1"><Run Text="DEFINIZION"/><Run Text="E"/><Run Text=" ACCELLERAZION"/><Run Text="E"/><Run Text=" SISMIC"/><Run Text="A"/></TextBlock>
-        <TextBlock HorizontalAlignment="Center" Height="12" Margin="1,15,27,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="338" FontFamily="Arial" FontWeight="Bold" Grid.ColumnSpan="3" Grid.Column="4"><Run Text="DEFINIZIONI "/><Run Text="CLASSE D'USO"/></TextBlock>
+        <TextBlock HorizontalAlignment="Center" Height="12" Margin="0,13,0,2" TextWrapping="Wrap" VerticalAlignment="Center" Width="338" FontFamily="Arial" FontWeight="Bold" Grid.ColumnSpan="2" Grid.Column="1"><Run Text="DEFINIZION"/><Run Text="E"/><Run Text=" ACCELLERAZION"/><Run Text="E"/><Run Text=" SISMIC"/><Run Text="A"/></TextBlock>
+        <TextBlock HorizontalAlignment="Center" Height="12" Margin="1,13,27,2" TextWrapping="Wrap" VerticalAlignment="Center" Width="338" FontFamily="Arial" FontWeight="Bold" Grid.ColumnSpan="3" Grid.Column="4"><Run Text="DEFINIZIONI "/><Run Text="CLASSE D'USO"/></TextBlock>
 
     </Grid>
 </Window>

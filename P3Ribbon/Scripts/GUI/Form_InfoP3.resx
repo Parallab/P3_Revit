@@ -120,14 +120,14 @@
   <metadata name="imageList1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="label6.Text" xml:space="preserve">
-    <value>Da Bologna (Autostrada A13 – uscita Padova Sud), imboccare la Strada Statale “SS 11 Padana Superiore” in direzione Vicenza. All’incrocio prima di Mestrino, girare a destra per Ronchi di Villafranca e proseguire per circa 2 Km</value>
-  </data>
   <data name="label9.Text" xml:space="preserve">
     <value>Da Milano (Autostrada A4 – uscita Grisignano Di Zocco), imboccare la Strada Statale “SS 11 Padana Superiore” in direzione Padova. All’incrocio dopo Mestrino, girare a sinistra per Ronchi di Villafranca e proseguire per circa 2 Km</value>
   </data>
   <data name="label10.Text" xml:space="preserve">
     <value>Da Venezia (Autostrada A4 – uscita Padova Ovest), imboccare la Strada Statale “SS 11 Padana Superiore” in direzione Padova. All’incrocio prima di Mestrino, girare a destra per Ronchi di Villafranca e proseguire per circa 2 Km.</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Da Bologna (Autostrada A13 – uscita Padova Sud), imboccare la Strada Statale “SS 11 Padana Superiore” in direzione Vicenza. All’incrocio prima di Mestrino, girare a destra per Ronchi di Villafranca e proseguire per circa 2 Km</value>
   </data>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>41</value>

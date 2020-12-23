@@ -24,23 +24,35 @@ namespace P3Ribbon.Scripts
             UIDocument uiDoc = uiApp.ActiveUIDocument;
             Document doc = uiDoc.Document;
             Application app = uiApp.Application;
-            
-            DuctType ductDynamicType = new FilteredElementCollector(doc).OfClass(typeof(DuctType)).FirstOrDefault(x => x.Name.Contains( "P3 - Preinsulated panels system - Dynamic")) as DuctType;
 
-            //richiedo che sia il prossimo tipo di default
-            uiDoc.PostRequestForElementTypePlacement(ductDynamicType);
-
-            using (Transaction t = new Transaction(doc, "Crea un canale di tipo dinamico"))
+            if (Supporto.ControllaTipiP3Presenti("P3 - Preinsulated panels system - Dynamic -  ε 0.03mm"))
             {
+               
+                DuctType ductDynamicType = new FilteredElementCollector(doc).OfClass(typeof(DuctType)).FirstOrDefault(x => x.Name.Contains("P3 - Preinsulated panels system - Dynamic")) as DuctType;
 
-                t.Start(); 
-                
-                RevitCommandId cmdId = RevitCommandId.LookupPostableCommandId(PostableCommand.Duct);
-                uiApp.PostCommand(cmdId);
+                //richiedo che sia il prossimo tipo di default
+                uiDoc.PostRequestForElementTypePlacement(ductDynamicType);
+                using (Transaction t = new Transaction(doc, "Crea un canale di tipo dinamico"))
+                {
 
-                t.Commit();
+                    t.Start();
+
+                    RevitCommandId cmdId = RevitCommandId.LookupPostableCommandId(PostableCommand.Duct);
+                    uiApp.PostCommand(cmdId);
+
+                    t.Commit();
+                }
+                return Result.Succeeded;
             }
-            return Result.Succeeded;
+            else
+            {
+                TaskDialog td = new TaskDialog("Errore");
+                td.MainInstruction = "Tipi di canale non inseriti nel progetto";
+                td.MainContent = "Canali P3 non inseriti nel progetto, caricare prima la libreria";
+                TaskDialogResult result = td.Show();
+
+            }
+                return Result.Cancelled;
 
         }
 
@@ -58,31 +70,43 @@ namespace P3Ribbon.Scripts
             Document doc = uiDoc.Document;
             Application app = uiApp.Application;
 
-            DuctType ductTapType = new FilteredElementCollector(doc).OfClass(typeof(DuctType)).FirstOrDefault(x => x.Name.Contains("P3 - Preinsulated panels system - Tap")) as DuctType;
 
-            //richiedo che sia il prossimo tipo di default
-            uiDoc.PostRequestForElementTypePlacement(ductTapType);
-
-            using (Transaction t = new Transaction(doc, "Crea un canale di tipo scarpetta"))
+            if (Supporto.ControllaTipiP3Presenti("P3 - Preinsulated panels system - Tap -  ε 0.03mm"))
             {
 
-                t.Start(); 
-                
-                RevitCommandId cmdId = RevitCommandId.LookupPostableCommandId(PostableCommand.Duct);
-                uiApp.PostCommand(cmdId);
+                DuctType ductTapType = new FilteredElementCollector(doc).OfClass(typeof(DuctType)).FirstOrDefault(x => x.Name.Contains("P3 - Preinsulated panels system - Tap")) as DuctType;
+
+                //richiedo che sia il prossimo tipo di default
+                uiDoc.PostRequestForElementTypePlacement(ductTapType);
+
+                using (Transaction t = new Transaction(doc, "Crea un canale di tipo scarpetta"))
+                {
+
+                    t.Start();
+
+                    RevitCommandId cmdId = RevitCommandId.LookupPostableCommandId(PostableCommand.Duct);
+                    uiApp.PostCommand(cmdId);
 
 
-                t.Commit();
+                    t.Commit();
+                }
+                return Result.Succeeded;
             }
-            return Result.Succeeded;
-
+            else
+            {
+                TaskDialog td = new TaskDialog("Errore");
+                td.MainInstruction = "Tipi di canale non inseriti nel progetto";
+                td.MainContent = "Canali P3 non inseriti nel progetto, caricare prima la libreria";
+                TaskDialogResult result = td.Show();
+            }
+            return Result.Cancelled;
         }
 
 
     }
 }
 
-  
+
 
 
 

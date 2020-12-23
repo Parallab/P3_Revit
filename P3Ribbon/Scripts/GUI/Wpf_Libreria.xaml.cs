@@ -20,7 +20,7 @@ using Application = Autodesk.Revit.ApplicationServices.Application;
 namespace P3Ribbon.Scripts.GUI
 {
     /// <summary>
-    /// Logica di interazione per UserControl1.xaml
+    /// Logica di interazione per UserControl1.xa
     /// </summary>
     public partial class Wpf_Libreria : Window, IDisposable
     {

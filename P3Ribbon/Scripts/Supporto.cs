@@ -7,8 +7,7 @@ using Autodesk.Revit.DB.Structure;
 using Autodesk.Revit.DB.Mechanical;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Selection;
-using Autodesk.Revit.DB;
-    
+
 using Application = Autodesk.Revit.ApplicationServices.Application;
 using System.Reflection;
 
@@ -56,7 +55,7 @@ namespace P3Ribbon.Scripts
         public static bool ControllaSePresentiParamSismici()
         {
             Element projInfo = new FilteredElementCollector(doc).OfClass(typeof(ProjectInfo)).FirstElement();
-           
+
 
             bool parametri_presenti = false;
 
@@ -88,7 +87,7 @@ namespace P3Ribbon.Scripts
             }
             else
             {
-               return parametri_presenti = true;
+                return parametri_presenti = true;
             }
         }
 
@@ -148,5 +147,64 @@ namespace P3Ribbon.Scripts
             }
             return output;
         }
+        public static bool ControllaTipiP3Presenti(string nometipo)
+        {
+            List<string> IsolatiECondottiP3Presenti = new List<string>();
+            bool tipiCondottiCaricati = false;
+            FilteredElementCollector collTipiPresenti = new FilteredElementCollector(doc).WherePasses(Supporto.CatFilterDuctAndInsul).WhereElementIsElementType();
+
+            //nomi (che poi saranno param nascosti) da cercare
+            
+
+            //guardo tutti i tipi che mi interessamno presenti nel mio doc
+            foreach (Element type in collTipiPresenti)
+            {
+                //ora lo faccio con i nomi, successivamente lo farò con i parametri nascosti
+                string nome = type.Name;
+                if (nome.StartsWith("P3"))
+                {
+                    IsolatiECondottiP3Presenti.Add(nome);
+                }
+            }
+            if (IsolatiECondottiP3Presenti.Contains(nometipo))
+            {
+                tipiCondottiCaricati = true;
+            }
+            else
+            {
+                tipiCondottiCaricati = false;
+            }
+            return tipiCondottiCaricati;
+
+        }
+
+
+        public static bool ControllaAbachiP3Presenti(string AbacoNome)
+        {
+            List<string> AbachiP3Presenti = new List<string>();
+            bool AbachiP3Caricati = false;
+            IList<Element> collAbachiPresenti = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Schedules).WhereElementIsNotElementType().ToElements();
+
+            foreach (Element el in collAbachiPresenti)
+            {
+                //ora lo faccio con i nomi, successivamente lo farò con i parametri nascosti
+                string nome = el.Name;
+                if (nome.StartsWith("P3"))
+                {
+                    AbachiP3Presenti.Add(nome);
+                }
+            }
+            if (AbachiP3Presenti.Contains(AbacoNome))
+            {
+                AbachiP3Caricati = true;
+            }
+            else
+            {
+                AbachiP3Caricati = false;
+            }
+            return AbachiP3Caricati;
+        }
     }
+
 }
+
