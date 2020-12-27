@@ -92,12 +92,33 @@ namespace P3Ribbon.Scripts
             {
                 int i = 0;
                 IList<Element> dc_coll = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_DuctCurves).WhereElementIsNotElementType().ToElements();
-                //Creo una lista vuota
+                
+                //ElementClassFilter DuctFamilyFilter = new ElementClassFilter(typeof(FamilyInstance));
+                //FilteredElementCollector FamilyCollector = new FilteredElementCollector(doc);
+                //ICollection<Element> AllFamilies = FamilyCollector.WherePasses(DuctFamilyFilter).ToElements();
+               
+                //lista vuota di famiglie rettangolari
+                ICollection<Element> RectangularDuctFamily = new List<Element>();
+                
+                //Lista vuota di elementi 
                 List<Element> dclist1 = new List<Element>();
+
+               
+
+                //posso filtrare direttamente le famiglie invece di falo elemento per elemento?
+                //leggo che è più oneroso interrogare i parametri delle famiglie..ne vale la pena??..le filtro per nome?(non mi piace)
                 foreach (Element el in dc_coll)
                 {
+                    ConnectorSet connettors = (el as Duct).ConnectorManager.Connectors;
+                    foreach (Connector c in connettors)
+                    {
+                        if (c.Shape == ConnectorProfileType.Rectangular)
+                        {
                     i++;
                     dclist1.Add(el);
+                            break;
+                        }
+                    }
                 }
 
                 //TaskDialog td1 = new TaskDialog("P3 staffaggio canali");
@@ -138,7 +159,7 @@ namespace P3Ribbon.Scripts
             {
                 double catId = element.Category.Id.IntegerValue;
 
-                if (catId == Supporto.doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctFitting).Id.IntegerValue)
+                if (catId == Supporto.doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctCurves).Id.IntegerValue)
                 {
                     return true;
                 }
@@ -489,11 +510,18 @@ namespace P3Ribbon.Scripts
                     Line asseZ = Line.CreateBound(pt, pt.Add(new XYZ(0, 0, 1)));
                     double angolo = dir.AngleTo(XYZ.BasisX) * (180 / Math.PI);
 
+                    //controllo la direzione e verso
+                    if ((dir.X < 0 && dir.Y > 0) || (dir.X < 0 && dir.Y < 0))
+                    {
+                        ElementTransformUtils.RotateElement(doc, fi.Id, asseZ, dir.AngleTo(XYZ.BasisY));
+                    }else
+                        ElementTransformUtils.RotateElement(doc, fi.Id, asseZ, - dir.AngleTo(XYZ.BasisY));
 
-                    ElementTransformUtils.RotateElement(doc, fi.Id, asseZ, dir.AngleTo(XYZ.BasisY));
 
 
                     //forse non bisogna ruotare ma agire sulla trasformata? erche sui canali inclinati non a 90° ogni tanto la staffa è ruotata male (cambia il segno). però non possiamo agire manualmente sul segno, dobbiamo trovare un modo automatico. magari controllare anche lo script dynamo piu aggiornato nella cartella "pacchetto 2.1". forse moltiplicare angleTo con una funzione che mi dice se è pos o neg? secondo me in dynamo l ho gia fatto
+
+                    //dipende dalla direzione del condotto, quindi verso quale quadrante si rivolge (quindi dipiende anche dal verso ovvero i click con cui è stato creato)
 
                     // staffa superiore
                     double distanzaControff = fi.LookupParameter("P3_Dynamo_Top2Ceiling").AsDouble();
