@@ -44,12 +44,12 @@ namespace P3Ribbon.Scripts
             if (lingua_attuale == App.Lingua.ITA)
             {
                 lingua_arrivo = App.Lingua.ENG;
-                //resourceSet_arrivo = App.res_eng;
+                
             }
             else
             {
                 lingua_arrivo = App.Lingua.ITA;
-                //resourceSet_arrivo = App.res_ita;
+                
             }
 
             foreach (RibbonPanel rp in a.GetRibbonPanels(App.tabName))
@@ -57,16 +57,23 @@ namespace P3Ribbon.Scripts
 
                 try
                 {
-                    //rp.Title = resourceSet_arrivo.GetObject(rp.Name).ToString();
+                    
                     rp.Title = App.res_valore(rp.Name, lingua_arrivo);
 
                     foreach (RibbonItem bottone in rp.GetItems())
-                    {
+                    { 
                         try
                         {
-                            //bottone.ItemText = resourceSet_arrivo.GetObject(bottone.Name).ToString();
+                            if (bottone.ItemType == RibbonItemType.SplitButton)
+                            {
+                                foreach(RibbonItem sbBottone in (bottone as SplitButton).GetItems())
+                                {
+                                    sbBottone.ItemText =  App.res_valore(sbBottone.Name, lingua_arrivo);
+                                    sbBottone.ToolTip = App.res_valore(sbBottone.Name + "_tt", lingua_arrivo);
+                                }
+
+                            }
                             bottone.ItemText = App.res_valore(bottone.Name, lingua_arrivo);
-                            //bottone.ToolTip = resourceSet_arrivo.GetObject(bottone.Name+"_tt").ToString();
                             bottone.ToolTip = App.res_valore(bottone.Name + "_tt", lingua_arrivo);
                            
                         }

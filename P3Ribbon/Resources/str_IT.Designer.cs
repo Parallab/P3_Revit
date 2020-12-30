@@ -193,6 +193,16 @@ namespace P3Ribbon.Resources {
         
         /// <summary>
         ///   Cerca una stringa localizzata simile a Elenco
+        ///Punti.
+        /// </summary>
+        internal static string cmdelencopunti {
+            get {
+                return ResourceManager.GetString("cmdelencopunti", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Elenco
         ///Staffaggio.
         /// </summary>
         internal static string cmdelencostaffaggi {
@@ -419,6 +429,15 @@ namespace P3Ribbon.Resources {
         internal static string Sisma {
             get {
                 return ResourceManager.GetString("Sisma", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Elenca gli staffaggi utilizzati e la relativa componentistica.
+        /// </summary>
+        internal static string String1 {
+            get {
+                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
     }
