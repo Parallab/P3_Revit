@@ -445,9 +445,17 @@ namespace P3Ribbon.Scripts
 
         public void TrovaPavimento(Document doc)
         {
-            View3D view3d;
+            View3D view3d = null;
             //Prima vista3d o quella di defoult, Eccezione se ci non ci sono viste 3d nel progetto?
-            view3d = (View3D) new FilteredElementCollector(doc).OfClass(typeof(View3D)).FirstOrDefault();
+            IList<Element> views3d = new FilteredElementCollector(doc).OfClass(typeof(View3D)).ToElements();
+            foreach(View3D view in views3d)
+            {
+                if(view.IsTemplate == false)
+                {
+                    view3d = view;
+                    break;
+                }
+            }
 
             Category p_cat = doc.Settings.Categories.get_Item(BuiltInCategory.OST_Floors);
 

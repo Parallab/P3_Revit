@@ -49,11 +49,30 @@ namespace P3Ribbon.Scripts
 
             // guardo i tipi nel documento template
             ICollection<ElementId> IdTipiDaCopiare = new Collection<ElementId>();
+            Document docSource = null;
+            if (app.VersionNumber == "2021")
+            {
+                docSource = app.OpenDocumentFile(Supporto.TrovaPercorsoRisorsa("P3 - Duct system template20.rte"));
+            }
+            if (app.VersionNumber == "2020")
+            {
+                docSource = app.OpenDocumentFile(Supporto.TrovaPercorsoRisorsa("P3 - Duct system template20.rte"));
+            }
+            else if(app.VersionNumber == "2019")
+            {
+                docSource = app.OpenDocumentFile(Supporto.TrovaPercorsoRisorsa("P3 - Duct system template19.rte"));
+            }
+            else if (app.VersionNumber == "2018")
+            {
+                docSource = app.OpenDocumentFile(Supporto.TrovaPercorsoRisorsa("P3 - Duct system template18.rte"));
+            }
 
-            Document docSource = app.OpenDocumentFile(Supporto.TrovaPercorsoRisorsa("P3 - Duct system template20.rte"));
+
+
             FilteredElementCollector collTipiRisorsa = new FilteredElementCollector(docSource).WherePasses(Supporto.CatFilterDuctAndInsul).WhereElementIsElementType();
-            CopyPasteOptions option = new CopyPasteOptions();
-            option.SetDuplicateTypeNamesHandler(new HideAndAcceptDuplicateTypeNamesHandler());
+                CopyPasteOptions option = new CopyPasteOptions();
+                option.SetDuplicateTypeNamesHandler(new HideAndAcceptDuplicateTypeNamesHandler());
+            
 
             foreach (ElementType type in collTipiRisorsa)
             {
