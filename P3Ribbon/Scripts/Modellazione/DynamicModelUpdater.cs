@@ -39,19 +39,26 @@ namespace P3Ribbon.Scripts
                         Element el = doc.GetElement(id);
                         string nome = "";
 
-                        // CONTOLLARE SE C é P3 NEL NOME OPPURE QUEI PARAMETI NASCOSTI...
-                        if (el.GetType() == typeof(Duct))
-                        {
-                            nome = doc.GetElement(el.GetTypeId()).Name;
-                        }
-                        else if (el.GetType() == typeof(FamilyInstance))
-                        {
-                            if (el.Category.Id.IntegerValue == doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctFitting).Id.IntegerValue) //forse metterlo come param globale nella classe di supprto (lo usiamo anche per igra isolamento ma anche nell allow FiltraCondotti : ISelectionFilter
-                            {
-                                nome = (doc.GetElement(el.GetTypeId()) as ElementType).FamilyName;
-                            }
-                        }
-                        if (nome.Contains("P3")) // IN FUTURO USARE UN PARAMETO (NASCOSTO?)
+                        // CONTOLLARE SE C é P3 NEL N PARAMETRO NASCOSTO
+                        //if (el.GetType() == typeof(Duct))
+                        //{
+                         //   nome = doc.GetElement(el.GetTypeId()).Name;
+							
+
+                        //}
+                        //else if (el.GetType() == typeof(FamilyInstance))
+                        //{
+                        //    if (el.Category.Id.IntegerValue == doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctFitting).Id.IntegerValue) //forse metterlo come param globale nella classe di supprto (lo usiamo anche per igra isolamento ma anche nell allow FiltraCondotti : ISelectionFilter
+                        //    {
+                        //        nome = (doc.GetElement(el.GetTypeId()) as ElementType).FamilyName;
+								
+                        //    }
+                        //}
+
+
+						nome = doc.GetElement(el.GetTypeId()).LookupParameter("P3_Nome").AsString();
+
+                        if (nome.Contains("P3")) 
                         {
                             DuctInsulation.Create(doc, id, Materiale.IdInsulTipoPreferito, Materiale.SpessoreIsolante);
                         }
