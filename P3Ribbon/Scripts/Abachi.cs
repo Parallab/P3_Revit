@@ -177,15 +177,8 @@ namespace P3Ribbon.Scripts
                 GUI.Wpf_Libreria wpf = new GUI.Wpf_Libreria(commandData);
                 using (wpf)
                 {
-
-                    //using (var t = new Transaction(doc, "FinestraInfo"))
-                    //{
-                    //t.Start();
                     wpf.ShowDialog();
-                    //    t.Commit();
-                    //}
-
-
+           
                     Supporto.ChiudiFinestraCorrente(uiDoc);
                 }
 
@@ -231,15 +224,8 @@ namespace P3Ribbon.Scripts
                 GUI.Wpf_Libreria wpf = new GUI.Wpf_Libreria(commandData);
                 using (wpf)
                 {
-
-                    //using (var t = new Transaction(doc, "FinestraInfo"))
-                    //{
-                    //t.Start();
                     wpf.ShowDialog();
-                    //    t.Commit();
-                    //}
-
-
+                
                     Supporto.ChiudiFinestraCorrente(uiDoc);
                 }
             }

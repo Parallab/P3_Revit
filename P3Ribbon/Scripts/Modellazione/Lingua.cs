@@ -17,8 +17,6 @@ namespace P3Ribbon.Scripts
     [Transaction(TransactionMode.Manual)]
     class Lingua : IExternalCommand
     {
-
-        // private static UIControlledApplication UICapp;
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             UIApplication uiApp = commandData.Application;

@@ -66,18 +66,22 @@ namespace P3Ribbon.Scripts
             Document doc = uiDoc.Document;
             Application app = uiApp.Application;
 
-
-            Scripts.GUI.Form_Quantità frm = new Scripts.GUI.Form_Quantità(commandData);
-            using (frm)
+            MigraAreaIsolamento.ControllaParametriSeEsistenti(doc, app);
+            if (MigraAreaIsolamento.isolamentipresenti == true)
             {
-                //using (var t = new Transaction(doc, "FinestraImpostazini"))
-               // {
-                   // t.Start();
-                    frm.ShowDialog();
-                //    t.Commit();
-               // }
+                if (MigraAreaIsolamento.parPresenti == true)
+                {
+                    Scripts.GUI.Form_Quantità frm = new Scripts.GUI.Form_Quantità(commandData);
+                    using (frm)
+                    {
+                        frm.ShowDialog();
+
+                    }
+                }
+                return Result.Succeeded;
             }
-            return Result.Succeeded;
+            else
+                return Result.Failed;
         }
 
     }
@@ -125,13 +129,12 @@ namespace P3Ribbon.Scripts
                 //    t.Commit();
                 //}
 
-                
+
                 Supporto.ChiudiFinestraCorrente(uiDoc);
             }
             return Result.Succeeded;
         }
 
 
-      
     }
 }

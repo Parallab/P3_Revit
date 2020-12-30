@@ -18,6 +18,8 @@ namespace P3Ribbon.Scripts
     class MigraAreaIsolamento : IExternalCommand
     {
         public static bool parPresenti = false;
+        public static bool isolamentipresenti = false;
+        
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             UIApplication uiApp = commandData.Application;
@@ -135,12 +137,13 @@ namespace P3Ribbon.Scripts
 
         static public void ControllaParametriSeEsistenti(Document doc, Application app)
         {
-
+            
             // come verificare se il parametro è dentro il binding...definition
             // doc.ParameterBindings.Contains();
             IList<Element> dicoll = new FilteredElementCollector(doc).OfClass(typeof(DuctInsulation)).ToElements();
             if (dicoll.Count > 0)
             {
+                isolamentipresenti = true;
                 Element di = dicoll[0];
                 Parameter sup_dyn = di.LookupParameter("P3_Sup_S.app_dyn");
                 if (sup_dyn == null)

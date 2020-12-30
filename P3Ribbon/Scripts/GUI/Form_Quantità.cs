@@ -30,18 +30,14 @@ namespace P3Ribbon.Scripts.GUI
             using (var t = new Transaction(m_doc, "Calcolo area"))
             {
                 t.Start();
-                MigraAreaIsolamento.ControllaParametriSeEsistenti(m_doc, m_app);
-                if (MigraAreaIsolamento.parPresenti == true)
-                {
+                
                     MigraAreaIsolamento.MigraParaetriIsolamento(m_doc);
-                }
+                
                 t.Commit();
             }
             
             LeggoAbacoQuantità();
             InitializeComponent();
-            //mi serve il peso specifico per ottenere i Kg??
-            
         }
      
         private void LeggoAbacoQuantità()
@@ -53,8 +49,7 @@ namespace P3Ribbon.Scripts.GUI
             int nRows = section.NumberOfRows;
             int nColumns = section.NumberOfColumns;
 
-            ////mi conviene farlo con i dizionari?? key duplicate
-            //Dictionary<string, string> MaterialiPesi = new Dictionary<string, string>();
+        
            
             int ir = 0;
             int cr = nColumns;
