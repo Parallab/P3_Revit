@@ -19,17 +19,17 @@ namespace P3Ribbon.Scripts
 
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            if (Supporto.ControllaAbachiP3Presenti("P3 - Duct Fitting Schedule - All"))
-            {
                 UIApplication uiApp = commandData.Application;
                 UIDocument uiDoc = uiApp.ActiveUIDocument;
                 Document doc = uiDoc.Document;
                 Element nlist = null;
+           
+
+            if (Supporto.ControllaAbachiP3Presenti("P3 - Duct Fitting Schedule - All"))
+            {
 
                 ViewSchedule vistaAbacoP3All = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.Name == "P3 - Duct Fitting Schedule - All") as ViewSchedule;
                 uiDoc.ActiveView = vistaAbacoP3All;
-
-             return Result.Succeeded;
             }
             else
             {
@@ -37,6 +37,21 @@ namespace P3Ribbon.Scripts
                 td.MainInstruction = " Abachi non inseriti nel progetto";
                 td.MainContent = "Questo abaco non è presente nel progetto, caricare prima la libreria";
                 TaskDialogResult result = td.Show();
+
+                GUI.Wpf_Libreria wpf = new GUI.Wpf_Libreria(commandData);
+                using (wpf)
+                {
+
+                    //using (var t = new Transaction(doc, "FinestraInfo"))
+                    //{
+                    //t.Start();
+                    wpf.ShowDialog();
+                    //    t.Commit();
+                    //}
+
+
+                    Supporto.ChiudiFinestraCorrente(uiDoc);
+                }
             }
             return Result.Cancelled;
 
@@ -82,17 +97,18 @@ namespace P3Ribbon.Scripts
 
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            if (Supporto.ControllaAbachiP3Presenti("P3 - Duct Hangers"))
-            {
                 UIApplication uiApp = commandData.Application;
                 UIDocument uiDoc = uiApp.ActiveUIDocument;
                 Document doc = uiDoc.Document;
+
+            if (Supporto.ControllaAbachiP3Presenti("P3 - Duct Hangers"))
+            {
 
 
                 ViewSchedule vistaAbacoP3pts = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.Name == "P3 - Duct Hangers") as ViewSchedule;
                 uiDoc.ActiveView = vistaAbacoP3pts;
 
-                return Result.Succeeded;
+                
             }
             else
             {
@@ -100,8 +116,23 @@ namespace P3Ribbon.Scripts
                 td.MainInstruction = " Abachi non inseriti nel progetto";
                 td.MainContent = "Questo abaco non è presente nel progetto, caricare prima la libreria";
                 TaskDialogResult result = td.Show();
+
+                GUI.Wpf_Libreria wpf = new GUI.Wpf_Libreria(commandData);
+                using (wpf)
+                {
+
+                    //using (var t = new Transaction(doc, "FinestraInfo"))
+                    //{
+                    //t.Start();
+                    wpf.ShowDialog();
+                    //    t.Commit();
+                    //}
+
+
+                    Supporto.ChiudiFinestraCorrente(uiDoc);
+                }
             }
-            return Result.Cancelled;
+            return Result.Succeeded;
 
         }
     }
@@ -112,12 +143,13 @@ namespace P3Ribbon.Scripts
 
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            if (Supporto.ControllaAbachiP3Presenti("P3 - Duct Insulation Schedule - DYNAMO"))
-            {
                 UIApplication uiApp = commandData.Application;
                 UIDocument uiDoc = uiApp.ActiveUIDocument;
                 Document doc = uiDoc.Document;
                 Application app = uiApp.Application;
+
+            if (Supporto.ControllaAbachiP3Presenti("P3 - Duct Insulation Schedule - DYNAMO"))
+            {
 
                 using (var t = new Transaction(doc, "Migra Parametro Area Isolamento"))
                 {
@@ -134,7 +166,7 @@ namespace P3Ribbon.Scripts
                 ViewSchedule vistaAbacoP3insul = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.Name == "P3 - Duct Insulation Schedule - DYNAMO") as ViewSchedule;
                 uiDoc.ActiveView = vistaAbacoP3insul;
 
-                return Result.Succeeded;
+               
             }
             else
             {
@@ -142,8 +174,23 @@ namespace P3Ribbon.Scripts
                 td.MainInstruction = " Abachi non inseriti nel progetto";
                 td.MainContent = "Questo abaco non è presente nel progetto, caricare prima la libreria";
                 TaskDialogResult result = td.Show();
+                GUI.Wpf_Libreria wpf = new GUI.Wpf_Libreria(commandData);
+                using (wpf)
+                {
+
+                    //using (var t = new Transaction(doc, "FinestraInfo"))
+                    //{
+                    //t.Start();
+                    wpf.ShowDialog();
+                    //    t.Commit();
+                    //}
+
+
+                    Supporto.ChiudiFinestraCorrente(uiDoc);
+                }
+
             }
-            return Result.Cancelled;
+            return Result.Succeeded;
 
         }
     }
@@ -153,12 +200,13 @@ namespace P3Ribbon.Scripts
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
-            if (Supporto.ControllaAbachiP3Presenti("P3 - Duct Hangers - Components - ITA"))
-            {
                 UIApplication uiApp = commandData.Application;
                 UIDocument uiDoc = uiApp.ActiveUIDocument;
                 Document doc = uiDoc.Document;
                 Application app = uiApp.Application;
+
+            if (Supporto.ControllaAbachiP3Presenti("P3 - Duct Hangers - Components - ITA"))
+            {
 
 
                 //if (App.lingua_plugin == App.Lingua.ITA)
@@ -172,7 +220,6 @@ namespace P3Ribbon.Scripts
                 //    uiDoc.ActiveView = viewSchedule;
                 //}
 
-                return Result.Succeeded;
             }
             else
             {
@@ -180,8 +227,23 @@ namespace P3Ribbon.Scripts
                 td.MainInstruction = " Abachi non inseriti nel progetto";
                 td.MainContent = "Questo abaco non è presente nel progetto, caricare prima la libreria";
                 TaskDialogResult result = td.Show();
+
+                GUI.Wpf_Libreria wpf = new GUI.Wpf_Libreria(commandData);
+                using (wpf)
+                {
+
+                    //using (var t = new Transaction(doc, "FinestraInfo"))
+                    //{
+                    //t.Start();
+                    wpf.ShowDialog();
+                    //    t.Commit();
+                    //}
+
+
+                    Supporto.ChiudiFinestraCorrente(uiDoc);
+                }
             }
-            return Result.Cancelled;
+            return Result.Succeeded;
 
         }
     }

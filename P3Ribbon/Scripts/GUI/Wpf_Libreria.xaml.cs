@@ -89,7 +89,17 @@ namespace P3Ribbon.Scripts.GUI
             {
                 if (wpfcboItems.Count > 0)
                 {
-                    wpfCboMateriali.Items.Clear();
+                    //items.clear lo si utilizza quando si aggiunge un item con .add
+                    try
+                    {
+                        wpfCboMateriali.Items.Clear();
+                    }
+                    catch
+                    {
+
+                    }
+                    wpfCboMateriali.ItemsSource = null;
+
                     wpfCboMateriali.ItemsSource = wpfcboItems;
                     wpfCboMateriali.DisplayMemberPath = "name";
 

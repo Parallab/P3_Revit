@@ -125,25 +125,13 @@ namespace P3Ribbon.Scripts
                 //    t.Commit();
                 //}
 
-                // la finestra si chiude da sola e nona rriva a questo punto quindi il comando non termina. potrei inserire chiudi feinstra dentro al bottone ma cmq nona rrivo a return result succeeded
-                ChiudiFinestraCorrente();
+                
+                Supporto.ChiudiFinestraCorrente(uiDoc);
             }
             return Result.Succeeded;
         }
 
 
-        private void ChiudiFinestraCorrente()
-        {
-            Autodesk.Revit.DB.View CurrView = doc.ActiveView;
-            IList<UIView> UlViews = uiDoc.GetOpenUIViews();
-            if (UlViews.Count > 1)
-            {
-                foreach (UIView pView in UlViews)
-                {
-                    if (pView.ViewId.IntegerValue == CurrView.Id.IntegerValue)
-                        pView.Close();
-                }
-            }
-        }
+      
     }
 }

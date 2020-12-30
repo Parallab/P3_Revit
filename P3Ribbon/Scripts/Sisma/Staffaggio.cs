@@ -39,29 +39,55 @@ namespace P3Ribbon.Scripts
 
             if (Supporto.ControllaSePresentiParamSismici())
             {
-                Supporto.ValoriTabella = TabellaExcel.LeggiTabella(doc);
-                List<Condotto> Condotti = FiltraCondottiCortiVert(doc, uiDoc);
-                AttivaFamiglia(doc);
-
-
-                using (var t = new Transaction(doc, "Posiziona staffaggio"))
+                if (Supporto.ControllaStaffaPresente())
                 {
-                    t.Start();
-                    if (condotti.Count != 0)
+                    Supporto.ValoriTabella = TabellaExcel.LeggiTabella(doc);
+                    List<Condotto> Condotti = FiltraCondottiCortiVert(doc, uiDoc);
+                    AttivaFamiglia(doc);
+
+
+                    using (var t = new Transaction(doc, "Posiziona staffaggio"))
                     {
-                        foreach (Condotto c in Condotti)
+                        t.Start();
+                        if (condotti.Count != 0)
                         {
-                            c.DimensionaDaTabella(doc);
-                            c.CalcolaPuntiStaffe();
-                            c.TrovaPavimento(doc);
-                            c.PosizionaStaffe(doc, fs);
+                            foreach (Condotto c in Condotti)
+                            {
+                                c.DimensionaDaTabella(doc);
+                                c.CalcolaPuntiStaffe();
+                                c.TrovaPavimento(doc);
+                                c.PosizionaStaffe(doc, fs);
+                            }
+                            t.Commit();
                         }
-                        t.Commit();
+                        else
+                        {
+                            return Result.Cancelled;
+                        }
                     }
-                    else
+                }
+                else
+                {
+                    TaskDialog td = new TaskDialog("Errore");
+                    td.MainInstruction = " Staffe non inseriti nel progetto";
+                    td.MainContent = "Le staffe non sono caricate nel progetto, caricare prima la libreria";
+                    TaskDialogResult result = td.Show();
+
+                    GUI.Wpf_Libreria wpf = new GUI.Wpf_Libreria(commandData);
+                    using (wpf)
                     {
-                        return Result.Cancelled;
+
+                        //using (var t = new Transaction(doc, "FinestraInfo"))
+                        //{
+                        //t.Start();
+                        wpf.ShowDialog();
+                        //    t.Commit();
+                        //}
+
+
                     }
+
+                    return Result.Succeeded;
                 }
             }
             else
@@ -120,21 +146,25 @@ namespace P3Ribbon.Scripts
                         }
                     }
                 }
-
+                #region Taskdialog quatnità di canali
                 //TaskDialog td1 = new TaskDialog("P3 staffaggio canali");
                 //td1.MainInstruction = "Nel proggetto corrente ci sono " + dclist1.Count + " condotti";
                 //TaskDialogResult result2 = td1.Show();
+                #endregion
+
                 return dclist1;
 
             }
+
             //Seleziono i condotti da finestra 
             else if (result == TaskDialogResult.CommandLink2)
             {
                 IList<Element> dclist2 = SelSoloCondottiDaFinestra(uiDoc);
-
+                #region taskdialog quantità canali selezionati
                 //TaskDialog td2 = new TaskDialog("P3 staffaggio canali");
                 //td2.MainInstruction = "hai selezionato " + dclist2.Count + " condotti";
                 //TaskDialogResult result2 = td2.Show();
+                #endregion
                 return dclist2;
             }
             else
@@ -194,10 +224,7 @@ namespace P3Ribbon.Scripts
                     {
                         condotti.Add(condotto);
                     }
-                }
-                //TaskDialog td = new TaskDialog("P3 staffaggio canali");
-                //td.MainInstruction = "sono stati indivituati " + i + " canali verticali o troppo corti";
-                //TaskDialogResult result = td.Show();
+                }     
                 return condotti;
             }
             else
@@ -210,7 +237,7 @@ namespace P3Ribbon.Scripts
 
         public void AttivaFamiglia(Document doc)
         {
-            //eccezione se non c'è
+            
             Element StaffaP3 = new FilteredElementCollector(doc).OfClass(typeof(FamilySymbol)).FirstOrDefault(x => x.Name == "P3_DuctHanger");
             int id = StaffaP3.Id.IntegerValue;
             fs = doc.GetElement(new ElementId(id)) as FamilySymbol;
@@ -238,8 +265,6 @@ namespace P3Ribbon.Scripts
         public double lungh = 0;
         public double lungh_of1 = 0;
         public double angoloRispY = 0;
-        //public double passoMin = 0;
-        //public double passoMax = 0;
         public int rappT;
         public int rappL;
         //public int inclinazioneXY = 0;
@@ -276,8 +301,6 @@ namespace P3Ribbon.Scripts
             this.largh_IM = CalcolaLarghezza(_el, false) + this.spiso_IM;
             this.lungh = CalcolaLunghezza(_el);
             this.per = CalcolaPerimetro(alt, largh);
-            //this.passoMin = CalcolaPassoMinMax(true);
-            //this.passoMax = CalcolaPassoMinMax(false);
             this.dir = CalcolaDirezione(_el);
             this.lc = _el.Location as LocationCurve;
             this.livello = CalcolaLivello(doc, _el);
@@ -361,16 +384,7 @@ namespace P3Ribbon.Scripts
             XYZ pt2 = c.GetEndPoint(1);
 
             angoloRispY = pt1.AngleTo(pt2);
-            //double xp1 = pt1.X;
-            //double yp1 = pt1.Y;
-            //double xp2 = pt2.X;
-            //double yp2 = pt2.Y;
-
-            //double ipo = Math.Sqrt(Math.Pow((xp2 - xp1), 2) + Math.Pow((yp2 - yp1), 2));
-            //double diff_y = Math.Abs(yp2 - yp1);
-
-            //double rads = Math.Acos(diff_y / ipo);
-            //angoloRispY = rads * (180 / Math.PI);
+     
             return angoloRispY;
         }
 
@@ -397,24 +411,6 @@ namespace P3Ribbon.Scripts
                 return Passomax;
             }
         }
-        //public List<Element> TrovaRaccordi90Gradi(Document doc)
-        //{
-        //    IList<Element> ra_coll = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_DuctFitting).WhereElementIsNotElementType().ToElements();
-        //    //Creo una lista vuota
-        //    List<Element> raccordi = new List<Element>();
-        //    foreach (Element el in ra_coll)
-        //    {
-        //        double angolo = el.LookupParameter("P3 - Angle").AsDouble();
-        //        double angolo_dx = el.LookupParameter("P3 - Angle_SX").AsDouble();
-        //        double angolo_sx = el.LookupParameter("P3 - Angle_DX").AsDouble();
-
-        //        if (angolo == 90 || angolo_dx == 90 || angolo_sx == 90)
-        //        {
-        //            raccordi.Add(el);
-        //        }
-        //    }
-        //    return raccordi;
-        //}
         #endregion
 
         public void CalcolaPuntiStaffe()
@@ -451,7 +447,7 @@ namespace P3Ribbon.Scripts
         {
             View3D view3d;
             //Prima vista3d o quella di defoult, Eccezione se ci non ci sono viste 3d nel progetto?
-            view3d = new FilteredElementCollector(doc).OfClass(typeof(View3D)).Cast<View3D>().FirstOrDefault();
+            view3d = (View3D) new FilteredElementCollector(doc).OfClass(typeof(View3D)).FirstOrDefault();
 
             Category p_cat = doc.Settings.Categories.get_Item(BuiltInCategory.OST_Floors);
 
@@ -471,8 +467,6 @@ namespace P3Ribbon.Scripts
                 else
                 {
                     Reference refel = _ref.GetReference();
-
-
                     //RevitLinkInstance linkinstance = (RevitLinkInstance)doc.GetElement(refel.ElementId); //non serve
                     XYZ refp = refel.GlobalPoint;
                     ptspavimenti.Add(refp);
@@ -519,9 +513,8 @@ namespace P3Ribbon.Scripts
 
 
 
-                    //forse non bisogna ruotare ma agire sulla trasformata? erche sui canali inclinati non a 90° ogni tanto la staffa è ruotata male (cambia il segno). però non possiamo agire manualmente sul segno, dobbiamo trovare un modo automatico. magari controllare anche lo script dynamo piu aggiornato nella cartella "pacchetto 2.1". forse moltiplicare angleTo con una funzione che mi dice se è pos o neg? secondo me in dynamo l ho gia fatto
 
-                    //dipende dalla direzione del condotto, quindi verso quale quadrante si rivolge (quindi dipiende anche dal verso ovvero i click con cui è stato creato)
+                    //dipende dalla direzione del condotto, quindi verso quale quadrante si rivolge (di conseguenza dal verso del vettore ovvero i click con cui è stato creato)
 
                     // staffa superiore
                     double distanzaControff = fi.LookupParameter("P3_Dynamo_Top2Ceiling").AsDouble();
@@ -591,9 +584,6 @@ namespace P3Ribbon.Scripts
                     {
                         owner = conn_collegato.Owner;
 
-                        //BuiltInCategory ownnerBuiltin = System.Enum.ToObject(owner.Category.Id, BuiltInCategory.OST_DuctFitting);
-                        //Category.GetCategory(doc, BuiltInCategory.OST_DuctFitting
-                        //doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctFitting
                         if (owner.Category.Id.IntegerValue == doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctFitting).Id.IntegerValue)
                         {
                             Element e = doc.GetElement(owner.GetTypeId());

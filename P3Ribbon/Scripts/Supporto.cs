@@ -18,6 +18,7 @@ namespace P3Ribbon.Scripts
         public static List<List<double>> ValoriTabella;
         public static Document doc;
         public static Application app;
+        
 
         public static LogicalOrFilter CatFilter(bool insul_or_racc)
         {
@@ -154,7 +155,7 @@ namespace P3Ribbon.Scripts
             FilteredElementCollector collTipiPresenti = new FilteredElementCollector(doc).WherePasses(Supporto.CatFilterDuctAndInsul).WhereElementIsElementType();
 
             //nomi (che poi saranno param nascosti) da cercare
-            
+
 
             //guardo tutti i tipi che mi interessamno presenti nel mio doc
             foreach (Element type in collTipiPresenti)
@@ -204,7 +205,39 @@ namespace P3Ribbon.Scripts
             }
             return AbachiP3Caricati;
         }
+        public static bool ControllaStaffaPresente()
+        {
+            FilteredElementCollector collStaffe = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_SpecialityEquipment).WhereElementIsElementType();
+            bool StaffaP3Caricata = false;
+
+            foreach (var type in collStaffe)
+            {
+                //da usare poi parametri nascosti
+                string typeName = type.Name;
+                if (typeName == "P3_DuctHanger")
+                {
+                    StaffaP3Caricata = true;
+                }
+
+            }
+            return StaffaP3Caricata;
+
+        }
+        public static void ChiudiFinestraCorrente(UIDocument uiDoc)
+        {
+            Autodesk.Revit.DB.View CurrView = doc.ActiveView;
+            IList<UIView> UlViews = uiDoc.GetOpenUIViews();
+            if (UlViews.Count > 1)
+            {
+                foreach (UIView pView in UlViews)
+                {
+                    if (pView.ViewId.IntegerValue == CurrView.Id.IntegerValue)
+                        pView.Close();
+                }
+            }
+        }
     }
+
 
 }
 
