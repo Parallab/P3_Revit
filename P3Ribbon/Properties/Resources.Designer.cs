@@ -83,26 +83,6 @@ namespace P3Ribbon.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Code_802___3D_insulated3 {
-            get {
-                object obj = ResourceManager.GetObject("Code 802 - 3D insulated3", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Code_803___3D_insulated1 {
-            get {
-                object obj = ResourceManager.GetObject("Code 803 - 3D insulated1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Code_804___3D_insulated1 {
             get {
                 object obj = ResourceManager.GetObject("Code 804 - 3D insulated1", resourceCulture);
@@ -123,49 +103,9 @@ namespace P3Ribbon.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Code_843___3D_insulated1 {
-            get {
-                object obj = ResourceManager.GetObject("Code 843 - 3D insulated1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Code_847___3D_insulated1 {
-            get {
-                object obj = ResourceManager.GetObject("Code 847 - 3D insulated1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Code_853___3D_insulated1 {
-            get {
-                object obj = ResourceManager.GetObject("Code 853 - 3D insulated1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Code_854___3D_insulated {
             get {
                 object obj = ResourceManager.GetObject("Code 854 - 3D insulated", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap ospedale_mestre {
-            get {
-                object obj = ResourceManager.GetObject("ospedale-mestre", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

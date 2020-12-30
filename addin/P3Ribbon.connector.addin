@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RevitAddIns>
+  <AddIn Type="Application">
+    <Name>P3Ribbon</Name>
+    <Assembly>C:\Program Files (x86)\P3ductBIM\P3Ribbon.dll</Assembly>
+    <AddInId>604b1052-f742-4951-8576-c261d1993108</AddInId>
+    <FullClassName>P3Ribbon.App</FullClassName>
+    <VendorId>Simone Maioli Parallab</VendorId>
+    <VendorDescription>Parallab</VendorDescription>
+  </AddIn>
+</RevitAddIns>

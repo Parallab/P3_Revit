@@ -89,7 +89,82 @@ namespace P3Ribbon.Resources {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Price
+        ///   Cerca una stringa localizzata simile a Dynamic
+        ///Duct.
+        /// </summary>
+        internal static string cmdcanaledinamico {
+            get {
+                return ResourceManager.GetString("cmdcanaledinamico", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Create a duct of type: Dynamic.
+        /// </summary>
+        internal static string cmdcanaledinamico_tt {
+            get {
+                return ResourceManager.GetString("cmdcanaledinamico_tt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Tap 
+        ///Duct.
+        /// </summary>
+        internal static string cmdcanalescarpette {
+            get {
+                return ResourceManager.GetString("cmdcanalescarpette", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Create a duct of type: Tap.
+        /// </summary>
+        internal static string cmdcanalescarpette_tt {
+            get {
+                return ResourceManager.GetString("cmdcanalescarpette_tt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Upload Material.
+        /// </summary>
+        internal static string cmdcaricamaterial {
+            get {
+                return ResourceManager.GetString("cmdcaricamaterial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Upload materials in the ribbonbox.
+        /// </summary>
+        internal static string cmdcaricamaterial_tt {
+            get {
+                return ResourceManager.GetString("cmdcaricamaterial_tt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Components 
+        ///Lists.
+        /// </summary>
+        internal static string cmdelencocomp {
+            get {
+                return ResourceManager.GetString("cmdelencocomp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a List P3 components.
+        /// </summary>
+        internal static string cmdelencocomp_tt {
+            get {
+                return ResourceManager.GetString("cmdelencocomp_tt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Parts
         ///List.
         /// </summary>
         internal static string cmdelencopezzi {
@@ -114,6 +189,24 @@ namespace P3Ribbon.Resources {
         internal static string cmdelencostaffaggi {
             get {
                 return ResourceManager.GetString("cmdelencostaffaggi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Settings.
+        /// </summary>
+        internal static string cmdimpo {
+            get {
+                return ResourceManager.GetString("cmdimpo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Settings on the P3 application.
+        /// </summary>
+        internal static string cmdimpo_tt {
+            get {
+                return ResourceManager.GetString("cmdimpo_tt", resourceCulture);
             }
         }
         

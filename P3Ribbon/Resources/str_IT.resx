@@ -127,12 +127,39 @@ Materiali</value>
   <data name="cmdcanale" xml:space="preserve">
     <value>Canale</value>
   </data>
+  <data name="cmdcanaledinamico" xml:space="preserve">
+    <value>Canale
+Dinamico</value>
+  </data>
+  <data name="cmdcanaledinamico_tt" xml:space="preserve">
+    <value>Crea un condotto di tipo: Dinamico</value>
+  </data>
+  <data name="cmdcanalescarpette" xml:space="preserve">
+    <value>Canale
+Scarpette</value>
+  </data>
+  <data name="cmdcanalescarpette_tt" xml:space="preserve">
+    <value>Crea un condotto di tipo: Scarpette</value>
+  </data>
   <data name="cmdcanale_tt" xml:space="preserve">
     <value>Posiziona i canali preisolati P3</value>
   </data>
+  <data name="cmdcaricamaterial" xml:space="preserve">
+    <value>Carica Materiale</value>
+  </data>
+  <data name="cmdcaricamaterial_tt" xml:space="preserve">
+    <value>Carica i materiali nel ribbonbox</value>
+  </data>
+  <data name="cmdelencocomp" xml:space="preserve">
+    <value>Elenco
+Componenti</value>
+  </data>
+  <data name="cmdelencocomp_tt" xml:space="preserve">
+    <value>Elenca i componenti P3</value>
+  </data>
   <data name="cmdelencopezzi" xml:space="preserve">
     <value>Elenco
-Prezzi</value>
+Pezzi</value>
   </data>
   <data name="cmdelencopezzi_tt" xml:space="preserve">
     <value>Elenca i canali e i pezzi speciali P3</value>
@@ -140,6 +167,12 @@ Prezzi</value>
   <data name="cmdelencostaffaggi" xml:space="preserve">
     <value>Elenco
 Staffaggio</value>
+  </data>
+  <data name="cmdimpo" xml:space="preserve">
+    <value>Impostazioni</value>
+  </data>
+  <data name="cmdimpo_tt" xml:space="preserve">
+    <value>Impostazioni sull'applicativo P3</value>
   </data>
   <data name="cmdinfo" xml:space="preserve">
     <value>Contatti</value>

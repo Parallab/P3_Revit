@@ -124,11 +124,38 @@ List</value>
   <data name="cmdcanale" xml:space="preserve">
     <value>Duct</value>
   </data>
+  <data name="cmdcanaledinamico" xml:space="preserve">
+    <value>Dynamic
+Duct</value>
+  </data>
+  <data name="cmdcanaledinamico_tt" xml:space="preserve">
+    <value>Create a duct of type: Dynamic</value>
+  </data>
+  <data name="cmdcanalescarpette" xml:space="preserve">
+    <value>Tap 
+Duct</value>
+  </data>
+  <data name="cmdcanalescarpette_tt" xml:space="preserve">
+    <value>Create a duct of type: Tap</value>
+  </data>
   <data name="cmdcanale_tt" xml:space="preserve">
     <value>Place the P3 pre-insulated ducts </value>
   </data>
+  <data name="cmdcaricamaterial" xml:space="preserve">
+    <value>Upload Material</value>
+  </data>
+  <data name="cmdcaricamaterial_tt" xml:space="preserve">
+    <value>Upload materials in the ribbonbox</value>
+  </data>
+  <data name="cmdelencocomp" xml:space="preserve">
+    <value>Components 
+Lists</value>
+  </data>
+  <data name="cmdelencocomp_tt" xml:space="preserve">
+    <value>List P3 components</value>
+  </data>
   <data name="cmdelencopezzi" xml:space="preserve">
-    <value>Price
+    <value>Parts
 List</value>
   </data>
   <data name="cmdelencopezzi_tt" xml:space="preserve">
@@ -137,6 +164,12 @@ List</value>
   <data name="cmdelencostaffaggi" xml:space="preserve">
     <value>Bracketing
 List</value>
+  </data>
+  <data name="cmdimpo" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="cmdimpo_tt" xml:space="preserve">
+    <value>Settings on the P3 application</value>
   </data>
   <data name="cmdinfo" xml:space="preserve">
     <value>Info</value>

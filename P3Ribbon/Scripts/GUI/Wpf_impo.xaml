@@ -1,0 +1,19 @@
+﻿<Window x:Class="P3Ribbon.Scripts.GUI.Wpf_impo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:P3Ribbon.Scripts.GUI"
+             mc:Ignorable="d" 
+              MaxHeight="350" MaxWidth="320" MinHeight="350" MinWidth="320" Width="314" Height="332"
+             WindowState="Maximized" ResizeMode="CanMinimize">
+    <Grid Height="247" Margin="7,10,7,0" VerticalAlignment="Top" HorizontalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="11*"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+        <TextBox Height="222" TextWrapping="Wrap" Text="L'updater è una funzione appositamente sviluppata su questo applicativo che ti permetti di creare all'interno del progetto corrnete, canali P3 già dotati di isolante e caratteristiche di fabbrica.&#xA;Questa funzione legge in backround le operazione svolte sui condotti e interviene quando ne viene creato uno nuovo, se ritieni di non aver bisogno di questa funzione o riscontri eccessivi rallentamenti nel tuo progetto puoi interrompere temporaneamente questa funzionalità" VerticalAlignment="Top" TextAlignment="Justify" Background="#3BB5CAFF" TextChanged="TextBox_TextChanged_2" FontFamily="Calibri" FontSize="14" Grid.RowSpan="2" Width="274" HorizontalAlignment="Center" Margin="0,20,0,0"/>
+        <CheckBox x:Name="CheckUpgrade" Content="Interrompi&#xD;&#xA;" HorizontalAlignment="Left" Margin="0,101,0,-17" VerticalAlignment="Top" Height="20" Width="92" Grid.Row="1" Checked="CheckBox_Checked"/>
+        <TextBlock HorizontalAlignment="Left" Margin="0,3,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="156" FontWeight="Bold"><Run Text="INTERROMP"/><Run Text="I"/><Run Text=" L'UPDATER"/></TextBlock>
+    </Grid>
+</Window>
