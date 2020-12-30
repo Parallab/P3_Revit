@@ -183,6 +183,25 @@ namespace P3Ribbon.Resources {
         }
         
         /// <summary>
+        ///   Cerca una stringa localizzata simile a Points
+        ///Lists.
+        /// </summary>
+        internal static string cmdelencopunti {
+            get {
+                return ResourceManager.GetString("cmdelencopunti", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Lists the brackets used and the related components.
+        /// </summary>
+        internal static string cmdelencopunti_tt {
+            get {
+                return ResourceManager.GetString("cmdelencopunti_tt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Cerca una stringa localizzata simile a Bracketing
         ///List.
         /// </summary>

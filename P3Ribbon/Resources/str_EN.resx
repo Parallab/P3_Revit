@@ -161,6 +161,13 @@ List</value>
   <data name="cmdelencopezzi_tt" xml:space="preserve">
     <value>List the P3 ducts and special pieces</value>
   </data>
+  <data name="cmdelencopunti" xml:space="preserve">
+    <value>Points
+Lists</value>
+  </data>
+  <data name="cmdelencopunti_tt" xml:space="preserve">
+    <value>Lists the brackets used and the related components</value>
+  </data>
   <data name="cmdelencostaffaggi" xml:space="preserve">
     <value>Bracketing
 List</value>

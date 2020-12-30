@@ -304,7 +304,6 @@ namespace P3Ribbon
 
         public static string res_valore(string Var, Lingua l)
         {
-
             ResourceSet rs = null;
             if (l == Lingua.ITA)
             {
@@ -314,7 +313,6 @@ namespace P3Ribbon
             {
                 rs = res_eng;
             }
-
             return rs.GetObject(Var).ToString();
         }
 

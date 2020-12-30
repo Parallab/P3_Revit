@@ -164,6 +164,10 @@ Pezzi</value>
   <data name="cmdelencopezzi_tt" xml:space="preserve">
     <value>Elenca i canali e i pezzi speciali P3</value>
   </data>
+  <data name="cmdelencopunti" xml:space="preserve">
+    <value>Elenco
+Punti</value>
+  </data>
   <data name="cmdelencostaffaggi" xml:space="preserve">
     <value>Elenco
 Staffaggio</value>
@@ -244,5 +248,8 @@ Staffaggio</value>
   </data>
   <data name="Sisma" xml:space="preserve">
     <value>Sisma</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>Elenca gli staffaggi utilizzati e la relativa componentistica</value>
   </data>
 </root>
