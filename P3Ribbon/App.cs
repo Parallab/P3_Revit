@@ -48,7 +48,8 @@ namespace P3Ribbon
             {
                 lingua_plugin = Lingua.ITA;
             }
-            else if (linguapartenza == LanguageType.English_GB || linguapartenza == LanguageType.English_GB)
+			else
+            //else if (linguapartenza == LanguageType.English_GB || linguapartenza == LanguageType.English_GB)
             {
                 lingua_plugin = Lingua.ENG;
             }
