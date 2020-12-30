@@ -181,7 +181,7 @@ namespace P3Ribbon
             RibbonPanel ribbonPanelInfo = a.CreateRibbonPanel(tabName, "Info");
             //inizializzo i due bottoni
             PushButtonData b4Data = new PushButtonData("cmdinfo", "Contatti", thisAssemblyPath, "P3Ribbon.Scripts.FinestraInfo");
-            PushButtonData b12Data = new PushButtonData("cmdimpo", "Impostazioni", thisAssemblyPath, "P3Ribbon.Scripts.WPF");
+            PushButtonData b12Data = new PushButtonData("cmdimpo", "Impostazioni", thisAssemblyPath, "P3Ribbon.Scripts.FinestraImpostazioni");
             //
             IList<RibbonItem> InfoItems = ribbonPanelInfo.AddStackedItems(b4Data, b12Data);
 
