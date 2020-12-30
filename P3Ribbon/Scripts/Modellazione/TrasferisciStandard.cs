@@ -93,8 +93,7 @@ namespace P3Ribbon.Scripts
             FilteredElementCollector collStaffeDoc = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_SpecialityEquipment).WhereElementIsElementType();
             foreach (var type in collStaffeDoc)
             {
-                //da usare poi parametri nascosti
-                if (type.Name == "P3_DuctHanger")
+                if (type.LookupParameter("P3_Nome").AsString() == "P3_DuctHanger")
                 {
                     nomiTipiPresenti.Add(type.Name);
                 }
@@ -105,8 +104,9 @@ namespace P3Ribbon.Scripts
             FilteredElementCollector collStaffeRisorsa = new FilteredElementCollector(docSource).OfCategory(BuiltInCategory.OST_SpecialityEquipment).WhereElementIsElementType();
             foreach (var type in collStaffeRisorsa)
             {
-                //da usare poi parametri nascosti
-                string typeName = type.Name;
+                
+                //string typeName = type.Name;
+				string typeName = type.LookupParameter("P3_Nome").AsString();
                 if (typeName == "P3_DuctHanger")
                 {
                     if (!(nomiTipiPresenti.Contains(typeName)))

@@ -161,7 +161,8 @@ namespace P3Ribbon.Scripts
             foreach (Element type in collTipiPresenti)
             {
                 //ora lo faccio con i nomi, successivamente lo farò con i parametri nascosti
-                string nome = type.Name;
+                //string nome = type.Name;
+				string nome = type.LookupParameter("P3_Nome").AsString();
                 if (nome.StartsWith("P3"))
                 {
                     IsolatiECondottiP3Presenti.Add(nome);
@@ -189,7 +190,9 @@ namespace P3Ribbon.Scripts
             foreach (Element el in collAbachiPresenti)
             {
                 //ora lo faccio con i nomi, successivamente lo farò con i parametri nascosti
-                string nome = el.Name;
+                //string nome = el.Name;
+				string nome = el.LookupParameter("P3_Nome_i").AsString();
+
                 if (nome.StartsWith("P3"))
                 {
                     AbachiP3Presenti.Add(nome);
@@ -213,7 +216,8 @@ namespace P3Ribbon.Scripts
             foreach (var type in collStaffe)
             {
                 //da usare poi parametri nascosti
-                string typeName = type.Name;
+                //string typeName = type.Name;
+				string typeName = type.LookupParameter("P3_Nome").AsString();
                 if (typeName == "P3_DuctHanger")
                 {
                     StaffaP3Caricata = true;
