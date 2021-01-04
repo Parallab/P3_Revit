@@ -31,22 +31,6 @@ namespace P3Ribbon.Scripts
         }
         public static void TrasferisciTipiDoc(Application app, Document doc)
         {
-
-            List<string> nomiTipiPresenti = new List<string>();
-
-            FilteredElementCollector collTipiPresenti = new FilteredElementCollector(doc).WherePasses(Supporto.CatFilterDuctAndInsul).WhereElementIsElementType();
-
-            //guardo tutti i tipi che mi interessamno presenti nel mio doc
-            foreach (ElementType type in collTipiPresenti)
-            {
-                string nome = type.Name;
-                if (nome.StartsWith("P3"))
-                {
-                    nomiTipiPresenti.Add(nome);
-                }
-            }
-
-
             // guardo i tipi nel documento template
             ICollection<ElementId> IdTipiDaCopiare = new Collection<ElementId>();
             Document docSource = null;
@@ -58,7 +42,7 @@ namespace P3Ribbon.Scripts
             {
                 docSource = app.OpenDocumentFile(Supporto.TrovaPercorsoRisorsa("P3 - Duct system template20.rte"));
             }
-            else if(app.VersionNumber == "2019")
+            else if (app.VersionNumber == "2019")
             {
                 docSource = app.OpenDocumentFile(Supporto.TrovaPercorsoRisorsa("P3 - Duct system template19.rte"));
             }
@@ -69,27 +53,57 @@ namespace P3Ribbon.Scripts
 
 
 
-            FilteredElementCollector collTipiRisorsa = new FilteredElementCollector(docSource).WherePasses(Supporto.CatFilterDuctAndInsul).WhereElementIsElementType();
-                CopyPasteOptions option = new CopyPasteOptions();
-                option.SetDuplicateTypeNamesHandler(new HideAndAcceptDuplicateTypeNamesHandler());
-            
+            //IMPORTO INSUL E TIPI DI CONDOTTI 
 
-            foreach (ElementType type in collTipiRisorsa)
+            List<string> nomiTipiPresenti = new List<string>();
+            FilteredElementCollector collTipiPresenti = new FilteredElementCollector(doc).WherePasses(Supporto.CatFilterDuctAndInsul).WhereElementIsElementType();
+
+            //guardo tutti i tipi che mi interessamno presenti nel mio doc
+            foreach (ElementType type in collTipiPresenti)
             {
-                string nome = type.Name;
-                if (nome.StartsWith("P3"))
+                try
                 {
-                    // contollRE SE ESISTE NEL DOC
-                    if (!(nomiTipiPresenti.Contains(nome)))
+                    string nome = type.LookupParameter("P3_Nome").AsString();
+                    if (nome.StartsWith("P3"))
                     {
-                        IdTipiDaCopiare.Add(type.Id);
+                        nomiTipiPresenti.Add(nome);
                     }
+                }
+                catch
+                {
 
                 }
             }
-            
+
+            //insul e condotti presenti nella risorsa
+            FilteredElementCollector collTipiRisorsa = new FilteredElementCollector(docSource).WherePasses(Supporto.CatFilterDuctAndInsul).WhereElementIsElementType();
+            CopyPasteOptions option = new CopyPasteOptions();
+            option.SetDuplicateTypeNamesHandler(new HideAndAcceptDuplicateTypeNamesHandler());
+
+
+            foreach (ElementType type in collTipiRisorsa)
+            {
+                try
+                {
+                    string nome = type.LookupParameter("P3_Nome").AsString();
+                    if (nome.StartsWith("P3"))
+                    {
+                        // contollRE SE ESISTE NEL DOC
+                        if (!(nomiTipiPresenti.Contains(nome)))
+                        {
+                            IdTipiDaCopiare.Add(type.Id);
+                        }
+
+                    }
+                }
+                catch
+                {
+
+                }
+            }
+
             //COLLETTORE STAFFE 
-            //staffe presenti nel documento
+            //staffe presenti nel mio  documento
             FilteredElementCollector collStaffeDoc = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_SpecialityEquipment).WhereElementIsElementType();
             foreach (var type in collStaffeDoc)
             {
@@ -104,15 +118,15 @@ namespace P3Ribbon.Scripts
             FilteredElementCollector collStaffeRisorsa = new FilteredElementCollector(docSource).OfCategory(BuiltInCategory.OST_SpecialityEquipment).WhereElementIsElementType();
             foreach (var type in collStaffeRisorsa)
             {
-                
+
                 //string typeName = type.Name;
-				string typeName = type.LookupParameter("P3_Nome").AsString();
+                string typeName = type.LookupParameter("P3_Nome").AsString();
                 if (typeName == "P3_DuctHanger")
                 {
                     if (!(nomiTipiPresenti.Contains(typeName)))
                     {
-                         IdTipiDaCopiare.Add(type.Id);
-                        
+                        IdTipiDaCopiare.Add(type.Id);
+
                     }
                 }
 
@@ -120,19 +134,24 @@ namespace P3Ribbon.Scripts
 
 
             //IMPORTO ABACHI
-
             //abachi presenti nel documento corrente
             IList<Element> collAbachiPresenti = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Schedules).WhereElementIsNotElementType().ToElements();
             List<string> nomiAbachiPresenti = new List<string>();
 
-
-
             foreach (Element schedule in collAbachiPresenti)
             {
-                string nome = schedule.Name;
+                try
+                {
+                    string nome = schedule.LookupParameter("P3_Nome_i").AsString();
+
                 if (nome.StartsWith("P3"))
                 {
                     nomiAbachiPresenti.Add(nome);
+
+                }
+                }
+                catch
+                {
 
                 }
             }
@@ -147,7 +166,7 @@ namespace P3Ribbon.Scripts
                 if (nome.StartsWith("P3"))
                 {
                     // contollRE SE ESISTE NEL DOC
-                    if (!(nomiAbachiPresenti.Contains(nome))) //perchè non va?
+                    if (!(nomiAbachiPresenti.Contains(nome)))
                     {
                         collAbachiRisorsa.Add(abaco.Id);
                     }
@@ -155,7 +174,7 @@ namespace P3Ribbon.Scripts
                 }
             }
 
-            //gestione delle eccezioni se sono già presenti i tipi e le viste
+            
             try
             {
                 ICollection<ElementId> ids = ICollectionIds_Estendi(IdTipiDaCopiare, collAbachiRisorsa);
@@ -164,7 +183,7 @@ namespace P3Ribbon.Scripts
             }
             catch (Exception ex)
             {
-                
+
             }
             collAbachiRisorsa.Clear();
             IdTipiDaCopiare.Clear();

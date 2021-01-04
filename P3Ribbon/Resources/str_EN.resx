@@ -121,6 +121,9 @@
     <value>Material
 List</value>
   </data>
+  <data name="cmdAreaIsolamento_tt" xml:space="preserve">
+    <value>Lists the materials used in the P3 channels and their surfaces</value>
+  </data>
   <data name="cmdcanale" xml:space="preserve">
     <value>Duct</value>
   </data>

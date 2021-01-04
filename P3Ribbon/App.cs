@@ -1,4 +1,4 @@
-﻿//porcodioooo
+﻿
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using System;
@@ -133,7 +133,7 @@ namespace P3Ribbon
             PushButtonData b1Data = new PushButtonData("cmdParsism", "Parametri" + System.Environment.NewLine + "  Sisimici  ", thisAssemblyPath, "P3Ribbon.ParSismici");
             PushButton pb1 = ribbonPanelSisma.AddItem(b1Data) as PushButton;
             pb1.ToolTip = "Compilazione dei parametri sismici per dimensionare le staffe dei condotti";
-            BitmapImage pb1Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/config_sism.png"));
+            BitmapImage pb1Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Sisma.png"));
             pb1.LargeImage = pb1Image;
             #endregion
 
@@ -141,7 +141,7 @@ namespace P3Ribbon
             PushButtonData b2Data = new PushButtonData("cmdstaff", "Posizionamento" + System.Environment.NewLine + "Staffaggio", thisAssemblyPath, "P3Ribbon.Scripts.Staffaggio");
             PushButton pb2 = ribbonPanelSisma.AddItem(b2Data) as PushButton;
             pb2.ToolTip = "Posizionamento e dimensionamento automatico dei canali alle strutture";
-            BitmapImage pb2Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/staff.png"));
+            BitmapImage pb2Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_staffe.png"));
             pb2.LargeImage = pb2Image;
             #endregion
 
@@ -233,7 +233,7 @@ namespace P3Ribbon
         {
             //creo l'event handelr all'apertura del documento
             try
-            {
+            {   //credo degli eventhandler all'aertura di un documento e alla creazione di uno nuovo
                 application.ControlledApplication.DocumentOpened += new EventHandler<Autodesk.Revit.DB.Events.DocumentOpenedEventArgs>(Application_DocumentOpened);
                 application.ControlledApplication.DocumentCreated += new EventHandler<Autodesk.Revit.DB.Events.DocumentCreatedEventArgs>(Application_DocumentCreated);
             }
@@ -247,7 +247,7 @@ namespace P3Ribbon
             UICapp = application;
             //attiva i registri all'avvio di revit
             Scripts.DynamicModelUpdater updater = new Scripts.DynamicModelUpdater(application.ActiveAddInId);
-            UpdaterRegistry.RegisterUpdater(updater);
+            UpdaterRegistry.RegisterUpdater(updater, true);
             LogicalOrFilter f = Scripts.Supporto.CatFilterDuctAndFitting;
             UpdaterRegistry.AddTrigger(updater.GetUpdaterId(), f, Element.GetChangeTypeElementAddition());
 
