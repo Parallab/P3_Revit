@@ -71,6 +71,15 @@ namespace P3Ribbon.Resources {
         }
         
         /// <summary>
+        ///   Cerca una stringa localizzata simile a Lists the materials used in the P3 channels and their surfaces.
+        /// </summary>
+        internal static string cmdAreaIsolamento_tt {
+            get {
+                return ResourceManager.GetString("cmdAreaIsolamento_tt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Cerca una stringa localizzata simile a Duct.
         /// </summary>
         internal static string cmdcanale {

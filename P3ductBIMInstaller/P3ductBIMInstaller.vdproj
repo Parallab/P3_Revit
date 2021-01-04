@@ -45,12 +45,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_0755A3BC2C9947C6AAF6C7A657E29B0F"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_0FB42DFDD4F5D89BE446C8526E2A4EFD"
         "OwnerKey" = "8:_584488110FEE55048CEC94638D9B23EE"
         "MsmSig" = "8:_UNDEFINED"
@@ -177,6 +171,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_1C4E127C2767409FBF89006DC1D72D55"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_28E798109BEA4F71932B4E68EA39EA56"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -281,12 +281,6 @@
         {
         "MsmKey" = "8:_55E3AAA0106CE200C19DE9D1AD0E0F82"
         "OwnerKey" = "8:_E8E67D16E9514018A03FDCF480905181"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_56B237A132C2476DA4E8008B72D031D4"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -771,12 +765,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_6C072C01507845DD836B4C9268C973CD"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_718F5D9D56681510519B55E5A3B14DC9"
         "OwnerKey" = "8:_642C96337AF77208E57D4AC5A148C405"
         "MsmSig" = "8:_UNDEFINED"
@@ -809,6 +797,12 @@
         {
         "MsmKey" = "8:_7633FF536837FFCFC39D1D6F110DF7A5"
         "OwnerKey" = "8:_ECF4C48909A61118C169E3B089B22983"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8204BD23FDE64E02BC01D40570343CC2"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -857,12 +851,6 @@
         {
         "MsmKey" = "8:_89CE717B228B170574274B42ECB43F0B"
         "OwnerKey" = "8:_E8E67D16E9514018A03FDCF480905181"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_8B32931BBB0745D5993836D76C2DA131"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -958,12 +946,6 @@
         "Entry"
         {
         "MsmKey" = "8:_95F44C0F19C5417CB362FA43A574C0C0"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_9829E8699EF04CFE873EB216EF6F66F0"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -1287,6 +1269,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_B619BBE413544F0BB1915035CC5A2FF5"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_B77EFBA8D4D493A8618F9057540DEB60"
         "OwnerKey" = "8:_E8E67D16E9514018A03FDCF480905181"
         "MsmSig" = "8:_UNDEFINED"
@@ -1335,6 +1323,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_BC48FCF20AC642268DB0A6A9E1389D7C"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_BC4E2CDC936A632B9A138551B0E13C80"
         "OwnerKey" = "8:_ECF4C48909A61118C169E3B089B22983"
         "MsmSig" = "8:_UNDEFINED"
@@ -1349,6 +1343,12 @@
         {
         "MsmKey" = "8:_BC4E2CDC936A632B9A138551B0E13C80"
         "OwnerKey" = "8:_E8E67D16E9514018A03FDCF480905181"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_BC8CC1EEE09A423D9D09B14874B59AB4"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -2360,26 +2360,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0755A3BC2C9947C6AAF6C7A657E29B0F"
-            {
-            "SourcePath" = "8:..\\src\\P3ductBIM.installer\\assets\\P3_Resources\\17017_ParamCondivisi.txt"
-            "TargetName" = "8:17017_ParamCondivisi.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_C3774A918F664FDB9DDE2AF5FD3E9AC3"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_0FB42DFDD4F5D89BE446C8526E2A4EFD"
             {
             "AssemblyRegister" = "3:1"
@@ -2564,6 +2544,26 @@
             "Register" = "3:1"
             "Exclude" = "11:TRUE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1C4E127C2767409FBF89006DC1D72D55"
+            {
+            "SourcePath" = "8:..\\P3Ribbon\\Resources\\P3_Resources\\P3 - Duct system template20.rte"
+            "TargetName" = "8:P3 - Duct system template20.rte"
+            "Tag" = "8:"
+            "Folder" = "8:_C3774A918F664FDB9DDE2AF5FD3E9AC3"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_28E798109BEA4F71932B4E68EA39EA56"
@@ -2801,26 +2801,6 @@
             "Register" = "3:1"
             "Exclude" = "11:TRUE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_56B237A132C2476DA4E8008B72D031D4"
-            {
-            "SourcePath" = "8:..\\src\\P3ductBIM.installer\\assets\\P3_Resources\\P3 - Duct system template_18.rte"
-            "TargetName" = "8:P3 - Duct system template_18.rte"
-            "Tag" = "8:"
-            "Folder" = "8:_C3774A918F664FDB9DDE2AF5FD3E9AC3"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_584488110FEE55048CEC94638D9B23EE"
@@ -3071,26 +3051,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_6C072C01507845DD836B4C9268C973CD"
-            {
-            "SourcePath" = "8:..\\src\\P3ductBIM.installer\\assets\\P3_Resources\\P3 - Duct system template20.rte"
-            "TargetName" = "8:P3 - Duct system template20.rte"
-            "Tag" = "8:"
-            "Folder" = "8:_C3774A918F664FDB9DDE2AF5FD3E9AC3"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_718F5D9D56681510519B55E5A3B14DC9"
             {
             "AssemblyRegister" = "3:1"
@@ -3151,6 +3111,26 @@
             "Register" = "3:1"
             "Exclude" = "11:TRUE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8204BD23FDE64E02BC01D40570343CC2"
+            {
+            "SourcePath" = "8:..\\..\\..\\..\\AppData\\Roaming\\Autodesk\\Revit\\Addins\\2020\\P3_Resources\\P3_ParamCondivisi.txt.txt"
+            "TargetName" = "8:P3_ParamCondivisi.txt.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_C3774A918F664FDB9DDE2AF5FD3E9AC3"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_84AF80A6C076472E902845CDA63A9D45"
@@ -3266,26 +3246,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_8B32931BBB0745D5993836D76C2DA131"
-            {
-            "SourcePath" = "8:..\\src\\P3ductBIM.installer\\assets\\P3_Resources\\20020_P3_TabelleDiPredimensionamento.txt"
-            "TargetName" = "8:20020_P3_TabelleDiPredimensionamento.txt"
-            "Tag" = "8:"
-            "Folder" = "8:_C3774A918F664FDB9DDE2AF5FD3E9AC3"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8C0B2B042CC6156A19966462FE5B072D"
             {
             "AssemblyRegister" = "3:1"
@@ -3385,26 +3345,6 @@
             "TargetName" = "8:P3Ribbon.connector.addin"
             "Tag" = "8:"
             "Folder" = "8:_2988D004DF4B4289BB714592A6CFAD1D"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_9829E8699EF04CFE873EB216EF6F66F0"
-            {
-            "SourcePath" = "8:..\\src\\P3ductBIM.installer\\assets\\P3_Resources\\P3 - Duct system template20.0001.rte"
-            "TargetName" = "8:P3 - Duct system template20.0001.rte"
-            "Tag" = "8:"
-            "Folder" = "8:_C3774A918F664FDB9DDE2AF5FD3E9AC3"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -3667,6 +3607,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B619BBE413544F0BB1915035CC5A2FF5"
+            {
+            "SourcePath" = "8:..\\P3Ribbon\\Resources\\P3_Resources\\P3 - Duct system template18.rte"
+            "TargetName" = "8:P3 - Duct system template18.rte"
+            "Tag" = "8:"
+            "Folder" = "8:_C3774A918F664FDB9DDE2AF5FD3E9AC3"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B77EFBA8D4D493A8618F9057540DEB60"
             {
             "AssemblyRegister" = "3:1"
@@ -3760,6 +3720,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BC48FCF20AC642268DB0A6A9E1389D7C"
+            {
+            "SourcePath" = "8:..\\P3Ribbon\\Resources\\P3_Resources\\P3 - Duct system template19.rte"
+            "TargetName" = "8:P3 - Duct system template19.rte"
+            "Tag" = "8:"
+            "Folder" = "8:_C3774A918F664FDB9DDE2AF5FD3E9AC3"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BC4E2CDC936A632B9A138551B0E13C80"
             {
             "AssemblyRegister" = "3:1"
@@ -3789,6 +3769,26 @@
             "Register" = "3:1"
             "Exclude" = "11:TRUE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BC8CC1EEE09A423D9D09B14874B59AB4"
+            {
+            "SourcePath" = "8:..\\P3Ribbon\\Resources\\P3_Resources\\P3_TabelleDiPredimensionamento.txt"
+            "TargetName" = "8:P3_TabelleDiPredimensionamento.txt"
+            "Tag" = "8:"
+            "Folder" = "8:_C3774A918F664FDB9DDE2AF5FD3E9AC3"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_BD2CC7BEEF894341B7D558218C0EE4C0"
@@ -4251,18 +4251,6 @@
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Property" = "8:ProgramMenuFolder"
-                "Folders"
-                {
-                }
-            }
-            "{994432C3-9487-495D-8656-3E829A8DBDDE}:_6231A494049149F0915C682B488206EE"
-            {
-            "DefaultLocation" = "8:C:\\ProgramData\\Autodesk\\Revit\\Addins\\test"
-            "Name" = "8:ProgramDataTest"
-            "AlwaysCreate" = "11:FALSE"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Property" = "8:NEWPROPERTY4"
                 "Folders"
                 {
                 }
@@ -4852,7 +4840,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_E8E67D16E9514018A03FDCF480905181"
             {
-            "SourcePath" = "8:..\\P3Ribbon\\obj\\Release\\P3Ribbon.dll"
+            "SourcePath" = "8:..\\P3Ribbon\\obj\\Debug\\P3Ribbon.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_74981AF581D74FCFA12105E35FC8DE9C"

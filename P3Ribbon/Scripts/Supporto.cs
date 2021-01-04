@@ -95,15 +95,16 @@ namespace P3Ribbon.Scripts
         static public bool CreaParametriCondivisi(Document doc, Application app)
         {
             bool output = false;
+
             //prendo la categoria di informaizone di progetto
             Category category = doc.Settings.Categories.get_Item(BuiltInCategory.OST_ProjectInformation);
             CategorySet categorySet = app.Create.NewCategorySet();
             categorySet.Insert(category);
 
             string originalFile = app.SharedParametersFilename;
-            //RISOLVERE E TROVARE IL MODO PER PRENDERSELO DA VISUAL STUDIO\
+           
 
-            string tempfie = Supporto.TrovaPercorsoRisorsa("17017_ParamCondivisi.txt");
+            string tempfie = Supporto.TrovaPercorsoRisorsa("P3_ParamCondivisi.txt");
 
             try
             {
@@ -143,7 +144,7 @@ namespace P3Ribbon.Scripts
             }
             finally
             {
-                //reset alla fine il fileoriginale
+                //reset alla fine il file   originale
                 app.SharedParametersFilename = originalFile;
             }
             return output;
@@ -154,18 +155,23 @@ namespace P3Ribbon.Scripts
             bool tipiCondottiCaricati = false;
             FilteredElementCollector collTipiPresenti = new FilteredElementCollector(doc).WherePasses(Supporto.CatFilterDuctAndInsul).WhereElementIsElementType();
 
-            //nomi (che poi saranno param nascosti) da cercare
-
 
             //guardo tutti i tipi che mi interessamno presenti nel mio doc
             foreach (Element type in collTipiPresenti)
             {
-                //ora lo faccio con i nomi, successivamente lo farò con i parametri nascosti
-                //string nome = type.Name;
-				string nome = type.LookupParameter("P3_Nome").AsString();
-                if (nome.StartsWith("P3"))
+                //Leggo il parametro nascosto che corrisponde all'attuale nome del tipo
+                try
                 {
-                    IsolatiECondottiP3Presenti.Add(nome);
+                    string nome = type.LookupParameter("P3_Nome").AsString();
+
+                    if (nome.StartsWith("P3"))
+                    {
+                        IsolatiECondottiP3Presenti.Add(nome);
+                    }
+                }
+                catch
+                {
+
                 }
             }
             if (IsolatiECondottiP3Presenti.Contains(nometipo))
@@ -189,13 +195,19 @@ namespace P3Ribbon.Scripts
 
             foreach (Element el in collAbachiPresenti)
             {
-                //ora lo faccio con i nomi, successivamente lo farò con i parametri nascosti
-                //string nome = el.Name;
-				string nome = el.LookupParameter("P3_Nome_i").AsString();
-
-                if (nome.StartsWith("P3"))
+                try
                 {
-                    AbachiP3Presenti.Add(nome);
+                    //leggo il parametro nascosto
+                    string nome = el.LookupParameter("P3_Nome_i").AsString();
+
+                    if (nome.StartsWith("P3"))
+                    {
+                        AbachiP3Presenti.Add(nome);
+                    }
+                }
+                catch
+                {
+
                 }
             }
             if (AbachiP3Presenti.Contains(AbacoNome))
@@ -215,8 +227,8 @@ namespace P3Ribbon.Scripts
 
             foreach (var type in collStaffe)
             {
-                //da usare poi parametri nascosti
-                //string typeName = type.Name;
+                //da usare poi parametri nascosti, FATTO
+
 				string typeName = type.LookupParameter("P3_Nome").AsString();
                 if (typeName == "P3_DuctHanger")
                 {
@@ -240,8 +252,6 @@ namespace P3Ribbon.Scripts
                 }
             }
         }
-      
-
 
     }
 

@@ -51,6 +51,13 @@ namespace P3Ribbon.Scripts
                 td.MainContent = "Canali P3 non inseriti nel progetto, caricare prima la libreria";
                 TaskDialogResult result = td.Show();
 
+                GUI.Wpf_Libreria wpf = new GUI.Wpf_Libreria(commandData);
+                using (wpf)
+                {
+                    wpf.ShowDialog();
+                    Supporto.ChiudiFinestraCorrente(uiDoc);
+                }
+
             }
                 return Result.Cancelled;
 
@@ -98,6 +105,14 @@ namespace P3Ribbon.Scripts
                 td.MainInstruction = "Tipi di canale non inseriti nel progetto";
                 td.MainContent = "Canali P3 non inseriti nel progetto, caricare prima la libreria";
                 TaskDialogResult result = td.Show();
+
+                GUI.Wpf_Libreria wpf = new GUI.Wpf_Libreria(commandData);
+                using (wpf)
+                {
+                    wpf.ShowDialog();
+                    Supporto.ChiudiFinestraCorrente(uiDoc);
+                }
+
             }
             return Result.Cancelled;
         }

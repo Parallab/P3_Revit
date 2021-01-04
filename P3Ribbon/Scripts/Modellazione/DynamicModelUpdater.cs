@@ -31,7 +31,7 @@ namespace P3Ribbon.Scripts
             Document doc = data.GetDocument();
 
             if (Scripts.Materiale.IdInsulTipoPreferito != null)
-                {
+                {   
                 foreach (ElementId id in data.GetAddedElementIds())
                 {
                     try
@@ -39,7 +39,7 @@ namespace P3Ribbon.Scripts
                         Element el = doc.GetElement(id);
                         string nome = "";
 
-                        // CONTOLLARE SE C é P3 NEL N PARAMETRO NASCOSTO
+                        
                         //if (el.GetType() == typeof(Duct))
                         //{
                          //   nome = doc.GetElement(el.GetTypeId()).Name;
@@ -55,7 +55,7 @@ namespace P3Ribbon.Scripts
                         //    }
                         //}
 
-
+                        
 						nome = doc.GetElement(el.GetTypeId()).LookupParameter("P3_Nome").AsString();
 
                         if (nome.Contains("P3")) 

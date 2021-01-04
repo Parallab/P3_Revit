@@ -63,26 +63,6 @@ namespace P3Ribbon.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Annotazione_2020_08_04_145532 {
-            get {
-                object obj = ResourceManager.GetObject("Annotazione 2020-08-04 145532", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Annotazione_2020_08_04_1455321 {
-            get {
-                object obj = ResourceManager.GetObject("Annotazione 2020-08-04 1455321", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Code_804___3D_insulated1 {
             get {
                 object obj = ResourceManager.GetObject("Code 804 - 3D insulated1", resourceCulture);

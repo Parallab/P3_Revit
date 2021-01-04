@@ -1,0 +1,85 @@
+﻿Edificio;Classe d'uso;Vita nominale [anni];Zona Sismica;Perimetro sezione canale [cm];Interasse controventro trasversale [cm];Interasse controvendo longitudinali;Staffa superiore obbligatorai quando un lato canale maggiore di:;Staffa superiore obbligatoria quando distanza del canale dal soffitto maggiore di:;Controvento per barre filettate verticali obbligatorio quando distanza del canale dal soffitto maggiore di :
+Ospedali;4;100;1;0;600;1200;40;40;40
+Ospedali;4;100;1;300;400;800;40;40;40
+Ospedali;4;100;1;400;300;600;40;40;40
+Ospedali;4;100;1;500;300;600;40;40;40
+Ospedali;4;100;1;600;150;300;40;40;40
+Ospedali;4;100;1;800;150;300;40;40;40
+Ospedali;4;100;1;1000;150;300;40;40;40
+Ospedali;4;100;2;0;600;1200;40;40;40
+Ospedali;4;100;2;300;600;1200;40;40;40
+Ospedali;4;100;2;400;300;600;40;40;40
+Ospedali;4;100;2;500;300;600;40;40;40
+Ospedali;4;100;2;600;300;600;40;40;40
+Ospedali;4;100;2;800;150;300;40;40;40
+Ospedali;4;100;2;1000;150;300;40;40;40
+Ospedali;4;100;3;0;1500;3000;40;40;40
+Ospedali;4;100;3;300;600;1200;40;40;40
+Ospedali;4;100;3;400;600;1200;40;40;40
+Ospedali;4;100;3;500;600;1200;40;40;40
+Ospedali;4;100;3;600;300;600;40;40;40
+Ospedali;4;100;3;800;300;600;40;40;40
+Ospedali;4;100;3;1000;300;600;40;40;40
+Ospedali;4;100;4;0;1500;3000;40;40;40
+Ospedali;4;100;4;300;600;1200;40;40;40
+Ospedali;4;100;4;400;600;1200;40;40;40
+Ospedali;4;100;4;500;600;1200;40;40;40
+Ospedali;4;100;4;600;300;600;40;40;40
+Ospedali;4;100;4;800;300;600;40;40;40
+Ospedali;4;100;4;1000;300;600;40;40;40
+Centri commerciali;3;50;1;0;1200;2400;60;40;50
+Centri commerciali;3;50;1;300;600;1200;60;40;50
+Centri commerciali;3;50;1;400;600;1200;60;40;50
+Centri commerciali;3;50;1;500;300;600;60;40;50
+Centri commerciali;3;50;1;600;300;600;60;40;50
+Centri commerciali;3;50;1;800;300;600;60;40;50
+Centri commerciali;3;50;1;1000;150;300;60;40;50
+Centri commerciali;3;50;2;0;1200;2400;60;40;50
+Centri commerciali;3;50;2;300;800;1600;60;40;50
+Centri commerciali;3;50;2;400;600;1200;60;40;50
+Centri commerciali;3;50;2;500;400;800;60;40;50
+Centri commerciali;3;50;2;600;300;600;60;40;50
+Centri commerciali;3;50;2;800;300;600;60;40;50
+Centri commerciali;3;50;2;1000;200;400;60;40;50
+Centri commerciali;3;50;3;0;1500;3000;60;40;50
+Centri commerciali;3;50;3;300;1500;3000;60;40;50
+Centri commerciali;3;50;3;400;1000;2000;60;40;50
+Centri commerciali;3;50;3;500;600;1200;60;40;50
+Centri commerciali;3;50;3;600;600;1200;60;40;50
+Centri commerciali;3;50;3;800;500;1000;60;40;50
+Centri commerciali;3;50;3;1000;300;600;60;40;50
+Centri commerciali;3;50;4;0;1500;3000;60;40;50
+Centri commerciali;3;50;4;300;1500;3000;60;40;50
+Centri commerciali;3;50;4;400;1500;3000;60;40;50
+Centri commerciali;3;50;4;500;1500;3000;60;40;50
+Centri commerciali;3;50;4;600;1500;3000;60;40;50
+Centri commerciali;3;50;4;800;1200;2400;60;40;50
+Centri commerciali;3;50;4;1000;1200;2400;60;40;50
+Uffici;2;50;1;0;1500;3000;60;40;50
+Uffici;2;50;1;300;600;1200;60;40;50
+Uffici;2;50;1;400;600;1200;60;40;50
+Uffici;2;50;1;500;600;1200;60;40;50
+Uffici;2;50;1;600;300;600;60;40;50
+Uffici;2;50;1;800;300;600;60;40;50
+Uffici;2;50;1;1000;300;600;60;40;50
+Uffici;2;50;2;0;1500;3000;60;40;50
+Uffici;2;50;2;300;1000;2000;60;40;50
+Uffici;2;50;2;400;800;1600;60;40;50
+Uffici;2;50;2;500;600;1200;60;40;50
+Uffici;2;50;2;600;400;800;60;40;50
+Uffici;2;50;2;800;300;600;60;40;50
+Uffici;2;50;2;1000;300;600;60;40;50
+Uffici;2;50;3;0;1500;3000;60;40;50
+Uffici;2;50;3;300;1500;3000;60;40;50
+Uffici;2;50;3;400;1200;2400;60;40;50
+Uffici;2;50;3;500;1000;2000;60;40;50
+Uffici;2;50;3;600;600;1200;60;40;50
+Uffici;2;50;3;800;600;1200;60;40;50
+Uffici;2;50;3;1000;400;800;60;40;50
+Uffici;2;50;4;0;1500;3000;60;999999;999999
+Uffici;2;50;4;300;1500;3000;60;999999;999999
+Uffici;2;50;4;400;1500;3000;60;999999;999999
+Uffici;2;50;4;500;1500;3000;60;999999;999999
+Uffici;2;50;4;600;1500;3000;60;999999;999999
+Uffici;2;50;4;800;1500;3000;60;999999;999999
+Uffici;2;50;4;1000;1500;3000;60;999999;999999
