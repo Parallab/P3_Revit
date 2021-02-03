@@ -18,7 +18,6 @@ namespace P3Ribbon
     class ParSismici : IExternalCommand
     {
         public static int classe;
-        public static bool eng;
         public static int vita;
         public static int zona;
 
@@ -39,12 +38,15 @@ namespace P3Ribbon
                     if (Supporto.ControllaSePresentiParamSismici())
                     {
                         t.Start();
-                        Migra_Parametri_Presenti(doc);
+                        if (!Supporto.ControllaSePresentiParamSismici())
+                        {
+                            Migra_Parametri_Presenti(doc);
+                        }
                         frm.ShowDialog();
                         //t.Commit();
                         if (Scripts.GUI.Wpf_ParamSismici.ok_premuto == true)
                         {
-                            ProjInfoImpostaParametri(classe, eng, vita, zona, doc);
+                            ProjInfoImpostaParametri(classe,vita, zona, doc);
                         }
                         else
                         {
@@ -66,7 +68,7 @@ namespace P3Ribbon
 
         }
 
-        public static void ProjInfoImpostaParametri(int _classe, bool _eng, int _vita, int _zona, Document _doc)
+        public static void ProjInfoImpostaParametri(int _classe, int _vita, int _zona, Document _doc)
         {
             if (Scripts.GUI.Wpf_ParamSismici.ok_premuto == true)
             {

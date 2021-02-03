@@ -54,7 +54,6 @@ namespace P3Ribbon.Scripts
 
 
             //IMPORTO INSUL E TIPI DI CONDOTTI 
-
             List<string> nomiTipiPresenti = new List<string>();
             FilteredElementCollector collTipiPresenti = new FilteredElementCollector(doc).WherePasses(Supporto.CatFilterDuctAndInsul).WhereElementIsElementType();
 
@@ -174,7 +173,6 @@ namespace P3Ribbon.Scripts
                 }
             }
 
-            
             try
             {
                 ICollection<ElementId> ids = ICollectionIds_Estendi(IdTipiDaCopiare, collAbachiRisorsa);

@@ -68,7 +68,6 @@ namespace P3Ribbon.Scripts
             ok_premuto = true;
 
             ParSismici.classe = classe_form;
-            ParSismici.eng = eng_form;
             ParSismici.vita = vita_form;
             ParSismici.zona = zona_form;
 
