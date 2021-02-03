@@ -61,12 +61,11 @@ namespace P3Ribbon.Scripts
             bool parametri_presenti = false;
 
             Parameter Cu = projInfo.LookupParameter("P3_InfoProg_ClasseUso");
-            Parameter En = projInfo.LookupParameter("P3_InfoProg_Eng");
             Parameter Vn = projInfo.LookupParameter("P3_InfoProg_VitaNominale");
             Parameter Zs = projInfo.LookupParameter("P3_InfoProg_ZonaSismica");
 
 
-            if (Cu == null || En == null || Vn == null || Zs == null)
+            if (Cu == null || Vn == null || Zs == null)
             {
                 TaskDialog td = new TaskDialog("Errore");
                 td.MainInstruction = "Parametri sismici non inseriti nel progetto";
@@ -120,7 +119,7 @@ namespace P3Ribbon.Scripts
                         ExternalDefinition externalDefinitionCU = dg.Definitions.get_Item("P3_InfoProg_ClasseUso") as ExternalDefinition;
                         ExternalDefinition externalDefinitionVN = dg.Definitions.get_Item("P3_InfoProg_VitaNominale") as ExternalDefinition;
                         ExternalDefinition externalDefinitionZS = dg.Definitions.get_Item("P3_InfoProg_ZonaSismica") as ExternalDefinition;
-                        ExternalDefinition externalDefinitionEN = dg.Definitions.get_Item("P3_InfoProg_Eng") as ExternalDefinition;
+                    
 
                         using (Transaction t = new Transaction(doc, "CreaParamCondivisi"))
                         {
@@ -130,7 +129,7 @@ namespace P3Ribbon.Scripts
                             doc.ParameterBindings.Insert(externalDefinitionCU, newIB, BuiltInParameterGroup.INVALID);
                             doc.ParameterBindings.Insert(externalDefinitionVN, newIB, BuiltInParameterGroup.INVALID);
                             doc.ParameterBindings.Insert(externalDefinitionZS, newIB, BuiltInParameterGroup.INVALID);
-                            doc.ParameterBindings.Insert(externalDefinitionEN, newIB, BuiltInParameterGroup.INVALID);
+
                             t.Commit();
                         }
 
@@ -227,8 +226,7 @@ namespace P3Ribbon.Scripts
 
             foreach (var type in collStaffe)
             {
-                //da usare poi parametri nascosti, FATTO
-
+                //Legge i parametri nascosti 
 				string typeName = type.LookupParameter("P3_Nome").AsString();
                 if (typeName == "P3_DuctHanger")
                 {
@@ -251,6 +249,34 @@ namespace P3Ribbon.Scripts
                         pView.Close();
                 }
             }
+        }
+        public static List<List<double>> LeggiTabella(Autodesk.Revit.DB.Document doc)
+        {
+            IList<Element> proj_infos = new FilteredElementCollector(doc).OfClass(typeof(ProjectInfo)).ToElements();
+            Element proj_info = proj_infos[0];
+            //eccezione prametri sismici
+            int ClasseUso = proj_info.LookupParameter("P3_InfoProg_ClasseUso").AsInteger();
+            int ZonaSismica = proj_info.LookupParameter("P3_InfoProg_ZonaSismica").AsInteger();
+
+            List<List<double>> tabella_leggera = new List<List<double>>();
+            var lines = System.IO.File.ReadAllLines(Supporto.TrovaPercorsoRisorsa("P3_TabelleDiPredimensionamento.txt"));
+            for (int i_r = 0; i_r < lines.Length; i_r++)
+            {
+                List<double> sottoLista = new List<double>();
+
+                var fields = lines[i_r].Split(';');
+                if (fields[1] == ClasseUso.ToString() && fields[3] == ZonaSismica.ToString())
+                {
+                    for (int i = 1; i < fields.Count(); i++)
+                    {
+                        string field = fields[i];
+
+                        sottoLista.Add(double.Parse(field));
+                    }
+                    tabella_leggera.Add(sottoLista);
+                }
+            }
+            return tabella_leggera;
         }
 
     }

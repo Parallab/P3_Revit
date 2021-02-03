@@ -5,12 +5,9 @@ using System;
 using System.Globalization;
 using System.Resources;
 using Autodesk.Revit.ApplicationServices;
-using System.Threading;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
 using System.Windows.Media.Imaging;
-using System.Collections;
 using Autodesk.Revit.UI.Events;
 using P3Ribbon.Scripts;
 using Autodesk.Revit.DB.Events;
@@ -33,8 +30,7 @@ namespace P3Ribbon
             ITA = 0,
             ENG = 1
         }
-        public static Lingua lingua_plugin = Lingua.ITA; // LEGGERE LINGUA REVIT!!! ocio se c è lingua tipo francese
-
+        public static Lingua lingua_plugin = Lingua.ITA; // Leggere lingua di avvio
 
         public static string tabName = "P3ductBIM";
         public static ResourceSet res_ita = Resources.str_IT.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
@@ -66,7 +62,6 @@ namespace P3Ribbon
 
 
             RibbonPanel ribbonPanelModellazione = a.CreateRibbonPanel(tabName, res_valore("Modellazione"));
-
 
             // MODELLAZIONE
             #region bottone: lingua WIP
@@ -231,9 +226,9 @@ namespace P3Ribbon
 
         public Result OnStartup(UIControlledApplication application)
         {
-            //creo l'event handelr all'apertura del documento
+            
             try
-            {   //credo degli eventhandler all'aertura di un documento e alla creazione di uno nuovo
+            {   //credo degli eventhandler all'aeprtura di un documento e alla creazione di uno nuovo
                 application.ControlledApplication.DocumentOpened += new EventHandler<Autodesk.Revit.DB.Events.DocumentOpenedEventArgs>(Application_DocumentOpened);
                 application.ControlledApplication.DocumentCreated += new EventHandler<Autodesk.Revit.DB.Events.DocumentCreatedEventArgs>(Application_DocumentCreated);
             }
@@ -241,7 +236,6 @@ namespace P3Ribbon
             {
                 return Result.Failed;
             }
-
 
             AddRibbonPanel(application);
             UICapp = application;
@@ -252,8 +246,6 @@ namespace P3Ribbon
             UpdaterRegistry.AddTrigger(updater.GetUpdaterId(), f, Element.GetChangeTypeElementAddition());
 
             return Result.Succeeded;
-
-
         }
 
 

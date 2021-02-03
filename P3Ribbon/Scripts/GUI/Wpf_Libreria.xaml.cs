@@ -42,7 +42,6 @@ namespace P3Ribbon.Scripts.GUI
 
 
             //controllare se qualche oaran globale è gia compilato
-
             WpfAggiornaLibreria();
             if (wpfCboMateriali.Items.Count == 0)
             {

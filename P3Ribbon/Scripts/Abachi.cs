@@ -60,7 +60,8 @@ namespace P3Ribbon.Scripts
             //Transaction trans = new Transaction(doc, "ExComm");
             //trans.Start();
 
-            //ViewSchedule vs = ViewSchedule.CreateSchedule(doc, new ElementId(BuiltInCategory.INVALID));
+            //ViewSchedule vs = ViewSchedule.
+            //Schedule(doc, new ElementId(BuiltInCategory.INVALID));
             //vs.Name = "ElencoPezzi";
 
             //doc.Regenerate();

@@ -17,34 +17,31 @@ namespace P3Ribbon.Scripts
 
     [Transaction(TransactionMode.Manual)]
 
-
     class Staffaggio : IExternalCommand
     {
-        //Scripts.Form_Def_Acc frm = new Scripts.Form_Def_Acc();
         public static FamilySymbol fs;
         public static List<Element> dclist = new List<Element>();
         public static List<Condotto> condotti = new List<Condotto>();
         public bool Parametri_presenti = false;
-        public static double offset_iniz_cm = 10;
-
+        public static double offset_iniz_cm { get;set;} = 10;
+        
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             UIApplication uiApp = commandData.Application;
             UIDocument uiDoc = uiApp.ActiveUIDocument;
             Document doc = uiDoc.Document;
-            //Application app = uiApp.Application;
-
-            //verifica presenza parametri, ovvero ricicla bottone già fatto
-            //ControllaParametri(doc, app);
-
+         
+            //Controlla se paresenti parametri sismici, in caso contrario chiedi se caricarli
             if (Supporto.ControllaSePresentiParamSismici())
-            {
+            {   //Controlla se la famiglia delle staffe è caricata, in caso contrario apri la finestra della libreria
                 if (Supporto.ControllaStaffaPresente())
                 {
-                    Supporto.ValoriTabella = TabellaExcel.LeggiTabella(doc);
+                    //Leggi i valori di predimensionamento 
+                    Supporto.ValoriTabella = Supporto.LeggiTabella(doc);
+                    
+                    //Instanzio la classe condotto creando una lista e di questi filtro quelli verticali
                     List<Condotto> Condotti = FiltraCondottiCortiVert(doc, uiDoc);
                     AttivaFamiglia(doc);
-
 
                     using (var t = new Transaction(doc, "Posiziona staffaggio"))
                     {
@@ -77,14 +74,7 @@ namespace P3Ribbon.Scripts
                     using (wpf)
                     {
 
-                        //using (var t = new Transaction(doc, "FinestraInfo"))
-                        //{
-                        //t.Start();
                         wpf.ShowDialog();
-                        //    t.Commit();
-                        //}
-
-
                     }
 
                     return Result.Succeeded;
@@ -119,39 +109,27 @@ namespace P3Ribbon.Scripts
                 int i = 0;
                 IList<Element> dc_coll = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_DuctCurves).WhereElementIsNotElementType().ToElements();
                 
-                //ElementClassFilter DuctFamilyFilter = new ElementClassFilter(typeof(FamilyInstance));
-                //FilteredElementCollector FamilyCollector = new FilteredElementCollector(doc);
-                //ICollection<Element> AllFamilies = FamilyCollector.WherePasses(DuctFamilyFilter).ToElements();
-               
-                //lista vuota di famiglie rettangolari
-                ICollection<Element> RectangularDuctFamily = new List<Element>();
-                
-                //Lista vuota di elementi 
+                //Lista vuota di elementi da riempire
                 List<Element> dclist1 = new List<Element>();
-
-               
-
-                //posso filtrare direttamente le famiglie invece di falo elemento per elemento?
-                //leggo che è più oneroso interrogare i parametri delle famiglie..ne vale la pena??..le filtro per nome?(non mi piace)
+ 
                 foreach (Element el in dc_coll)
                 {
                     ConnectorSet connettors = (el as Duct).ConnectorManager.Connectors;
                     foreach (Connector c in connettors)
-                    {
+                    {   //se il connettore ha un profilo Rettangolare allora aggiungi l'elemento alla lista 
                         if (c.Shape == ConnectorProfileType.Rectangular)
                         {
-                    i++;
-                    dclist1.Add(el);
+                            i++;
+                            dclist1.Add(el);
                             break;
                         }
                     }
                 }
-                #region Taskdialog quatnità di canali
+                #region  Taskdialog quatnità di canali
                 //TaskDialog td1 = new TaskDialog("P3 staffaggio canali");
                 //td1.MainInstruction = "Nel proggetto corrente ci sono " + dclist1.Count + " condotti";
                 //TaskDialogResult result2 = td1.Show();
                 #endregion
-
                 return dclist1;
 
             }
@@ -203,18 +181,18 @@ namespace P3Ribbon.Scripts
         }
         #endregion
 
-        //filtro elementi verticali e lugni < di 250 mm
+        //filtro elementi verticali e lunghi < di 250 mm
         public static List<Condotto> FiltraCondottiCortiVert(Document doc, UIDocument uiDoc)
         {
             dclist = (List<Element>)Seleziona_condotti(doc, uiDoc);
-            ;
             int i = 0;
             if (dclist.Count != 0)
             {
 
                 foreach (Element dc in dclist)
-                {
+                {   //istanzio il singolo condotto
                     Condotto condotto = new Condotto(doc, dc);
+
                     //condizione se verticale o minore di 250 mm
                     if (condotto.dir.Z == 1 || condotto.lungh < 25)
                     {
@@ -246,7 +224,6 @@ namespace P3Ribbon.Scripts
                 fs.Activate();
             }
 
-
         }
 
     }
@@ -255,18 +232,18 @@ namespace P3Ribbon.Scripts
     {
         public Element el;
         public ElementId Id;
-        public double spiso = 0;
-        public double spiso_IM = 0;
-        public double alt = 0;
-        public double alt_IM = 0;
-        public double largh = 0;
-        public double largh_IM = 0;
-        public double per = 0;
-        public double lungh = 0;
-        public double lungh_of1 = 0;
-        public double angoloRispY = 0;
-        public int rappT;
-        public int rappL;
+        double spiso {get; set;} = 0;
+        double spiso_IM {get; set;} = 0;
+        double alt {get; set;} =0;
+        double alt_IM {get; set;} = 0;
+        double largh {get; set; } = 0;
+        double largh_IM {get; set;} = 0;
+        double per {get; set;} = 0;
+        public double  lungh {get; set;} = 0;
+        double lungh_of1 {get; set;} = 0;
+        double angoloRispY {get; set;} = 0;
+        int  rappT {get; set;}
+        public int rappL { get; set; }
         //public int inclinazioneXY = 0;
 
         public LocationCurve lc;
@@ -275,20 +252,22 @@ namespace P3Ribbon.Scripts
         public XYZ dir = XYZ.Zero;
         public XYZ vectorX = XYZ.BasisX;
 
-        ////////////valori dimensionali excel////////////
+        #region Valori dimenzionali Excel
         public double InterasseControventoTras = 0;
         public double InterasseControventoLong = 0;
         public double StaffaSupLato = 0;
         public double StaffaSupDist = 0;
         public double ControventoBarre = 0;
-        ///////////////////////////////////////////////
+        #endregion
+
 
         public List<XYZ> ptspavimenti = new List<XYZ>();
         public static List<Element> staffeDaControventare = new List<Element>();
         public List<FamilyInstance> staffaggi = new List<FamilyInstance>(); //sarebbe meglio emlement? in caso castare?
 
         public Element livello;
-
+        
+        //costruttore
         public Condotto(Document doc, Element _el)
         {
             this.el = _el;
@@ -302,10 +281,9 @@ namespace P3Ribbon.Scripts
             this.lungh = CalcolaLunghezza(_el);
             this.per = CalcolaPerimetro(alt, largh);
             this.dir = CalcolaDirezione(_el);
-            this.lc = _el.Location as LocationCurve;
             this.livello = CalcolaLivello(doc, _el);
-            //this.inclinazioneXY = CalcolaInclinazioneSuXY();
             this.angoloRispY = CalcolaAngolosuY(_el);
+            this.lc = _el.Location as LocationCurve;
         }
         #region funzioni che mi calcolano gli attributti belli della classe condotto
         public double CalcolaSpessoreIsolamento(Element dc, Boolean metrico)
@@ -420,7 +398,7 @@ namespace P3Ribbon.Scripts
             double passoMax = CalcolaPassoMinMax(false);
             this.rappT = (int)Math.Floor(passoMax / passoMin);
             this.rappL = (int)Math.Floor(InterasseControventoLong / passoMin);
-            double offset_iniz_normalizzato = this.CalcolaLunghezzaNormalizzata(Staffaggio.offset_iniz_cm, true); //studiare parametri globali??
+            double offset_iniz_normalizzato = this.CalcolaLunghezzaNormalizzata(Staffaggio.offset_iniz_cm, true);
             pts.Add(this.lc.Curve.Evaluate(offset_iniz_normalizzato, true));
 
             if (this.lungh > passoMin)
