@@ -245,6 +245,7 @@ namespace P3Ribbon
             LogicalOrFilter f = Scripts.Supporto.CatFilterDuctAndFitting;
             UpdaterRegistry.AddTrigger(updater.GetUpdaterId(), f, Element.GetChangeTypeElementAddition());
 
+     
             return Result.Succeeded;
         }
 
@@ -275,7 +276,7 @@ namespace P3Ribbon
                // throw;
             }
 
-
+        
         }
 
         private void Application_DocumentCreated(object sender, DocumentCreatedEventArgs e)
