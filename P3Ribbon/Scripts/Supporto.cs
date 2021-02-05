@@ -18,7 +18,11 @@ namespace P3Ribbon.Scripts
         public static List<List<double>> ValoriTabella;
         public static Document doc;
         public static Application app;
-        
+
+        //public static Element proj_info = new FilteredElementCollector(doc).OfClass(typeof(ProjectInfo)).ToElements().FirstOrDefault();
+   
+        //public static int ClasseUso { get; set; } = proj_info.LookupParameter("P3_InfoProg_ClasseUso").AsInteger();
+        //public static int ZonaSismica {get; } = proj_info.LookupParameter("P3_InfoProg_ZonaSismica").AsInteger();
 
         public static LogicalOrFilter CatFilter(bool insul_or_racc)
         {
@@ -252,12 +256,11 @@ namespace P3Ribbon.Scripts
         }
         public static List<List<double>> LeggiTabella(Autodesk.Revit.DB.Document doc)
         {
-            IList<Element> proj_infos = new FilteredElementCollector(doc).OfClass(typeof(ProjectInfo)).ToElements();
-            Element proj_info = proj_infos[0];
-            //eccezione prametri sismici
-            int ClasseUso = proj_info.LookupParameter("P3_InfoProg_ClasseUso").AsInteger();
-            int ZonaSismica = proj_info.LookupParameter("P3_InfoProg_ZonaSismica").AsInteger();
+            Element proj_info = new FilteredElementCollector(doc).OfClass(typeof(ProjectInfo)).ToElements().FirstOrDefault();
 
+            int ClasseUso  = proj_info.LookupParameter("P3_InfoProg_ClasseUso").AsInteger();
+            int ZonaSismica = proj_info.LookupParameter("P3_InfoProg_ZonaSismica").AsInteger();
+            if (ClasseUso < 2) { ClasseUso = 2;}
             List<List<double>> tabella_leggera = new List<List<double>>();
             var lines = System.IO.File.ReadAllLines(Supporto.TrovaPercorsoRisorsa("P3_TabelleDiPredimensionamento.txt"));
             for (int i_r = 0; i_r < lines.Length; i_r++)

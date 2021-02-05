@@ -398,13 +398,12 @@ namespace P3Ribbon.Scripts
             double passoMax = CalcolaPassoMinMax(false);
             this.rappT = (int)Math.Floor(passoMax / passoMin);
             this.rappL = (int)Math.Floor(InterasseControventoLong / passoMin);
-            double offset_iniz_normalizzato = this.CalcolaLunghezzaNormalizzata(Staffaggio.offset_iniz_cm, true);
+            double offset_iniz_normalizzato = this.CalcolaLunghezzaNormalizzata(Staffaggio.offset_iniz_cm, true); 
             pts.Add(this.lc.Curve.Evaluate(offset_iniz_normalizzato, true));
 
             if (this.lungh > passoMin)
             {
                 //calcolare punti intermedi
-                // stiamo ignorando l'offset sia nel calcolo delle suddivisioni(facile) che nel calcolo dei punti (più incasinato)
                 int n_suddivisioni_lineari = (int)Math.Ceiling(this.lungh / passoMin);
                 for (int i = 1; i < n_suddivisioni_lineari; i++)
                 {
@@ -625,6 +624,17 @@ namespace P3Ribbon.Scripts
                     StaffaSupLato = riga[6];
                     StaffaSupDist = riga[7];
                     ControventoBarre = riga[8];
+                }
+                else
+                {
+                    riga = Supporto.ValoriTabella[0];
+                    InterasseControventoTras = riga[4];
+                    InterasseControventoLong = riga[5];
+                    StaffaSupLato = riga[6];
+                    StaffaSupDist = riga[7];
+                    ControventoBarre = riga[8];
+
+                    break;
                 }
             }
         }
