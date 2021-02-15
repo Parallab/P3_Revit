@@ -117,138 +117,137 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="cmdAreaisolamento" xml:space="preserve">
-    <value>Material
-List</value>
+  <data name="bottAnnulla" xml:space="preserve">
+    <value>Annulla</value>
   </data>
-  <data name="cmdAreaIsolamento_tt" xml:space="preserve">
-    <value>Lists the materials used in the P3 channels and their surfaces</value>
+  <data name="bottCaricaLibreria" xml:space="preserve">
+    <value>Carica Libreria</value>
   </data>
-  <data name="cmdcanale" xml:space="preserve">
-    <value>Duct</value>
+  <data name="bottScegliMateriale" xml:space="preserve">
+    <value>Scegli Materiale</value>
   </data>
-  <data name="cmdcanaledinamico" xml:space="preserve">
-    <value>Dynamic
-Duct</value>
+  <data name="taskdErrore" xml:space="preserve">
+    <value>Errore</value>
   </data>
-  <data name="cmdcanaledinamico_tt" xml:space="preserve">
-    <value>Create a duct of type: Dynamic</value>
+  <data name="taskdIsolMancanti" xml:space="preserve">
+    <value>Isolamenti mancanti</value>
   </data>
-  <data name="cmdcanalescarpette" xml:space="preserve">
-    <value>Tap 
-Duct</value>
+  <data name="taskdNonCiSonoIsol" xml:space="preserve">
+    <value>Non ci sono isolamenti in questo progetto</value>
   </data>
-  <data name="cmdcanalescarpette_tt" xml:space="preserve">
-    <value>Create a duct of type: Tap</value>
+  <data name="taskdP3StaffCan" xml:space="preserve">
+    <value>P3 staffaggio canali</value>
   </data>
-  <data name="cmdcanale_tt" xml:space="preserve">
-    <value>Place the P3 pre-insulated ducts </value>
+  <data name="taskdParametriNonInseriti" xml:space="preserve">
+    <value>Parametri sismici non inseriti nel progetto</value>
   </data>
-  <data name="cmdcaricamaterial" xml:space="preserve">
-    <value>Upload Material</value>
+  <data name="taskdParametroIsolanteInserire" xml:space="preserve">
+    <value>Parametro associato all'isolamento non esistente, inserirlo nel progetto corrente?</value>
   </data>
-  <data name="cmdcaricamaterial_tt" xml:space="preserve">
-    <value>Upload materials in the ribbonbox</value>
+  <data name="taskdParametrononEsistente" xml:space="preserve">
+    <value>Parametro associato non esistente</value>
   </data>
-  <data name="cmdelencocomp" xml:space="preserve">
-    <value>Components 
-Lists</value>
+  <data name="taskdParamInserirli" xml:space="preserve">
+    <value>Parametri sismici non presenti nel progetto, caricarli?</value>
   </data>
-  <data name="cmdelencocomp_tt" xml:space="preserve">
-    <value>List P3 components</value>
+  <data name="taskdSelezCondottiManual" xml:space="preserve">
+    <value>Selezione manuale da schermo</value>
   </data>
-  <data name="cmdelencopezzi" xml:space="preserve">
-    <value>Parts
-List</value>
+  <data name="taskdSelezionareMod" xml:space="preserve">
+    <value>Selezionare la modalità di input</value>
   </data>
-  <data name="cmdelencopezzi_tt" xml:space="preserve">
-    <value>List the P3 ducts and special pieces</value>
+  <data name="taskdSelezTuttiCondotti" xml:space="preserve">
+    <value>Seleziona tutti i condotti all'interno del progetto Revit corrente</value>
   </data>
-  <data name="cmdelencopunti" xml:space="preserve">
-    <value>Points
-Lists</value>
+  <data name="taskdStaffeCaricarle" xml:space="preserve">
+    <value>Le staffe non sono caricate nel progetto, caricare prima la libreria</value>
   </data>
-  <data name="cmdelencopunti_tt" xml:space="preserve">
-    <value>Lists the brackets used and the related components</value>
+  <data name="taskdStaffeNonInserite" xml:space="preserve">
+    <value>Staffe non inseriti nel progetto</value>
   </data>
-  <data name="cmdelencostaffaggi" xml:space="preserve">
-    <value>Bracketing
-List</value>
+  <data name="taskdSì" xml:space="preserve">
+    <value>Sì</value>
   </data>
-  <data name="cmdimpo" xml:space="preserve">
-    <value>Settings</value>
+  <data name="wpfLChiusura" xml:space="preserve">
+    <value>Chiusura</value>
   </data>
-  <data name="cmdimpo_tt" xml:space="preserve">
-    <value>Settings on the P3 application</value>
+  <data name="wpfLDerivazioneaIncrocio" xml:space="preserve">
+    <value>Derivazione a Incrocio</value>
   </data>
-  <data name="cmdinfo" xml:space="preserve">
-    <value>Info</value>
+  <data name="wpfLDerivazioneaY" xml:space="preserve">
+    <value>Derivazione a Y</value>
   </data>
-  <data name="cmdinfo_tt" xml:space="preserve">
-    <value>P3 Information and contacts </value>
+  <data name="wpfLDerivazioneLaterale" xml:space="preserve">
+    <value>Derivazione Laterale</value>
   </data>
-  <data name="cmdlibreria" xml:space="preserve">
-    <value>Load
-Library</value>
+  <data name="wpfLDerivazioneT" xml:space="preserve">
+    <value>Derivazione a T</value>
   </data>
-  <data name="cmdlibreria_tt" xml:space="preserve">
-    <value>Load P3 families and materials</value>
+  <data name="wpfLGomito" xml:space="preserve">
+    <value>Gomito</value>
   </data>
-  <data name="cmdlingua" xml:space="preserve">
-    <value>Italian</value>
+  <data name="wpfLRiduzioneCostante" xml:space="preserve">
+    <value>Riduzione costante</value>
   </data>
-  <data name="cmdLinguaENG" xml:space="preserve">
-    <value>English</value>
+  <data name="wpfLRiduzioneVariabile" xml:space="preserve">
+    <value>Riduzione Variabile</value>
   </data>
-  <data name="cmdLinguaIT" xml:space="preserve">
-    <value>Italian</value>
+  <data name="wpfPCu1" xml:space="preserve">
+    <value>Costruzioni con presenza solo occasionale di persone | Edifici agricoli</value>
   </data>
-  <data name="cmdlingua_tt" xml:space="preserve">
-    <value>Change language to italian</value>
+  <data name="wpfPCu2" xml:space="preserve">
+    <value>Costruzioni cui uso preveda normali 
+affollamenti senza contenuti pericolosi per
+ l'ambiente e senza funzioni pubbliche e 
+sociali essenziali. Industie con attività non
+ pericolose per l'ambiente | Uffici</value>
   </data>
-  <data name="cmdmateriale" xml:space="preserve">
-    <value>Change
-Material</value>
+  <data name="wpfPCu3" xml:space="preserve">
+    <value>Costruzioni il cui uso preveda affollamenti 
+signifficativi. Industrie con attività pericolose 
+per l'ambiente | Centri commerciali</value>
   </data>
-  <data name="cmdmateriale_tt" xml:space="preserve">
-    <value>Change the material of the P3 ducts</value>
+  <data name="wpfPCu4" xml:space="preserve">
+    <value>Costruzioni con funzioni pubbliche 
+o strategiche importanti, anche con 
+riferimento alla gestione della protezione
+ civile in caso di calimità. Industrie con 
+attività particolarmente pericolose | Ospedali</value>
   </data>
-  <data name="cmdParsism" xml:space="preserve">
-    <value>Seismic
-Parameters</value>
+  <data name="wpfPDefAcc" xml:space="preserve">
+    <value>DEFINIZIONE ACCELLERAZIONE SISMICA</value>
   </data>
-  <data name="cmdParsism_tt" xml:space="preserve">
-    <value>Compilation of seismic parameters to set the ducts brackets</value>
+  <data name="wpfPDefCu" xml:space="preserve">
+    <value>DEFINIZIONE CLASSE D'USO</value>
   </data>
-  <data name="cmdquantità" xml:space="preserve">
-    <value>Quantities</value>
+  <data name="wpfPrbpCaricareMat" xml:space="preserve">
+    <value>Caricare la libreria prima di scegliere il materiale</value>
   </data>
-  <data name="cmdquantità_tt" xml:space="preserve">
-    <value>List the amount of recycled material in the P3 ducts</value>
+  <data name="wpfPSism1" xml:space="preserve">
+    <value>Sisimicità alta (0.25 &lt; α  ≤ 0.35)</value>
   </data>
-  <data name="cmdstaff" xml:space="preserve">
-    <value>Bracket
-Pre-sizing</value>
+  <data name="wpfPSism2" xml:space="preserve">
+    <value>Sisimicità medio-alta (0.15 &lt; α  ≤ 0.25)</value>
   </data>
-  <data name="cmdstaff_tt" xml:space="preserve">
-    <value>Automatic positioning and sizing of channels to structures</value>
+  <data name="wpfPSism3" xml:space="preserve">
+    <value>Sisimicità  medio-bassa (0.05 &lt; α  ≤ 0.15)</value>
   </data>
-  <data name="Info" xml:space="preserve">
-    <value>Info</value>
+  <data name="wpfPSism4" xml:space="preserve">
+    <value>Sisimicità bassa ( α  ≤ 0.05)</value>
   </data>
-  <data name="Informazioni" xml:space="preserve">
-    <value>Info</value>
+  <data name="wpfPz1" xml:space="preserve">
+    <value>ZONA 1</value>
   </data>
-  <data name="Materiale Riciclato" xml:space="preserve">
-    <value>Recycled Materials</value>
+  <data name="wpfPz2" xml:space="preserve">
+    <value>ZONA 2</value>
   </data>
-  <data name="Modellazione" xml:space="preserve">
-    <value>Modeling</value>
+  <data name="wpfPz3" xml:space="preserve">
+    <value>ZONA 3</value>
   </data>
-  <data name="Quantità" xml:space="preserve">
-    <value>Quantities</value>
+  <data name="wpfPz4" xml:space="preserve">
+    <value>ZONA 4</value>
   </data>
-  <data name="Sisma" xml:space="preserve">
-    <value>Seism</value>
+  <data name="wpfPZonaSismica" xml:space="preserve">
+    <value>ZONA SISMICA</value>
   </data>
 </root>

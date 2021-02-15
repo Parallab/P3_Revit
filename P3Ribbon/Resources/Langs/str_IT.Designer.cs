@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace P3Ribbon.Resources {
+namespace P3Ribbon.Resources.Langs {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace P3Ribbon.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("P3Ribbon.Resources.str_IT", typeof(str_IT).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("P3Ribbon.Resources.Langs.str_IT", typeof(str_IT).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

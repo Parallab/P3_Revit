@@ -34,7 +34,9 @@ namespace P3Ribbon.Scripts
             else
             {
                 TaskDialog td = new TaskDialog("Errore");
+
                 td.MainInstruction = " Abachi non inseriti nel progetto";
+
                 td.MainContent = "Questo abaco non è presente nel progetto, caricare prima la libreria";
                 TaskDialogResult result = td.Show();
 
@@ -164,7 +166,7 @@ namespace P3Ribbon.Scripts
                 }
 
 
-                ViewSchedule vistaAbacoP3insul = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.LookupParameter("P3_Nome_i").AsString() == "P3 - Duct Insulation Schedule - DYNAMO") as ViewSchedule;
+                ViewSchedule vistaAbacoP3insul = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.LookupParameter("P3_Nome_i").AsString() == "P3 - Duct Insulation Schedule - PLUGIN") as ViewSchedule;
                 uiDoc.ActiveView = vistaAbacoP3insul;
 
                

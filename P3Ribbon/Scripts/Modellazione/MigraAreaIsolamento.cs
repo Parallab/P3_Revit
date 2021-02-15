@@ -148,9 +148,9 @@ namespace P3Ribbon.Scripts
                 Parameter sup_dyn = di.LookupParameter("P3_Sup_S.app_dyn");
                 if (sup_dyn == null)
                 {
-                    TaskDialog td = new TaskDialog("Errore");
-                    td.MainInstruction = "Parametro associato non esistente ";
-                    td.MainContent = "Parametro associato all'isolamento non esistente, inserirlo nel progetto corrente? ";
+                    TaskDialog td = new TaskDialog(P3Ribbon.Resources.Lang.lang.taskdErrore);
+                    td.MainInstruction = P3Ribbon.Resources.Lang.lang.taskdParametrononEsistente;
+                    td.MainContent = P3Ribbon.Resources.Lang.lang.taskdParametroIsolanteInserire;
                     td.CommonButtons = TaskDialogCommonButtons.Yes | TaskDialogCommonButtons.No;
 
                     TaskDialogResult result = td.Show();
@@ -166,9 +166,9 @@ namespace P3Ribbon.Scripts
             }
             else
             {
-                TaskDialog td = new TaskDialog("Errore");
-                td.MainInstruction = "Isolamenti mancanti";
-                td.MainContent = "Non ci sono isolamenti in questo progetto";
+                TaskDialog td = new TaskDialog(P3Ribbon.Resources.Lang.lang.taskdErrore);
+                td.MainInstruction = P3Ribbon.Resources.Lang.lang.taskdIsolMancanti;
+                td.MainContent = P3Ribbon.Resources.Lang.lang.taskdNonCiSonoIsol;
                 TaskDialogResult result = td.Show();
             }
         }

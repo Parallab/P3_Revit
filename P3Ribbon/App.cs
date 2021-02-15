@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using Autodesk.Revit.UI.Events;
 using P3Ribbon.Scripts;
 using Autodesk.Revit.DB.Events;
+using System.Threading;
 
 namespace P3Ribbon
 {
@@ -33,8 +34,9 @@ namespace P3Ribbon
         public static Lingua lingua_plugin = Lingua.ITA; // Leggere lingua di avvio
 
         public static string tabName = "P3ductBIM";
-        public static ResourceSet res_ita = Resources.str_IT.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
-        public static ResourceSet res_eng = Resources.str_EN.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
+       
+        public static ResourceSet res_ita = Resources.Lang.rp_ITA.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
+        public static ResourceSet res_eng = Resources.Lang.rp_ENG.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
         private object commandData;
 
         public static void LeggiLingua(ControlledApplication Capp)
@@ -226,7 +228,6 @@ namespace P3Ribbon
 
         public Result OnStartup(UIControlledApplication application)
         {
-            
             try
             {   //credo degli eventhandler all'aeprtura di un documento e alla creazione di uno nuovo
                 application.ControlledApplication.DocumentOpened += new EventHandler<Autodesk.Revit.DB.Events.DocumentOpenedEventArgs>(Application_DocumentOpened);
@@ -236,7 +237,8 @@ namespace P3Ribbon
             {
                 return Result.Failed;
             }
-
+            var langCode = Properties.Settings.Default.languageCode;
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(langCode);
             AddRibbonPanel(application);
             UICapp = application;
             //attiva i registri all'avvio di revit
@@ -244,8 +246,9 @@ namespace P3Ribbon
             UpdaterRegistry.RegisterUpdater(updater, true);
             LogicalOrFilter f = Scripts.Supporto.CatFilterDuctAndFitting;
             UpdaterRegistry.AddTrigger(updater.GetUpdaterId(), f, Element.GetChangeTypeElementAddition());
+            ResourceManager rm = new ResourceManager("items", Assembly.GetExecutingAssembly());
 
-     
+
             return Result.Succeeded;
         }
 
@@ -315,7 +318,7 @@ namespace P3Ribbon
         {
             //ricordarsi di modificare nel caso di altra lingua
             //all'accensione!
-            ResourceSet rs = Resources.str_IT.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
+            ResourceSet rs = Resources.Lang.rp_ITA.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
             return rs.GetObject(Var).ToString();
 
         }

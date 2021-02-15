@@ -3,18 +3,11 @@ using Autodesk.Revit.UI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
+using System.Resources;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 using Application = Autodesk.Revit.ApplicationServices.Application;
 
 namespace P3Ribbon.Scripts.GUI
@@ -45,7 +38,8 @@ namespace P3Ribbon.Scripts.GUI
             WpfAggiornaLibreria();
             if (wpfCboMateriali.Items.Count == 0)
             {
-                wpfCboMateriali.Items.Add("Caricare la libreria prima di scegliere il materiale");
+                string CaricaMat = P3Ribbon.Resources.Lang.lang.wpfPrbpCaricareMat;
+                wpfCboMateriali.Items.Add(CaricaMat);
                 wpfCboMateriali.SelectedIndex = 0;
             }
         }
@@ -110,26 +104,6 @@ namespace P3Ribbon.Scripts.GUI
                     else
                     {
                         wpfCboMateriali.SelectedIndex = App.ribbCboMembers.IndexOf(App.rbbCboMateriali.Current);
-
-                        //20201216
-                        //////foreach (var item in cboMateriali.Items) //combobox wpf App.
-                        ////int i = 0;
-                        ////foreach (ComboBoxMember cbm in App.ribbCboMembers)
-                        ////{
-                        ////    //cmbContent observaclletion che alimenta il combobox
-
-                        ////    //if ( item.ID.IntegerValue == Materiale.IdInsulTipoPreferito.IntegerValue)
-
-                        ////    string cbm_nome_totale = cbm.Name; // nel name del combo box member abbiamo concatenato l id e lo spessore (ma perche c è lo spessore nel name? non leggevamo lo spessore dal parametro di tipo dell isoalnte?)
-                        ////    int indice_ = cbm_nome_totale.IndexOf("_");
-                        ////    int cbm_id = Int32.Parse(cbm_nome_totale.Substring(0, indice_));
-                        ////    if (cbm_id == Materiale.IdInsulTipoPreferito.IntegerValue)
-                        ////    {
-                        ////        //sono state create due classi diverse, bisogna collegarle
-                        ////        wpfCboMateriali.SelectedIndex = i;
-                        ////    }
-
-                        ////    i++;
 
                     }
 

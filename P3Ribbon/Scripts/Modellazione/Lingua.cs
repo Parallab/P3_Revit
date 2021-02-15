@@ -8,6 +8,7 @@ using System.Globalization;
 using System.Linq;
 using System.Resources;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Application = Autodesk.Revit.ApplicationServices.Application;
 
@@ -17,6 +18,8 @@ namespace P3Ribbon.Scripts
     [Transaction(TransactionMode.Manual)]
     class Lingua : IExternalCommand
     {
+        
+        
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             UIApplication uiApp = commandData.Application;
@@ -38,18 +41,22 @@ namespace P3Ribbon.Scripts
         static void CambiaLingua(UIControlledApplication a)
         {
             ResourceSet resourceSet_arrivo;
-
+            
             App.Lingua lingua_attuale = App.lingua_plugin;
-            App.Lingua lingua_arrivo;// ((int)lingua_attuale +1)%1; ci deve essere un modo intelligente per passare da int a enum
+            App.Lingua lingua_arrivo;
             if (lingua_attuale == App.Lingua.ITA)
             {
                 lingua_arrivo = App.Lingua.ENG;
-                
+                var langCode = Properties.Settings.Default.languageCode = "en-US";
+                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(langCode);
+
             }
             else
             {
                 lingua_arrivo = App.Lingua.ITA;
-                
+                var langCode = Properties.Settings.Default.languageCode = "it-IT";
+                Properties.Settings.Default.Save();
+                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(langCode);
             }
 
             foreach (RibbonPanel rp in a.GetRibbonPanels(App.tabName))

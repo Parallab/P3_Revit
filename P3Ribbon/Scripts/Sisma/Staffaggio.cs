@@ -65,15 +65,14 @@ namespace P3Ribbon.Scripts
                 }
                 else
                 {
-                    TaskDialog td = new TaskDialog("Errore");
-                    td.MainInstruction = " Staffe non inseriti nel progetto";
-                    td.MainContent = "Le staffe non sono caricate nel progetto, caricare prima la libreria";
+                    TaskDialog td = new TaskDialog(P3Ribbon.Resources.Lang.lang.taskdErrore);
+                    td.MainInstruction = P3Ribbon.Resources.Lang.lang.taskdStaffeNonInserite;
+                    td.MainContent = P3Ribbon.Resources.Lang.lang.taskdStaffeCaricarle;
                     TaskDialogResult result = td.Show();
 
                     GUI.Wpf_Libreria wpf = new GUI.Wpf_Libreria(commandData);
                     using (wpf)
                     {
-
                         wpf.ShowDialog();
                     }
 
@@ -83,7 +82,6 @@ namespace P3Ribbon.Scripts
             else
             {
                 return Result.Cancelled;
-
             }
             condotti.Clear();
             return Result.Succeeded;
@@ -91,11 +89,11 @@ namespace P3Ribbon.Scripts
         }
         public static IList<Element> Seleziona_condotti(Document doc, UIDocument uiDoc)
         {
-            string a1 = "Seleziona tutti i condotti all'interno del progetto Revit corrente";
-            string b1 = "Selezione manuale da schermo";
-            TaskDialog td = new TaskDialog("P3 staffaggio canali")
+            string a1 = P3Ribbon.Resources.Lang.lang.taskdSelezTuttiCondotti;
+            string b1 = P3Ribbon.Resources.Lang.lang.taskdSelezCondottiManual;
+            TaskDialog td = new TaskDialog(P3Ribbon.Resources.Lang.lang.taskdP3StaffCan)
             {
-                MainInstruction = "Selezionare la modalità di input"
+                MainInstruction = P3Ribbon.Resources.Lang.lang.taskdSelezionareMod
             };
 
             td.AddCommandLink(TaskDialogCommandLinkId.CommandLink1, a1);
@@ -215,7 +213,6 @@ namespace P3Ribbon.Scripts
 
         public void AttivaFamiglia(Document doc)
         {
-            
             Element StaffaP3 = new FilteredElementCollector(doc).OfClass(typeof(FamilySymbol)).FirstOrDefault(x => x.Name == "P3_DuctHanger");
             int id = StaffaP3.Id.IntegerValue;
             fs = doc.GetElement(new ElementId(id)) as FamilySymbol;
@@ -223,9 +220,7 @@ namespace P3Ribbon.Scripts
             {
                 fs.Activate();
             }
-
         }
-
     }
 
     public class Condotto
@@ -500,7 +495,6 @@ namespace P3Ribbon.Scripts
 
 
                     //dipende dalla direzione del condotto, quindi verso quale quadrante si rivolge (di conseguenza dal verso del vettore ovvero i click con cui è stato creato)
-
                     // staffa superiore
                     double distanzaControff = fi.LookupParameter("P3_Dynamo_Top2Ceiling").AsDouble();
                     distanzaControff = UnitUtils.ConvertFromInternalUnits(distanzaControff, DisplayUnitType.DUT_CENTIMETERS);
