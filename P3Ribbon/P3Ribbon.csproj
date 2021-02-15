@@ -108,15 +108,20 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Lang\lang.en.Designer.cs">
+      <DependentUpon>lang.en.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Resources\Lang\rp_ENG.Designer.cs">
       <DependentUpon>rp_ENG.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Resources\Lang\lang.en.Designer.cs">
+    <Compile Include="Resources\Lang\rp_ITA.Designer.cs">
+      <DependentUpon>rp_ITA.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>lang.en.resx</DependentUpon>
     </Compile>
     <Compile Include="Resources\Lang\lang.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -179,9 +184,18 @@
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_MatRIciclato.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_FrecciaGiù.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_FrecciaGiù16.png" />
+    <EmbeddedResource Include="Resources\Lang\lang.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>lang.en.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Resources\Lang\rp_ENG.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>rp_ENG.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Lang\rp_ITA.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>rp_ITA.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Scripts\GUI\Form_Quantità.resx">
       <DependentUpon>Form_Quantità.cs</DependentUpon>
@@ -239,10 +253,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Lang\lang.en.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>lang.en.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Lang\lang.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

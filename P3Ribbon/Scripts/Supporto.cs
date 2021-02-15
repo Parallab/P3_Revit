@@ -71,10 +71,11 @@ namespace P3Ribbon.Scripts
 
             if (Cu == null || Vn == null || Zs == null)
             {
-                TaskDialog td = new TaskDialog("Errore");
-                td.MainInstruction = "Parametri sismici non inseriti nel progetto";
-                td.MainContent = "Parametri sismici non inseriti nel progetto, inserire i parametri sismici?";
-                td.CommonButtons = TaskDialogCommonButtons.Yes | TaskDialogCommonButtons.No;
+                TaskDialog td = new TaskDialog(P3Ribbon.Resources.Lang.lang.taskdErrore);
+                //parametri sismici non inseriti nel proggetto
+                td.MainInstruction = P3Ribbon.Resources.Lang.lang.taskdParametriNonInseriti;
+                td.MainContent = P3Ribbon.Resources.Lang.lang.taskdParamInserirli;
+                td.CommonButtons = TaskDialogCommonButtons.Ok | TaskDialogCommonButtons.No;
 
                 TaskDialogResult result = td.Show();
 

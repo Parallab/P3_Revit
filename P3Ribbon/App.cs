@@ -34,7 +34,8 @@ namespace P3Ribbon
         public static Lingua lingua_plugin = Lingua.ITA; // Leggere lingua di avvio
 
         public static string tabName = "P3ductBIM";
-        public static ResourceSet res_ita = Resources.Lang.lang.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
+       
+        public static ResourceSet res_ita = Resources.Lang.rp_ITA.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
         public static ResourceSet res_eng = Resources.Lang.rp_ENG.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
         private object commandData;
 
@@ -245,8 +246,9 @@ namespace P3Ribbon
             UpdaterRegistry.RegisterUpdater(updater, true);
             LogicalOrFilter f = Scripts.Supporto.CatFilterDuctAndFitting;
             UpdaterRegistry.AddTrigger(updater.GetUpdaterId(), f, Element.GetChangeTypeElementAddition());
+            ResourceManager rm = new ResourceManager("items", Assembly.GetExecutingAssembly());
 
-     
+
             return Result.Succeeded;
         }
 
@@ -316,7 +318,7 @@ namespace P3Ribbon
         {
             //ricordarsi di modificare nel caso di altra lingua
             //all'accensione!
-            ResourceSet rs = Resources.Lang.lang.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
+            ResourceSet rs = Resources.Lang.rp_ITA.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
             return rs.GetObject(Var).ToString();
 
         }

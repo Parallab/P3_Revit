@@ -61,6 +61,15 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
+        ///   Cerca una stringa localizzata simile a Annulla.
+        /// </summary>
+        public static string bottAnnulla {
+            get {
+                return ResourceManager.GetString("bottAnnulla", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Cerca una stringa localizzata simile a Carica Libreria.
         /// </summary>
         public static string bottCaricaLibreria {
@@ -79,455 +88,354 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Elenco
-        ///Materiali.
+        ///   Cerca una stringa localizzata simile a Errore.
         /// </summary>
-        public static string cmdAreaisolamento {
+        public static string taskdErrore {
             get {
-                return ResourceManager.GetString("cmdAreaisolamento", resourceCulture);
+                return ResourceManager.GetString("taskdErrore", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Elenca i materiali utilizzati nei canali P3 e le relative superfici.
+        ///   Cerca una stringa localizzata simile a Isolamenti mancanti.
         /// </summary>
-        public static string cmdAreaisolamento_tt {
+        public static string taskdIsolMancanti {
             get {
-                return ResourceManager.GetString("cmdAreaisolamento_tt", resourceCulture);
+                return ResourceManager.GetString("taskdIsolMancanti", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Canale.
+        ///   Cerca una stringa localizzata simile a Non ci sono isolamenti in questo progetto.
         /// </summary>
-        public static string cmdcanale {
+        public static string taskdNonCiSonoIsol {
             get {
-                return ResourceManager.GetString("cmdcanale", resourceCulture);
+                return ResourceManager.GetString("taskdNonCiSonoIsol", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Posiziona i canali preisolati P3.
+        ///   Cerca una stringa localizzata simile a P3 staffaggio canali.
         /// </summary>
-        public static string cmdcanale_tt {
+        public static string taskdP3StaffCan {
             get {
-                return ResourceManager.GetString("cmdcanale_tt", resourceCulture);
+                return ResourceManager.GetString("taskdP3StaffCan", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Canale
-        ///Dinamico.
+        ///   Cerca una stringa localizzata simile a Parametri sismici non inseriti nel progetto.
         /// </summary>
-        public static string cmdcanaledinamico {
+        public static string taskdParametriNonInseriti {
             get {
-                return ResourceManager.GetString("cmdcanaledinamico", resourceCulture);
+                return ResourceManager.GetString("taskdParametriNonInseriti", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Crea un condotto di tipo: Dinamico.
+        ///   Cerca una stringa localizzata simile a Parametro associato all&apos;isolamento non esistente, inserirlo nel progetto corrente?.
         /// </summary>
-        public static string cmdcanaledinamico_tt {
+        public static string taskdParametroIsolanteInserire {
             get {
-                return ResourceManager.GetString("cmdcanaledinamico_tt", resourceCulture);
+                return ResourceManager.GetString("taskdParametroIsolanteInserire", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Canale
-        ///Scarpette.
+        ///   Cerca una stringa localizzata simile a Parametro associato non esistente.
         /// </summary>
-        public static string cmdcanalescarpette {
+        public static string taskdParametrononEsistente {
             get {
-                return ResourceManager.GetString("cmdcanalescarpette", resourceCulture);
+                return ResourceManager.GetString("taskdParametrononEsistente", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Crea un condotto di tipo: Scarpette.
+        ///   Cerca una stringa localizzata simile a Parametri sismici non presenti nel progetto, caricarli?.
         /// </summary>
-        public static string cmdcanalescarpette_tt {
+        public static string taskdParamInserirli {
             get {
-                return ResourceManager.GetString("cmdcanalescarpette_tt", resourceCulture);
+                return ResourceManager.GetString("taskdParamInserirli", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Carica Materiale.
+        ///   Cerca una stringa localizzata simile a Selezione manuale da schermo.
         /// </summary>
-        public static string cmdcaricamaterial {
+        public static string taskdSelezCondottiManual {
             get {
-                return ResourceManager.GetString("cmdcaricamaterial", resourceCulture);
+                return ResourceManager.GetString("taskdSelezCondottiManual", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Carica i materiali nel ribbonbox.
+        ///   Cerca una stringa localizzata simile a Selezionare la modalità di input.
         /// </summary>
-        public static string cmdcaricamaterial_tt {
+        public static string taskdSelezionareMod {
             get {
-                return ResourceManager.GetString("cmdcaricamaterial_tt", resourceCulture);
+                return ResourceManager.GetString("taskdSelezionareMod", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Elenco
-        ///Componenti.
+        ///   Cerca una stringa localizzata simile a Seleziona tutti i condotti all&apos;interno del progetto Revit corrente.
         /// </summary>
-        public static string cmdelencocomp {
+        public static string taskdSelezTuttiCondotti {
             get {
-                return ResourceManager.GetString("cmdelencocomp", resourceCulture);
+                return ResourceManager.GetString("taskdSelezTuttiCondotti", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Elenca i componenti P3.
+        ///   Cerca una stringa localizzata simile a Sì.
         /// </summary>
-        public static string cmdelencocomp_tt {
+        public static string taskdSì {
             get {
-                return ResourceManager.GetString("cmdelencocomp_tt", resourceCulture);
+                return ResourceManager.GetString("taskdSì", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Elenco
-        ///Pezzi.
+        ///   Cerca una stringa localizzata simile a Le staffe non sono caricate nel progetto, caricare prima la libreria.
         /// </summary>
-        public static string cmdelencopezzi {
+        public static string taskdStaffeCaricarle {
             get {
-                return ResourceManager.GetString("cmdelencopezzi", resourceCulture);
+                return ResourceManager.GetString("taskdStaffeCaricarle", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Elenca i canali e i pezzi speciali P3.
+        ///   Cerca una stringa localizzata simile a Staffe non inseriti nel progetto.
         /// </summary>
-        public static string cmdelencopezzi_tt {
+        public static string taskdStaffeNonInserite {
             get {
-                return ResourceManager.GetString("cmdelencopezzi_tt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a Elenco
-        ///Punti.
-        /// </summary>
-        public static string cmdelencopunti {
-            get {
-                return ResourceManager.GetString("cmdelencopunti", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a Elenca gli staffaggi utilizzati e la relativa componentistica.
-        /// </summary>
-        public static string cmdelencopunti_tt {
-            get {
-                return ResourceManager.GetString("cmdelencopunti_tt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a Elenco
-        ///Staffaggio.
-        /// </summary>
-        public static string cmdelencostaffaggi {
-            get {
-                return ResourceManager.GetString("cmdelencostaffaggi", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a Impostazioni.
-        /// </summary>
-        public static string cmdimpo {
-            get {
-                return ResourceManager.GetString("cmdimpo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a Impostazioni sull&apos;applicativo P3.
-        /// </summary>
-        public static string cmdimpo_tt {
-            get {
-                return ResourceManager.GetString("cmdimpo_tt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a Contatti.
-        /// </summary>
-        public static string cmdinfo {
-            get {
-                return ResourceManager.GetString("cmdinfo", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a Informazioni e contatti P3.
-        /// </summary>
-        public static string cmdinfo_tt {
-            get {
-                return ResourceManager.GetString("cmdinfo_tt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a Carica
-        ///Libreria.
-        /// </summary>
-        public static string cmdlibreria {
-            get {
-                return ResourceManager.GetString("cmdlibreria", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a Carica le famiglie e i materiali P3.
-        /// </summary>
-        public static string cmdlibreria_tt {
-            get {
-                return ResourceManager.GetString("cmdlibreria_tt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a Inglese.
-        /// </summary>
-        public static string cmdlingua {
-            get {
-                return ResourceManager.GetString("cmdlingua", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a Cambia la lingua in inglese.
-        /// </summary>
-        public static string cmdlingua_tt {
-            get {
-                return ResourceManager.GetString("cmdlingua_tt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a Inglese.
-        /// </summary>
-        public static string cmdLinguaENG {
-            get {
-                return ResourceManager.GetString("cmdLinguaENG", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a Italiano.
-        /// </summary>
-        public static string cmdLinguaIT {
-            get {
-                return ResourceManager.GetString("cmdLinguaIT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a Cambia 
-        ///Materiale.
-        /// </summary>
-        public static string cmdmateriale {
-            get {
-                return ResourceManager.GetString("cmdmateriale", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a Cambia il materiale dei canali P3.
-        /// </summary>
-        public static string cmdmateriale_tt {
-            get {
-                return ResourceManager.GetString("cmdmateriale_tt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a Parametri 
-        ///Sismici.
-        /// </summary>
-        public static string cmdParsism {
-            get {
-                return ResourceManager.GetString("cmdParsism", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a Compilazione dei parametri sismici per dimensionare
-        /// le staffe dei condotti.
-        /// </summary>
-        public static string cmdParsism_tt {
-            get {
-                return ResourceManager.GetString("cmdParsism_tt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a Quantità.
-        /// </summary>
-        public static string cmdquantità {
-            get {
-                return ResourceManager.GetString("cmdquantità", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a Elenca la quantità di materiale riciclato nei canali P3.
-        /// </summary>
-        public static string cmdquantità_tt {
-            get {
-                return ResourceManager.GetString("cmdquantità_tt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a Predimensionamento
-        ///Staffaggio.
-        /// </summary>
-        public static string cmdstaff {
-            get {
-                return ResourceManager.GetString("cmdstaff", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a Posizionamento e dimensionamento automatico dei canali alle strutture.
-        /// </summary>
-        public static string cmdstaff_tt {
-            get {
-                return ResourceManager.GetString("cmdstaff_tt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a Info.
-        /// </summary>
-        public static string Info {
-            get {
-                return ResourceManager.GetString("Info", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a Info.
-        /// </summary>
-        public static string Informazioni {
-            get {
-                return ResourceManager.GetString("Informazioni", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a Materiale Riciclato.
-        /// </summary>
-        public static string Materiale_Riciclato {
-            get {
-                return ResourceManager.GetString("Materiale Riciclato", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a Modellazione.
-        /// </summary>
-        public static string Modellazione {
-            get {
-                return ResourceManager.GetString("Modellazione", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a Quantità .
-        /// </summary>
-        public static string Quantità {
-            get {
-                return ResourceManager.GetString("Quantità", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a Sisma.
-        /// </summary>
-        public static string Sisma {
-            get {
-                return ResourceManager.GetString("Sisma", resourceCulture);
+                return ResourceManager.GetString("taskdStaffeNonInserite", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Cerca una stringa localizzata simile a Chiusura.
         /// </summary>
-        public static string wpfChiusura {
+        public static string wpfLChiusura {
             get {
-                return ResourceManager.GetString("wpfChiusura", resourceCulture);
+                return ResourceManager.GetString("wpfLChiusura", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Cerca una stringa localizzata simile a Derivazione a Incrocio.
         /// </summary>
-        public static string wpfDerivazioneaIncrocio {
+        public static string wpfLDerivazioneaIncrocio {
             get {
-                return ResourceManager.GetString("wpfDerivazioneaIncrocio", resourceCulture);
+                return ResourceManager.GetString("wpfLDerivazioneaIncrocio", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Cerca una stringa localizzata simile a Derivazione a Y.
         /// </summary>
-        public static string wpfDerivazioneaY {
+        public static string wpfLDerivazioneaY {
             get {
-                return ResourceManager.GetString("wpfDerivazioneaY", resourceCulture);
+                return ResourceManager.GetString("wpfLDerivazioneaY", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Cerca una stringa localizzata simile a Derivazione Laterale.
         /// </summary>
-        public static string wpfDerivazioneLaterale {
+        public static string wpfLDerivazioneLaterale {
             get {
-                return ResourceManager.GetString("wpfDerivazioneLaterale", resourceCulture);
+                return ResourceManager.GetString("wpfLDerivazioneLaterale", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Cerca una stringa localizzata simile a Derivazione a T.
         /// </summary>
-        public static string wpfDeviazioneT {
+        public static string wpfLDerivazioneT {
             get {
-                return ResourceManager.GetString("wpfDeviazioneT", resourceCulture);
+                return ResourceManager.GetString("wpfLDerivazioneT", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Cerca una stringa localizzata simile a Gomito.
         /// </summary>
-        public static string wpfGomito {
+        public static string wpfLGomito {
             get {
-                return ResourceManager.GetString("wpfGomito", resourceCulture);
+                return ResourceManager.GetString("wpfLGomito", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Cerca una stringa localizzata simile a Riduzione costante.
         /// </summary>
-        public static string wpfRiduzioneCostante {
+        public static string wpfLRiduzioneCostante {
             get {
-                return ResourceManager.GetString("wpfRiduzioneCostante", resourceCulture);
+                return ResourceManager.GetString("wpfLRiduzioneCostante", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Cerca una stringa localizzata simile a Riduzione Variabile.
         /// </summary>
-        public static string wpfRiduzioneVariabile {
+        public static string wpfLRiduzioneVariabile {
             get {
-                return ResourceManager.GetString("wpfRiduzioneVariabile", resourceCulture);
+                return ResourceManager.GetString("wpfLRiduzioneVariabile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Costruzioni con presenza solo occasionale di persone | Edifici agricoli.
+        /// </summary>
+        public static string wpfPCu1 {
+            get {
+                return ResourceManager.GetString("wpfPCu1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Costruzioni cui uso preveda normali 
+        ///affollamenti senza contenuti pericolosi per
+        /// l&apos;ambiente e senza funzioni pubbliche e 
+        ///sociali essenziali. Industie con attività non
+        /// pericolose per l&apos;ambiente | Uffici.
+        /// </summary>
+        public static string wpfPCu2 {
+            get {
+                return ResourceManager.GetString("wpfPCu2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Costruzioni il cui uso preveda affollamenti 
+        ///signifficativi. Industrie con attività pericolose 
+        ///per l&apos;ambiente | Centri commerciali.
+        /// </summary>
+        public static string wpfPCu3 {
+            get {
+                return ResourceManager.GetString("wpfPCu3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Costruzioni con funzioni pubbliche 
+        ///o strategiche importanti, anche con 
+        ///riferimento alla gestione della protezione
+        /// civile in caso di calimità. Industrie con 
+        ///attività particolarmente pericolose | Ospedali.
+        /// </summary>
+        public static string wpfPCu4 {
+            get {
+                return ResourceManager.GetString("wpfPCu4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a DEFINIZIONE ACCELLERAZIONE SISMICA.
+        /// </summary>
+        public static string wpfPDefAcc {
+            get {
+                return ResourceManager.GetString("wpfPDefAcc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a DEFINIZIONE CLASSE D&apos;USO.
+        /// </summary>
+        public static string wpfPDefCu {
+            get {
+                return ResourceManager.GetString("wpfPDefCu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Caricare la libreria prima di scegliere il materiale.
+        /// </summary>
+        public static string wpfPrbpCaricareMat {
+            get {
+                return ResourceManager.GetString("wpfPrbpCaricareMat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Sisimicità alta (0.25 &lt; α  ≤ 0.35).
+        /// </summary>
+        public static string wpfPSism1 {
+            get {
+                return ResourceManager.GetString("wpfPSism1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Sisimicità medio-alta (0.15 &lt; α  ≤ 0.25).
+        /// </summary>
+        public static string wpfPSism2 {
+            get {
+                return ResourceManager.GetString("wpfPSism2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Sisimicità  medio-bassa (0.05 &lt; α  ≤ 0.15).
+        /// </summary>
+        public static string wpfPSism3 {
+            get {
+                return ResourceManager.GetString("wpfPSism3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Sisimicità bassa ( α  ≤ 0.05).
+        /// </summary>
+        public static string wpfPSism4 {
+            get {
+                return ResourceManager.GetString("wpfPSism4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a ZONA 1.
+        /// </summary>
+        public static string wpfPz1 {
+            get {
+                return ResourceManager.GetString("wpfPz1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a ZONA 2.
+        /// </summary>
+        public static string wpfPz2 {
+            get {
+                return ResourceManager.GetString("wpfPz2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a ZONA 3.
+        /// </summary>
+        public static string wpfPz3 {
+            get {
+                return ResourceManager.GetString("wpfPz3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a ZONA 4.
+        /// </summary>
+        public static string wpfPz4 {
+            get {
+                return ResourceManager.GetString("wpfPz4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a ZONA SISMICA.
+        /// </summary>
+        public static string wpfPZonaSismica {
+            get {
+                return ResourceManager.GetString("wpfPZonaSismica", resourceCulture);
             }
         }
     }

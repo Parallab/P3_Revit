@@ -34,7 +34,9 @@ namespace P3Ribbon.Scripts
             else
             {
                 TaskDialog td = new TaskDialog("Errore");
+
                 td.MainInstruction = " Abachi non inseriti nel progetto";
+
                 td.MainContent = "Questo abaco non è presente nel progetto, caricare prima la libreria";
                 TaskDialogResult result = td.Show();
 

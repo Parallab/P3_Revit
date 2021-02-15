@@ -117,168 +117,130 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="bottAnnulla" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="bottCaricaLibreria" xml:space="preserve">
-    <value>Load Librery</value>
+    <value>Load Library</value>
   </data>
   <data name="bottScegliMateriale" xml:space="preserve">
     <value>Choose Material</value>
   </data>
-  <data name="cmdAreaisolamento" xml:space="preserve">
-    <value>Material
-List</value>
+  <data name="taskdErrore" xml:space="preserve">
+    <value>Error</value>
   </data>
-  <data name="cmdAreaIsolamento_tt" xml:space="preserve">
-    <value>Lists the materials used in the P3 channels and their surfaces</value>
+  <data name="taskdIsolMancanti" xml:space="preserve">
+    <value>missing insulation</value>
   </data>
-  <data name="cmdcanale" xml:space="preserve">
-    <value>Duct</value>
+  <data name="taskdNonCiSonoIsol" xml:space="preserve">
+    <value>There are no isolations in this project</value>
   </data>
-  <data name="cmdcanaledinamico" xml:space="preserve">
-    <value>Dynamic
-Duct</value>
+  <data name="taskdP3StaffCan" xml:space="preserve">
+    <value>P3 duct clamping</value>
   </data>
-  <data name="cmdcanaledinamico_tt" xml:space="preserve">
-    <value>Create a duct of type: Dynamic</value>
+  <data name="taskdParametriNonInseriti" xml:space="preserve">
+    <value>Seismic parameters not included in the project</value>
   </data>
-  <data name="cmdcanalescarpette" xml:space="preserve">
-    <value>Tap 
-Duct</value>
+  <data name="taskdParametroIsolanteInserire" xml:space="preserve">
+    <value>A parameter associated with the isolation does not exist, add it to the current project?</value>
   </data>
-  <data name="cmdcanalescarpette_tt" xml:space="preserve">
-    <value>Create a duct of type: Tap</value>
+  <data name="taskdParametrononEsistente" xml:space="preserve">
+    <value>Associated parameter does not exist</value>
   </data>
-  <data name="cmdcanale_tt" xml:space="preserve">
-    <value>Place the P3 pre-insulated ducts </value>
+  <data name="taskdParamInserirli" xml:space="preserve">
+    <value>Seismic parameters not included in the project, enter the seismic parameters?</value>
   </data>
-  <data name="cmdcaricamaterial" xml:space="preserve">
-    <value>Upload Material</value>
+  <data name="taskdSelezCondottiManual" xml:space="preserve">
+    <value>Manually select ducts from a view</value>
   </data>
-  <data name="cmdcaricamaterial_tt" xml:space="preserve">
-    <value>Upload materials in the ribbonbox</value>
+  <data name="taskdSelezionareMod" xml:space="preserve">
+    <value>Select the input mode</value>
   </data>
-  <data name="cmdelencocomp" xml:space="preserve">
-    <value>Components 
-Lists</value>
+  <data name="taskdSelezTuttiCondotti" xml:space="preserve">
+    <value>Select all of the ducts in the current Revit project</value>
   </data>
-  <data name="cmdelencocomp_tt" xml:space="preserve">
-    <value>List P3 components</value>
+  <data name="taskdStaffeCaricarle" xml:space="preserve">
+    <value>The brackets are not loaded into the project, load the library first</value>
   </data>
-  <data name="cmdelencopezzi" xml:space="preserve">
-    <value>Parts
-List</value>
+  <data name="taskdStaffeNonInserite" xml:space="preserve">
+    <value>Brackets not included in the project</value>
   </data>
-  <data name="cmdelencopezzi_tt" xml:space="preserve">
-    <value>List the P3 ducts and special pieces</value>
+  <data name="taskdSì" xml:space="preserve">
+    <value>Yes</value>
   </data>
-  <data name="cmdelencopunti" xml:space="preserve">
-    <value>Points
-Lists</value>
+  <data name="Temporary" xml:space="preserve">
+    <value>Temporary: e.g. Agricultural buildings</value>
   </data>
-  <data name="cmdelencopunti_tt" xml:space="preserve">
-    <value>Lists the brackets used and the related components</value>
-  </data>
-  <data name="cmdelencostaffaggi" xml:space="preserve">
-    <value>Bracketing
-List</value>
-  </data>
-  <data name="cmdimpo" xml:space="preserve">
-    <value>Settings</value>
-  </data>
-  <data name="cmdimpo_tt" xml:space="preserve">
-    <value>Settings on the P3 application</value>
-  </data>
-  <data name="cmdinfo" xml:space="preserve">
-    <value>Info</value>
-  </data>
-  <data name="cmdinfo_tt" xml:space="preserve">
-    <value>P3 Information and contacts </value>
-  </data>
-  <data name="cmdlibreria" xml:space="preserve">
-    <value>Load
-Library</value>
-  </data>
-  <data name="cmdlibreria_tt" xml:space="preserve">
-    <value>Load P3 families and materials</value>
-  </data>
-  <data name="cmdlingua" xml:space="preserve">
-    <value>Italian</value>
-  </data>
-  <data name="cmdLinguaENG" xml:space="preserve">
-    <value>English</value>
-  </data>
-  <data name="cmdLinguaIT" xml:space="preserve">
-    <value>Italian</value>
-  </data>
-  <data name="cmdlingua_tt" xml:space="preserve">
-    <value>Change language to italian</value>
-  </data>
-  <data name="cmdmateriale" xml:space="preserve">
-    <value>Change
-Material</value>
-  </data>
-  <data name="cmdmateriale_tt" xml:space="preserve">
-    <value>Change the material of the P3 ducts</value>
-  </data>
-  <data name="cmdParsism" xml:space="preserve">
-    <value>Seismic
-Parameters</value>
-  </data>
-  <data name="cmdParsism_tt" xml:space="preserve">
-    <value>Compilation of seismic parameters to set the ducts brackets</value>
-  </data>
-  <data name="cmdquantità" xml:space="preserve">
-    <value>Quantities</value>
-  </data>
-  <data name="cmdquantità_tt" xml:space="preserve">
-    <value>List the amount of recycled material in the P3 ducts</value>
-  </data>
-  <data name="cmdstaff" xml:space="preserve">
-    <value>Bracket
-Pre-sizing</value>
-  </data>
-  <data name="cmdstaff_tt" xml:space="preserve">
-    <value>Automatic positioning and sizing of channels to structures</value>
-  </data>
-  <data name="Info" xml:space="preserve">
-    <value>Info</value>
-  </data>
-  <data name="Informazioni" xml:space="preserve">
-    <value>Info</value>
-  </data>
-  <data name="Materiale Riciclato" xml:space="preserve">
-    <value>Recycled Materials</value>
-  </data>
-  <data name="Modellazione" xml:space="preserve">
-    <value>Modeling</value>
-  </data>
-  <data name="Quantità" xml:space="preserve">
-    <value>Quantities</value>
-  </data>
-  <data name="Sisma" xml:space="preserve">
-    <value>Seism</value>
-  </data>
-  <data name="wpfChiusura" xml:space="preserve">
+  <data name="wpfLChiusura" xml:space="preserve">
     <value>Endcap</value>
   </data>
-  <data name="wpfDerivazioneaIncrocio" xml:space="preserve">
+  <data name="wpfLDerivazioneaIncrocio" xml:space="preserve">
     <value>Reduction with 2 elbows</value>
   </data>
-  <data name="wpfDerivazioneaY" xml:space="preserve">
-    <value>double elbow</value>
+  <data name="wpfLDerivazioneaY" xml:space="preserve">
+    <value>Double elbow</value>
   </data>
-  <data name="wpfDerivazioneLaterale" xml:space="preserve">
-    <value>Reduction with elbow</value>
+  <data name="wpfLDerivazioneLaterale" xml:space="preserve">
+    <value>Reduction with elbows</value>
   </data>
-  <data name="wpfDeviazioneT" xml:space="preserve">
+  <data name="wpfLDeviazioneT" xml:space="preserve">
     <value>T connector</value>
   </data>
-  <data name="wpfGomito" xml:space="preserve">
-    <value>Eblow</value>
+  <data name="wpfLGomito" xml:space="preserve">
+    <value>Elbow</value>
   </data>
-  <data name="wpfRiduzioneCostante" xml:space="preserve">
+  <data name="wpfLRiduzioneCostante" xml:space="preserve">
     <value>Simple reduction</value>
   </data>
-  <data name="wpfRiduzioneVariabile" xml:space="preserve">
+  <data name="wpfLRiduzioneVariabile" xml:space="preserve">
     <value>Full reduction</value>
+  </data>
+  <data name="wpfPCu1" xml:space="preserve">
+    <value>Temporary: e.g. Agricultural buildings</value>
+  </data>
+  <data name="wpfPCu2" xml:space="preserve">
+    <value>Lightly crowded: e.g. Offices</value>
+  </data>
+  <data name="wpfPCu3" xml:space="preserve">
+    <value>Crowded: e.g. Malls</value>
+  </data>
+  <data name="wpfPCu4" xml:space="preserve">
+    <value>Strategic and crowded: e.g. Hospitals</value>
+  </data>
+  <data name="wpfPDefAcc" xml:space="preserve">
+    <value>DEFINITION OF SEISMIC ACCELERATION</value>
+  </data>
+  <data name="wpfPDefCu" xml:space="preserve">
+    <value>DEFINITION USE CLASS</value>
+  </data>
+  <data name="wpfPrbpCaricareMat" xml:space="preserve">
+    <value>Load the library before choosing the material</value>
+  </data>
+  <data name="wpfPSism1" xml:space="preserve">
+    <value>PGA &gt; 0.25g</value>
+  </data>
+  <data name="wpfPSism2" xml:space="preserve">
+    <value>0.15g &lt; PGA ≤ 0.25g</value>
+  </data>
+  <data name="wpfPSism3" xml:space="preserve">
+    <value>0.05g &lt; PGA ≤ 0.15g</value>
+  </data>
+  <data name="wpfPSism4" xml:space="preserve">
+    <value>PGA ≤ 0.05g</value>
+  </data>
+  <data name="wpfPz1" xml:space="preserve">
+    <value>ZONE 1</value>
+  </data>
+  <data name="wpfPz2" xml:space="preserve">
+    <value>ZONE 2</value>
+  </data>
+  <data name="wpfPz3" xml:space="preserve">
+    <value>ZONE 3</value>
+  </data>
+  <data name="wpfPz4" xml:space="preserve">
+    <value>ZONE 4</value>
+  </data>
+  <data name="wpfPZonaSismica" xml:space="preserve">
+    <value>SEISMIC ZONE</value>
   </data>
 </root>

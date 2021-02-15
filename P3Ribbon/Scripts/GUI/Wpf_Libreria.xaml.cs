@@ -3,6 +3,8 @@ using Autodesk.Revit.UI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
+using System.Resources;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -36,7 +38,8 @@ namespace P3Ribbon.Scripts.GUI
             WpfAggiornaLibreria();
             if (wpfCboMateriali.Items.Count == 0)
             {
-                wpfCboMateriali.Items.Add("Caricare la libreria prima di scegliere il materiale");
+                string CaricaMat = P3Ribbon.Resources.Lang.lang.wpfPrbpCaricareMat;
+                wpfCboMateriali.Items.Add(CaricaMat);
                 wpfCboMateriali.SelectedIndex = 0;
             }
         }
