@@ -34,10 +34,14 @@ namespace P3Ribbon.Scripts
             return Result.Succeeded;
         }
 
+		public static void CambiaLingua_(UIControlledApplication a)
+		{
+			CambiaLingua(a);
+		}
 
-        static void CambiaLingua(UIControlledApplication a)
+        private static void CambiaLingua(UIControlledApplication a)
         {
-            ResourceSet resourceSet_arrivo;
+            //ResourceSet resourceSet_arrivo;
 
             App.Lingua lingua_attuale = App.lingua_plugin;
             App.Lingua lingua_arrivo;// ((int)lingua_attuale +1)%1; ci deve essere un modo intelligente per passare da int a enum
@@ -51,6 +55,7 @@ namespace P3Ribbon.Scripts
                 lingua_arrivo = App.Lingua.ITA;
                 //resourceSet_arrivo = App.res_ita;
             }
+
 
             foreach (RibbonPanel rp in a.GetRibbonPanels(App.tabName))
             {

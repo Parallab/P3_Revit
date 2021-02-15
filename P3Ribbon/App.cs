@@ -33,11 +33,13 @@ namespace P3Ribbon
             ITA = 0,
             ENG = 1
         }
-        public static Lingua lingua_plugin = Lingua.ITA; // LEGGERE LINGUA REVIT!!! ocio se c è lingua tipo francese
+
+		public static Lingua lingua_plugin;
+		//public static Lingua lingua_plugin = Lingua.ITA; // LEGGERE LINGUA REVIT!!! ocio se c è lingua tipo francese
 
 
-        public static string tabName = "P3ductBIM";
-        public static ResourceSet res_ita = Resources.str_IT.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
+		public static string tabName = "P3duct𝗯𝗶𝗺"; //𝗣𝟯𝗱𝘂𝗰𝘁𝗯𝗶𝗺 𝗣𝟯𝗱𝘂𝗰𝘁bim contrario? chissà se dà problemi di compatibilità.. https://lingojam.com/BoldTextGenerator
+		public static ResourceSet res_ita = Resources.str_IT.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
         public static ResourceSet res_eng = Resources.str_EN.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
         private object commandData;
 
@@ -58,15 +60,13 @@ namespace P3Ribbon
 
         public static object AddRibbonPanel(UIControlledApplication a)
         {
-
-            // Create a custom ribbon tab
-            a.CreateRibbonTab(tabName);
+			
+			// Create a custom ribbon tab
+			a.CreateRibbonTab(tabName);
             // Get dll assembly path
             string thisAssemblyPath = Assembly.GetExecutingAssembly().Location;
 
-
             RibbonPanel ribbonPanelModellazione = a.CreateRibbonPanel(tabName, res_valore("Modellazione"));
-
 
             // MODELLAZIONE
             #region bottone: lingua WIP
@@ -78,7 +78,7 @@ namespace P3Ribbon
             PushButtonData b9Data = new PushButtonData("cmdlibreria", "Carica" + System.Environment.NewLine + "Libreria", thisAssemblyPath, "P3Ribbon.Scripts.FinestraLibreria");
             PushButton pb9 = ribbonPanelModellazione.AddItem(b9Data) as PushButton;
             pb9.ToolTip = "Carica le famiglie e i materiali P3";
-            BitmapImage pb9Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Libreria_2_logoP3+ductbim.png"));
+            BitmapImage pb9Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Libreria_3_logoP3.png"));
             pb9.LargeImage = pb9Image;
             #endregion
 
@@ -122,7 +122,8 @@ namespace P3Ribbon
             PushButtonData b3Data = new PushButtonData("cmdAreaisolamento", "Elenco" + System.Environment.NewLine + "Materiali", thisAssemblyPath, "P3Ribbon.Scripts.ElencoMateriali");
             PushButton pb3 = ribbonPanelQuantità.AddItem(b3Data) as PushButton;
             pb3.ToolTip = "Elenca i materiali utilizzati nei canali P3 e le relative superfici"; // DA SISTEMARE
-            BitmapImage pb3Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_ElencoMateriali.png"));
+            //BitmapImage pb3Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_ElencoMateriali.png"));
+            BitmapImage pb3Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Canale_Materiale.png"));
             pb3.LargeImage = pb3Image;
             #endregion
 
@@ -207,7 +208,13 @@ namespace P3Ribbon
 
 
             MigraRibbonPanelName2Titolo(a);
-            return Result.Succeeded;
+
+			// il metodo è un po' stupido perchè legge quella di partenza e cambia tutto...io invece qua voglio leggere lingua di revit e compilare adegutamnete tutto...
+			LeggiLingua(a.ControlledApplication);
+			Scripts.Lingua.CambiaLingua_(a); //da lingua attuale all altra
+			Scripts.Lingua.CambiaLingua_(a); //dall altra alla lingua attuale.....
+			//
+			return Result.Succeeded;
         }
 
         private static void comboBx_CurrentChanged(object sender, ComboBoxCurrentChangedEventArgs e)

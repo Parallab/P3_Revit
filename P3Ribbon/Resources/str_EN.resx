@@ -229,7 +229,7 @@ Pre-sizing</value>
   <data name="Informazioni" xml:space="preserve">
     <value>Info</value>
   </data>
-  <data name="Materiale Riciclato" xml:space="preserve">
+  <data name="MaterialeRiciclato" xml:space="preserve">
     <value>Recycled Materials</value>
   </data>
   <data name="Modellazione" xml:space="preserve">
@@ -240,5 +240,29 @@ Pre-sizing</value>
   </data>
   <data name="Sisma" xml:space="preserve">
     <value>Seism</value>
+  </data>
+  <data name="Libreria_3" xml:space="preserve">
+    <value>Reduction with 2 elbows</value>
+  </data>
+  <data name="Libreria_Curva" xml:space="preserve">
+    <value>Elbow</value>
+  </data>
+  <data name="Libreria_Fondello" xml:space="preserve">
+    <value>Endcap</value>
+  </data>
+  <data name="Libreria_L" xml:space="preserve">
+    <value>Reduction with elbow</value>
+  </data>
+  <data name="Libreria_Rid1" xml:space="preserve">
+    <value>Simple reduction</value>
+  </data>
+  <data name="Libreria_Rid2" xml:space="preserve">
+    <value>Full reduction</value>
+  </data>
+  <data name="Libreria_T" xml:space="preserve">
+    <value>T connector</value>
+  </data>
+  <data name="Libreria_Y" xml:space="preserve">
+    <value>Double elbow</value>
   </data>
 </root>
