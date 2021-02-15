@@ -34,5 +34,17 @@ namespace P3Ribbon.Properties {
                 this["checkUpdateState"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("it-IT")]
+        public string languageCode {
+            get {
+                return ((string)(this["languageCode"]));
+            }
+            set {
+                this["languageCode"] = value;
+            }
+        }
     }
 }

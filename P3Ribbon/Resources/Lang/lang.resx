@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="bottCaricaLibreria" xml:space="preserve">
+    <value>Carica Libreria</value>
+  </data>
+  <data name="bottScegliMateriale" xml:space="preserve">
+    <value>Scegli Materiale</value>
+  </data>
+  <data name="cmdAreaisolamento" xml:space="preserve">
+    <value>Elenco
+Materiali</value>
+  </data>
+  <data name="cmdAreaisolamento_tt" xml:space="preserve">
+    <value>Elenca i materiali utilizzati nei canali P3 e le relative superfici</value>
+  </data>
+  <data name="cmdcanale" xml:space="preserve">
+    <value>Canale</value>
+  </data>
+  <data name="cmdcanaledinamico" xml:space="preserve">
+    <value>Canale
+Dinamico</value>
+  </data>
+  <data name="cmdcanaledinamico_tt" xml:space="preserve">
+    <value>Crea un condotto di tipo: Dinamico</value>
+  </data>
+  <data name="cmdcanalescarpette" xml:space="preserve">
+    <value>Canale
+Scarpette</value>
+  </data>
+  <data name="cmdcanalescarpette_tt" xml:space="preserve">
+    <value>Crea un condotto di tipo: Scarpette</value>
+  </data>
+  <data name="cmdcanale_tt" xml:space="preserve">
+    <value>Posiziona i canali preisolati P3</value>
+  </data>
+  <data name="cmdcaricamaterial" xml:space="preserve">
+    <value>Carica Materiale</value>
+  </data>
+  <data name="cmdcaricamaterial_tt" xml:space="preserve">
+    <value>Carica i materiali nel ribbonbox</value>
+  </data>
+  <data name="cmdelencocomp" xml:space="preserve">
+    <value>Elenco
+Componenti</value>
+  </data>
+  <data name="cmdelencocomp_tt" xml:space="preserve">
+    <value>Elenca i componenti P3</value>
+  </data>
+  <data name="cmdelencopezzi" xml:space="preserve">
+    <value>Elenco
+Pezzi</value>
+  </data>
+  <data name="cmdelencopezzi_tt" xml:space="preserve">
+    <value>Elenca i canali e i pezzi speciali P3</value>
+  </data>
+  <data name="cmdelencopunti" xml:space="preserve">
+    <value>Elenco
+Punti</value>
+  </data>
+  <data name="cmdelencopunti_tt" xml:space="preserve">
+    <value>Elenca gli staffaggi utilizzati e la relativa componentistica</value>
+  </data>
+  <data name="cmdelencostaffaggi" xml:space="preserve">
+    <value>Elenco
+Staffaggio</value>
+  </data>
+  <data name="cmdimpo" xml:space="preserve">
+    <value>Impostazioni</value>
+  </data>
+  <data name="cmdimpo_tt" xml:space="preserve">
+    <value>Impostazioni sull'applicativo P3</value>
+  </data>
+  <data name="cmdinfo" xml:space="preserve">
+    <value>Contatti</value>
+  </data>
+  <data name="cmdinfo_tt" xml:space="preserve">
+    <value>Informazioni e contatti P3</value>
+  </data>
+  <data name="cmdlibreria" xml:space="preserve">
+    <value>Carica
+Libreria</value>
+  </data>
+  <data name="cmdlibreria_tt" xml:space="preserve">
+    <value>Carica le famiglie e i materiali P3</value>
+  </data>
+  <data name="cmdlingua" xml:space="preserve">
+    <value>Inglese</value>
+  </data>
+  <data name="cmdLinguaENG" xml:space="preserve">
+    <value>Inglese</value>
+  </data>
+  <data name="cmdLinguaIT" xml:space="preserve">
+    <value>Italiano</value>
+  </data>
+  <data name="cmdlingua_tt" xml:space="preserve">
+    <value>Cambia la lingua in inglese</value>
+  </data>
+  <data name="cmdmateriale" xml:space="preserve">
+    <value>Cambia 
+Materiale</value>
+  </data>
+  <data name="cmdmateriale_tt" xml:space="preserve">
+    <value>Cambia il materiale dei canali P3</value>
+  </data>
+  <data name="cmdParsism" xml:space="preserve">
+    <value>Parametri 
+Sismici</value>
+  </data>
+  <data name="cmdParsism_tt" xml:space="preserve">
+    <value>Compilazione dei parametri sismici per dimensionare
+ le staffe dei condotti</value>
+  </data>
+  <data name="cmdquantità" xml:space="preserve">
+    <value>Quantità</value>
+  </data>
+  <data name="cmdquantità_tt" xml:space="preserve">
+    <value>Elenca la quantità di materiale riciclato nei canali P3</value>
+  </data>
+  <data name="cmdstaff" xml:space="preserve">
+    <value>Predimensionamento
+Staffaggio</value>
+  </data>
+  <data name="cmdstaff_tt" xml:space="preserve">
+    <value>Posizionamento e dimensionamento automatico dei canali alle strutture</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="Informazioni" xml:space="preserve">
+    <value>Info</value>
+  </data>
+  <data name="Materiale Riciclato" xml:space="preserve">
+    <value>Materiale Riciclato</value>
+  </data>
+  <data name="Modellazione" xml:space="preserve">
+    <value>Modellazione</value>
+  </data>
+  <data name="Quantità" xml:space="preserve">
+    <value>Quantità </value>
+  </data>
+  <data name="Sisma" xml:space="preserve">
+    <value>Sisma</value>
+  </data>
+  <data name="wpfChiusura" xml:space="preserve">
+    <value>Chiusura</value>
+  </data>
+  <data name="wpfDerivazioneaIncrocio" xml:space="preserve">
+    <value>Derivazione a Incrocio</value>
+  </data>
+  <data name="wpfDerivazioneaY" xml:space="preserve">
+    <value>Derivazione a Y</value>
+  </data>
+  <data name="wpfDerivazioneLaterale" xml:space="preserve">
+    <value>Derivazione Laterale</value>
+  </data>
+  <data name="wpfDeviazioneT" xml:space="preserve">
+    <value>Derivazione a T</value>
+  </data>
+  <data name="wpfGomito" xml:space="preserve">
+    <value>Gomito</value>
+  </data>
+  <data name="wpfRiduzioneCostante" xml:space="preserve">
+    <value>Riduzione costante</value>
+  </data>
+  <data name="wpfRiduzioneVariabile" xml:space="preserve">
+    <value>Riduzione Variabile</value>
+  </data>
+</root>

@@ -233,6 +233,9 @@ Pre-sizing</value>
   <data name="cmdstaff_tt" xml:space="preserve">
     <value>Automatic positioning and sizing of channels to structures</value>
   </data>
+  <data name="deviazione a t" xml:space="preserve">
+    <value>T deviation</value>
+  </data>
   <data name="Info" xml:space="preserve">
     <value>Info</value>
   </data>

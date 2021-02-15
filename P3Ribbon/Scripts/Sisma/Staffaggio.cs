@@ -500,7 +500,6 @@ namespace P3Ribbon.Scripts
 
 
                     //dipende dalla direzione del condotto, quindi verso quale quadrante si rivolge (di conseguenza dal verso del vettore ovvero i click con cui è stato creato)
-
                     // staffa superiore
                     double distanzaControff = fi.LookupParameter("P3_Dynamo_Top2Ceiling").AsDouble();
                     distanzaControff = UnitUtils.ConvertFromInternalUnits(distanzaControff, DisplayUnitType.DUT_CENTIMETERS);

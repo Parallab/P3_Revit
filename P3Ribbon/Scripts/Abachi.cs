@@ -164,7 +164,7 @@ namespace P3Ribbon.Scripts
                 }
 
 
-                ViewSchedule vistaAbacoP3insul = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.LookupParameter("P3_Nome_i").AsString() == "P3 - Duct Insulation Schedule - DYNAMO") as ViewSchedule;
+                ViewSchedule vistaAbacoP3insul = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.LookupParameter("P3_Nome_i").AsString() == "P3 - Duct Insulation Schedule - PLUGIN") as ViewSchedule;
                 uiDoc.ActiveView = vistaAbacoP3insul;
 
                

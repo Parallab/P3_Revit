@@ -118,118 +118,120 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="cmdAreaisolamento" xml:space="preserve">
-    <value>Elenco
-Materiali</value>
+    <value>Material
+List</value>
   </data>
-  <data name="cmdAreaisolamento_tt" xml:space="preserve">
-    <value>Elenca i materiali utilizzati nei canali P3 e le relative superfici</value>
+  <data name="cmdAreaIsolamento_tt" xml:space="preserve">
+    <value>Lists the materials used in the P3 channels and their surfaces</value>
   </data>
   <data name="cmdcanale" xml:space="preserve">
-    <value>Canale</value>
+    <value>Duct</value>
   </data>
   <data name="cmdcanaledinamico" xml:space="preserve">
-    <value>Canale
-Dinamico</value>
+    <value>Dynamic
+Duct</value>
   </data>
   <data name="cmdcanaledinamico_tt" xml:space="preserve">
-    <value>Crea un condotto di tipo: Dinamico</value>
+    <value>Create a duct of type: Dynamic</value>
   </data>
   <data name="cmdcanalescarpette" xml:space="preserve">
-    <value>Canale
-Scarpette</value>
+    <value>Tap 
+Duct</value>
   </data>
   <data name="cmdcanalescarpette_tt" xml:space="preserve">
-    <value>Crea un condotto di tipo: Scarpette</value>
+    <value>Create a duct of type: Tap</value>
   </data>
   <data name="cmdcanale_tt" xml:space="preserve">
-    <value>Posiziona i canali preisolati P3</value>
+    <value>Place the P3 pre-insulated ducts </value>
   </data>
   <data name="cmdcaricamaterial" xml:space="preserve">
-    <value>Carica Materiale</value>
+    <value>Upload Material</value>
   </data>
   <data name="cmdcaricamaterial_tt" xml:space="preserve">
-    <value>Carica i materiali nel ribbonbox</value>
+    <value>Upload materials in the ribbonbox</value>
   </data>
   <data name="cmdelencocomp" xml:space="preserve">
-    <value>Elenco
-Componenti</value>
+    <value>Components 
+Lists</value>
   </data>
   <data name="cmdelencocomp_tt" xml:space="preserve">
-    <value>Elenca i componenti P3</value>
+    <value>List P3 components</value>
   </data>
   <data name="cmdelencopezzi" xml:space="preserve">
-    <value>Elenco
-Pezzi</value>
+    <value>Parts
+List</value>
   </data>
   <data name="cmdelencopezzi_tt" xml:space="preserve">
-    <value>Elenca i canali e i pezzi speciali P3</value>
+    <value>List the P3 ducts and special pieces</value>
   </data>
   <data name="cmdelencopunti" xml:space="preserve">
-    <value>Elenco
-Punti</value>
+    <value>Points
+Lists</value>
+  </data>
+  <data name="cmdelencopunti_tt" xml:space="preserve">
+    <value>Lists the brackets used and the related components</value>
   </data>
   <data name="cmdelencostaffaggi" xml:space="preserve">
-    <value>Elenco
-Staffaggio</value>
+    <value>Bracketing
+List</value>
   </data>
   <data name="cmdimpo" xml:space="preserve">
-    <value>Impostazioni</value>
+    <value>Settings</value>
   </data>
   <data name="cmdimpo_tt" xml:space="preserve">
-    <value>Impostazioni sull'applicativo P3</value>
+    <value>Settings on the P3 application</value>
   </data>
   <data name="cmdinfo" xml:space="preserve">
-    <value>Contatti</value>
+    <value>Info</value>
   </data>
   <data name="cmdinfo_tt" xml:space="preserve">
-    <value>Informazioni e contatti P3</value>
+    <value>P3 Information and contacts </value>
   </data>
   <data name="cmdlibreria" xml:space="preserve">
-    <value>Carica
-Libreria</value>
+    <value>Load
+Library</value>
   </data>
   <data name="cmdlibreria_tt" xml:space="preserve">
-    <value>Carica le famiglie e i materiali P3</value>
+    <value>Load P3 families and materials</value>
   </data>
   <data name="cmdlingua" xml:space="preserve">
-    <value>Inglese</value>
+    <value>Italian</value>
   </data>
   <data name="cmdLinguaENG" xml:space="preserve">
-    <value>Inglese</value>
+    <value>English</value>
   </data>
   <data name="cmdLinguaIT" xml:space="preserve">
-    <value>Italiano</value>
+    <value>Italian</value>
   </data>
   <data name="cmdlingua_tt" xml:space="preserve">
-    <value>Cambia la lingua in inglese</value>
+    <value>Change language to italian</value>
   </data>
   <data name="cmdmateriale" xml:space="preserve">
-    <value>Cambia 
-Materiale</value>
+    <value>Change
+Material</value>
   </data>
   <data name="cmdmateriale_tt" xml:space="preserve">
-    <value>Cambia il materiale dei canali P3</value>
+    <value>Change the material of the P3 ducts</value>
   </data>
   <data name="cmdParsism" xml:space="preserve">
-    <value>Parametri 
-Sismici</value>
+    <value>Seismic
+Parameters</value>
   </data>
   <data name="cmdParsism_tt" xml:space="preserve">
-    <value>Compilazione dei parametri sismici per dimensionare
- le staffe dei condotti</value>
+    <value>Compilation of seismic parameters to set the ducts brackets</value>
   </data>
   <data name="cmdquantità" xml:space="preserve">
-    <value>Quantità</value>
+    <value>Quantities</value>
   </data>
   <data name="cmdquantità_tt" xml:space="preserve">
-    <value>Elenca la quantità di materiale riciclato nei canali P3</value>
+    <value>List the amount of recycled material in the P3 ducts</value>
   </data>
   <data name="cmdstaff" xml:space="preserve">
-    <value>Predimensionamento
-Staffaggio</value>
+    <value>Bracket
+Pre-sizing</value>
   </data>
   <data name="cmdstaff_tt" xml:space="preserve">
-    <value>Posizionamento e dimensionamento automatico dei canali alle strutture</value>
+    <value>Automatic positioning and sizing of channels to structures</value>
   </data>
   <data name="Info" xml:space="preserve">
     <value>Info</value>
@@ -238,18 +240,18 @@ Staffaggio</value>
     <value>Info</value>
   </data>
   <data name="Materiale Riciclato" xml:space="preserve">
-    <value>Materiale Riciclato</value>
+    <value>Recycled Materials</value>
   </data>
   <data name="Modellazione" xml:space="preserve">
-    <value>Modellazione</value>
+    <value>Modeling</value>
   </data>
   <data name="Quantità" xml:space="preserve">
-    <value>Quantità </value>
+    <value>Quantities</value>
   </data>
   <data name="Sisma" xml:space="preserve">
-    <value>Sisma</value>
+    <value>Seism</value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value>Elenca gli staffaggi utilizzati e la relativa componentistica</value>
+  <data name="string" xml:space="preserve">
+    <value />
   </data>
 </root>

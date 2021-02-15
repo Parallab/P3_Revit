@@ -42,7 +42,7 @@ namespace P3Ribbon.Scripts.GUI
      
         private void LeggoAbacoQuantità()
         {
-            ViewSchedule AbacoQuantità = new FilteredElementCollector(m_doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.Name  == "P3 - Duct Insulation Schedule - DYNAMO") as ViewSchedule;
+            ViewSchedule AbacoQuantità = new FilteredElementCollector(m_doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.Name  == "P3 - Duct Insulation Schedule - PLUGIN") as ViewSchedule;
 
             TableData table = AbacoQuantità.GetTableData();
             TableSectionData section = table.GetSectionData(SectionType.Body);
@@ -122,7 +122,7 @@ namespace P3Ribbon.Scripts.GUI
             this.Close();
 
             ViewSchedule viewSchedule = new FilteredElementCollector(m_doc).OfClass(typeof(ViewSchedule)).FirstOrDefault
-                (x => x.Name == "P3 - Duct Insulation Schedule - DYNAMO") as ViewSchedule;
+                (x => x.Name == "P3 - Duct Insulation Schedule - PLUGIN") as ViewSchedule;
            
             m_uidoc.ActiveView = viewSchedule;
             

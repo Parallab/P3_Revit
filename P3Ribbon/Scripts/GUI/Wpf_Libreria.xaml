@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:P3Ribbon.Scripts.GUI"
+              xmlns:language="clr-namespace:P3Ribbon.Resources.Lang"
              mc:Ignorable="d" MaxHeight="550" MaxWidth="780"  MinHeight="550" MinWidth="780"
         
         >
@@ -28,14 +29,14 @@
                   />
         <Button x:Name="buttCaricLibreria" Content="Carica Libreria" Grid.Column="3" Margin="3,28,3,3" Grid.Row="3" Click="WpfBottCaricaLibreria_Click" BorderBrush="White" Background="#FFD7E2E6" Grid.RowSpan="2" FontFamily="Verdana"/>
         <Button x:Name="buttScegliMateriale" Content="Scegli Materiale" Grid.Column="3" Margin="3,33,3,3" Grid.Row="4" Click="wpfBottScegliMateriale_Click" BorderBrush="White" Background="#FFD7E2E6" Grid.RowSpan="2" FontFamily="Verdana"/>
-        <TextBlock Margin="2,5" Grid.Row="1" Grid.Column="0" TextWrapping="Wrap" Text="Derivazione a T" TextAlignment="Center" FontWeight="Bold" FontSize="16" FontFamily="Arial" Background="#C9D5EAEA"/>
-        <TextBlock Margin="2,5,3,5" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" Text="Derivazione a Y" TextAlignment="Center" FontWeight="Bold" FontSize="16" FontFamily="Arial" Background="#C9D5EAEA"/>
-        <TextBlock Margin="2,5" Grid.Row="1" Grid.Column="2" TextWrapping="Wrap" Text="Derivaziione a incrocio" TextAlignment="Center" FontWeight="Bold" FontSize="16" FontFamily="Arial" Background="#C9D5EAEA"/>
-        <TextBlock Margin="2,5,3,5" Grid.Row="1" Grid.Column="3" TextWrapping="Wrap" Text="Derivazione laterale" TextAlignment="Center" FontWeight="Bold" FontSize="16" FontFamily="Arial" Background="#C9D5EAEA"/>
-        <TextBlock Margin="2,5,3,5" Grid.Row="3" Grid.Column="0" TextWrapping="Wrap" Text="Gomito" TextAlignment="Center" FontWeight="Bold" FontSize="16" FontFamily="Arial" Background="#C9D5EAEA"/>
-        <TextBlock Margin="2,5,3,5" Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" Text="Riduzione costante" TextAlignment="Center" FontWeight="Bold" FontSize="16" FontFamily="Arial" Background="#C9D5EAEA"/>
-        <TextBlock Margin="3,5" Grid.Row="3" Grid.Column="2" TextWrapping="Wrap" Text="Riduzione variabile" TextAlignment="Center" FontWeight="Bold" FontSize="16" FontFamily="Arial" Background="#C9D5EAEA"/>
-        <TextBlock Margin="2,5" Grid.Row="3" Grid.Column="4" TextWrapping="Wrap" Text="Chiusura" Width="203" TextAlignment="Center" FontWeight="Bold" FontSize="16" FontFamily="Arial" Background="#C9D5EAEA"/>
+        <TextBlock Margin="2,5" Grid.Row="1" Grid.Column="0" TextWrapping="Wrap" Text="{x:Static language:lang.wpfDeviazioneT}" TextAlignment="Center" FontWeight="Bold" FontSize="16" FontFamily="Arial" Background="#C9D5EAEA"/>
+        <TextBlock Margin="2,5,3,5" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap" Text="{x:Static language:lang.wpfDerivazioneaY}" TextAlignment="Center" FontWeight="Bold" FontSize="16" FontFamily="Arial" Background="#C9D5EAEA"/>
+        <TextBlock Margin="2,5" Grid.Row="1" Grid.Column="2" TextWrapping="Wrap" Text="{x:Static language:lang.wpfDerivazioneaIncrocio}" TextAlignment="Center" FontWeight="Bold" FontSize="16" FontFamily="Arial" Background="#C9D5EAEA"/>
+        <TextBlock Margin="2,5,3,5" Grid.Row="1" Grid.Column="3" TextWrapping="Wrap" Text="{x:Static language:lang.wpfDerivazioneLaterale}" TextAlignment="Center" FontWeight="Bold" FontSize="16" FontFamily="Arial" Background="#C9D5EAEA"/>
+        <TextBlock Margin="2,5,3,5" Grid.Row="3" Grid.Column="0" TextWrapping="Wrap" Text="{x:Static language:lang.wpfGomito}" TextAlignment="Center" FontWeight="Bold" FontSize="16" FontFamily="Arial" Background="#C9D5EAEA"/>
+        <TextBlock Margin="2,5,3,5" Grid.Row="3" Grid.Column="1" TextWrapping="Wrap" Text="{x:Static language:lang.wpfRiduzioneCostante}" TextAlignment="Center" FontWeight="Bold" FontSize="16" FontFamily="Arial" Background="#C9D5EAEA"/>
+        <TextBlock Margin="3,5" Grid.Row="3" Grid.Column="2" TextWrapping="Wrap" Text="{x:Static language:lang.wpfRiduzioneVariabile}" TextAlignment="Center" FontWeight="Bold" FontSize="16" FontFamily="Arial" Background="#C9D5EAEA"/>
+        <TextBlock Margin="2,5" Grid.Row="3" Grid.Column="4" TextWrapping="Wrap" Text="{x:Static language:lang.wpfChiusura}" Width="203" TextAlignment="Center" FontWeight="Bold" FontSize="16" FontFamily="Arial" Background="#C9D5EAEA"/>
 
 
         <Image Margin="3,3,2,0" Grid.Column="0" Grid.Row="0" Source="/P3Ribbon;component/Resources/Code 803 - 3D insulated.png" OpacityMask="#FF57839C"
