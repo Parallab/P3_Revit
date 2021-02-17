@@ -181,6 +181,13 @@
     <Compile Include="Scripts\Modellazione\TrasferisciStandard.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_MaterialeP3bianco.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_MatRIciclatoVerde.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_SismaRosso.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_Rosso.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_CanaleStaffatoRosso.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaInglese32.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaItaliana32.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_MatRIciclato.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_FrecciaGiù.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_FrecciaGiù16.png" />

@@ -14,101 +14,42 @@ using Application = Autodesk.Revit.ApplicationServices.Application;
 
 namespace P3Ribbon.Scripts
 {
-
-    [Transaction(TransactionMode.Manual)]
-    class Lingua : IExternalCommand
-    {
-        
-        
-        public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
+    
+        [Transaction(TransactionMode.Manual)]
+        class LinguaInglese : IExternalCommand
         {
-            UIApplication uiApp = commandData.Application;
-            UIDocument uiDoc = uiApp.ActiveUIDocument;
-            Document doc = uiDoc.Document;
-            Application app = uiApp.Application;
-
-            //using (var t = new Transaction(doc, "CambiaLingua"))
-            //{
-            //    t.Start();
-            CambiaLingua(App.UICapp);
-          
-            //    t.Commit();
-            //}
-            return Result.Succeeded;
-        }
-
-
-        static void CambiaLingua(UIControlledApplication a)
-        {
-            ResourceSet resourceSet_arrivo;
-            
-            App.Lingua lingua_attuale = App.lingua_plugin;
-            App.Lingua lingua_arrivo;
-            if (lingua_attuale == App.Lingua.ITA)
+            public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
             {
-                lingua_arrivo = App.Lingua.ENG;
-                var langCode = Properties.Settings.Default.languageCode = "en-US";
-                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(langCode);
+                App.lingua_arrivo = App.Lingua.ENG;
+                UIApplication uiApp = commandData.Application;
+                UIDocument uiDoc = uiApp.ActiveUIDocument;
+                Document doc = uiDoc.Document;
+                Application app = uiApp.Application;
 
-            }
-            else
-            {
-                lingua_arrivo = App.Lingua.ITA;
-                var langCode = Properties.Settings.Default.languageCode = "it-IT";
-                Properties.Settings.Default.Save();
-                Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(langCode);
-            }
+                Supporto.CambiaLingua(App.UICapp);
 
-            foreach (RibbonPanel rp in a.GetRibbonPanels(App.tabName))
-            {
+                return Result.Succeeded;
 
-                try
-                {
-                    
-                    rp.Title = App.res_valore(rp.Name, lingua_arrivo);
-
-                    foreach (RibbonItem bottone in rp.GetItems())
-                    { 
-                        try
-                        {
-                            if (bottone.ItemType == RibbonItemType.SplitButton)
-                            {
-                                foreach(RibbonItem sbBottone in (bottone as SplitButton).GetItems())
-                                {
-                                    sbBottone.ItemText =  App.res_valore(sbBottone.Name, lingua_arrivo);
-                                    sbBottone.ToolTip = App.res_valore(sbBottone.Name + "_tt", lingua_arrivo);
-                                }
-
-                            }
-                            bottone.ItemText = App.res_valore(bottone.Name, lingua_arrivo);
-                            bottone.ToolTip = App.res_valore(bottone.Name + "_tt", lingua_arrivo);
-                           
-                        }
-                        catch
-                        {
-
-                        }
-                    }
-
-                }
-                catch
-                {
-
-                }
-            }
-
-
-            App.lingua_plugin = lingua_arrivo;
-            if (lingua_attuale == App.Lingua.ITA)
-            {
-                Supporto.CambiaSplitButton(App.sb1, 0);
-            }
-            else
-            {
-                Supporto.CambiaSplitButton(App.sb1, 1);
             }        
         }
 
-    }
+        [Transaction(TransactionMode.Manual)]
+        class LinguaItaliano : IExternalCommand
+        {
+            public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
+            {
+                App.lingua_arrivo = App.Lingua.ITA;
+                UIApplication uiApp = commandData.Application;
+                UIDocument uiDoc = uiApp.ActiveUIDocument;
+                Document doc = uiDoc.Document;
+                Application app = uiApp.Application;
+
+                Supporto.CambiaLingua(App.UICapp);
+
+                return Result.Succeeded;
+
+            }
+        }
+
 }
 

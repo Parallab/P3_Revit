@@ -93,7 +93,7 @@ namespace P3Ribbon.Scripts.GUI
             // Kg
             // 
             this.Kg.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Kg.HeaderText = "Tot Kg";
+            this.Kg.HeaderText = "Tot kg";
             this.Kg.Name = "Kg";
             this.Kg.ReadOnly = true;
             // 

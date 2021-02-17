@@ -33,11 +33,11 @@ namespace P3Ribbon.Scripts
             }
             else
             {
-                TaskDialog td = new TaskDialog("Errore");
+                TaskDialog td = new TaskDialog(P3Ribbon.Resources.Lang.lang.taskdErrore);
 
-                td.MainInstruction = " Abachi non inseriti nel progetto";
+                td.MainInstruction = P3Ribbon.Resources.Lang.lang.taskdAbachiNoPresenti;
 
-                td.MainContent = "Questo abaco non è presente nel progetto, caricare prima la libreria";
+                td.MainContent = P3Ribbon.Resources.Lang.lang.taskdAbachiCaricare;
                 TaskDialogResult result = td.Show();
 
                 GUI.Wpf_Libreria wpf = new GUI.Wpf_Libreria(commandData);
@@ -115,9 +115,9 @@ namespace P3Ribbon.Scripts
             }
             else
             {
-                TaskDialog td = new TaskDialog("Errore");
-                td.MainInstruction = " Abachi non inseriti nel progetto";
-                td.MainContent = "Questo abaco non è presente nel progetto, caricare prima la libreria";
+                TaskDialog td = new TaskDialog(P3Ribbon.Resources.Lang.lang.taskdErrore);
+                td.MainInstruction = P3Ribbon.Resources.Lang.lang.taskdAbachiNoPresenti;
+                td.MainContent = P3Ribbon.Resources.Lang.lang.taskdAbachiCaricare;
                 TaskDialogResult result = td.Show();
 
                 GUI.Wpf_Libreria wpf = new GUI.Wpf_Libreria(commandData);
@@ -151,7 +151,7 @@ namespace P3Ribbon.Scripts
                 Document doc = uiDoc.Document;
                 Application app = uiApp.Application;
 
-            if (Supporto.ControllaAbachiP3Presenti("P3 - Duct Insulation Schedule"))
+            if (Supporto.ControllaAbachiP3Presenti("P3 - Duct Insulation Schedule - PLUGIN"))
             {
 
                 using (var t = new Transaction(doc, "Migra Parametro Area Isolamento"))
@@ -173,9 +173,9 @@ namespace P3Ribbon.Scripts
             }
             else
             {
-                TaskDialog td = new TaskDialog("Errore");
-                td.MainInstruction = " Abachi non inseriti nel progetto";
-                td.MainContent = "Questo abaco non è presente nel progetto, caricare prima la libreria";
+                TaskDialog td = new TaskDialog(P3Ribbon.Resources.Lang.lang.taskdErrore);
+                td.MainInstruction = P3Ribbon.Resources.Lang.lang.taskdAbachiNoPresenti;
+                td.MainContent = P3Ribbon.Resources.Lang.lang.taskdAbachiCaricare;
                 TaskDialogResult result = td.Show();
                 GUI.Wpf_Libreria wpf = new GUI.Wpf_Libreria(commandData);
                 using (wpf)
@@ -203,8 +203,6 @@ namespace P3Ribbon.Scripts
 
             if (Supporto.ControllaAbachiP3Presenti("P3 - Duct Hangers - Components - ITA"))
             {
-
-
                 //if (App.lingua_plugin == App.Lingua.ITA)
                 //{
                 ViewSchedule vistaAbacoP3staff = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.LookupParameter("P3_Nome_i").AsString() == "P3 - Duct Hangers - Components - ITA") as ViewSchedule;
@@ -215,13 +213,12 @@ namespace P3Ribbon.Scripts
                 //    viewSchedule = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.Name == "P3 - Duct Hangers - Components - ENG") as ViewSchedule;
                 //    uiDoc.ActiveView = viewSchedule;
                 //}
-
             }
             else
             {
-                TaskDialog td = new TaskDialog("Errore");
-                td.MainInstruction = " Abachi non inseriti nel progetto";
-                td.MainContent = "Questo abaco non è presente nel progetto, caricare prima la libreria";
+                TaskDialog td = new TaskDialog(P3Ribbon.Resources.Lang.lang.taskdErrore);
+                td.MainInstruction = P3Ribbon.Resources.Lang.lang.taskdAbachiNoPresenti;
+                td.MainContent = P3Ribbon.Resources.Lang.lang.taskdAbachiCaricare;
                 TaskDialogResult result = td.Show();
 
                 GUI.Wpf_Libreria wpf = new GUI.Wpf_Libreria(commandData);

@@ -17,7 +17,7 @@ namespace P3Ribbon.Scripts
     [Transaction(TransactionMode.Manual)]
     class CambiaMateriale : IExternalCommand
     {
-        string msg = "Seleziona i canali a cui cambiare isolante";
+        string msg = P3Ribbon.Resources.Lang.lang.selSelezionaIsolanti;
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
 

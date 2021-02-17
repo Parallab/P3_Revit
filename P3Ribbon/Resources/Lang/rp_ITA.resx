@@ -128,21 +128,26 @@ Materiali</value>
     <value>Canale</value>
   </data>
   <data name="cmdcanaledinamico" xml:space="preserve">
-    <value>Canale
-Dinamico</value>
+    <value>Canale</value>
   </data>
   <data name="cmdcanaledinamico_tt" xml:space="preserve">
     <value>Crea un condotto di tipo: Dinamico</value>
   </data>
   <data name="cmdcanalescarpette" xml:space="preserve">
-    <value>Canale
-Scarpette</value>
+    <value>Stacco a 
+Scarpetta</value>
   </data>
   <data name="cmdcanalescarpette_tt" xml:space="preserve">
     <value>Crea un condotto di tipo: Scarpette</value>
   </data>
   <data name="cmdcanale_tt" xml:space="preserve">
     <value>Posiziona i canali preisolati P3</value>
+  </data>
+  <data name="cmdCaricaLibreria" xml:space="preserve">
+    <value>Carica Libreria</value>
+  </data>
+  <data name="cmdCaricaLibreria_tt" xml:space="preserve">
+    <value>Carica le famiglie e i materiali P3</value>
   </data>
   <data name="cmdcaricamaterial" xml:space="preserve">
     <value>Carica Materiale</value>
@@ -169,11 +174,14 @@ Pezzi</value>
 Punti</value>
   </data>
   <data name="cmdelencopunti_tt" xml:space="preserve">
-    <value>Elenca le staffe utilizzate e i relativi componenti</value>
+    <value>Elenca i componenti P3</value>
   </data>
   <data name="cmdelencostaffaggi" xml:space="preserve">
     <value>Elenco 
 Staffaggi</value>
+  </data>
+  <data name="cmdelencostaffaggi_tt" xml:space="preserve">
+    <value>Elenca gli staffaggi utilizzati e la relativa componentistica</value>
   </data>
   <data name="cmdimpo" xml:space="preserve">
     <value>Impostazioni</value>
@@ -250,8 +258,5 @@ Staffaggio</value>
   </data>
   <data name="Sisma" xml:space="preserve">
     <value>Sisma</value>
-  </data>
-  <data name="string" xml:space="preserve">
-    <value />
   </data>
 </root>

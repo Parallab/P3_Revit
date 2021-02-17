@@ -7,6 +7,7 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.ApplicationServices;
 using Autodesk.Revit.Attributes;
+using System.Windows.Forms;
 
 namespace P3Ribbon.Scripts
 {
@@ -18,7 +19,7 @@ namespace P3Ribbon.Scripts
             UIApplication uiApp = commandData.Application;
             UIDocument uiDoc = uiApp.ActiveUIDocument;
             Document doc = uiDoc.Document;
-            Application app = uiApp.Application;
+            Autodesk.Revit.ApplicationServices.Application app = uiApp.Application;
 
             Scripts.GUI.Wpf_InfoP3 wpf = new Scripts.GUI.Wpf_InfoP3();
             using (wpf)
@@ -64,7 +65,7 @@ namespace P3Ribbon.Scripts
             UIApplication uiApp = commandData.Application;
             UIDocument uiDoc = uiApp.ActiveUIDocument;
             Document doc = uiDoc.Document;
-            Application app = uiApp.Application;
+            Autodesk.Revit.ApplicationServices.Application app = uiApp.Application;
 
             MigraAreaIsolamento.ControllaParametriSeEsistenti(doc, app);
             if (MigraAreaIsolamento.isolamentipresenti == true)
@@ -72,10 +73,13 @@ namespace P3Ribbon.Scripts
                 if (MigraAreaIsolamento.parPresenti == true)
                 {
                     Scripts.GUI.Form_Quantità frm = new Scripts.GUI.Form_Quantità(commandData);
+                    frm.Controls.Find("butt_DettagliQuantità", true).FirstOrDefault().Text = P3Ribbon.Resources.Lang.lang.fromDettagli;
+                    DataGridView dgv = frm.Controls.Find("AbacoQuantità", true).FirstOrDefault() as DataGridView;
+
+                    dgv.Columns[0].HeaderText = P3Ribbon.Resources.Lang.lang.formMateriale;
                     using (frm)
                     {
                         frm.ShowDialog();
-
                     }
                 }
                 return Result.Succeeded;
@@ -94,7 +98,7 @@ namespace P3Ribbon.Scripts
             UIApplication uiApp = commandData.Application;
             UIDocument uiDoc = uiApp.ActiveUIDocument;
             Document doc = uiDoc.Document;
-            Application app = uiApp.Application;
+            Autodesk.Revit.ApplicationServices.Application app = uiApp.Application;
 
             Scripts.GUI.Wpf_impo wpf = new GUI.Wpf_impo(commandData);
 
@@ -116,7 +120,7 @@ namespace P3Ribbon.Scripts
             UIApplication uiApp = commandData.Application;
             uiDoc = uiApp.ActiveUIDocument;
             doc = uiDoc.Document;
-            Application app = uiApp.Application;
+            Autodesk.Revit.ApplicationServices.Application app = uiApp.Application;
 
             GUI.Wpf_Libreria wpf = new GUI.Wpf_Libreria(commandData);
             using (wpf)

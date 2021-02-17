@@ -126,6 +126,21 @@
   <data name="bottScegliMateriale" xml:space="preserve">
     <value>Scegli Materiale</value>
   </data>
+  <data name="formMateriale" xml:space="preserve">
+    <value>Materiale</value>
+  </data>
+  <data name="fromDettagli" xml:space="preserve">
+    <value>Dettagli</value>
+  </data>
+  <data name="selSelezionaIsolanti" xml:space="preserve">
+    <value>Seleziona i canali a cui cambiare isolante</value>
+  </data>
+  <data name="taskdAbachiCaricare" xml:space="preserve">
+    <value>Questo abaco non è presente nel progetto, caricare prima la libreria</value>
+  </data>
+  <data name="taskdAbachiNoPresenti" xml:space="preserve">
+    <value>Abachi non inseriti nel progetto</value>
+  </data>
   <data name="taskdErrore" xml:space="preserve">
     <value>Errore</value>
   </data>
@@ -167,6 +182,12 @@
   </data>
   <data name="taskdSì" xml:space="preserve">
     <value>Sì</value>
+  </data>
+  <data name="taskdTipiCanaleCaricare" xml:space="preserve">
+    <value>Tipi di condotti non inseriti nel progetto, caricare prima la libreria</value>
+  </data>
+  <data name="taskdTipiNonPresenti" xml:space="preserve">
+    <value>Tipi di canale non inseriti nel progetto</value>
   </data>
   <data name="wpfLChiusura" xml:space="preserve">
     <value>Chiusura</value>
