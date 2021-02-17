@@ -126,6 +126,21 @@
   <data name="bottScegliMateriale" xml:space="preserve">
     <value>Choose Material</value>
   </data>
+  <data name="formMateriale" xml:space="preserve">
+    <value>Marterial</value>
+  </data>
+  <data name="fromDettagli" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="selSelezionaIsolanti" xml:space="preserve">
+    <value />
+  </data>
+  <data name="taskdAbachiCaricare" xml:space="preserve">
+    <value>This schedule is not present in the project, load the library first</value>
+  </data>
+  <data name="taskdAbachiNoPresenti" xml:space="preserve">
+    <value>Schedules not included in the project</value>
+  </data>
   <data name="taskdErrore" xml:space="preserve">
     <value>Error</value>
   </data>
@@ -168,6 +183,12 @@
   <data name="taskdSì" xml:space="preserve">
     <value>Yes</value>
   </data>
+  <data name="taskdTipiCanaleCaricare" xml:space="preserve">
+    <value>Types of ducts not included in the project, load the library first</value>
+  </data>
+  <data name="taskdTipiNonPresenti" xml:space="preserve">
+    <value>Types of ducts not included in the project</value>
+  </data>
   <data name="Temporary" xml:space="preserve">
     <value>Temporary: e.g. Agricultural buildings</value>
   </data>
@@ -183,7 +204,7 @@
   <data name="wpfLDerivazioneLaterale" xml:space="preserve">
     <value>Reduction with elbows</value>
   </data>
-  <data name="wpfLDeviazioneT" xml:space="preserve">
+  <data name="wpfLDerivazioneT" xml:space="preserve">
     <value>T connector</value>
   </data>
   <data name="wpfLGomito" xml:space="preserve">

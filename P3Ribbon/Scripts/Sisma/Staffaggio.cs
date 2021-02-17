@@ -14,7 +14,6 @@ using Application = Autodesk.Revit.ApplicationServices.Application;
 namespace P3Ribbon.Scripts
 {
 
-
     [Transaction(TransactionMode.Manual)]
 
     class Staffaggio : IExternalCommand

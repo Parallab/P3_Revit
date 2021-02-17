@@ -61,15 +61,6 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a .
-        /// </summary>
-        public static string _string {
-            get {
-                return ResourceManager.GetString("string", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Cerca una stringa localizzata simile a Lista
         ///Materiali.
         /// </summary>
@@ -107,8 +98,7 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Canale
-        ///Dinamico.
+        ///   Cerca una stringa localizzata simile a Canale.
         /// </summary>
         public static string cmdcanaledinamico {
             get {
@@ -126,8 +116,8 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Canale
-        ///Scarpette.
+        ///   Cerca una stringa localizzata simile a Stacco a 
+        ///Scarpetta.
         /// </summary>
         public static string cmdcanalescarpette {
             get {
@@ -141,6 +131,24 @@ namespace P3Ribbon.Resources.Lang {
         public static string cmdcanalescarpette_tt {
             get {
                 return ResourceManager.GetString("cmdcanalescarpette_tt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Carica Libreria.
+        /// </summary>
+        public static string cmdCaricaLibreria {
+            get {
+                return ResourceManager.GetString("cmdCaricaLibreria", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Carica le famiglie e i materiali P3.
+        /// </summary>
+        public static string cmdCaricaLibreria_tt {
+            get {
+                return ResourceManager.GetString("cmdCaricaLibreria_tt", resourceCulture);
             }
         }
         
@@ -211,7 +219,7 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Elenca le staffe utilizzate e i relativi componenti.
+        ///   Cerca una stringa localizzata simile a Elenca i componenti P3.
         /// </summary>
         public static string cmdelencopunti_tt {
             get {
@@ -226,6 +234,15 @@ namespace P3Ribbon.Resources.Lang {
         public static string cmdelencostaffaggi {
             get {
                 return ResourceManager.GetString("cmdelencostaffaggi", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Elenca gli staffaggi utilizzati e la relativa componentistica.
+        /// </summary>
+        public static string cmdelencostaffaggi_tt {
+            get {
+                return ResourceManager.GetString("cmdelencostaffaggi_tt", resourceCulture);
             }
         }
         

@@ -10,6 +10,8 @@ using Autodesk.Revit.UI.Selection;
 
 using Application = Autodesk.Revit.ApplicationServices.Application;
 using System.Reflection;
+using System.Resources;
+using System.Threading;
 
 namespace P3Ribbon.Scripts
 {
@@ -18,11 +20,6 @@ namespace P3Ribbon.Scripts
         public static List<List<double>> ValoriTabella;
         public static Document doc;
         public static Application app;
-
-        //public static Element proj_info = new FilteredElementCollector(doc).OfClass(typeof(ProjectInfo)).ToElements().FirstOrDefault();
-   
-        //public static int ClasseUso { get; set; } = proj_info.LookupParameter("P3_InfoProg_ClasseUso").AsInteger();
-        //public static int ZonaSismica {get; } = proj_info.LookupParameter("P3_InfoProg_ZonaSismica").AsInteger();
 
         public static LogicalOrFilter CatFilter(bool insul_or_racc)
         {
@@ -52,11 +49,7 @@ namespace P3Ribbon.Scripts
             return PercorsoRisorsa;
         }
 
-        public static void CambiaSplitButton(SplitButton sb, int i)
-        {
-            IList<PushButton> spBottoni = sb.GetItems();
-            sb.CurrentButton = spBottoni[i];
-        }
+     
         public static bool ControllaSePresentiParamSismici()
         {
             Element projInfo = new FilteredElementCollector(doc).OfClass(typeof(ProjectInfo)).FirstElement();
@@ -79,7 +72,7 @@ namespace P3Ribbon.Scripts
 
                 TaskDialogResult result = td.Show();
 
-                if (result == TaskDialogResult.Yes)
+                if (result == TaskDialogResult.Ok)
                 {
                     parametri_presenti = CreaParametriCondivisi(doc, app);
                     return parametri_presenti = true;
@@ -283,6 +276,71 @@ namespace P3Ribbon.Scripts
             return tabella_leggera;
         }
 
+        public static void CambiaLingua(UIControlledApplication a)
+        {
+            ResourceSet resourceSet_arrivo;
+
+            App.Lingua lingua_attuale = App.lingua_plugin;
+            
+            if (lingua_attuale != App.lingua_arrivo)
+            {
+
+                if (lingua_attuale == App.Lingua.ITA)
+                {
+                    App.lingua_arrivo= App.Lingua.ENG;
+                    var langCode = Properties.Settings.Default.languageCode = "en-US";
+                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(langCode);
+
+                }
+                else
+                {
+                    App.lingua_arrivo = App.Lingua.ITA;
+                    var langCode = Properties.Settings.Default.languageCode = "it-IT";
+                    Properties.Settings.Default.Save();
+                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(langCode);
+                }
+
+                foreach (RibbonPanel rp in a.GetRibbonPanels(App.tabName))
+                {
+
+                    try
+                    {
+
+                        rp.Title = App.res_valore(rp.Name, App.lingua_arrivo);
+
+                        foreach (RibbonItem bottone in rp.GetItems())
+                        {
+                            try
+                            {
+                                if (bottone.ItemType == RibbonItemType.SplitButton)
+                                {
+                                    foreach (RibbonItem sbBottone in (bottone as SplitButton).GetItems())
+                                    {
+                                        sbBottone.ItemText = App.res_valore(sbBottone.Name, App.lingua_arrivo);
+                                        sbBottone.ToolTip = App.res_valore(sbBottone.Name + "_tt", App.lingua_arrivo);
+                                    }
+
+                                }
+                                bottone.ItemText = App.res_valore(bottone.Name, App.lingua_arrivo);
+                                bottone.ToolTip = App.res_valore(bottone.Name + "_tt", App.lingua_arrivo);
+
+                            }
+                            catch
+                            {
+
+                            }
+                        }
+
+                    }
+                    catch
+                    {
+
+                    }
+                }
+
+                App.lingua_plugin = App.lingua_arrivo;
+            }
+        }
     }
 
 

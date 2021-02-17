@@ -75,7 +75,6 @@ namespace P3Ribbon
          
                 Element proj_info = new FilteredElementCollector(_doc).OfClass(typeof(ProjectInfo)).FirstElement();
                 
-
                 proj_info.LookupParameter("P3_InfoProg_ClasseUso").Set(_classe);
                 //proj_info.LookupParameter("P3_InfoProg_Eng").Set(_eng);
                 //proj_info.LookupParameter("P3_InfoProg_VitaNominale").Set(_vita);

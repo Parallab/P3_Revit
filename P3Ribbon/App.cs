@@ -31,9 +31,10 @@ namespace P3Ribbon
             ITA = 0,
             ENG = 1
         }
-        public static Lingua lingua_plugin = Lingua.ITA; // Leggere lingua di avvio
+        public static Lingua lingua_plugin = Lingua.ITA;
+        public static Lingua lingua_arrivo;
 
-        public static string tabName = "P3ductBIM";
+        public static string tabName = "P3duct𝗯𝗶𝗺";
        
         public static ResourceSet res_ita = Resources.Lang.rp_ITA.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
         public static ResourceSet res_eng = Resources.Lang.rp_ENG.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
@@ -72,11 +73,11 @@ namespace P3Ribbon
             #endregion
 
             #region bottone: carica libreria WIP
-            PushButtonData b9Data = new PushButtonData("cmdlibreria", "Carica" + System.Environment.NewLine + "Libreria", thisAssemblyPath, "P3Ribbon.Scripts.FinestraLibreria");
-            PushButton pb9 = ribbonPanelModellazione.AddItem(b9Data) as PushButton;
-            pb9.ToolTip = "Carica le famiglie e i materiali P3";
-            BitmapImage pb9Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Libreria_2_logoP3+ductbim.png"));
-            pb9.LargeImage = pb9Image;
+            //PushButtonData b9Data = new PushButtonData("cmdlibreria", "Carica" + System.Environment.NewLine + "Libreria", thisAssemblyPath, "P3Ribbon.Scripts.FinestraLibreria");
+            //PushButton pb9 = ribbonPanelModellazione.AddItem(b9Data) as PushButton;
+            //pb9.ToolTip = "Carica le famiglie e i materiali P3";
+            //BitmapImage pb9Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Libreria_2_logoP3+ductbim.png"));
+            //pb9.LargeImage = pb9Image;
             #endregion
 
             #region bottone: canale WIP
@@ -119,7 +120,7 @@ namespace P3Ribbon
             PushButtonData b3Data = new PushButtonData("cmdAreaisolamento", "Elenco" + System.Environment.NewLine + "Materiali", thisAssemblyPath, "P3Ribbon.Scripts.ElencoMateriali");
             PushButton pb3 = ribbonPanelQuantità.AddItem(b3Data) as PushButton;
             pb3.ToolTip = "Elenca i materiali utilizzati nei canali P3 e le relative superfici"; // DA SISTEMARE
-            BitmapImage pb3Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_ElencoMateriali.png"));
+            BitmapImage pb3Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Canale_Materiale.png"));
             pb3.LargeImage = pb3Image;
             #endregion
 
@@ -130,7 +131,7 @@ namespace P3Ribbon
             PushButtonData b1Data = new PushButtonData("cmdParsism", "Parametri" + System.Environment.NewLine + "  Sisimici  ", thisAssemblyPath, "P3Ribbon.ParSismici");
             PushButton pb1 = ribbonPanelSisma.AddItem(b1Data) as PushButton;
             pb1.ToolTip = "Compilazione dei parametri sismici per dimensionare le staffe dei condotti";
-            BitmapImage pb1Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Sisma.png"));
+            BitmapImage pb1Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_SismaRosso.png"));
             pb1.LargeImage = pb1Image;
             #endregion
 
@@ -138,7 +139,7 @@ namespace P3Ribbon
             PushButtonData b2Data = new PushButtonData("cmdstaff", "Posizionamento" + System.Environment.NewLine + "Staffaggio", thisAssemblyPath, "P3Ribbon.Scripts.Staffaggio");
             PushButton pb2 = ribbonPanelSisma.AddItem(b2Data) as PushButton;
             pb2.ToolTip = "Posizionamento e dimensionamento automatico dei canali alle strutture";
-            BitmapImage pb2Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_staffe.png"));
+            BitmapImage pb2Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_CanaleStaffatoRosso.png"));
             pb2.LargeImage = pb2Image;
             #endregion
 
@@ -170,7 +171,7 @@ namespace P3Ribbon
             PushButtonData b7Data = new PushButtonData("cmdquantità", "Quantità", thisAssemblyPath, "P3Ribbon.Scripts.FinestraQuantità");
             PushButton pb7 = ribbonPanelMaterialeRiciclato.AddItem(b7Data) as PushButton;
             pb7.ToolTip = "Elenca la quantità di materiale riciclato nei canali P3";
-            BitmapImage pb7Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_MatRIciclato.png"));
+            BitmapImage pb7Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_MatRIciclatoVerde.png"));
             pb7.LargeImage = pb7Image;
             #endregion
 
@@ -325,25 +326,33 @@ namespace P3Ribbon
 
         private static void AggiungiSplitButtonLingua(RibbonPanel rp, string Assemblypath)
         {
-            PushButtonData sb1BOne = new PushButtonData("cmdLinguaIT", "Italiano", Assemblypath, "P3Ribbon.Scripts.Lingua");
-            sb1BOne.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_LinguaItaliana.png"));
+            PushButtonData sb1One = new PushButtonData("cmdCaricaLibreria", "Carica Libreria", Assemblypath, "P3Ribbon.Scripts.FinestraLibreria");
+            sb1One.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Libreria_3_logoP3.png"));
+            sb1One.ToolTip = "Carica le famiglie e i materiali P3";
 
-            PushButtonData sb1BTwo = new PushButtonData("cmdLinguaENG", "Inglese", Assemblypath, "P3Ribbon.Scripts.Lingua");
-            sb1BTwo.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_LinguaInglese.png"));
+            PushButtonData sb1Two = new PushButtonData("cmdLinguaIT", "Italiano", Assemblypath, "P3Ribbon.Scripts.LinguaItaliano");
+            sb1Two.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_LinguaItaliana.png"));
+
+            PushButtonData sb1Three = new PushButtonData("cmdLinguaENG", "Inglese", Assemblypath, "P3Ribbon.Scripts.LinguaInglese");
+            sb1Three.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_LinguaInglese.png"));
 
             SplitButtonData sbd1 = new SplitButtonData("splitButtonLingua", "Split");
+            
             sb1 = rp.AddItem(sbd1) as SplitButton;
-            sb1.AddPushButton(sb1BOne);
-            sb1.AddPushButton(sb1BTwo);
+            sb1.IsSynchronizedWithCurrentItem = false;
+            sb1.AddPushButton(sb1One);
+            sb1.AddPushButton(sb1Two);
+            sb1.AddPushButton(sb1Three);
 
+          
         }
         private static void AggiungiSplitButtonCanale(RibbonPanel rp, string Assemblypath)
         {
-            PushButtonData sb2BOne = new PushButtonData("cmdcanaledinamico", "Canale" + System.Environment.NewLine + "Dinamico", Assemblypath, "P3Ribbon.Scripts.CreaCanaleDinamico");
+            PushButtonData sb2BOne = new PushButtonData("cmdcanaledinamico", "Canale", Assemblypath, "P3Ribbon.Scripts.CreaCanaleDinamico");
             sb2BOne.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Canale.png"));
             sb2BOne.ToolTip = "Crea un condotto di tipo: Dinamico";
 
-            PushButtonData sb2BTwo = new PushButtonData("cmdcanalescarpette", "Canale" + System.Environment.NewLine + "Scarpette", Assemblypath, "P3Ribbon.Scripts.CreaCanaleScarpette");
+            PushButtonData sb2BTwo = new PushButtonData("cmdcanalescarpette", "Stacco a" + System.Environment.NewLine + "Scarpetta", Assemblypath, "P3Ribbon.Scripts.CreaCanaleScarpette");
             sb2BTwo.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Canale.png"));
             sb2BTwo.ToolTip = "Crea un condotto di tipo: Scarpette";
 
@@ -355,13 +364,13 @@ namespace P3Ribbon
         }
         private static void AggiungiSplitButtonElencostaff(RibbonPanel rp, string Assemblypath)
         {
-            PushButtonData sb3BOne = new PushButtonData("cmdstaff", "Elenco" + System.Environment.NewLine + "Staffaggio", Assemblypath, "P3Ribbon.Scripts.ElencoStaffaggio");
-            sb3BOne.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_ElencoStaffaggio.png"));
-            sb3BOne.ToolTip = "Elenca i componenti P3";
+            PushButtonData sb3BOne = new PushButtonData("cmdelencostaffaggi", "Elenco" + System.Environment.NewLine + "Staffaggio", Assemblypath, "P3Ribbon.Scripts.ElencoStaffaggio");
+            sb3BOne.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_ElencoStaffaggio_Rosso.png"));
+            sb3BOne.ToolTip = "Elenca gli staffaggi utilizzati e la relativa componentistica";
 
             PushButtonData sb3BTwo = new PushButtonData("cmdelencopunti", "Elenco" + System.Environment.NewLine + "Punti", Assemblypath, "P3Ribbon.Scripts.ElencoPunti");
-            sb3BTwo.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_ElencoStaffaggio.png"));
-            sb3BTwo.ToolTip = "Elenca gli staffaggi utilizzati e la relativa componentistica";
+            sb3BTwo.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_ElencoStaffaggio_Rosso.png"));
+            sb3BTwo.ToolTip = "Elenca i componenti P3";
 
             SplitButtonData sbd3 = new SplitButtonData("splitButtonElencoStaffaggio", "Split");
             SplitButton sb3 = rp.AddItem(sbd3) as SplitButton;

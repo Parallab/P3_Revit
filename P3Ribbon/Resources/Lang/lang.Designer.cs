@@ -88,6 +88,51 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
+        ///   Cerca una stringa localizzata simile a Materiale.
+        /// </summary>
+        public static string formMateriale {
+            get {
+                return ResourceManager.GetString("formMateriale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Dettagli.
+        /// </summary>
+        public static string fromDettagli {
+            get {
+                return ResourceManager.GetString("fromDettagli", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Seleziona i canali a cui cambiare isolante.
+        /// </summary>
+        public static string selSelezionaIsolanti {
+            get {
+                return ResourceManager.GetString("selSelezionaIsolanti", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Questo abaco non è presente nel progetto, caricare prima la libreria.
+        /// </summary>
+        public static string taskdAbachiCaricare {
+            get {
+                return ResourceManager.GetString("taskdAbachiCaricare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Abachi non inseriti nel progetto.
+        /// </summary>
+        public static string taskdAbachiNoPresenti {
+            get {
+                return ResourceManager.GetString("taskdAbachiNoPresenti", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Cerca una stringa localizzata simile a Errore.
         /// </summary>
         public static string taskdErrore {
@@ -210,6 +255,24 @@ namespace P3Ribbon.Resources.Lang {
         public static string taskdStaffeNonInserite {
             get {
                 return ResourceManager.GetString("taskdStaffeNonInserite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Tipi di condotti non inseriti nel progetto, caricare prima la libreria.
+        /// </summary>
+        public static string taskdTipiCanaleCaricare {
+            get {
+                return ResourceManager.GetString("taskdTipiCanaleCaricare", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Tipi di canale non inseriti nel progetto.
+        /// </summary>
+        public static string taskdTipiNonPresenti {
+            get {
+                return ResourceManager.GetString("taskdTipiNonPresenti", resourceCulture);
             }
         }
         
