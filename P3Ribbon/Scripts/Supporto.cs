@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
-using Autodesk.Revit.DB.Structure;
-using Autodesk.Revit.DB.Mechanical;
 using Autodesk.Revit.UI;
-using Autodesk.Revit.UI.Selection;
-
 using Application = Autodesk.Revit.ApplicationServices.Application;
 using System.Reflection;
 using System.Resources;
 using System.Threading;
+using Microsoft.AspNetCore.Mvc;
+using System.IO;
 
 namespace P3Ribbon.Scripts
 {
@@ -341,6 +337,7 @@ namespace P3Ribbon.Scripts
                 App.lingua_plugin = App.lingua_arrivo;
             }
         }
+       
     }
 
 

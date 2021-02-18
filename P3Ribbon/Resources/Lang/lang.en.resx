@@ -145,7 +145,7 @@
     <value>Error</value>
   </data>
   <data name="taskdIsolMancanti" xml:space="preserve">
-    <value>missing insulation</value>
+    <value>Missing insulation</value>
   </data>
   <data name="taskdNonCiSonoIsol" xml:space="preserve">
     <value>There are no isolations in this project</value>

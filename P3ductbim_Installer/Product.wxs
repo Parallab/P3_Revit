@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"> <?define P3Ribbon_TargetDir=$(var.P3Ribbon.TargetDir)?>
+	<Product Id="3babd07f-201d-4866-bd36-f110d4e789d3" Name="P3Ductbim" Language="1033" Version="1.0.0.0" Manufacturer="Parallab srl" UpgradeCode="0172c0fb-2d98-4745-9a73-c96990538a79">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+    <Icon Id="ductbim.ico" SourceFile="$(var.ProjectDir)\Images\ductbim.ico" />
+
+    <WixVariable Id="WixUIBannerBmp" Value="Images\20041_P3_Illustrator_TemplateBanner_Wizard.bmp" />
+    <WixVariable Id="WixUIDialogBmp" Value="Images\20041_P3_Illustrator_Template_Wqizard.bmp" />
+
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+    <UIRef Id="WixUI_InstallDir" />
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes" />
+    
+		<Feature Id="ProductFeature" Title="P3Ductbim" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+      <ComponentRef Id="ApplicationShortuct" />
+			<ComponentGroupRef Id="ApplicationProgramsFolder_files" />
+		</Feature>
+	</Product>
+  
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="CommonAppDataFolder">
+        <Directory Id="Autodesk" Name="Autodesk">
+          <Directory Id="AutodekRevit" Name="Revit">
+            <Directory Id="AutodekRevitAddin" Name="Addins">
+              <Directory Id="Addins2021" Name="2021"/>
+              <Directory Id="Addins2020" Name="2020"/>
+              <Directory Id="Addins2019" Name="2019"/>
+              <Directory Id="Addins2018" Name="2018"/>
+            </Directory>
+          </Directory>
+        </Directory>
+      </Directory>
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="P3Ductbim">
+          <Directory Id="P3_InstallerResources" Name="P3_InstallerResources"/>
+        </Directory>
+			</Directory>
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ApplicationProgramsFolder" Name="P3Ductbim" />
+      </Directory>
+		</Directory>
+	</Fragment>
+
+  <Fragment>
+    <DirectoryRef Id="ApplicationProgramsFolder">
+      <Component Id="ApplicationShortuct" Guid="ea28422e-71c8-11eb-9439-0242ac130002">
+        <Shortcut Id="ApplicationStartMenuShortcut" Name="P3Ductbim" Description="P3Ductbim" Target="[INSTALLFOLDER]"> </Shortcut>
+        <RemoveFolder Id="RemoveApplicationProgramsFolder" Directory="ApplicationProgramsFolder" On="uninstall" />
+        <RegistryValue Root="HKCU" Key="Software\P3Ductbim" Name="InstallFolder" Type="integer" Value="1" KeyPath="yes"> </RegistryValue>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" >
+			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+			<!-- <Component Id="ProductComponent"> -->
+				<!-- TODO: Insert files, registry keys, and other resources here. -->
+			<!-- </Component> -->
+			<Component Id="P3Ribbon.dll" Guid="22da2d52-24a9-429a-813e-c084b3ec5a5b" Directory="INSTALLFOLDER">
+			  <File Id="P3Ribbon.dll" Name="P3Ribbon.dll" Source="$(var.P3Ribbon_TargetDir)P3Ribbon.dll" />
+			</Component>
+      <Component Id="P3Ribbon.addin" Guid="011e89ea-e0a7-4a9c-8005-8202be3aa867" Directory="Addins2020">
+        <File Id="P3Ribbon.addin" Name="P3Ribbon.addin" Source="$(var.P3Ribbon_TargetDir)P3Ribbon.addin" />
+      </Component>
+		</ComponentGroup>
+	</Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="ApplicationProgramsFolder_files" Directory="P3_InstallerResources">   
+      <Component Id="P3_InstallerResources_P3___Duct_system_template18.rte" Guid="9b755f9c-6cd3-401b-b44c-2e1738d84515">
+        <File Id="P3_InstallerResources_P3___Duct_system_template18.rte" Name="P3 - Duct system template18.rte" Source="$(var.P3Ribbon.TargetDir)P3_InstallerResources\P3 - Duct system template18.rte" />
+      </Component>
+      <Component Id="P3_InstallerResources_P3___Duct_system_template19.rte" Guid="acd556c6-c745-41ee-9545-6582d7e699df">
+        <File Id="P3_InstallerResources_P3___Duct_system_template19.rte" Name="P3 - Duct system template19.rte" Source="$(var.P3Ribbon.TargetDir)P3_InstallerResources\P3 - Duct system template19.rte" />
+      </Component>
+      <Component Id="P3_InstallerResources_P3___Duct_system_template20.rte" Guid="04064917-6caf-4574-9858-8ba01bf87214">
+        <File Id="P3_InstallerResources_P3___Duct_system_template20.rte" Name="P3 - Duct system template20.rte" Source="$(var.P3Ribbon.TargetDir)P3_InstallerResources\P3 - Duct system template20.rte" />
+      </Component>
+      <Component Id="P3_InstallerResources_P3_ParamCondivisi.txt.txt" Guid="df6a1ccb-c998-4a3a-9440-6dab552cceeb">
+        <File Id="P3_InstallerResources_P3_ParamCondivisi.txt.txt" Name="P3_ParamCondivisi.txt.txt" Source="$(var.P3Ribbon.TargetDir)P3_InstallerResources\P3_ParamCondivisi.txt.txt" />
+      </Component>
+      <Component Id="P3_InstallerResources_P3_TabelleDiPredimensionamento.txt" Guid="f30e76d8-bc80-4dea-a6cb-42ac1939d145">
+        <File Id="P3_InstallerResources_P3_TabelleDiPredimensionamento.txt" Name="P3_TabelleDiPredimensionamento.txt" Source="$(var.P3Ribbon_TargetDir)P3_InstallerResources\P3_TabelleDiPredimensionamento.txt" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>
