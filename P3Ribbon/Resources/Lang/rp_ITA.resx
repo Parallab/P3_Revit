@@ -117,13 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="cmdAreaisolamento" xml:space="preserve">
-    <value>Lista
-Materiali</value>
-  </data>
-  <data name="cmdAreaIsolamento_tt" xml:space="preserve">
-    <value>Elenca i materiali utilizzati nei canali P3 e le relative superfici</value>
-  </data>
   <data name="cmdcanale" xml:space="preserve">
     <value>Canale</value>
   </data>
@@ -213,6 +206,13 @@ Libreria</value>
   </data>
   <data name="cmdlingua_tt" xml:space="preserve">
     <value>Cambia la lingua in italiano</value>
+  </data>
+  <data name="cmdlistamateriali" xml:space="preserve">
+    <value>Lista
+Materiali</value>
+  </data>
+  <data name="cmdlistamateriali_tt" xml:space="preserve">
+    <value>Elenca i materiali utilizzati nei canali P3 e le relative superfici</value>
   </data>
   <data name="cmdmateriale" xml:space="preserve">
     <value>Cambia

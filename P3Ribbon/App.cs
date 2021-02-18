@@ -117,7 +117,7 @@ namespace P3Ribbon
             pb5.LargeImage = pb5Image;
             #endregion
             #region bottone: elenco materiali (ex area)
-            PushButtonData b3Data = new PushButtonData("cmdAreaisolamento", "Elenco" + System.Environment.NewLine + "Materiali", thisAssemblyPath, "P3Ribbon.Scripts.ElencoMateriali");
+            PushButtonData b3Data = new PushButtonData("cmdlistamateriali", "Elenco" + System.Environment.NewLine + "Materiali", thisAssemblyPath, "P3Ribbon.Scripts.ElencoMateriali");
             PushButton pb3 = ribbonPanelQuantità.AddItem(b3Data) as PushButton;
             pb3.ToolTip = "Elenca i materiali utilizzati nei canali P3 e le relative superfici"; // DA SISTEMARE
             BitmapImage pb3Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Canale_Materiale.png"));

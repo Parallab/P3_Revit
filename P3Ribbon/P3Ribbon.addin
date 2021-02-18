@@ -2,10 +2,10 @@
 <RevitAddIns>
   <AddIn Type="Application">
     <Name>P3Ribbon</Name>
-    <Assembly>P3Ribbon.dll</Assembly>
+    <Assembly>[path]P3Ribbon.dll</Assembly>
     <AddInId>604b1052-f742-4951-8576-c261d1993108</AddInId>
-    <FullClassName>P3Ribbon.App</FullClassName>
-    <VendorId>Simone Maioli Parallab</VendorId>
+    <FullClassName>PathP3Ribbon.App</FullClassName>
+    <VendorId>Parallab srl</VendorId>
     <VendorDescription>Parallab</VendorDescription>
   </AddIn>
 </RevitAddIns>

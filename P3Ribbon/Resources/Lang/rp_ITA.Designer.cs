@@ -61,25 +61,6 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Lista
-        ///Materiali.
-        /// </summary>
-        public static string cmdAreaisolamento {
-            get {
-                return ResourceManager.GetString("cmdAreaisolamento", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a Elenca i materiali utilizzati nei canali P3 e le relative superfici.
-        /// </summary>
-        public static string cmdAreaIsolamento_tt {
-            get {
-                return ResourceManager.GetString("cmdAreaIsolamento_tt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Cerca una stringa localizzata simile a Canale.
         /// </summary>
         public static string cmdcanale {
@@ -334,6 +315,25 @@ namespace P3Ribbon.Resources.Lang {
         public static string cmdLinguaIT {
             get {
                 return ResourceManager.GetString("cmdLinguaIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Lista
+        ///Materiali.
+        /// </summary>
+        public static string cmdlistamateriali {
+            get {
+                return ResourceManager.GetString("cmdlistamateriali", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Elenca i materiali utilizzati nei canali P3 e le relative superfici.
+        /// </summary>
+        public static string cmdlistamateriali_tt {
+            get {
+                return ResourceManager.GetString("cmdlistamateriali_tt", resourceCulture);
             }
         }
         
