@@ -12,6 +12,7 @@ using Autodesk.Revit.UI.Events;
 using P3Ribbon.Scripts;
 using Autodesk.Revit.DB.Events;
 using System.Threading;
+using System.IO;
 
 namespace P3Ribbon
 {
@@ -229,15 +230,15 @@ namespace P3Ribbon
 
         public Result OnStartup(UIControlledApplication application)
         {
-            try
-            {   //credo degli eventhandler all'aeprtura di un documento e alla creazione di uno nuovo
-                application.ControlledApplication.DocumentOpened += new EventHandler<Autodesk.Revit.DB.Events.DocumentOpenedEventArgs>(Application_DocumentOpened);
-                application.ControlledApplication.DocumentCreated += new EventHandler<Autodesk.Revit.DB.Events.DocumentCreatedEventArgs>(Application_DocumentCreated);
-            }
-            catch
-            {
-                return Result.Failed;
-            }
+            //try
+            //{   //creo degli eventhandler all'aeprtura di un documento e alla creazione di uno nuovo
+            //    application.ControlledApplication.DocumentOpened += new EventHandler<Autodesk.Revit.DB.Events.DocumentOpenedEventArgs>(Application_DocumentOpened);
+            //    application.ControlledApplication.DocumentCreated += new EventHandler<Autodesk.Revit.DB.Events.DocumentCreatedEventArgs>(Application_DocumentCreated);
+            //}
+            //catch
+            //{
+            //    return Result.Failed;
+            //}
             var langCode = Properties.Settings.Default.languageCode;
             Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(langCode);
             AddRibbonPanel(application);
@@ -248,8 +249,6 @@ namespace P3Ribbon
             LogicalOrFilter f = Scripts.Supporto.CatFilterDuctAndFitting;
             UpdaterRegistry.AddTrigger(updater.GetUpdaterId(), f, Element.GetChangeTypeElementAddition());
             ResourceManager rm = new ResourceManager("items", Assembly.GetExecutingAssembly());
-
-
             return Result.Succeeded;
         }
 

@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Deployment.WindowsInstaller;
 
-namespace P3Ribbon
+
+public class CustomAction
 {
-    class CustomActions
-    {
-    [CustomAction]
+	
+        [CustomAction]
         public static ActionResult CustomAction1(Session session)
         {
             session.Log("Begin CustomAction1");
@@ -27,5 +21,5 @@ namespace P3Ribbon
             return ActionResult.Success;
         }
 
-    }
+    
 }

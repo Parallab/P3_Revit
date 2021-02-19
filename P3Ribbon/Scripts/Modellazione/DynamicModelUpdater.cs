@@ -23,14 +23,14 @@ namespace P3Ribbon.Scripts
         public DynamicModelUpdater(AddInId id)
         {
             _appId = id;
-            _updaterId = new UpdaterId(_appId, new Guid("604b1052-f742-4951-8576-c261d1993108"));
+            _updaterId = new UpdaterId(_appId, new Guid("e731d642-8170-4362-9836-5413682a4a3e"));
         }
 
         public void Execute(UpdaterData data)
         {
             Document doc = data.GetDocument();
 
-            if (Scripts.Materiale.IdInsulTipoPreferito != null)
+            if (Materiale.IdInsulTipoPreferito != null)
                 {   
                 foreach (ElementId id in data.GetAddedElementIds())
                 {

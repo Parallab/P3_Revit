@@ -8,6 +8,7 @@ using Autodesk.Revit.UI;
 using Autodesk.Revit.ApplicationServices;
 using Autodesk.Revit.Attributes;
 using System.Windows.Forms;
+using System.IO;
 
 namespace P3Ribbon.Scripts
 {
@@ -21,14 +22,45 @@ namespace P3Ribbon.Scripts
             Document doc = uiDoc.Document;
             Autodesk.Revit.ApplicationServices.Application app = uiApp.Application;
 
-            Scripts.GUI.Wpf_InfoP3 wpf = new Scripts.GUI.Wpf_InfoP3();
-            using (wpf)
+
+            //session.Log("Begin CustomAction");
+            //string origValue = session["INSTALLFOLDER"];
+
+            string AppData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+            string filepath = AppData + @"\Autodesk\Revit\Addins\2020\P3RibbonTest.addin";
+
+            if (File.Exists(filepath))
             {
+                 var filepathtxt = Path.ChangeExtension(filepath, ".txt");
+                File.Move(filepath, Path.ChangeExtension(filepath, ".txt"));
+                
+                string text = File.ReadAllText(filepathtxt);
+                text = text.Replace("path", "asjgajhgsadjkasdhksda");
+                File.WriteAllText(filepath, text);
+                File.Delete(filepathtxt);
 
+                //StreamReader reader = new StreamReader(pathtxt);
+                //string input = reader.ReadToEnd();
 
-                wpf.ShowDialog();
-
+                //using (StreamWriter sw = new StreamWriter(pathtxt))
+                //{
+                //    {
+                //        string output = input.Replace("path", "proveaadsjhisdhi");
+                //        sw.Write(output);
+                //    }
+                //    sw.Close();
+                //}
+                //File.Move(filepathtxt, Path.ChangeExtension(filepathtxt, ".addin"));
             }
+
+            //Scripts.GUI.Wpf_InfoP3 wpf = new Scripts.GUI.Wpf_InfoP3();
+            //using (wpf)
+            //{
+
+
+            //    wpf.ShowDialog();
+
+            //}
             return Result.Succeeded;
         }
     }
