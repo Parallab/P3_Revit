@@ -4,7 +4,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>3.10</ProductVersion>
-    <ProjectGuid>cf5fc537-a6a8-416b-a9f1-5a5330585c62</ProjectGuid>
+    <ProjectGuid>2aab39a3-38d0-4f0b-93a2-b24f3344c95b</ProjectGuid>
     <SchemaVersion>2.0</SchemaVersion>
     <OutputName>P3ductbim_Installer</OutputName>
     <OutputType>Package</OutputType>
@@ -13,7 +13,6 @@
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
     <DefineConstants>Debug</DefineConstants>
-    <SuppressValidation>True</SuppressValidation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <OutputPath>bin\$(Configuration)\</OutputPath>
@@ -23,12 +22,17 @@
     <Compile Include="Product.wxs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\20041_P3_Illustrator_TemplateBanner_Wizard.bmp" />
-    <Content Include="Images\20041_P3_Illustrator_Template_Wqizard.bmp" />
-    <Content Include="Images\ductbim.ico" />
     <Content Include="P3ductbim_Installer.wax" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CustomAction\CustomAction.csproj">
+      <Name>CustomAction</Name>
+      <Project>{93a63545-0140-495e-a12b-1270a6862eab}</Project>
+      <Private>True</Private>
+      <DoNotHarvest>True</DoNotHarvest>
+      <RefProjectOutputGroups>Binaries;Content;Satellites</RefProjectOutputGroups>
+      <RefTargetDir>INSTALLFOLDER</RefTargetDir>
+    </ProjectReference>
     <ProjectReference Include="..\P3Ribbon\P3Ribbon.csproj">
       <Name>P3Ribbon</Name>
       <Project>{cdbbad43-e90b-43e3-8cc6-0401b22fb54f}</Project>
@@ -43,9 +47,6 @@
       <HintPath>$(WixExtDir)\WixUIExtension.dll</HintPath>
       <Name>WixUIExtension</Name>
     </WixExtension>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Images" />
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" Condition=" '$(WixTargetsPath)' != '' " />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets" Condition=" '$(WixTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets') " />
