@@ -329,7 +329,6 @@
     <Compile Include="Scripts\Supporto.cs" />
     <Compile Include="Scripts\Modellazione\CreaCanale.cs" />
     <Compile Include="Scripts\Finestre.cs" />
-    <Compile Include="Scripts\Modellazione\FinestraLibreria.cs" />
     <Compile Include="Scripts\GUI\Form_Def_Acc.cs">
       <SubType>Form</SubType>
     </Compile>

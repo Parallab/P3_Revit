@@ -24,10 +24,13 @@ namespace P3Ribbon.Scripts
             UIDocument uiDoc = uiApp.ActiveUIDocument;
             Document doc = uiDoc.Document;
             Application app = uiApp.Application;
+            Supporto.AggiornaDoc(doc);
 
             if (Supporto.ControllaTipiP3Presenti("P3 - Preinsulated panels system - Dynamic -  ε 0.03mm"))
             {
-               
+                string nome = App.rbbCboMateriali.Current.Name;
+                Materiale.AggiornaTendinaRibbon(nome);
+
                 DuctType ductDynamicType = new FilteredElementCollector(doc).OfClass(typeof(DuctType)).FirstOrDefault(x => x.Name.Contains("P3 - Preinsulated panels system - Dynamic")) as DuctType;
 
                 //richiedo che sia il prossimo tipo di default
@@ -51,7 +54,7 @@ namespace P3Ribbon.Scripts
                 td.MainContent = P3Ribbon.Resources.Lang.lang.taskdTipiCanaleCaricare;
                 TaskDialogResult result = td.Show();
 
-                GUI.Wpf_Libreria wpf = new GUI.Wpf_Libreria(commandData);
+               GUI.Wpf_Libreria wpf = new GUI.Wpf_Libreria(commandData);
                 using (wpf)
                 {
                     wpf.ShowDialog();
@@ -67,17 +70,20 @@ namespace P3Ribbon.Scripts
     [Transaction(TransactionMode.Manual)]
     class CreaCanaleScarpette : IExternalCommand
     {
-
+        
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             UIApplication uiApp = commandData.Application;
             UIDocument uiDoc = uiApp.ActiveUIDocument;
             Document doc = uiDoc.Document;
             Application app = uiApp.Application;
+            Supporto.AggiornaDoc(doc);
 
 
             if (Supporto.ControllaTipiP3Presenti("P3 - Preinsulated panels system - Tap -  ε 0.03mm"))
             {
+            string nome = App.rbbCboMateriali.Current.Name;
+            Materiale.AggiornaTendinaRibbon(nome);
 
                 DuctType ductTapType = new FilteredElementCollector(doc).OfClass(typeof(DuctType)).FirstOrDefault(x => x.Name.Contains("P3 - Preinsulated panels system - Tap")) as DuctType;
 

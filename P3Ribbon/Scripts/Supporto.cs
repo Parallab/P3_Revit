@@ -6,9 +6,6 @@ using Application = Autodesk.Revit.ApplicationServices.Application;
 using System.Reflection;
 using System.Resources;
 using System.Threading;
-using Microsoft.AspNetCore.Mvc;
-using System.IO;
-
 namespace P3Ribbon.Scripts
 {
     class Supporto
@@ -16,6 +13,12 @@ namespace P3Ribbon.Scripts
         public static List<List<double>> ValoriTabella;
         public static Document doc;
         public static Application app;
+
+        public static void AggiornaDoc(Document _doc)
+        {
+            Supporto.doc = _doc;
+            Supporto.app = _doc.Application;
+        }
 
         public static LogicalOrFilter CatFilter(bool insul_or_racc)
         {
@@ -41,11 +44,10 @@ namespace P3Ribbon.Scripts
         {
             Assembly a = Assembly.GetExecutingAssembly();
             string PathAssembly = Assembly.GetExecutingAssembly().Location;
-            string PercorsoRisorsa = PathAssembly.Replace("P3Ribbon.dll", "P3_Resources\\" + NomeFile);
+            string PercorsoRisorsa = PathAssembly.Replace("P3Ribbon.dll", "P3_InstallerResources\\" + NomeFile);
             return PercorsoRisorsa;
         }
 
-     
         public static bool ControllaSePresentiParamSismici()
         {
             Element projInfo = new FilteredElementCollector(doc).OfClass(typeof(ProjectInfo)).FirstElement();
@@ -95,7 +97,7 @@ namespace P3Ribbon.Scripts
             categorySet.Insert(category);
 
             string originalFile = app.SharedParametersFilename;
-           
+
 
             string tempfie = Supporto.TrovaPercorsoRisorsa("P3_ParamCondivisi.txt");
 
@@ -113,7 +115,7 @@ namespace P3Ribbon.Scripts
                         ExternalDefinition externalDefinitionCU = dg.Definitions.get_Item("P3_InfoProg_ClasseUso") as ExternalDefinition;
                         ExternalDefinition externalDefinitionVN = dg.Definitions.get_Item("P3_InfoProg_VitaNominale") as ExternalDefinition;
                         ExternalDefinition externalDefinitionZS = dg.Definitions.get_Item("P3_InfoProg_ZonaSismica") as ExternalDefinition;
-                    
+
 
                         using (Transaction t = new Transaction(doc, "CreaParamCondivisi"))
                         {
@@ -221,7 +223,7 @@ namespace P3Ribbon.Scripts
             foreach (var type in collStaffe)
             {
                 //Legge i parametri nascosti 
-				string typeName = type.LookupParameter("P3_Nome").AsString();
+                string typeName = type.LookupParameter("P3_Nome").AsString();
                 if (typeName == "P3_DuctHanger")
                 {
                     StaffaP3Caricata = true;
@@ -233,24 +235,31 @@ namespace P3Ribbon.Scripts
         }
         public static void ChiudiFinestraCorrente(UIDocument uiDoc)
         {
-            Autodesk.Revit.DB.View CurrView = doc.ActiveView;
-            IList<UIView> UlViews = uiDoc.GetOpenUIViews();
-            if (UlViews.Count > 1)
+            using (Transaction t = new Transaction(doc, "CreaParamCondivisi"))
             {
-                foreach (UIView pView in UlViews)
+                t.Start();
+                doc.Regenerate();
+                Autodesk.Revit.DB.View CurrView = doc.ActiveView;
+                IList<UIView> UlViews = uiDoc.GetOpenUIViews();
+                if (UlViews.Count > 1)
                 {
-                    if (pView.ViewId.IntegerValue == CurrView.Id.IntegerValue)
-                        pView.Close();
+                    foreach (UIView pView in UlViews)
+                    {
+                        if (pView.ViewId.IntegerValue == CurrView.Id.IntegerValue)
+                            pView.Close();
+                    }
                 }
+                t.Commit();
             }
+
         }
         public static List<List<double>> LeggiTabella(Autodesk.Revit.DB.Document doc)
         {
             Element proj_info = new FilteredElementCollector(doc).OfClass(typeof(ProjectInfo)).ToElements().FirstOrDefault();
 
-            int ClasseUso  = proj_info.LookupParameter("P3_InfoProg_ClasseUso").AsInteger();
+            int ClasseUso = proj_info.LookupParameter("P3_InfoProg_ClasseUso").AsInteger();
             int ZonaSismica = proj_info.LookupParameter("P3_InfoProg_ZonaSismica").AsInteger();
-            if (ClasseUso < 2) { ClasseUso = 2;}
+            if (ClasseUso < 2) { ClasseUso = 2; }
             List<List<double>> tabella_leggera = new List<List<double>>();
             var lines = System.IO.File.ReadAllLines(Supporto.TrovaPercorsoRisorsa("P3_TabelleDiPredimensionamento.txt"));
             for (int i_r = 0; i_r < lines.Length; i_r++)
@@ -277,13 +286,13 @@ namespace P3Ribbon.Scripts
             ResourceSet resourceSet_arrivo;
 
             App.Lingua lingua_attuale = App.lingua_plugin;
-            
+
             if (lingua_attuale != App.lingua_arrivo)
             {
 
                 if (lingua_attuale == App.Lingua.ITA)
                 {
-                    App.lingua_arrivo= App.Lingua.ENG;
+                    App.lingua_arrivo = App.Lingua.ENG;
                     var langCode = Properties.Settings.Default.languageCode = "en-US";
                     Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(langCode);
 
@@ -338,6 +347,9 @@ namespace P3Ribbon.Scripts
             }
         }
        
+
+
+
     }
 
 

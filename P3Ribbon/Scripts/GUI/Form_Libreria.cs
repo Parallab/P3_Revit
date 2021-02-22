@@ -60,7 +60,10 @@ namespace P3Ribbon.Scripts.GUI
             //TEMP DA SISTEARE CON BOOLEANI
             try
             {
-                App.rbbCboMateriali.AddItems(Materiale.comboBoxMemberDatas);
+                if (App.rbbCboMateriali.GetItems().Count == 0)
+                {
+                    App.rbbCboMateriali.AddItems(Materiale.comboBoxMemberDatas);
+                }
             }
             catch
             { }

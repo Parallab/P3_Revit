@@ -25,36 +25,18 @@ namespace P3Ribbon.Scripts
             _appId = id;
             _updaterId = new UpdaterId(_appId, new Guid("e731d642-8170-4362-9836-5413682a4a3e"));
         }
-
         public void Execute(UpdaterData data)
         {
             Document doc = data.GetDocument();
-
+            Supporto.AggiornaDoc(doc); //potrebbe aiutare
             if (Materiale.IdInsulTipoPreferito != null)
-                {   
+            {   
                 foreach (ElementId id in data.GetAddedElementIds())
                 {
                     try
                     {
                         Element el = doc.GetElement(id);
                         string nome = "";
-
-                        
-                        //if (el.GetType() == typeof(Duct))
-                        //{
-                         //   nome = doc.GetElement(el.GetTypeId()).Name;
-							
-
-                        //}
-                        //else if (el.GetType() == typeof(FamilyInstance))
-                        //{
-                        //    if (el.Category.Id.IntegerValue == doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctFitting).Id.IntegerValue) //forse metterlo come param globale nella classe di supprto (lo usiamo anche per igra isolamento ma anche nell allow FiltraCondotti : ISelectionFilter
-                        //    {
-                        //        nome = (doc.GetElement(el.GetTypeId()) as ElementType).FamilyName;
-								
-                        //    }
-                        //}
-
                         
 						nome = doc.GetElement(el.GetTypeId()).LookupParameter("P3_Nome").AsString();
 
@@ -65,7 +47,7 @@ namespace P3Ribbon.Scripts
                     }
                     catch (System.Exception ex)
                     {
-                       // TaskDialog.Show("Exception", ex.ToString());
+                       //TaskDialog.Show("Exception", ex.ToString());
                     }
                 }
             }
