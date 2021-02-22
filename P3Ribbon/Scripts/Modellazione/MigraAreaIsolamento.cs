@@ -27,6 +27,8 @@ namespace P3Ribbon.Scripts
             Document doc = uiDoc.Document;
             Application app = uiApp.Application;
 
+            Supporto.AggiornaDoc(doc);
+
             using (var t = new Transaction(doc, "Proj_Info_Scrivi_Parametri"))
             {
 

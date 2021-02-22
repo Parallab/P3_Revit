@@ -22,45 +22,14 @@ namespace P3Ribbon.Scripts
             Document doc = uiDoc.Document;
             Autodesk.Revit.ApplicationServices.Application app = uiApp.Application;
 
-
-            //session.Log("Begin CustomAction");
-            //string origValue = session["INSTALLFOLDER"];
-
-            string AppData = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            string filepath = AppData + @"\Autodesk\Revit\Addins\2020\P3RibbonTest.addin";
-
-            if (File.Exists(filepath))
+            Scripts.GUI.Wpf_InfoP3 wpf = new Scripts.GUI.Wpf_InfoP3();
+            using (wpf)
             {
-                 var filepathtxt = Path.ChangeExtension(filepath, ".txt");
-                File.Move(filepath, Path.ChangeExtension(filepath, ".txt"));
-                
-                string text = File.ReadAllText(filepathtxt);
-                text = text.Replace("path", "asjgajhgsadjkasdhksda");
-                File.WriteAllText(filepath, text);
-                File.Delete(filepathtxt);
 
-                //StreamReader reader = new StreamReader(pathtxt);
-                //string input = reader.ReadToEnd();
 
-                //using (StreamWriter sw = new StreamWriter(pathtxt))
-                //{
-                //    {
-                //        string output = input.Replace("path", "proveaadsjhisdhi");
-                //        sw.Write(output);
-                //    }
-                //    sw.Close();
-                //}
-                //File.Move(filepathtxt, Path.ChangeExtension(filepathtxt, ".addin"));
+                wpf.ShowDialog();
+
             }
-
-            //Scripts.GUI.Wpf_InfoP3 wpf = new Scripts.GUI.Wpf_InfoP3();
-            //using (wpf)
-            //{
-
-
-            //    wpf.ShowDialog();
-
-            //}
             return Result.Succeeded;
         }
     }

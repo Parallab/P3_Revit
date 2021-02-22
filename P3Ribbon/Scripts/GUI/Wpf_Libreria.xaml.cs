@@ -24,6 +24,26 @@ namespace P3Ribbon.Scripts.GUI
         private UIDocument _UiDoc;
         UIApplication _uiApp;
 
+        //public Wpf_Libreria(ExternalCommandData commandData)
+        //{
+        //    _uiApp = commandData.Application;
+        //    _app = _uiApp.Application;
+        //    _UiDoc = _uiApp.ActiveUIDocument;
+        //    _doc = _UiDoc.Document;
+
+        //    InitializeComponent();
+
+        //    //controllare se qualche param globale è gia compilato
+        //    WpfAggiornaLibreria();
+        //    if (wpfCboMateriali.Items.Count == 0)
+        //    {
+        //        string CaricaMat = P3Ribbon.Resources.Lang.lang.wpfPrbpCaricareMat;
+        //        wpfCboMateriali.Items.Add(CaricaMat);
+        //        wpfCboMateriali.SelectedIndex = 0;
+        //    }
+        //}
+
+
         public Wpf_Libreria(ExternalCommandData commandData)
         {
             _uiApp = commandData.Application;
@@ -33,8 +53,7 @@ namespace P3Ribbon.Scripts.GUI
 
             InitializeComponent();
 
-
-            //controllare se qualche oaran globale è gia compilato
+            //controllare se qualche param globale è gia compilato
             WpfAggiornaLibreria();
             if (wpfCboMateriali.Items.Count == 0)
             {
@@ -44,6 +63,7 @@ namespace P3Ribbon.Scripts.GUI
             }
         }
 
+
         private void WpfBottCaricaLibreria_Click(object sender, RoutedEventArgs e)
         {
 
@@ -52,16 +72,18 @@ namespace P3Ribbon.Scripts.GUI
 
             // if non è stato già fatto, cioè fare un metodoche controlla se nei tipi del mio documento c è QUEL PARAMETRO NASCOSTO CHE USIAMO X IDENTIFICARE IL TUTTO...
             //{
-            using (var t = new Transaction(Supporto.doc, "Carica libreria"))
+            using (var t = new Transaction(_doc, "Carica libreria"))
             {
                 t.Start();
-                TrasferisciStandard.TrasferisciTipiDoc(_app, _doc);
-                //Materiale.PreAggiorna(m_doc); //lo faccio gia andare in form_libreriac_combobox_aggiorna:  
+                TrasferisciStandard.TrasferisciTipiDoc(_app, _doc);  
                 WpfAggiornaLibreria();
                 //TEMP DA SISTEARE CON BOOLEANI
                 try
                 {
-                    App.ribbCboMembers = App.rbbCboMateriali.AddItems(Materiale.comboBoxMemberDatas);
+                    if (App.rbbCboMateriali.GetItems().Count == 0)
+                    {
+                        App.rbbCboMateriali.AddItems(Materiale.comboBoxMemberDatas);
+                    }
                 }
                 catch
                 { }

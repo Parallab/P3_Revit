@@ -51,7 +51,6 @@ namespace P3Ribbon.Scripts
                     //    t.Commit();
                     //}
 
-
                     Supporto.ChiudiFinestraCorrente(uiDoc);
                 }
             }

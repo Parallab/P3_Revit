@@ -25,6 +25,8 @@ namespace P3Ribbon.Scripts
             Document doc = uiDoc.Document;
             Application app = uiApp.Application;
 
+            Supporto.AggiornaDoc(doc);
+
             TrasferisciTipiDoc(app, doc);
 
             return Result.Succeeded;
@@ -188,9 +190,9 @@ namespace P3Ribbon.Scripts
             docSource.Close(false);
         }
 
+        //evito i taskdialog per accettare i materiali duplicati
         class HideAndAcceptDuplicateTypeNamesHandler : IDuplicateTypeNamesHandler
         {
-
             public DuplicateTypeAction OnDuplicateTypeNamesFound(DuplicateTypeNamesHandlerArgs args)
             {
                 return DuplicateTypeAction.UseDestinationTypes;

@@ -16,7 +16,6 @@ using System.IO;
 
 namespace P3Ribbon
 {
-
     class App : IExternalApplication
     {
 
@@ -36,7 +35,7 @@ namespace P3Ribbon
         public static Lingua lingua_arrivo;
 
         public static string tabName = "P3duct𝗯𝗶𝗺";
-       
+
         public static ResourceSet res_ita = Resources.Lang.rp_ITA.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
         public static ResourceSet res_eng = Resources.Lang.rp_ENG.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
         private object commandData;
@@ -49,7 +48,7 @@ namespace P3Ribbon
             {
                 lingua_plugin = Lingua.ITA;
             }
-			else
+            else
             //else if (linguapartenza == LanguageType.English_GB || linguapartenza == LanguageType.English_GB)
             {
                 lingua_plugin = Lingua.ENG;
@@ -70,7 +69,6 @@ namespace P3Ribbon
             // MODELLAZIONE
             #region bottone: lingua WIP
             AggiungiSplitButtonLingua(ribbonPanelModellazione, thisAssemblyPath);
-
             #endregion
 
             #region bottone: carica libreria WIP
@@ -86,9 +84,8 @@ namespace P3Ribbon
             #endregion
 
             #region Panello cambia materiale più ribbonbox
-
             ComboBoxData cbData = new ComboBoxData("Combo1");
-            PushButtonData b11Data = new PushButtonData("cmdmateriale", "Cambia" + System.Environment.NewLine + "Materiale", thisAssemblyPath,"P3Ribbon.Scripts.CambiaMateriale");
+            PushButtonData b11Data = new PushButtonData("cmdmateriale", "Cambia" + System.Environment.NewLine + "Materiale", thisAssemblyPath, "P3Ribbon.Scripts.CambiaMateriale");
 
 
             IList<RibbonItem> ItemsMateriale = ribbonPanelModellazione.AddStackedItems(b11Data, cbData);
@@ -100,10 +97,9 @@ namespace P3Ribbon
             pb11.Image = pb11Image;
             pb11.ToolTip = "Cambia il materiale dei canali P3";
 
-            rbbCboMateriali = ItemsMateriale[1] as ComboBox; 
+            rbbCboMateriali = ItemsMateriale[1] as ComboBox;
             //comboboxMembers_ribbon = rbCboMat.AddItems(Materiale.comboBoxMemberDatas);
             rbbCboMateriali.CurrentChanged += new EventHandler<Autodesk.Revit.UI.Events.ComboBoxCurrentChangedEventArgs>(comboBx_CurrentChanged);
-
             #endregion
 
 
@@ -212,6 +208,7 @@ namespace P3Ribbon
         private static void comboBx_CurrentChanged(object sender, ComboBoxCurrentChangedEventArgs e)
         {
             //var debug =  rbCboMat.Current;
+            Supporto.AggiornaDoc(e.Application.ActiveUIDocument.Document);
             string nome = rbbCboMateriali.Current.Name;
             int indice_ = nome.IndexOf("_");
             Materiale.AggiornaTendinaRibbon(nome);
@@ -230,19 +227,21 @@ namespace P3Ribbon
 
         public Result OnStartup(UIControlledApplication application)
         {
-            //try
-            //{   //creo degli eventhandler all'aeprtura di un documento e alla creazione di uno nuovo
-            //    application.ControlledApplication.DocumentOpened += new EventHandler<Autodesk.Revit.DB.Events.DocumentOpenedEventArgs>(Application_DocumentOpened);
-            //    application.ControlledApplication.DocumentCreated += new EventHandler<Autodesk.Revit.DB.Events.DocumentCreatedEventArgs>(Application_DocumentCreated);
-            //}
-            //catch
-            //{
-            //    return Result.Failed;
-            //}
+            try
+            {   //creo degli eventhandler all'aeprtura di un documento e alla creazione di uno nuovo
+                application.ControlledApplication.DocumentOpened += new EventHandler<Autodesk.Revit.DB.Events.DocumentOpenedEventArgs>(Application_DocumentOpened);
+                application.ControlledApplication.DocumentCreated += new EventHandler<Autodesk.Revit.DB.Events.DocumentCreatedEventArgs>(Application_DocumentCreated);
+                application.ControlledApplication.DocumentChanged += new EventHandler<Autodesk.Revit.DB.Events.DocumentChangedEventArgs>(Application_DocumentChanged);
+            }
+            catch
+            {
+                return Result.Failed;
+            }
             var langCode = Properties.Settings.Default.languageCode;
             Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(langCode);
             AddRibbonPanel(application);
             UICapp = application;
+
             //attiva i registri all'avvio di revit
             Scripts.DynamicModelUpdater updater = new Scripts.DynamicModelUpdater(application.ActiveAddInId);
             UpdaterRegistry.RegisterUpdater(updater, true);
@@ -251,7 +250,6 @@ namespace P3Ribbon
             ResourceManager rm = new ResourceManager("items", Assembly.GetExecutingAssembly());
             return Result.Succeeded;
         }
-
 
 
         public Result OnShutdown(UIControlledApplication application)
@@ -263,42 +261,80 @@ namespace P3Ribbon
         }
 
 
-        public static  void Application_DocumentOpened(object sender, Autodesk.Revit.DB.Events.DocumentOpenedEventArgs args)
+        public static void Application_DocumentOpened(object sender, Autodesk.Revit.DB.Events.DocumentOpenedEventArgs args)
         {
             Document doc = args.Document;
-            Application app = doc.Application;
-            Supporto.doc = doc; // SPERIAMO CHE CI RISOLVA TUTTI I PROBLEMI DEL MONDO
-            Supporto.app = app;
+            Supporto.AggiornaDoc(doc);            
+            //Application app = doc.Application;
+            //Supporto.doc = doc; // SPERIAMO CHE CI RISOLVA TUTTI I PROBLEMI DEL MONDO
+            //Supporto.app = app;
             try
             {
                 Materiale.PreAggiorna(doc);
-                ribbCboMembers = rbbCboMateriali.AddItems(Materiale.comboBoxMemberDatas);
-            }
-            catch (Exception ex)
-            {
-               // throw;
-            }
-
-        
-        }
-
-        private void Application_DocumentCreated(object sender, DocumentCreatedEventArgs e)
-        {
-            Document doc = e.Document;
-            Application app = doc.Application;
-            Supporto.doc = doc; // SPERIAMO CHE CI RISOLVA TUTTI I PROBLEMI DEL MONDO
-            Supporto.app = app;
-            //lascio cmq quanto segue perche anche se è un fil enuovo magari uso come template qualcosa ocn già i materiali P3 e quindi devo controllarli e compilare i combobox vari:
-            try
-            {
-                Materiale.PreAggiorna(doc);
-                ribbCboMembers = rbbCboMateriali.AddItems(Materiale.comboBoxMemberDatas);
+                if (rbbCboMateriali.GetItems().Count == 0)
+                {
+                    ribbCboMembers = rbbCboMateriali.AddItems(Materiale.comboBoxMemberDatas);
+                }
             }
             catch (Exception ex)
             {
                 //throw;
             }
+
+
         }
+
+
+        private void Application_DocumentCreated(object sender, DocumentCreatedEventArgs args)
+        {
+            
+            Document doc = args.Document;
+            Supporto.AggiornaDoc(doc);
+            //Application app = doc.Application;
+            //Supporto.doc = doc; // SPERIAMO CHE CI RISOLVA TUTTI I PROBLEMI DEL MONDO
+            //Supporto.app = app;
+            //lascio cmq quanto segue perche anche se è un fil enuovo magari uso come template qualcosa ocn già i materiali P3 e quindi devo controllarli e compilare i combobox vari:
+            try
+            {
+                Materiale.PreAggiorna(doc);
+                if (rbbCboMateriali.GetItems().Count == 0)
+                { 
+                    ribbCboMembers = rbbCboMateriali.AddItems(Materiale.comboBoxMemberDatas); 
+                }
+            }
+            catch (Exception ex)
+            {
+                //throw;
+            }
+
+        }
+
+        private void Application_DocumentChanged(object sender, DocumentChangedEventArgs args)
+        {
+            Supporto.AggiornaDoc(args.GetDocument());
+           //Supporto.doc = args.GetDocument();
+        }
+        //private void Application_DocumentChanged(object sender, DocumentChangedEventArgs args)
+        //{
+        //    Document doc = args.GetDocument();
+        //    Application app = doc.Application;
+
+        //    Supporto.doc = doc; // SPERIAMO CHE CI RISOLVA TUTTI I PROBLEMI DEL MONDO
+        //    //Supporto.uidoc = forse bisogna usare UIAPplication(app)..ActiveUIDocument ?? ma non so se devo usare un constructor...
+        //    Supporto.app = app;
+
+        //    try
+        //    {
+        //        Materiale.PreAggiorna(doc);
+        //        ribbCboMembers = rbbCboMateriali.AddItems(Materiale.comboBoxMemberDatas);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //throw;
+        //    }
+
+
+        //}
 
         public static string res_valore(string Var, Lingua l)
         {
