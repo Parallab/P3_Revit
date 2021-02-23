@@ -189,6 +189,20 @@
   <data name="taskdTipiNonPresenti" xml:space="preserve">
     <value>Tipi di canale non inseriti nel progetto</value>
   </data>
+  <data name="wpfImpAttivo" xml:space="preserve">
+    <value>Attivo</value>
+  </data>
+  <data name="wpfImpoAttivo" xml:space="preserve">
+    <value>Attivo</value>
+  </data>
+  <data name="wpfImpoContent" xml:space="preserve">
+    <value>L'updater è una funzione appositamente sviluppata su questo applicativo che ti permette di creare all'interno del progetto corrnete, canali P3 già dotati di isolante e caratteristiche di fabbrica.
+
+Questa funzione legge in backround le operazione svolte sui condotti e interviene quando ne viene creato uno nuovo, se ritieni di non aver bisogno di questa funzione o riscontri eccessivi rallentamenti nel tuo progetto puoi interrompere temporaneamente questa funzionalità</value>
+  </data>
+  <data name="wpfimpoImpostazioni" xml:space="preserve">
+    <value>IMPOSTAZIONI PLUGIN</value>
+  </data>
   <data name="wpfLChiusura" xml:space="preserve">
     <value>Chiusura</value>
   </data>

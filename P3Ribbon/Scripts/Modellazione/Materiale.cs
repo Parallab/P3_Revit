@@ -38,6 +38,7 @@ namespace P3Ribbon.Scripts
                 double _spessore;
                 int i = 0;
 
+                comboBoxMemberDatas.Clear();
                 foreach (ElementId id in P3InsulationTypeIds)
                 {
                     Element el = doc.GetElement(id);
@@ -49,15 +50,10 @@ namespace P3Ribbon.Scripts
                         {
                             _spessore = el.LookupParameter("P3_Insulation_Thickness").AsDouble();
 
-                            //ComboBoxMemberData cmbInsualtionData = new ComboBoxMemberData(el.Id.ToString() + "_" + _spessore.ToString(), el.Name);
-                            // 
-                            ComboBoxMemberData cmbInsualtionData = new ComboBoxMemberData(nome, el.Name);
+                            ComboBoxMemberData cmbInsualtionData = new ComboBoxMemberData(nome,nome);
                             comboBoxMemberDatas.Add(cmbInsualtionData);
-
-                            //insulList.Add(new Materiale() { ID = el.Id, name = el.Name, spessore = _spessore });
                             // bisogna modificare anche questo??
                             insulList.Add(new Materiale() { ID = el.Id, name = el.Name, spessore = _spessore });
-
                         }
                     }
                     catch
@@ -77,12 +73,8 @@ namespace P3Ribbon.Scripts
         }
         public static void AggiornaTendinaRibbon(string _nome)
         {
-            //prima concatenavamoa nel nome della tendina un po di info utili (id e spessore...)
-            //int indice_ = _nome.IndexOf("_");
-            //Materiale.IdInsulTipoPreferito = new ElementId(Int32.Parse(_nome.Substring(0, indice_)));
-            //Materiale.SpessoreIsolante = Convert.ToDouble(_nome.Substring(indice_ + 1)); //perceh abbiamo fatto questo invece di elggere lo spessore dal tipo dell isoalnate?
-
-            // ora invece vogliamo cercare il nome tra i tipi di isolante nel progetto, così che tra un document e l altro non ci siano problei di id..
+            // prima concatenavamoa nel nome della tendina un po di info utili (id e spessore...)
+            //ora invece vogliamo cercare il nome tra i tipi di isolante nel progetto, così che tra un document e l altro non ci siano problei di id..
             Materiale.IdInsulTipoPreferito = TrovaIdIsolante(_nome); //cerca tra tutti i tipi l id di questo nome;
             Materiale.SpessoreIsolante = TrovaSpessore(Materiale.IdInsulTipoPreferito); //leggi spessore da tipo ;
         }

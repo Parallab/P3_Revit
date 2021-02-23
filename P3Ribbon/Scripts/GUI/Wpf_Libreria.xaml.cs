@@ -24,26 +24,6 @@ namespace P3Ribbon.Scripts.GUI
         private UIDocument _UiDoc;
         UIApplication _uiApp;
 
-        //public Wpf_Libreria(ExternalCommandData commandData)
-        //{
-        //    _uiApp = commandData.Application;
-        //    _app = _uiApp.Application;
-        //    _UiDoc = _uiApp.ActiveUIDocument;
-        //    _doc = _UiDoc.Document;
-
-        //    InitializeComponent();
-
-        //    //controllare se qualche param globale è gia compilato
-        //    WpfAggiornaLibreria();
-        //    if (wpfCboMateriali.Items.Count == 0)
-        //    {
-        //        string CaricaMat = P3Ribbon.Resources.Lang.lang.wpfPrbpCaricareMat;
-        //        wpfCboMateriali.Items.Add(CaricaMat);
-        //        wpfCboMateriali.SelectedIndex = 0;
-        //    }
-        //}
-
-
         public Wpf_Libreria(ExternalCommandData commandData)
         {
             _uiApp = commandData.Application;
@@ -66,10 +46,7 @@ namespace P3Ribbon.Scripts.GUI
 
         private void WpfBottCaricaLibreria_Click(object sender, RoutedEventArgs e)
         {
-
             _app.DocumentOpened -= new EventHandler<Autodesk.Revit.DB.Events.DocumentOpenedEventArgs>(App.Application_DocumentOpened);
-
-
             // if non è stato già fatto, cioè fare un metodoche controlla se nei tipi del mio documento c è QUEL PARAMETRO NASCOSTO CHE USIAMO X IDENTIFICARE IL TUTTO...
             //{
             using (var t = new Transaction(_doc, "Carica libreria"))
@@ -77,9 +54,11 @@ namespace P3Ribbon.Scripts.GUI
                 t.Start();
                 TrasferisciStandard.TrasferisciTipiDoc(_app, _doc);  
                 WpfAggiornaLibreria();
+
                 //TEMP DA SISTEARE CON BOOLEANI
                 try
                 {
+                    double test = App.rbbCboMateriali.GetItems().Count;
                     if (App.rbbCboMateriali.GetItems().Count == 0)
                     {
                         App.rbbCboMateriali.AddItems(Materiale.comboBoxMemberDatas);
@@ -87,12 +66,9 @@ namespace P3Ribbon.Scripts.GUI
                 }
                 catch
                 { }
-                // this.Close();
                 //}
-                _doc.Regenerate();
                 t.Commit();
             }
-
             _app.DocumentOpened += new EventHandler<Autodesk.Revit.DB.Events.DocumentOpenedEventArgs>(App.Application_DocumentOpened);
         }
 
@@ -111,26 +87,20 @@ namespace P3Ribbon.Scripts.GUI
                     }
                     catch
                     {
-
                     }
                     wpfCboMateriali.ItemsSource = null;
-
                     wpfCboMateriali.ItemsSource = wpfcboItems;
                     wpfCboMateriali.DisplayMemberPath = "name";
 
                     // combobox ribbon -> combobox wpf
                     if (Materiale.IdInsulTipoPreferito == null)
                     {
-                        wpfCboMateriali.SelectedIndex = 0;
+                        wpfCboMateriali.SelectedIndex = 1;
                     }
                     else
                     {
-                        wpfCboMateriali.SelectedIndex = App.ribbCboMembers.IndexOf(App.rbbCboMateriali.Current);
-
+                        wpfCboMateriali.SelectedIndex = App.rbbCboMateriali.GetItems().IndexOf(App.rbbCboMateriali.Current);
                     }
-
-
-
                 }
             }
         }
@@ -144,30 +114,29 @@ namespace P3Ribbon.Scripts.GUI
         private void wpfBottScegliMateriale_Click(object sender, RoutedEventArgs e)
         {
             ImpostaMateriale();
+            string nomeInsul_nascosto = "";
             //combobox wpf -> combobox ribbon
             if (App.ribbCboMembers != null) //la prima volta che pocarico la libreria parte uesto ma non ho ancora scritto comboboxMembers_ribbon quindi giusto che salti
             {
-                foreach (ComboBoxMember cbm in App.ribbCboMembers)
+                try
                 {
-                    string cbm_nome_totale = cbm.Name; // nel name del combo box member abbiamo concatenato l id e lo spessore (ma perche c è lo spessore nel name? non leggevamo lo spessore dal parametro di tipo dell isoalnte?)
-                    int indice_ = cbm_nome_totale.IndexOf("_");
-                    int cbm_id = Int32.Parse(cbm_nome_totale.Substring(0, indice_));
-                    if (cbm_id == Materiale.IdInsulTipoPreferito.IntegerValue)
+                nomeInsul_nascosto = Supporto.doc.GetElement(Materiale.IdInsulTipoPreferito).LookupParameter("P3_Nome").AsString();
+                    
+                }
+                catch
+                {
+                }
+                foreach (ComboBoxMember cbm in App.rbbCboMateriali.GetItems())
+                {
+                    string cbm_nome_totale = cbm.Name; 
+                    if (cbm_nome_totale == nomeInsul_nascosto)
                     {
                         App.rbbCboMateriali.Current = cbm;
+                        break;
                     }
                 }
             }
             this.Close();
-        }
-
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            //if (wpfCboMateriali.Items.Count > 1) // da sistemare, perche appena all inizio aggiungo la stringa "caricare la libreria prima di scegliere il materiae" il comcbobox si aggiorna e parte sto metodo, ma se non ho ancora le famiglie non voglio che mi imposti il materiale!
-            //                                  // serve qualcosa di piu intelligente , il etodo ceh serve anche altrove che controlla se ho caricato, magari anceh solo con un booleano? o controlare velocemente tra i tip se c è QUEL PARAMETRO NASCOSTO CHE DOBBIAMO CREARE
-            //{
-            //    ImpostaMateriale();
-            //}
         }
 
         private void ImpostaMateriale()

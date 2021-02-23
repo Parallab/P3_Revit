@@ -277,6 +277,44 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
+        ///   Cerca una stringa localizzata simile a Attivo.
+        /// </summary>
+        public static string wpfImpAttivo {
+            get {
+                return ResourceManager.GetString("wpfImpAttivo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Attivo.
+        /// </summary>
+        public static string wpfImpoAttivo {
+            get {
+                return ResourceManager.GetString("wpfImpoAttivo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a L&apos;updater è una funzione appositamente sviluppata su questo applicativo che ti permette di creare all&apos;interno del progetto corrnete, canali P3 già dotati di isolante e caratteristiche di fabbrica.
+        ///
+        ///Questa funzione legge in backround le operazione svolte sui condotti e interviene quando ne viene creato uno nuovo, se ritieni di non aver bisogno di questa funzione o riscontri eccessivi rallentamenti nel tuo progetto puoi interrompere temporaneamente questa funzionalità.
+        /// </summary>
+        public static string wpfImpoContent {
+            get {
+                return ResourceManager.GetString("wpfImpoContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a IMPOSTAZIONI PLUGIN.
+        /// </summary>
+        public static string wpfimpoImpostazioni {
+            get {
+                return ResourceManager.GetString("wpfimpoImpostazioni", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Cerca una stringa localizzata simile a Chiusura.
         /// </summary>
         public static string wpfLChiusura {

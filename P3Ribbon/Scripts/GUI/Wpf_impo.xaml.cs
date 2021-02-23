@@ -16,17 +16,17 @@ namespace P3Ribbon.Scripts.GUI
     {
         private Document m_doc;
         private Application m_app;
-        bool checkBoxState = false;
         public Wpf_impo(ExternalCommandData commandData)
         {
             UIApplication uiApp = commandData.Application;
             m_app = uiApp.Application;
             UIDocument uiDoc = uiApp.ActiveUIDocument;
             m_doc = uiDoc.Document;
+
             InitializeComponent();
-         
+            CheckUpgrade.IsChecked = Properties.Settings.Default.updaterAttivo;
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
         }
-     
 
         private void TextBox_TextChanged_2(object sender, TextChangedEventArgs e)
         {
@@ -35,21 +35,25 @@ namespace P3Ribbon.Scripts.GUI
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            Scripts.DynamicModelUpdater updater = new Scripts.DynamicModelUpdater(m_app.ActiveAddInId);
-            
-            if (CheckUpgrade.IsChecked == true)
+            if (Properties.Settings.Default.updaterAttivo == false)
             {
-                Properties.Settings.Default.checkUpdateState = true;
-                
-                
-                UpdaterRegistry.UnregisterUpdater(updater.GetUpdaterId());
+                //App.UpdaterAccendi();
+                UpdaterRegistry.EnableUpdater(App.updater.GetUpdaterId());
             }
-            if (CheckUpgrade.IsChecked == false)
-            {
-                UpdaterRegistry.RegisterUpdater(updater);
-                Properties.Settings.Default.checkUpdateState = false;
-            }
+            Properties.Settings.Default.updaterAttivo = true;
+            Properties.Settings.Default.Save();
+        }
 
+        private void CheckUpgrade_Unchecked(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                UpdaterRegistry.DisableUpdater(App.updater.GetUpdaterId());
+            }
+            catch 
+            { 
+            }
+            Properties.Settings.Default.updaterAttivo = false;
             Properties.Settings.Default.Save();
         }
     }

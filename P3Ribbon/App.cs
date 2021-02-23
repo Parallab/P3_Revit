@@ -13,6 +13,7 @@ using P3Ribbon.Scripts;
 using Autodesk.Revit.DB.Events;
 using System.Threading;
 using System.IO;
+using System.Diagnostics;
 
 namespace P3Ribbon
 {
@@ -40,6 +41,8 @@ namespace P3Ribbon
         public static ResourceSet res_eng = Resources.Lang.rp_ENG.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
         private object commandData;
 
+        public static DynamicModelUpdater updater;
+
         public static void LeggiLingua(ControlledApplication Capp)
         {
             //leggo la lingua di partenza
@@ -64,7 +67,7 @@ namespace P3Ribbon
             string thisAssemblyPath = Assembly.GetExecutingAssembly().Location;
 
 
-            RibbonPanel ribbonPanelModellazione = a.CreateRibbonPanel(tabName, res_valore("Modellazione"));
+            RibbonPanel ribbonPanelModellazione = a.CreateRibbonPanel(tabName, Res_ValoreLingua("Modellazione"));
 
             // MODELLAZIONE
             #region bottone: lingua WIP
@@ -210,9 +213,7 @@ namespace P3Ribbon
             //var debug =  rbCboMat.Current;
             Supporto.AggiornaDoc(e.Application.ActiveUIDocument.Document);
             string nome = rbbCboMateriali.Current.Name;
-            int indice_ = nome.IndexOf("_");
             Materiale.AggiornaTendinaRibbon(nome);
-
         }
 
         static void MigraRibbonPanelName2Titolo(UIControlledApplication a)
@@ -224,14 +225,18 @@ namespace P3Ribbon
             }
         }
 
-
-        public Result OnStartup(UIControlledApplication application)
+        
+        public Result OnStartup(UIControlledApplication UiCapplication)
         {
+            Properties.Settings.Default.updaterAttivo = true;
+            Properties.Settings.Default.Save();
+
             try
             {   //creo degli eventhandler all'aeprtura di un documento e alla creazione di uno nuovo
-                application.ControlledApplication.DocumentOpened += new EventHandler<Autodesk.Revit.DB.Events.DocumentOpenedEventArgs>(Application_DocumentOpened);
-                application.ControlledApplication.DocumentCreated += new EventHandler<Autodesk.Revit.DB.Events.DocumentCreatedEventArgs>(Application_DocumentCreated);
-                application.ControlledApplication.DocumentChanged += new EventHandler<Autodesk.Revit.DB.Events.DocumentChangedEventArgs>(Application_DocumentChanged);
+                UiCapplication.ControlledApplication.DocumentOpened += new EventHandler<Autodesk.Revit.DB.Events.DocumentOpenedEventArgs>(Application_DocumentOpened);
+                UiCapplication.ControlledApplication.DocumentCreated += new EventHandler<Autodesk.Revit.DB.Events.DocumentCreatedEventArgs>(Application_DocumentCreated);
+                //application.ControlledApplication.DocumentChanged += new EventHandler<Autodesk.Revit.DB.Events.DocumentChangedEventArgs>(Application_DocumentChanged);
+                UiCapplication.ViewActivated += new EventHandler<ViewActivatedEventArgs>(OnViewActivated);
             }
             catch
             {
@@ -239,23 +244,34 @@ namespace P3Ribbon
             }
             var langCode = Properties.Settings.Default.languageCode;
             Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(langCode);
-            AddRibbonPanel(application);
-            UICapp = application;
+            AddRibbonPanel(UiCapplication);
+            UICapp = UiCapplication;
 
+            Supporto.ActiveAddInId = UiCapplication.ActiveAddInId;
             //attiva i registri all'avvio di revit
-            Scripts.DynamicModelUpdater updater = new Scripts.DynamicModelUpdater(application.ActiveAddInId);
-            UpdaterRegistry.RegisterUpdater(updater, true);
-            LogicalOrFilter f = Scripts.Supporto.CatFilterDuctAndFitting;
-            UpdaterRegistry.AddTrigger(updater.GetUpdaterId(), f, Element.GetChangeTypeElementAddition());
+            //updater = new DynamicModelUpdater(application.ActiveAddInId);
+            //UpdaterRegistry.RegisterUpdater(updater, true);
+            //LogicalOrFilter f = Supporto.CatFilterDuctAndFitting;
+            //UpdaterRegistry.AddTrigger(updater.GetUpdaterId(), f, Element.GetChangeTypeElementAddition());
+            UpdaterAccendi();
             ResourceManager rm = new ResourceManager("items", Assembly.GetExecutingAssembly());
             return Result.Succeeded;
+        }
+
+        public static void UpdaterAccendi()
+        {
+            App.updater = new DynamicModelUpdater(Supporto.ActiveAddInId);
+            UpdaterRegistry.RegisterUpdater(updater, true);
+            LogicalOrFilter f = Supporto.CatFilterDuctAndFitting;
+            UpdaterRegistry.AddTrigger(updater.GetUpdaterId(), f, Element.GetChangeTypeElementAddition());
         }
 
 
         public Result OnShutdown(UIControlledApplication application)
         {
-            Scripts.DynamicModelUpdater updater = new Scripts.DynamicModelUpdater(application.ActiveAddInId);
+            //DynamicModelUpdater updater = new DynamicModelUpdater(application.ActiveAddInId);
             UpdaterRegistry.UnregisterUpdater(updater.GetUpdaterId());
+
             application.ControlledApplication.DocumentOpened -= new EventHandler<Autodesk.Revit.DB.Events.DocumentOpenedEventArgs>(App.Application_DocumentOpened);
             return Result.Succeeded;
         }
@@ -310,33 +326,23 @@ namespace P3Ribbon
         }
 
         private void Application_DocumentChanged(object sender, DocumentChangedEventArgs args)
-        {
-            Supporto.AggiornaDoc(args.GetDocument());
+        { 
+           //Supporto.AggiornaDoc(args.GetDocument());
            //Supporto.doc = args.GetDocument();
         }
-        //private void Application_DocumentChanged(object sender, DocumentChangedEventArgs args)
-        //{
-        //    Document doc = args.GetDocument();
-        //    Application app = doc.Application;
+   
+        void OnViewActivated(
+          object sender,
+          ViewActivatedEventArgs e)
+        {
+            View vPrevious = e.PreviousActiveView;
+            View vCurrent = e.CurrentActiveView;
 
-        //    Supporto.doc = doc; // SPERIAMO CHE CI RISOLVA TUTTI I PROBLEMI DEL MONDO
-        //    //Supporto.uidoc = forse bisogna usare UIAPplication(app)..ActiveUIDocument ?? ma non so se devo usare un constructor...
-        //    Supporto.app = app;
+            Document doc = vCurrent.Document;
+            Supporto.AggiornaDoc(doc);
+        }
 
-        //    try
-        //    {
-        //        Materiale.PreAggiorna(doc);
-        //        ribbCboMembers = rbbCboMateriali.AddItems(Materiale.comboBoxMemberDatas);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        //throw;
-        //    }
-
-
-        //}
-
-        public static string res_valore(string Var, Lingua l)
+        public static string Res_ValoreLingua(string Var, Lingua l)
         {
             ResourceSet rs = null;
             if (l == Lingua.ITA)
@@ -350,7 +356,7 @@ namespace P3Ribbon
             return rs.GetObject(Var).ToString();
         }
 
-        public static string res_valore(string Var)
+        public static string Res_ValoreLingua(string Var)
         {
             //ricordarsi di modificare nel caso di altra lingua
             //all'accensione!
@@ -358,6 +364,8 @@ namespace P3Ribbon
             return rs.GetObject(Var).ToString();
 
         }
+
+
 
         private static void AggiungiSplitButtonLingua(RibbonPanel rp, string Assemblypath)
         {
