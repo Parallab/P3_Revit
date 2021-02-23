@@ -38,7 +38,7 @@ namespace P3Ribbon.Scripts
             Document docSource = null;
             if (app.VersionNumber == "2021")
             {
-                docSource = app.OpenDocumentFile(Supporto.TrovaPercorsoRisorsa("P3 - Duct system template20.rte"));
+                docSource = app.OpenDocumentFile(Supporto.TrovaPercorsoRisorsa("P3 - Duct system template21.rte"));
             }
             if (app.VersionNumber == "2020")
             {
@@ -51,6 +51,10 @@ namespace P3Ribbon.Scripts
             else if (app.VersionNumber == "2018")
             {
                 docSource = app.OpenDocumentFile(Supporto.TrovaPercorsoRisorsa("P3 - Duct system template18.rte"));
+            }
+            else
+            {
+                docSource = app.OpenDocumentFile(Supporto.TrovaPercorsoRisorsa("P3 - Duct system template21.rte"));
             }
 
 
@@ -108,9 +112,15 @@ namespace P3Ribbon.Scripts
             FilteredElementCollector collStaffeDoc = new FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_SpecialityEquipment).WhereElementIsElementType();
             foreach (var type in collStaffeDoc)
             {
+                try
+                {
                 if (type.LookupParameter("P3_Nome").AsString() == "P3_DuctHanger")
                 {
                     nomiTipiPresenti.Add(type.Name);
+                }
+                }
+                catch
+                {
                 }
 
             }
@@ -145,11 +155,11 @@ namespace P3Ribbon.Scripts
                 {
                     string nome = schedule.LookupParameter("P3_Nome_i").AsString();
 
-                if (nome.StartsWith("P3"))
-                {
-                    nomiAbachiPresenti.Add(nome);
+                    if (nome.StartsWith("P3"))
+                    {
+                        nomiAbachiPresenti.Add(nome);
 
-                }
+                    }
                 }
                 catch
                 {
@@ -163,7 +173,12 @@ namespace P3Ribbon.Scripts
 
             foreach (Element abaco in AbachiRisorsa)
             {
-                string nome = abaco.Name;
+                string nome = abaco.Name; //non voglio più il nome,
+
+                //Parameter param = abaco.LookupParameter("P3_Nome_i");
+                //if (param != null)
+                //{
+                //string nome = param.AsString();
                 if (nome.StartsWith("P3"))
                 {
                     // contollRE SE ESISTE NEL DOC
@@ -173,8 +188,8 @@ namespace P3Ribbon.Scripts
                     }
 
                 }
+                //}
             }
-
             try
             {
                 ICollection<ElementId> ids = ICollectionIds_Estendi(IdTipiDaCopiare, collAbachiRisorsa);
@@ -199,6 +214,8 @@ namespace P3Ribbon.Scripts
                 //e se volessi modificare il nome??
             }
         }
+
+
         private static ICollection<ElementId> ICollectionIds_Estendi(ICollection<ElementId> coll1, ICollection<ElementId> coll2)
         {
             ICollection<ElementId> unione = coll1;

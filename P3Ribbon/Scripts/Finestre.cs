@@ -43,16 +43,14 @@ namespace P3Ribbon.Scripts
             UIDocument uiDoc = uiApp.ActiveUIDocument;
             Document doc = uiDoc.Document;
 
-            Scripts.GUI.Form_Impostazioni frm = new Scripts.GUI.Form_Impostazioni(commandData);
-            using (frm)
-            {
+            Scripts.GUI.Wpf_impo wpf = new Scripts.GUI.Wpf_impo(commandData);
+      
                 using (var t = new Transaction(doc, "FinestraImpostazini"))
                 {
                     t.Start();
-                    frm.ShowDialog();
+                    wpf.ShowDialog();
                     t.Commit();
-                }
-            }
+                }            
             return Result.Succeeded;
         }
 
@@ -88,7 +86,6 @@ namespace P3Ribbon.Scripts
             else
                 return Result.Failed;
         }
-
     }
 
     [Transaction(TransactionMode.Manual)]
@@ -107,7 +104,6 @@ namespace P3Ribbon.Scripts
 
             return Result.Succeeded;
         }
-
     }
 
     [Transaction(TransactionMode.Manual)]
@@ -126,15 +122,7 @@ namespace P3Ribbon.Scripts
             GUI.Wpf_Libreria wpf = new GUI.Wpf_Libreria(commandData);
             using (wpf)
             {
-
-                //using (var t = new Transaction(doc, "FinestraInfo"))
-                //{
-                //t.Start();
                 wpf.ShowDialog();
-                //    t.Commit();
-                //}
-
-
                 Supporto.ChiudiFinestraCorrente(uiDoc);
             }
             return Result.Succeeded;

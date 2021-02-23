@@ -142,7 +142,6 @@ namespace P3Ribbon.Scripts
     [Transaction(TransactionMode.Manual)]
     class ElencoMateriali : IExternalCommand
     {
-
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
                 UIApplication uiApp = commandData.Application;
@@ -150,7 +149,18 @@ namespace P3Ribbon.Scripts
                 Document doc = uiDoc.Document;
                 Application app = uiApp.Application;
 
-            if (Supporto.ControllaAbachiP3Presenti("P3 - Duct Insulation Schedule - PLUGIN"))
+            string nome_abaco = "P3 - Duct Insulation Schedule - PLUGIN";
+            if (App.lingua_plugin == App.Lingua.ITA)
+            {
+                nome_abaco += " - ITA";
+            }
+            else
+            {
+                nome_abaco += " - ENG";
+            }
+            //
+
+            if (Supporto.ControllaAbachiP3Presenti(nome_abaco))
             {
 
                 using (var t = new Transaction(doc, "Migra Parametro Area Isolamento"))
@@ -165,7 +175,7 @@ namespace P3Ribbon.Scripts
                 }
 
 
-                ViewSchedule vistaAbacoP3insul = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.LookupParameter("P3_Nome_i").AsString() == "P3 - Duct Insulation Schedule - PLUGIN") as ViewSchedule;
+                ViewSchedule vistaAbacoP3insul = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.LookupParameter("P3_Nome_i").AsString() == nome_abaco) as ViewSchedule;
                 uiDoc.ActiveView = vistaAbacoP3insul;
 
                
@@ -199,19 +209,20 @@ namespace P3Ribbon.Scripts
                 UIDocument uiDoc = uiApp.ActiveUIDocument;
                 Document doc = uiDoc.Document;
                 Application app = uiApp.Application;
-
-            if (Supporto.ControllaAbachiP3Presenti("P3 - Duct Hangers - Components - ITA"))
+            string nome_abaco = "P3 - Duct Hangers - Components";
+            if (App.lingua_plugin == App.Lingua.ITA)
+            { 
+                nome_abaco += " - ITA"; 
+            }
+            else 
             {
-                //if (App.lingua_plugin == App.Lingua.ITA)
-                //{
-                ViewSchedule vistaAbacoP3staff = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.LookupParameter("P3_Nome_i").AsString() == "P3 - Duct Hangers - Components - ITA") as ViewSchedule;
+                nome_abaco += " - ENG";
+            }
+            //
+            if (Supporto.ControllaAbachiP3Presenti(nome_abaco))
+            {
+                ViewSchedule vistaAbacoP3staff = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.LookupParameter("P3_Nome_i").AsString() == nome_abaco) as ViewSchedule;
                 uiDoc.ActiveView = vistaAbacoP3staff;
-                //}
-                //else 
-                //{
-                //    viewSchedule = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.Name == "P3 - Duct Hangers - Components - ENG") as ViewSchedule;
-                //    uiDoc.ActiveView = viewSchedule;
-                //}
             }
             else
             {

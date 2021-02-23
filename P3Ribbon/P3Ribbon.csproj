@@ -305,12 +305,6 @@
     </Compile>
     <Compile Include="Scripts\Modellazione\CambiaMateriale.cs" />
     <Compile Include="Scripts\Abachi.cs" />
-    <Compile Include="Scripts\GUI\Form_Impostazioni.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Scripts\GUI\Form_Impostazioni.Designer.cs">
-      <DependentUpon>Form_Impostazioni.cs</DependentUpon>
-    </Compile>
     <Compile Include="Scripts\GUI\Form_Quantità.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -329,19 +323,7 @@
     <Compile Include="Scripts\Supporto.cs" />
     <Compile Include="Scripts\Modellazione\CreaCanale.cs" />
     <Compile Include="Scripts\Finestre.cs" />
-    <Compile Include="Scripts\GUI\Form_Def_Acc.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Scripts\GUI\Form_Def_Acc.Designer.cs">
-      <DependentUpon>Form_Def_Acc.cs</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scripts\GUI\Form_Libreria.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Scripts\GUI\Form_Libreria.Designer.cs">
-      <DependentUpon>Form_Libreria.cs</DependentUpon>
-    </Compile>
     <Compile Include="Scripts\Modellazione\MigraAreaIsolamento.cs" />
     <Compile Include="Scripts\Sisma\ParSismici.cs" />
     <Compile Include="Scripts\Sisma\Staffaggio.cs" />
@@ -349,7 +331,7 @@
     <Compile Include="Scripts\Modellazione\TrasferisciStandard.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="P3_InstallerResources\P3_ParamCondivisi.txt.txt">
+    <Content Include="P3_InstallerResources\P3_ParamCondivisi.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="P3_InstallerResources\P3_TabelleDiPredimensionamento.txt">
@@ -382,12 +364,6 @@
       <DependentUpon>Form_Quantità.cs</DependentUpon>
     </EmbeddedResource>
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoComponenti.png" />
-    <EmbeddedResource Include="Scripts\GUI\Form_Impostazioni.resx">
-      <DependentUpon>Form_Impostazioni.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Scripts\GUI\Form_Libreria.resx">
-      <DependentUpon>Form_Libreria.cs</DependentUpon>
-    </EmbeddedResource>
     <Resource Include="Resources\Icons\20041_p3_inkscape_icona_Setting.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Setting16.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Info.png" />
@@ -425,6 +401,9 @@
     <Content Include="P3_InstallerResources\P3 - Duct system template20.rte">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="P3_InstallerResources\P3 - Duct system template21.rte">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -450,9 +429,6 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>lang.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Scripts\GUI\Form_Def_Acc.resx">
-      <DependentUpon>Form_Def_Acc.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

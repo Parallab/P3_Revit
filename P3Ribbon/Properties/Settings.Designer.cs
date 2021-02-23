@@ -25,13 +25,13 @@ namespace P3Ribbon.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool checkUpdateState {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool updaterAttivo {
             get {
-                return ((bool)(this["checkUpdateState"]));
+                return ((bool)(this["updaterAttivo"]));
             }
             set {
-                this["checkUpdateState"] = value;
+                this["updaterAttivo"] = value;
             }
         }
         

@@ -18,8 +18,6 @@ namespace P3Ribbon.Scripts
         static AddInId _appId;
         static UpdaterId _updaterId;
 
-
-
         public DynamicModelUpdater(AddInId id)
         {
             _appId = id;
@@ -52,8 +50,7 @@ namespace P3Ribbon.Scripts
                 }
             }
 
-        }
-
+        }       
         #region metodi dell updater
         public string GetAdditionalInformation()
         {

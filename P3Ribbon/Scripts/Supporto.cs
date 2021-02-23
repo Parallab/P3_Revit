@@ -13,6 +13,7 @@ namespace P3Ribbon.Scripts
         public static List<List<double>> ValoriTabella;
         public static Document doc;
         public static Application app;
+        public static AddInId ActiveAddInId;
 
         public static void AggiornaDoc(Document _doc)
         {
@@ -99,14 +100,20 @@ namespace P3Ribbon.Scripts
             string originalFile = app.SharedParametersFilename;
 
 
-            string tempfie = Supporto.TrovaPercorsoRisorsa("P3_ParamCondivisi.txt");
+            string tempfile = Supporto.TrovaPercorsoRisorsa("P3_ParamCondivisi.txt");
 
             try
             {
 
-                app.SharedParametersFilename = tempfie;
-
+                app.SharedParametersFilename = tempfile;
                 DefinitionFile SharedParameterFile = app.OpenSharedParameterFile();
+                // potrebbe non essere impostato un file di parametri condivisi nell'istanza di revit. proviamo ad impostarlo noi?
+                //if (SharedParameterFile == null)
+                //{
+                //    string temptempfie = Supporto.TrovaPercorsoRisorsa("SharedParametersFIle_TEMP.txt");
+                //    app.SharedParametersFilename = temptempfie;
+                //    SharedParameterFile = app.OpenSharedParameterFile();
+                //}
 
                 foreach (DefinitionGroup dg in SharedParameterFile.Groups)
                 {
@@ -128,7 +135,6 @@ namespace P3Ribbon.Scripts
 
                             t.Commit();
                         }
-
                     }
                 }
                 output = true;
@@ -253,7 +259,7 @@ namespace P3Ribbon.Scripts
             }
 
         }
-        public static List<List<double>> LeggiTabella(Autodesk.Revit.DB.Document doc)
+        public static List<List<double>> LeggiTabella(Document doc)
         {
             Element proj_info = new FilteredElementCollector(doc).OfClass(typeof(ProjectInfo)).ToElements().FirstOrDefault();
 
@@ -311,7 +317,7 @@ namespace P3Ribbon.Scripts
                     try
                     {
 
-                        rp.Title = App.res_valore(rp.Name, App.lingua_arrivo);
+                        rp.Title = App.Res_ValoreLingua(rp.Name, App.lingua_arrivo);
 
                         foreach (RibbonItem bottone in rp.GetItems())
                         {
@@ -321,13 +327,13 @@ namespace P3Ribbon.Scripts
                                 {
                                     foreach (RibbonItem sbBottone in (bottone as SplitButton).GetItems())
                                     {
-                                        sbBottone.ItemText = App.res_valore(sbBottone.Name, App.lingua_arrivo);
-                                        sbBottone.ToolTip = App.res_valore(sbBottone.Name + "_tt", App.lingua_arrivo);
+                                        sbBottone.ItemText = App.Res_ValoreLingua(sbBottone.Name, App.lingua_arrivo);
+                                        sbBottone.ToolTip = App.Res_ValoreLingua(sbBottone.Name + "_tt", App.lingua_arrivo);
                                     }
 
                                 }
-                                bottone.ItemText = App.res_valore(bottone.Name, App.lingua_arrivo);
-                                bottone.ToolTip = App.res_valore(bottone.Name + "_tt", App.lingua_arrivo);
+                                bottone.ItemText = App.Res_ValoreLingua(bottone.Name, App.lingua_arrivo);
+                                bottone.ToolTip = App.Res_ValoreLingua(bottone.Name + "_tt", App.lingua_arrivo);
 
                             }
                             catch

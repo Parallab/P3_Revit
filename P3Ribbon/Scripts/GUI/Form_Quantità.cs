@@ -42,8 +42,21 @@ namespace P3Ribbon.Scripts.GUI
      
         private void LeggoAbacoQuantità()
         {
+            string nome_abaco = "P3 - Duct Insulation Recycled Schedule - PLUGIN - ITA";
+            //if (App.lingua_plugin == App.Lingua.ITA)
+            //{
+            //    nome_abaco += " - ITA";
+            //}
+            //else
+            //{
+            //    nome_abaco += " - ENG";
+            //}
+            //
+
+            ViewSchedule AbacoQuantità = new FilteredElementCollector(m_doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.LookupParameter("P3_Nome_i").AsString() == nome_abaco) as ViewSchedule;
+            
             //filtro per nome dell'abaco e non per il parametro nascosto
-            ViewSchedule AbacoQuantità = new FilteredElementCollector(m_doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.Name  == "P3 - Duct Insulation Schedule - PLUGIN") as ViewSchedule;
+            //ViewSchedule AbacoQuantità = new FilteredElementCollector(m_doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.Name  == "P3 - Duct Insulation Schedule - PLUGIN - ITA") as ViewSchedule;
 
             TableData table = AbacoQuantità.GetTableData();
             TableSectionData section = table.GetSectionData(SectionType.Body);
@@ -61,15 +74,12 @@ namespace P3Ribbon.Scripts.GUI
               
                 for (int j = 0; j < nColumns; j++)
                 {
-
                     rowData.Add(AbacoQuantità.GetCellText(SectionType.Body, i, j));
-
                 }
                     scheduleData.Add(rowData);
-
             }
 
-           int iTipo = scheduleData[0].FindIndex(x => x == "Type");
+           int iTipo = scheduleData[0].FindIndex(x => x == "Materiale");
 
             int iPesoMatRiciclato = 0;
             for (int i = 0; i < scheduleData[0].Count ; i++)
@@ -115,10 +125,22 @@ namespace P3Ribbon.Scripts.GUI
         {
             this.Close();
 
-            ViewSchedule viewSchedule = new FilteredElementCollector(m_doc).OfClass(typeof(ViewSchedule)).FirstOrDefault
-                //filtro per nome dell'abaco e non per il parametro nascosto
-                (x => x.Name == "P3 - Duct Insulation Schedule - PLUGIN") as ViewSchedule;
-           
+            //ViewSchedule viewSchedule = new FilteredElementCollector(m_doc).OfClass(typeof(ViewSchedule)).FirstOrDefault
+            //    //filtro per nome dell'abaco e non per il parametro nascosto
+            //    (x => x.Name == "P3 - Duct Insulation Schedule - PLUGIN") as ViewSchedule;
+
+            string nome_abaco = "P3 - Duct Insulation Recycled Schedule - PLUGIN";
+            if (App.lingua_plugin == App.Lingua.ITA)
+            {
+                nome_abaco += " - ITA";
+            }
+            else
+            {
+                nome_abaco += " - ENG";
+            }
+            ViewSchedule viewSchedule = new FilteredElementCollector(m_doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.LookupParameter("P3_Nome_i").AsString() == nome_abaco) as ViewSchedule;
+
+
             m_uidoc.ActiveView = viewSchedule;
             
 
