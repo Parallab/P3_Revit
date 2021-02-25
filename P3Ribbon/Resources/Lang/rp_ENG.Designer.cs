@@ -162,7 +162,7 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a List P3 components.
+        ///   Cerca una stringa localizzata simile a List brakets .
         /// </summary>
         public static string cmdelencocomp_tt {
             get {

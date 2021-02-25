@@ -27,9 +27,9 @@
             <ColumnDefinition Width="80*"/>
             <ColumnDefinition Width="10*"/>
         </Grid.ColumnDefinitions>
-        <Rectangle Grid.ColumnSpan="2" Grid.Column="4" Grid.Row="1" Grid.RowSpan="5" Stroke="Black" Fill="#C9D5EAEA"/>
+        <Rectangle Grid.ColumnSpan="2" Grid.Column="4" Grid.Row="1" Grid.RowSpan="5" Stroke="Black" Fill="#3BB5CAFF"/>
 
-        <Rectangle Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1" Grid.RowSpan="5" Stroke="Black" Width="353" Fill="#C9D5EAEA"/>
+        <Rectangle Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1" Grid.RowSpan="5" Stroke="Black" Width="353" Fill="#3BB5CAFF"/>
 
 
 

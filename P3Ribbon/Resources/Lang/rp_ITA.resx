@@ -167,7 +167,7 @@ Pezzi</value>
 Punti</value>
   </data>
   <data name="cmdelencopunti_tt" xml:space="preserve">
-    <value>Elenca i componenti P3</value>
+    <value>Elenca i punti di staffaggio</value>
   </data>
   <data name="cmdelencostaffaggi" xml:space="preserve">
     <value>Elenco 

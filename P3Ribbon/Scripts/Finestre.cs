@@ -9,6 +9,7 @@ using Autodesk.Revit.ApplicationServices;
 using Autodesk.Revit.Attributes;
 using System.Windows.Forms;
 using System.IO;
+using System.Windows;
 
 namespace P3Ribbon.Scripts
 {
@@ -98,13 +99,26 @@ namespace P3Ribbon.Scripts
             Document doc = uiDoc.Document;
             Autodesk.Revit.ApplicationServices.Application app = uiApp.Application;
 
-            Scripts.GUI.Wpf_impo wpf = new GUI.Wpf_impo(commandData);
-
+            GUI.Wpf_impo wpf = new GUI.Wpf_impo(commandData);
+            
+            wpf.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             wpf.ShowDialog();
+         
+             return Result.Succeeded;
+        }
 
-            return Result.Succeeded;
+       public static void CenterWindowOnScreen(GUI.Wpf_impo wpf)
+        {
+            double screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
+            double screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
+            double windowWidth = wpf.Width;
+            double windowHeight = wpf.Height;
+            wpf.Left = (screenWidth / 2) - (windowWidth / 2);
+            wpf.Top = (screenHeight / 2) - (windowHeight / 2);
         }
     }
+
+    
 
     [Transaction(TransactionMode.Manual)]
     class FinestraLibreria : IExternalCommand
