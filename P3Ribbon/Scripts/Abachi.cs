@@ -28,14 +28,16 @@ namespace P3Ribbon.Scripts
             if (Supporto.ControllaAbachiP3Presenti("P3 - Duct Fitting Schedule - All"))
             {
 
-                ViewSchedule vistaAbacoP3All = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.Name == "P3 - Duct Fitting Schedule - All") as ViewSchedule;
+                ViewSchedule vistaAbacoP3All = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.LookupParameter("P3_Nome_i").AsString() == "P3 - Duct Fitting Schedule - All") as ViewSchedule;
                 uiDoc.ActiveView = vistaAbacoP3All;
             }
             else
             {
-                TaskDialog td = new TaskDialog("Errore");
-                td.MainInstruction = " Abachi non inseriti nel progetto";
-                td.MainContent = "Questo abaco non è presente nel progetto, caricare prima la libreria";
+                TaskDialog td = new TaskDialog(P3Ribbon.Resources.Lang.lang.taskdErrore);
+
+                td.MainInstruction = P3Ribbon.Resources.Lang.lang.taskdAbachiNoPresenti;
+
+                td.MainContent = P3Ribbon.Resources.Lang.lang.taskdAbachiCaricare;
                 TaskDialogResult result = td.Show();
 
                 GUI.Wpf_Libreria wpf = new GUI.Wpf_Libreria(commandData);
@@ -49,18 +51,18 @@ namespace P3Ribbon.Scripts
                     //    t.Commit();
                     //}
 
-
                     Supporto.ChiudiFinestraCorrente(uiDoc);
                 }
             }
-            return Result.Cancelled;
+            return Result.Succeeded;
 
             #region TEST CREO UN NUOVO ABACO
             //TEST CREO UN NUOVO ABACO///
             //Transaction trans = new Transaction(doc, "ExComm");
             //trans.Start();
 
-            //ViewSchedule vs = ViewSchedule.CreateSchedule(doc, new ElementId(BuiltInCategory.INVALID));
+            //ViewSchedule vs = ViewSchedule.
+            //Schedule(doc, new ElementId(BuiltInCategory.INVALID));
             //vs.Name = "ElencoPezzi";
 
             //doc.Regenerate();
@@ -105,16 +107,16 @@ namespace P3Ribbon.Scripts
             {
 
 
-                ViewSchedule vistaAbacoP3pts = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.Name == "P3 - Duct Hangers") as ViewSchedule;
+                ViewSchedule vistaAbacoP3pts = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.LookupParameter("P3_Nome_i").AsString() == "P3 - Duct Hangers") as ViewSchedule;
                 uiDoc.ActiveView = vistaAbacoP3pts;
 
                 
             }
             else
             {
-                TaskDialog td = new TaskDialog("Errore");
-                td.MainInstruction = " Abachi non inseriti nel progetto";
-                td.MainContent = "Questo abaco non è presente nel progetto, caricare prima la libreria";
+                TaskDialog td = new TaskDialog(P3Ribbon.Resources.Lang.lang.taskdErrore);
+                td.MainInstruction = P3Ribbon.Resources.Lang.lang.taskdAbachiNoPresenti;
+                td.MainContent = P3Ribbon.Resources.Lang.lang.taskdAbachiCaricare;
                 TaskDialogResult result = td.Show();
 
                 GUI.Wpf_Libreria wpf = new GUI.Wpf_Libreria(commandData);
@@ -140,7 +142,6 @@ namespace P3Ribbon.Scripts
     [Transaction(TransactionMode.Manual)]
     class ElencoMateriali : IExternalCommand
     {
-
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
                 UIApplication uiApp = commandData.Application;
@@ -148,7 +149,18 @@ namespace P3Ribbon.Scripts
                 Document doc = uiDoc.Document;
                 Application app = uiApp.Application;
 
-            if (Supporto.ControllaAbachiP3Presenti("P3 - Duct Insulation Schedule - DYNAMO"))
+            string nome_abaco = "P3 - Duct Insulation Schedule - PLUGIN";
+            if (App.lingua_plugin == App.Lingua.ITA)
+            {
+                nome_abaco += " - ITA";
+            }
+            else
+            {
+                nome_abaco += " - ENG";
+            }
+            //
+
+            if (Supporto.ControllaAbachiP3Presenti(nome_abaco))
             {
 
                 using (var t = new Transaction(doc, "Migra Parametro Area Isolamento"))
@@ -163,16 +175,16 @@ namespace P3Ribbon.Scripts
                 }
 
 
-                ViewSchedule vistaAbacoP3insul = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.Name == "P3 - Duct Insulation Schedule - DYNAMO") as ViewSchedule;
+                ViewSchedule vistaAbacoP3insul = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.LookupParameter("P3_Nome_i").AsString() == nome_abaco) as ViewSchedule;
                 uiDoc.ActiveView = vistaAbacoP3insul;
 
                
             }
             else
             {
-                TaskDialog td = new TaskDialog("Errore");
-                td.MainInstruction = " Abachi non inseriti nel progetto";
-                td.MainContent = "Questo abaco non è presente nel progetto, caricare prima la libreria";
+                TaskDialog td = new TaskDialog(P3Ribbon.Resources.Lang.lang.taskdErrore);
+                td.MainInstruction = P3Ribbon.Resources.Lang.lang.taskdAbachiNoPresenti;
+                td.MainContent = P3Ribbon.Resources.Lang.lang.taskdAbachiCaricare;
                 TaskDialogResult result = td.Show();
                 GUI.Wpf_Libreria wpf = new GUI.Wpf_Libreria(commandData);
                 using (wpf)
@@ -197,28 +209,26 @@ namespace P3Ribbon.Scripts
                 UIDocument uiDoc = uiApp.ActiveUIDocument;
                 Document doc = uiDoc.Document;
                 Application app = uiApp.Application;
-
-            if (Supporto.ControllaAbachiP3Presenti("P3 - Duct Hangers - Components - ITA"))
+            string nome_abaco = "P3 - Duct Hangers - Components";
+            if (App.lingua_plugin == App.Lingua.ITA)
+            { 
+                nome_abaco += " - ITA"; 
+            }
+            else 
             {
-
-
-                //if (App.lingua_plugin == App.Lingua.ITA)
-                //{
-                ViewSchedule vistaAbacoP3staff = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.Name == "P3 - Duct Hangers - Components - ITA") as ViewSchedule;
+                nome_abaco += " - ENG";
+            }
+            //
+            if (Supporto.ControllaAbachiP3Presenti(nome_abaco))
+            {
+                ViewSchedule vistaAbacoP3staff = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.LookupParameter("P3_Nome_i").AsString() == nome_abaco) as ViewSchedule;
                 uiDoc.ActiveView = vistaAbacoP3staff;
-                //}
-                //else 
-                //{
-                //    viewSchedule = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.Name == "P3 - Duct Hangers - Components - ENG") as ViewSchedule;
-                //    uiDoc.ActiveView = viewSchedule;
-                //}
-
             }
             else
             {
-                TaskDialog td = new TaskDialog("Errore");
-                td.MainInstruction = " Abachi non inseriti nel progetto";
-                td.MainContent = "Questo abaco non è presente nel progetto, caricare prima la libreria";
+                TaskDialog td = new TaskDialog(P3Ribbon.Resources.Lang.lang.taskdErrore);
+                td.MainInstruction = P3Ribbon.Resources.Lang.lang.taskdAbachiNoPresenti;
+                td.MainContent = P3Ribbon.Resources.Lang.lang.taskdAbachiCaricare;
                 TaskDialogResult result = td.Show();
 
                 GUI.Wpf_Libreria wpf = new GUI.Wpf_Libreria(commandData);

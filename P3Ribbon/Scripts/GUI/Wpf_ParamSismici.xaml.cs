@@ -23,8 +23,8 @@ namespace P3Ribbon.Scripts.GUI
     public partial class Wpf_ParamSismici : Window, IDisposable
     {
         //assegno valore temporaneo alla classe uso e zona sismica
-        public static int zona_wpf = 666;
-        public static int classe_wpf = 666;
+        public static int zona_wpf = 4;
+        public static int classe_wpf = 1;
         public static bool ok_premuto = false;
 
         public Wpf_ParamSismici()

@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:P3Ribbon.Scripts.GUI"
-             mc:Ignorable="d" MaxHeight="450" MaxWidth="780"  MinHeight="450" MinWidth="780" Height="493"
+             xmlns:language="clr-namespace:P3Ribbon.Resources.Lang"
+             mc:Ignorable="d" MaxHeight="450" MaxWidth="780"  MinHeight="450" MinWidth="780" Height="443.5" Width="769.5"
         >
     <Grid Margin="0,0,0,1">
         <Grid.RowDefinitions>
@@ -26,20 +27,20 @@
             <ColumnDefinition Width="80*"/>
             <ColumnDefinition Width="10*"/>
         </Grid.ColumnDefinitions>
-        <Rectangle Grid.ColumnSpan="2" Grid.Column="4" Grid.Row="1" Grid.RowSpan="5" Stroke="Black" Fill="#FFD4E1F5"/>
+        <Rectangle Grid.ColumnSpan="2" Grid.Column="4" Grid.Row="1" Grid.RowSpan="5" Stroke="Black" Fill="#3BB5CAFF"/>
 
-        <Rectangle Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1" Grid.RowSpan="5" Stroke="Black" Width="353" Fill="#FFD4E1F5"/>
-
-
+        <Rectangle Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1" Grid.RowSpan="5" Stroke="Black" Width="353" Fill="#3BB5CAFF"/>
 
 
-        <Button x:Name="wpfBottZona1" Content="ZONA 1" Grid.Column="1" 
+
+
+        <Button x:Name="wpfBottZona1" Content="{x:Static language:lang.wpfPz1}" Grid.Column="1" 
                 Margin="3,4,3,4" Grid.Row="2" Background="#FF81B2BF" BorderBrush="#00FFFDFD" Click="WpfbottZona1_Click" FontWeight="Bold" FontFamily="Arial" FontSize="13" VerticalAlignment="Center"/>
-        <Button x:Name="wpfBottZona2" Content="ZONA 2" Grid.Column="1" 
+        <Button x:Name="wpfBottZona2" Content="{x:Static language:lang.wpfPz2}" Grid.Column="1" 
                 Margin="3,4,3,4" Grid.Row="3" Background="#FF81B2BF" BorderBrush="#00FFFDFD" FontWeight="Bold" FontFamily="Arial" FontSize="13" VerticalAlignment="Center" Click="WpfbottZona2_Click"/>
-        <Button x:Name="wpfBottZona3" Content="ZONA 3" Grid.Column="1" 
+        <Button x:Name="wpfBottZona3" Content="{x:Static language:lang.wpfPz3}" Grid.Column="1" 
                 Margin="3,4,3,4" Grid.Row="4" Background="#FF81B2BF" BorderBrush="#00FFFDFD" FontWeight="Bold" FontFamily="Arial" FontSize="13" VerticalAlignment="Center" Click="WpfbottZona3_Click"/>
-        <Button x:Name="wpfBottZona4" Content="ZONA 4" Grid.Column="1" 
+        <Button x:Name="wpfBottZona4" Content="{x:Static language:lang.wpfPz4}" Grid.Column="1" 
                 Margin="3,4,3,4" Grid.Row="5" Background="#FF81B2BF" BorderBrush="#00FFFDFD" FontWeight="Bold" FontFamily="Arial" FontSize="13" VerticalAlignment="Center" Click="WpfbottZona4_Click"/>
         <Button x:Name="wpfBottCUsoIII" Content="III" Grid.Column="4" 
             Margin="1,26,10,26" Grid.Row="4" Background="#FF81B2BF" BorderBrush="#00FFFDFD" FontWeight="Bold" FontFamily="Arial" FontSize="13" VerticalAlignment="Center" Click="WpfbottCUsoIII_Click"/>
@@ -50,22 +51,32 @@
         <Button x:Name="wpfBottCUsoI" Content="I" Grid.Column="4" 
             Grid.Row="1" Background="#FF81B2BF" BorderBrush="#00FFFDFD" FontWeight="Bold" FontFamily="Arial" FontSize="13" VerticalAlignment="Center" Margin="1,26,10,26" Click="WpfbottCUsoI_Click"/>
 
-        <Button x:Name="wpfButtAnnulla" Content="Annulla" Grid.Column="5" Height="28" Margin="10,0,125,0" Grid.Row="6" Width="90" BorderBrush="#00707070" Click="wpfBottAnnulla_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Button x:Name="wpfButtAnnulla" Content="{x:Static language:lang.bottAnnulla}" Grid.Column="5" Height="28" Margin="10,0,125,0" Grid.Row="6" Width="90" BorderBrush="#00707070" Click="wpfBottAnnulla_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Button x:Name="wpfButtOk" Content="Ok" Grid.Column="5" Height="28" Margin="125,0,10,0" Grid.Row="6" Width="90" BorderBrush="#00707070" Click="wpfBottOk_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="10,26,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="205" TextAlignment="Center" Text="Sisimicità alta (0.25 &lt; α  ≤ 0.35) " FontFamily="Arial" FontSize="11"/>
-        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="10,26,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="205" TextAlignment="Center" Text="Sisimicità medio-alta (0.15 &lt; α  ≤ 0.25) " FontFamily="Arial" FontSize="11"/>
-        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="10,26,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="205" TextAlignment="Center" Text="Sisimicità  medio-bassa (0.05 &lt; α  ≤ 0.15) " FontFamily="Arial" FontSize="11"/>
-        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="10,26,0,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Width="205" TextAlignment="Center" Text="Sisimicità bassa ( α  ≤ 0.05) " FontFamily="Arial" FontSize="11"/>
-        <TextBlock Grid.Column="5" HorizontalAlignment="Left" Margin="10,24,0,21" Grid.Row="1" TextWrapping="Wrap" Width="205" TextAlignment="Center" Text="Costruzioni con presenza solo occasionale di persone | Edifici agricoli" FontFamily="Arial" FontSize="11" VerticalAlignment="Center"/>
-        <TextBlock Grid.Column="5" HorizontalAlignment="Center" Grid.Row="2" TextWrapping="Wrap" Width="225" TextAlignment="Center" FontFamily="Arial" FontSize="11" Grid.RowSpan="2" VerticalAlignment="Center" Height="84" Margin="0,26,0,32"><Run/><LineBreak/><Run Text="Costruzioni cui uso preveda normali "/><LineBreak/><Run Text="affollamenti senza contenuti pericolosi per"/><LineBreak/><Run Text=" l'ambiente e senza funzioni pubbliche e "/><LineBreak/><Run Text="sociali essenziali. Industie con attività non"/><LineBreak/><Run Text=" pericolose per l'ambiente | Uffici"/></TextBlock>
-        <TextBlock Grid.Column="5" Grid.Row="4" TextWrapping="Wrap" Width="225" TextAlignment="Center" FontFamily="Arial" FontSize="11" Height="37" HorizontalAlignment="Left" Margin="0,17"><Run Text="Costruzioni il cui uso preveda affollamenti "/><LineBreak/><Run Text="signifficativi. Industrie con attività pericolose "/><LineBreak/><Run Text="per l'ambiente | Centri commerciali"/></TextBlock>
-        <TextBlock Grid.Column="5" HorizontalAlignment="Left" Grid.Row="5" TextWrapping="Wrap" Width="225" TextAlignment="Center" FontFamily="Arial" FontSize="11" VerticalAlignment="Center" RenderTransformOrigin="0.515,0.092" Height="71"><Run Text="Costruzioni con funzioni pubbliche "/><LineBreak/><Run Text="o strategiche importanti, anche con "/><LineBreak/><Run Text="riferimento alla gestione della protezione"/><LineBreak/><Run Text=" civile in caso di calimità. Industrie con "/><LineBreak/><Run Text="attività particolarmente pericolose | Ospedali "/></TextBlock>
-        <TextBox x:Name="wpfTexBoxAccell" Grid.Column="2" HorizontalAlignment="Center" Height="24" Margin="97,27,10,20" Grid.Row="1" 
-                 TextChanged="wpfTextBoxAccell_TextChanged" FontFamily="Arial" PreviewTextInput="DecimalTextBox_PreviewTextInput" TextWrapping="Wrap" VerticalAlignment="Center" Width="118" VerticalContentAlignment="Center"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="10,26,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="205" TextAlignment="Center" Text="{x:Static language:lang.wpfPSism1}" FontFamily="Arial" FontSize="11"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="10,26,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="205" TextAlignment="Center" Text="{x:Static language:lang.wpfPSism2}" FontFamily="Arial" FontSize="11"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="10,26,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="205" TextAlignment="Center" Text="{x:Static language:lang.wpfPSism3}" FontFamily="Arial" FontSize="11"/>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="10,26,0,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Width="205" TextAlignment="Center" Text="{x:Static language:lang.wpfPSism4}" FontFamily="Arial" FontSize="11"/>
+
+        <Border Grid.Column="5" Grid.Row="1" BorderBrush="{x:Null}" Height="60">
+            <TextBlock  Grid.Column="5" Margin="10,10,0,10" Grid.Row="1" TextWrapping="Wrap" Width="205" Padding="10" TextAlignment="Center" Text="{x:Static language:lang.wpfPCu1}" FontFamily="Arial" FontSize="11"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Border>
+
+        <Border Grid.Column="5" Grid.Row="2" Grid.RowSpan="2" BorderBrush="{x:Null}" Height="60">
+            <TextBlock Grid.Column="5" Grid.Row="2" TextWrapping="Wrap" Width="229" FontFamily="Arial" FontSize="11" Grid.RowSpan="2" VerticalAlignment="Center" Text="{x:Static language:lang.wpfPCu2}" HorizontalAlignment="Center" TextAlignment="Center"/>
+        </Border>
+        <Border Grid.Column="5" Grid.Row="4" BorderBrush="{x:Null}" Height="70">
+            <TextBlock Grid.Column="5" Grid.Row="4" TextWrapping="Wrap" TextAlignment="Center" FontFamily="Arial" FontSize="11" HorizontalAlignment="Center" Margin="0,17"><Run Text="{x:Static language:lang.wpfPCu3}"/></TextBlock>
+        </Border>
+        <Border Grid.Column="5" Grid.Row="5" BorderBrush="{x:Null}" Height="60">
+            <TextBlock Grid.Column="5" HorizontalAlignment="Center" Grid.Row="5" TextWrapping="Wrap" TextAlignment="Center" FontFamily="Arial" FontSize="11" VerticalAlignment="Center"><Run Text="{x:Static language:lang.wpfPCu4}"/></TextBlock>
+        </Border>
+       
+        <TextBox x:Name="wpfTexBoxAccell" Grid.Column="2" HorizontalAlignment="Center" Height="24" Margin="97,27,10,20" Grid.Row="1"  TextChanged="wpfTextBoxAccell_TextChanged" FontFamily="Arial" PreviewTextInput="DecimalTextBox_PreviewTextInput" TextWrapping="NoWrap" VerticalAlignment="Center" Width="118" VerticalContentAlignment="Center"/>
         <TextBlock Grid.Column="2" HorizontalAlignment="Center"  Height="15" Margin="35,31,128,25" Grid.Row="1" TextWrapping="Wrap" Text="α = αg/g&#x9;" VerticalAlignment="Center" Width="62" FontWeight="Bold" FontFamily="Arial" FontSize="13"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Center" Height="12" Margin="0,33,0,26" Grid.Row="1" TextWrapping="Wrap" Text="ZONA SISMICA" VerticalAlignment="Center" Width="113" FontFamily="Arial" FontWeight="Bold" TextAlignment="Center"/>
-        <TextBlock HorizontalAlignment="Center" Height="12" Margin="0,13,0,2" TextWrapping="Wrap" VerticalAlignment="Center" Width="338" FontFamily="Arial" FontWeight="Bold" Grid.ColumnSpan="2" Grid.Column="1"><Run Text="DEFINIZION"/><Run Text="E"/><Run Text=" ACCELLERAZION"/><Run Text="E"/><Run Text=" SISMIC"/><Run Text="A"/></TextBlock>
-        <TextBlock HorizontalAlignment="Center" Height="12" Margin="1,13,27,2" TextWrapping="Wrap" VerticalAlignment="Center" Width="338" FontFamily="Arial" FontWeight="Bold" Grid.ColumnSpan="3" Grid.Column="4"><Run Text="DEFINIZIONI "/><Run Text="CLASSE D'USO"/></TextBlock>
+        <TextBlock Grid.Column="1" HorizontalAlignment="Center" Height="12" Margin="0,33,0,26" Grid.Row="1" TextWrapping="Wrap" Text="{x:Static language:lang.wpfPZonaSismica}" VerticalAlignment="Center" Width="113" FontFamily="Arial" FontWeight="Bold" TextAlignment="Center"/>
+        <TextBlock HorizontalAlignment="Center" Height="12" Margin="0,13,0,2" TextWrapping="Wrap" VerticalAlignment="Center" Width="338" FontFamily="Arial" FontWeight="Bold" Grid.ColumnSpan="2" Grid.Column="1"><Run Text="{x:Static language:lang.wpfPDefAcc}"/></TextBlock>
+        <TextBlock HorizontalAlignment="Center" Height="12" Margin="1,13,27,2" TextWrapping="Wrap" VerticalAlignment="Center" Width="338" FontFamily="Arial" FontWeight="Bold" Grid.ColumnSpan="3" Grid.Column="4"><Run Text="{x:Static language:lang.wpfPDefCu}"/></TextBlock>
 
     </Grid>
 </Window>

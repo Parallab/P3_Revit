@@ -1,19 +1,39 @@
-﻿<Window x:Class="P3Ribbon.Scripts.GUI.Wpf_impo"
+﻿<Window     WindowStartupLocation="CenterScreen" x:Class="P3Ribbon.Scripts.GUI.Wpf_impo"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:P3Ribbon.Scripts.GUI"
+             xmlns:language="clr-namespace:P3Ribbon.Resources.Lang"
+
+        
              mc:Ignorable="d" 
-              MaxHeight="350" MaxWidth="320" MinHeight="350" MinWidth="320" Width="314" Height="332"
+              MaxHeight="450" MaxWidth="360" MinHeight="450" MinWidth="360" Width="360" Height="450"
              WindowState="Maximized" ResizeMode="CanMinimize">
-    <Grid Height="247" Margin="7,10,7,0" VerticalAlignment="Top" HorizontalAlignment="Center">
+    <Grid Height="400" Margin="19,10,14,11">
         <Grid.RowDefinitions>
-            <RowDefinition Height="11*"/>
-            <RowDefinition Height="8*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="2.5*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="9*"/>
         </Grid.RowDefinitions>
-        <TextBox Height="222" TextWrapping="Wrap" Text="L'updater è una funzione appositamente sviluppata su questo applicativo che ti permetti di creare all'interno del progetto corrnete, canali P3 già dotati di isolante e caratteristiche di fabbrica.&#xA;Questa funzione legge in backround le operazione svolte sui condotti e interviene quando ne viene creato uno nuovo, se ritieni di non aver bisogno di questa funzione o riscontri eccessivi rallentamenti nel tuo progetto puoi interrompere temporaneamente questa funzionalità" VerticalAlignment="Top" TextAlignment="Justify" Background="#3BB5CAFF" TextChanged="TextBox_TextChanged_2" FontFamily="Calibri" FontSize="14" Grid.RowSpan="2" Width="274" HorizontalAlignment="Center" Margin="0,20,0,0"/>
-        <CheckBox x:Name="CheckUpgrade" Content="Interrompi&#xD;&#xA;" HorizontalAlignment="Left" Margin="0,101,0,-17" VerticalAlignment="Top" Height="20" Width="92" Grid.Row="1" Checked="CheckBox_Checked"/>
-        <TextBlock HorizontalAlignment="Left" Margin="0,3,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="156" FontWeight="Bold"><Run Text="INTERROMP"/><Run Text="I"/><Run Text=" L'UPDATER"/></TextBlock>
+
+        <TextBlock Grid.Row="0" TextWrapping="Wrap" FontWeight="Bold" VerticalAlignment="Bottom" FontSize="14" Height="28" Background="#C9E1E4E4"><Run Text="{x:Static language:lang.wpfimpoImpostazioni}"/></TextBlock>
+
+        <Button x:Name="wpfbButtImposta" Content="{x:Static language:lang.wpfimpoImposta}" Grid.Row="2" Margin="220,44,10,4" Click="wpfbButtImposta_Click"/>
+        <TextBlock Grid.Row="1"  Text="{x:Static language:lang.wpfimpoAltezzaMax}"  TextAlignment="Justify" VerticalAlignment="Bottom" FontSize="11" />
+        <TextBlock Grid.Row="2"  TextWrapping="Wrap" Text="{x:Static language:lang.wpfimpoImpoAltezza}" TextAlignment="Justify"  
+            FontFamily="Calibri" FontSize="14" Margin="0,5,0,30" VerticalAlignment="Center" Background="#3BB5CAFF" />
+        <TextBox x:Name="wpfTexBoxDistazaMaxStaffaggio"  Grid.Row="2" FontFamily="Arial" PreviewTextInput="DecimalTextBox_PreviewTextInput" TextWrapping="NoWrap"  Margin="5,47,200,4"/>
+        <TextBlock x:Name="Units" HorizontalAlignment="Left" Height="16" Margin="121,49,0,0" Grid.Row="2" TextWrapping="Wrap" Text="Units" VerticalAlignment="Top" Width="33"/>
+        
+
+
+        <TextBlock Grid.Row="3"  Text="UPDATER" TextAlignment="Justify" VerticalAlignment="Bottom" FontSize="11" Margin="0,0,0,247" Grid.RowSpan="2" />
+      
+        <TextBlock Grid.Row="4"  TextWrapping="Wrap" Text="{x:Static language:lang.wpfImpoContent}" TextAlignment="Justify"  
+                 FontFamily="Calibri" FontSize="14" Margin="0,0,0,25" Background="#3BB5CAFF"/>
+        <CheckBox x:Name="CheckUpgrade" Content="{x:Static language:lang.wpfImpoAttivo}" Grid.Row="4" Checked="CheckBox_Checked" Unchecked="CheckUpgrade_Unchecked" Margin="0,226,0,2"/>
     </Grid>
 </Window>

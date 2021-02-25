@@ -2,8 +2,11 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="P3Ribbon.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="checkUpdateState" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+    <Setting Name="updaterAttivo" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="languageCode" Type="System.String" Scope="User">
+      <Value Profile="(Default)">it-IT</Value>
     </Setting>
   </Settings>
 </SettingsFile>

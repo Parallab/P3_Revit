@@ -1,23 +1,22 @@
-﻿//porcodioooo
+﻿
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using System;
 using System.Globalization;
 using System.Resources;
 using Autodesk.Revit.ApplicationServices;
-using System.Threading;
 using System.Collections.Generic;
 using System.Reflection;
-using System.Security.Cryptography.X509Certificates;
 using System.Windows.Media.Imaging;
-using System.Collections;
 using Autodesk.Revit.UI.Events;
 using P3Ribbon.Scripts;
 using Autodesk.Revit.DB.Events;
+using System.Threading;
+using System.IO;
+using System.Diagnostics;
 
 namespace P3Ribbon
 {
-
     class App : IExternalApplication
     {
 
@@ -33,15 +32,16 @@ namespace P3Ribbon
             ITA = 0,
             ENG = 1
         }
+        public static Lingua lingua_plugin = Lingua.ITA;
+        public static Lingua lingua_arrivo;
 
-		public static Lingua lingua_plugin;
-		//public static Lingua lingua_plugin = Lingua.ITA; // LEGGERE LINGUA REVIT!!! ocio se c è lingua tipo francese
+        public static string tabName = "P3duct𝗯𝗶𝗺";
 
-
-		public static string tabName = "P3duct𝗯𝗶𝗺"; //𝗣𝟯𝗱𝘂𝗰𝘁𝗯𝗶𝗺 𝗣𝟯𝗱𝘂𝗰𝘁bim contrario? chissà se dà problemi di compatibilità.. https://lingojam.com/BoldTextGenerator
-		public static ResourceSet res_ita = Resources.str_IT.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
-        public static ResourceSet res_eng = Resources.str_EN.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
+        public static ResourceSet res_ita = Resources.Lang.rp_ITA.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
+        public static ResourceSet res_eng = Resources.Lang.rp_ENG.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
         private object commandData;
+
+        public static DynamicModelUpdater updater;
 
         public static void LeggiLingua(ControlledApplication Capp)
         {
@@ -51,7 +51,7 @@ namespace P3Ribbon
             {
                 lingua_plugin = Lingua.ITA;
             }
-			else
+            else
             //else if (linguapartenza == LanguageType.English_GB || linguapartenza == LanguageType.English_GB)
             {
                 lingua_plugin = Lingua.ENG;
@@ -60,26 +60,26 @@ namespace P3Ribbon
 
         public static object AddRibbonPanel(UIControlledApplication a)
         {
-			
-			// Create a custom ribbon tab
-			a.CreateRibbonTab(tabName);
+
+            // Create a custom ribbon tab
+            a.CreateRibbonTab(tabName);
             // Get dll assembly path
             string thisAssemblyPath = Assembly.GetExecutingAssembly().Location;
 
-            RibbonPanel ribbonPanelModellazione = a.CreateRibbonPanel(tabName, res_valore("Modellazione"));
+
+            RibbonPanel ribbonPanelModellazione = a.CreateRibbonPanel(tabName, Res_ValoreLingua("Modellazione"));
 
             // MODELLAZIONE
             #region bottone: lingua WIP
             AggiungiSplitButtonLingua(ribbonPanelModellazione, thisAssemblyPath);
-
             #endregion
 
             #region bottone: carica libreria WIP
-            PushButtonData b9Data = new PushButtonData("cmdlibreria", "Carica" + System.Environment.NewLine + "Libreria", thisAssemblyPath, "P3Ribbon.Scripts.FinestraLibreria");
-            PushButton pb9 = ribbonPanelModellazione.AddItem(b9Data) as PushButton;
-            pb9.ToolTip = "Carica le famiglie e i materiali P3";
-            BitmapImage pb9Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Libreria_3_logoP3.png"));
-            pb9.LargeImage = pb9Image;
+            //PushButtonData b9Data = new PushButtonData("cmdlibreria", "Carica" + System.Environment.NewLine + "Libreria", thisAssemblyPath, "P3Ribbon.Scripts.FinestraLibreria");
+            //PushButton pb9 = ribbonPanelModellazione.AddItem(b9Data) as PushButton;
+            //pb9.ToolTip = "Carica le famiglie e i materiali P3";
+            //BitmapImage pb9Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Libreria_2_logoP3+ductbim.png"));
+            //pb9.LargeImage = pb9Image;
             #endregion
 
             #region bottone: canale WIP
@@ -87,9 +87,8 @@ namespace P3Ribbon
             #endregion
 
             #region Panello cambia materiale più ribbonbox
-
             ComboBoxData cbData = new ComboBoxData("Combo1");
-            PushButtonData b11Data = new PushButtonData("cmdmateriale", "Cambia" + System.Environment.NewLine + "Materiale", thisAssemblyPath,"P3Ribbon.Scripts.CambiaMateriale");
+            PushButtonData b11Data = new PushButtonData("cmdmateriale", "Cambia" + System.Environment.NewLine + "Materiale", thisAssemblyPath, "P3Ribbon.Scripts.CambiaMateriale");
 
 
             IList<RibbonItem> ItemsMateriale = ribbonPanelModellazione.AddStackedItems(b11Data, cbData);
@@ -101,10 +100,9 @@ namespace P3Ribbon
             pb11.Image = pb11Image;
             pb11.ToolTip = "Cambia il materiale dei canali P3";
 
-            rbbCboMateriali = ItemsMateriale[1] as ComboBox; 
+            rbbCboMateriali = ItemsMateriale[1] as ComboBox;
             //comboboxMembers_ribbon = rbCboMat.AddItems(Materiale.comboBoxMemberDatas);
             rbbCboMateriali.CurrentChanged += new EventHandler<Autodesk.Revit.UI.Events.ComboBoxCurrentChangedEventArgs>(comboBx_CurrentChanged);
-
             #endregion
 
 
@@ -119,10 +117,9 @@ namespace P3Ribbon
             pb5.LargeImage = pb5Image;
             #endregion
             #region bottone: elenco materiali (ex area)
-            PushButtonData b3Data = new PushButtonData("cmdAreaisolamento", "Elenco" + System.Environment.NewLine + "Materiali", thisAssemblyPath, "P3Ribbon.Scripts.ElencoMateriali");
+            PushButtonData b3Data = new PushButtonData("cmdlistamateriali", "Elenco" + System.Environment.NewLine + "Materiali", thisAssemblyPath, "P3Ribbon.Scripts.ElencoMateriali");
             PushButton pb3 = ribbonPanelQuantità.AddItem(b3Data) as PushButton;
             pb3.ToolTip = "Elenca i materiali utilizzati nei canali P3 e le relative superfici"; // DA SISTEMARE
-            //BitmapImage pb3Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_ElencoMateriali.png"));
             BitmapImage pb3Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Canale_Materiale.png"));
             pb3.LargeImage = pb3Image;
             #endregion
@@ -134,7 +131,7 @@ namespace P3Ribbon
             PushButtonData b1Data = new PushButtonData("cmdParsism", "Parametri" + System.Environment.NewLine + "  Sisimici  ", thisAssemblyPath, "P3Ribbon.ParSismici");
             PushButton pb1 = ribbonPanelSisma.AddItem(b1Data) as PushButton;
             pb1.ToolTip = "Compilazione dei parametri sismici per dimensionare le staffe dei condotti";
-            BitmapImage pb1Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/config_sism.png"));
+            BitmapImage pb1Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_SismaRosso.png"));
             pb1.LargeImage = pb1Image;
             #endregion
 
@@ -142,7 +139,7 @@ namespace P3Ribbon
             PushButtonData b2Data = new PushButtonData("cmdstaff", "Posizionamento" + System.Environment.NewLine + "Staffaggio", thisAssemblyPath, "P3Ribbon.Scripts.Staffaggio");
             PushButton pb2 = ribbonPanelSisma.AddItem(b2Data) as PushButton;
             pb2.ToolTip = "Posizionamento e dimensionamento automatico dei canali alle strutture";
-            BitmapImage pb2Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/staff.png"));
+            BitmapImage pb2Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_CanaleStaffatoRosso.png"));
             pb2.LargeImage = pb2Image;
             #endregion
 
@@ -174,7 +171,7 @@ namespace P3Ribbon
             PushButtonData b7Data = new PushButtonData("cmdquantità", "Quantità", thisAssemblyPath, "P3Ribbon.Scripts.FinestraQuantità");
             PushButton pb7 = ribbonPanelMaterialeRiciclato.AddItem(b7Data) as PushButton;
             pb7.ToolTip = "Elenca la quantità di materiale riciclato nei canali P3";
-            BitmapImage pb7Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_MatRIciclato.png"));
+            BitmapImage pb7Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_MatRIciclatoVerde.png"));
             pb7.LargeImage = pb7Image;
             #endregion
 
@@ -208,22 +205,15 @@ namespace P3Ribbon
 
 
             MigraRibbonPanelName2Titolo(a);
-
-			// il metodo è un po' stupido perchè legge quella di partenza e cambia tutto...io invece qua voglio leggere lingua di revit e compilare adegutamnete tutto...
-			LeggiLingua(a.ControlledApplication);
-			Scripts.Lingua.CambiaLingua_(a); //da lingua attuale all altra
-			Scripts.Lingua.CambiaLingua_(a); //dall altra alla lingua attuale.....
-			//
-			return Result.Succeeded;
+            return Result.Succeeded;
         }
 
         private static void comboBx_CurrentChanged(object sender, ComboBoxCurrentChangedEventArgs e)
         {
             //var debug =  rbCboMat.Current;
+            Supporto.AggiornaDoc(e.Application.ActiveUIDocument.Document);
             string nome = rbbCboMateriali.Current.Name;
-            int indice_ = nome.IndexOf("_");
             Materiale.AggiornaTendinaRibbon(nome);
-
         }
 
         static void MigraRibbonPanelName2Titolo(UIControlledApplication a)
@@ -235,85 +225,125 @@ namespace P3Ribbon
             }
         }
 
-
-        public Result OnStartup(UIControlledApplication application)
+        
+        public Result OnStartup(UIControlledApplication UiCapplication)
         {
-            //creo l'event handelr all'apertura del documento
+            Properties.Settings.Default.updaterAttivo = true;
+            Properties.Settings.Default.Save();
+
             try
-            {
-                application.ControlledApplication.DocumentOpened += new EventHandler<Autodesk.Revit.DB.Events.DocumentOpenedEventArgs>(Application_DocumentOpened);
-                application.ControlledApplication.DocumentCreated += new EventHandler<Autodesk.Revit.DB.Events.DocumentCreatedEventArgs>(Application_DocumentCreated);
+            {   //creo degli eventhandler all'aeprtura di un documento e alla creazione di uno nuovo
+                UiCapplication.ControlledApplication.DocumentOpened += new EventHandler<Autodesk.Revit.DB.Events.DocumentOpenedEventArgs>(Application_DocumentOpened);
+                UiCapplication.ControlledApplication.DocumentCreated += new EventHandler<Autodesk.Revit.DB.Events.DocumentCreatedEventArgs>(Application_DocumentCreated);
+                //application.ControlledApplication.DocumentChanged += new EventHandler<Autodesk.Revit.DB.Events.DocumentChangedEventArgs>(Application_DocumentChanged);
+                UiCapplication.ViewActivated += new EventHandler<ViewActivatedEventArgs>(OnViewActivated);
             }
             catch
             {
                 return Result.Failed;
             }
+            var langCode = Properties.Settings.Default.languageCode;
+            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(langCode);
+            AddRibbonPanel(UiCapplication);
+            UICapp = UiCapplication;
 
-
-            AddRibbonPanel(application);
-            UICapp = application;
+            Supporto.ActiveAddInId = UiCapplication.ActiveAddInId;
             //attiva i registri all'avvio di revit
-            Scripts.DynamicModelUpdater updater = new Scripts.DynamicModelUpdater(application.ActiveAddInId);
-            UpdaterRegistry.RegisterUpdater(updater);
-            LogicalOrFilter f = Scripts.Supporto.CatFilterDuctAndFitting;
-            UpdaterRegistry.AddTrigger(updater.GetUpdaterId(), f, Element.GetChangeTypeElementAddition());
-
+            //updater = new DynamicModelUpdater(application.ActiveAddInId);
+            //UpdaterRegistry.RegisterUpdater(updater, true);
+            //LogicalOrFilter f = Supporto.CatFilterDuctAndFitting;
+            //UpdaterRegistry.AddTrigger(updater.GetUpdaterId(), f, Element.GetChangeTypeElementAddition());
+            UpdaterAccendi();
+            ResourceManager rm = new ResourceManager("items", Assembly.GetExecutingAssembly());
             return Result.Succeeded;
-
-
         }
 
+        public static void UpdaterAccendi()
+        {
+            App.updater = new DynamicModelUpdater(Supporto.ActiveAddInId);
+            UpdaterRegistry.RegisterUpdater(updater, true);
+            LogicalOrFilter f = Supporto.CatFilterDuctAndFitting;
+            UpdaterRegistry.AddTrigger(updater.GetUpdaterId(), f, Element.GetChangeTypeElementAddition());
+        }
 
 
         public Result OnShutdown(UIControlledApplication application)
         {
-            Scripts.DynamicModelUpdater updater = new Scripts.DynamicModelUpdater(application.ActiveAddInId);
+            //DynamicModelUpdater updater = new DynamicModelUpdater(application.ActiveAddInId);
             UpdaterRegistry.UnregisterUpdater(updater.GetUpdaterId());
+
             application.ControlledApplication.DocumentOpened -= new EventHandler<Autodesk.Revit.DB.Events.DocumentOpenedEventArgs>(App.Application_DocumentOpened);
             return Result.Succeeded;
         }
 
 
-        public static  void Application_DocumentOpened(object sender, Autodesk.Revit.DB.Events.DocumentOpenedEventArgs args)
+        public static void Application_DocumentOpened(object sender, Autodesk.Revit.DB.Events.DocumentOpenedEventArgs args)
         {
             Document doc = args.Document;
-            Application app = doc.Application;
-            Supporto.doc = doc; // SPERIAMO CHE CI RISOLVA TUTTI I PROBLEMI DEL MONDO
-            Supporto.app = app;
+            Supporto.AggiornaDoc(doc);            
+            //Application app = doc.Application;
+            //Supporto.doc = doc; // SPERIAMO CHE CI RISOLVA TUTTI I PROBLEMI DEL MONDO
+            //Supporto.app = app;
             try
             {
                 Materiale.PreAggiorna(doc);
-                ribbCboMembers = rbbCboMateriali.AddItems(Materiale.comboBoxMemberDatas);
-            }
-            catch (Exception ex)
-            {
-               // throw;
-            }
-
-
-        }
-
-        private void Application_DocumentCreated(object sender, DocumentCreatedEventArgs e)
-        {
-            Document doc = e.Document;
-            Application app = doc.Application;
-            Supporto.doc = doc; // SPERIAMO CHE CI RISOLVA TUTTI I PROBLEMI DEL MONDO
-            Supporto.app = app;
-            //lascio cmq quanto segue perche anche se è un fil enuovo magari uso come template qualcosa ocn già i materiali P3 e quindi devo controllarli e compilare i combobox vari:
-            try
-            {
-                Materiale.PreAggiorna(doc);
-                ribbCboMembers = rbbCboMateriali.AddItems(Materiale.comboBoxMemberDatas);
+                if (rbbCboMateriali.GetItems().Count == 0)
+                {
+                    ribbCboMembers = rbbCboMateriali.AddItems(Materiale.comboBoxMemberDatas);
+                }
             }
             catch (Exception ex)
             {
                 //throw;
             }
+
+
         }
 
-        public static string res_valore(string Var, Lingua l)
-        {
 
+        private void Application_DocumentCreated(object sender, DocumentCreatedEventArgs args)
+        {
+            
+            Document doc = args.Document;
+            Supporto.AggiornaDoc(doc);
+            //Application app = doc.Application;
+            //Supporto.doc = doc; // SPERIAMO CHE CI RISOLVA TUTTI I PROBLEMI DEL MONDO
+            //Supporto.app = app;
+            //lascio cmq quanto segue perche anche se è un fil enuovo magari uso come template qualcosa ocn già i materiali P3 e quindi devo controllarli e compilare i combobox vari:
+            try
+            {
+                Materiale.PreAggiorna(doc);
+                if (rbbCboMateriali.GetItems().Count == 0)
+                { 
+                    ribbCboMembers = rbbCboMateriali.AddItems(Materiale.comboBoxMemberDatas); 
+                }
+            }
+            catch (Exception ex)
+            {
+                //throw;
+            }
+
+        }
+
+        private void Application_DocumentChanged(object sender, DocumentChangedEventArgs args)
+        { 
+           //Supporto.AggiornaDoc(args.GetDocument());
+           //Supporto.doc = args.GetDocument();
+        }
+   
+        void OnViewActivated(
+          object sender,
+          ViewActivatedEventArgs e)
+        {
+            View vPrevious = e.PreviousActiveView;
+            View vCurrent = e.CurrentActiveView;
+
+            Document doc = vCurrent.Document;
+            Supporto.AggiornaDoc(doc);
+        }
+
+        public static string Res_ValoreLingua(string Var, Lingua l)
+        {
             ResourceSet rs = null;
             if (l == Lingua.ITA)
             {
@@ -323,40 +353,49 @@ namespace P3Ribbon
             {
                 rs = res_eng;
             }
-
             return rs.GetObject(Var).ToString();
         }
 
-        public static string res_valore(string Var)
+        public static string Res_ValoreLingua(string Var)
         {
             //ricordarsi di modificare nel caso di altra lingua
             //all'accensione!
-            ResourceSet rs = Resources.str_IT.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
+            ResourceSet rs = Resources.Lang.rp_ITA.ResourceManager.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
             return rs.GetObject(Var).ToString();
 
         }
 
+
+
         private static void AggiungiSplitButtonLingua(RibbonPanel rp, string Assemblypath)
         {
-            PushButtonData sb1BOne = new PushButtonData("cmdLinguaIT", "Italiano", Assemblypath, "P3Ribbon.Scripts.Lingua");
-            sb1BOne.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_LinguaItaliana.png"));
+            PushButtonData sb1One = new PushButtonData("cmdCaricaLibreria", "Carica Libreria", Assemblypath, "P3Ribbon.Scripts.FinestraLibreria");
+            sb1One.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Libreria_3_logoP3.png"));
+            sb1One.ToolTip = "Carica le famiglie e i materiali P3";
 
-            PushButtonData sb1BTwo = new PushButtonData("cmdLinguaENG", "Inglese", Assemblypath, "P3Ribbon.Scripts.Lingua");
-            sb1BTwo.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_LinguaInglese.png"));
+            PushButtonData sb1Two = new PushButtonData("cmdLinguaIT", "Italiano", Assemblypath, "P3Ribbon.Scripts.LinguaItaliano");
+            sb1Two.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_LinguaItaliana.png"));
+
+            PushButtonData sb1Three = new PushButtonData("cmdLinguaENG", "Inglese", Assemblypath, "P3Ribbon.Scripts.LinguaInglese");
+            sb1Three.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_LinguaInglese.png"));
 
             SplitButtonData sbd1 = new SplitButtonData("splitButtonLingua", "Split");
+            
             sb1 = rp.AddItem(sbd1) as SplitButton;
-            sb1.AddPushButton(sb1BOne);
-            sb1.AddPushButton(sb1BTwo);
+            sb1.IsSynchronizedWithCurrentItem = false;
+            sb1.AddPushButton(sb1One);
+            sb1.AddPushButton(sb1Two);
+            sb1.AddPushButton(sb1Three);
 
+          
         }
         private static void AggiungiSplitButtonCanale(RibbonPanel rp, string Assemblypath)
         {
-            PushButtonData sb2BOne = new PushButtonData("cmdcanaledinamico", "Canale" + System.Environment.NewLine + "Dinamico", Assemblypath, "P3Ribbon.Scripts.CreaCanaleDinamico");
+            PushButtonData sb2BOne = new PushButtonData("cmdcanaledinamico", "Canale", Assemblypath, "P3Ribbon.Scripts.CreaCanaleDinamico");
             sb2BOne.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Canale.png"));
             sb2BOne.ToolTip = "Crea un condotto di tipo: Dinamico";
 
-            PushButtonData sb2BTwo = new PushButtonData("cmdcanalescarpette", "Canale" + System.Environment.NewLine + "Scarpette", Assemblypath, "P3Ribbon.Scripts.CreaCanaleScarpette");
+            PushButtonData sb2BTwo = new PushButtonData("cmdcanalescarpette", "Stacco a" + System.Environment.NewLine + "Scarpetta", Assemblypath, "P3Ribbon.Scripts.CreaCanaleScarpette");
             sb2BTwo.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Canale.png"));
             sb2BTwo.ToolTip = "Crea un condotto di tipo: Scarpette";
 
@@ -368,13 +407,13 @@ namespace P3Ribbon
         }
         private static void AggiungiSplitButtonElencostaff(RibbonPanel rp, string Assemblypath)
         {
-            PushButtonData sb3BOne = new PushButtonData("cmdstaff", "Elenco" + System.Environment.NewLine + "Staffaggio", Assemblypath, "P3Ribbon.Scripts.ElencoStaffaggio");
-            sb3BOne.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_ElencoStaffaggio.png"));
-            sb3BOne.ToolTip = "Elenca i componenti P3";
+            PushButtonData sb3BOne = new PushButtonData("cmdelencostaffaggi", "Elenco" + System.Environment.NewLine + "Staffaggio", Assemblypath, "P3Ribbon.Scripts.ElencoStaffaggio");
+            sb3BOne.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_ElencoStaffaggio_Rosso.png"));
+            sb3BOne.ToolTip = "Elenca gli staffaggi utilizzati e la relativa componentistica";
 
             PushButtonData sb3BTwo = new PushButtonData("cmdelencopunti", "Elenco" + System.Environment.NewLine + "Punti", Assemblypath, "P3Ribbon.Scripts.ElencoPunti");
-            sb3BTwo.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_ElencoStaffaggio.png"));
-            sb3BTwo.ToolTip = "Elenca gli staffaggi utilizzati e la relativa componentistica";
+            sb3BTwo.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_ElencoStaffaggio_Rosso.png"));
+            sb3BTwo.ToolTip = "Elenca i componenti P3";
 
             SplitButtonData sbd3 = new SplitButtonData("splitButtonElencoStaffaggio", "Split");
             SplitButton sb3 = rp.AddItem(sbd3) as SplitButton;

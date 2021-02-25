@@ -31,25 +31,37 @@ namespace P3Ribbon.Scripts.GUI
             {
                 t.Start();
                 
-                    MigraAreaIsolamento.MigraParaetriIsolamento(m_doc);
+               MigraAreaIsolamento.MigraParaetriIsolamento(m_doc);
                 
                 t.Commit();
             }
-            
+
             LeggoAbacoQuantità();
             InitializeComponent();
         }
      
         private void LeggoAbacoQuantità()
         {
-            ViewSchedule AbacoQuantità = new FilteredElementCollector(m_doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.Name  == "P3 - Duct Insulation Schedule - DYNAMO") as ViewSchedule;
+            string nome_abaco = "P3 - Duct Insulation Recycled Schedule - PLUGIN - ITA";
+            //if (App.lingua_plugin == App.Lingua.ITA)
+            //{
+            //    nome_abaco += " - ITA";
+            //}
+            //else
+            //{
+            //    nome_abaco += " - ENG";
+            //}
+            //
+
+            ViewSchedule AbacoQuantità = new FilteredElementCollector(m_doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.LookupParameter("P3_Nome_i").AsString() == nome_abaco) as ViewSchedule;
+            
+            //filtro per nome dell'abaco e non per il parametro nascosto
+            //ViewSchedule AbacoQuantità = new FilteredElementCollector(m_doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.Name  == "P3 - Duct Insulation Schedule - PLUGIN - ITA") as ViewSchedule;
 
             TableData table = AbacoQuantità.GetTableData();
             TableSectionData section = table.GetSectionData(SectionType.Body);
             int nRows = section.NumberOfRows;
             int nColumns = section.NumberOfColumns;
-
-        
            
             int ir = 0;
             int cr = nColumns;
@@ -62,18 +74,12 @@ namespace P3Ribbon.Scripts.GUI
               
                 for (int j = 0; j < nColumns; j++)
                 {
-
                     rowData.Add(AbacoQuantità.GetCellText(SectionType.Body, i, j));
-
                 }
                     scheduleData.Add(rowData);
-
             }
 
-           int iTipo = scheduleData[0].FindIndex(x => x == "Type");
-           //int iPesoSchiuma = scheduleData[0].FindIndex(x => x == "Peso schiuma totale");
-           //int iPesoPannelli =  scheduleData[0].FindIndex(x => x == "Peso pannello totale"); 
-           //int iPesoMatRiciclato = scheduleData[0].FindIndex(x => x == "Peso materiale riciclato"); perchè mi da indice -1??
+           int iTipo = scheduleData[0].FindIndex(x => x == "Materiale");
 
             int iPesoMatRiciclato = 0;
             for (int i = 0; i < scheduleData[0].Count ; i++)
@@ -84,9 +90,7 @@ namespace P3Ribbon.Scripts.GUI
                     break;
                 }
             }
-          
-            
-            
+
             for (int i_r =3; i_r < scheduleData.Count; i_r++)
             {
                 List<string> riga = scheduleData[i_r];
@@ -121,13 +125,27 @@ namespace P3Ribbon.Scripts.GUI
         {
             this.Close();
 
-            ViewSchedule viewSchedule = new FilteredElementCollector(m_doc).OfClass(typeof(ViewSchedule)).FirstOrDefault
-                (x => x.Name == "P3 - Duct Insulation Schedule - DYNAMO") as ViewSchedule;
-           
+            //ViewSchedule viewSchedule = new FilteredElementCollector(m_doc).OfClass(typeof(ViewSchedule)).FirstOrDefault
+            //    //filtro per nome dell'abaco e non per il parametro nascosto
+            //    (x => x.Name == "P3 - Duct Insulation Schedule - PLUGIN") as ViewSchedule;
+
+            string nome_abaco = "P3 - Duct Insulation Recycled Schedule - PLUGIN";
+            if (App.lingua_plugin == App.Lingua.ITA)
+            {
+                nome_abaco += " - ITA";
+            }
+            else
+            {
+                nome_abaco += " - ENG";
+            }
+            ViewSchedule viewSchedule = new FilteredElementCollector(m_doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.LookupParameter("P3_Nome_i").AsString() == nome_abaco) as ViewSchedule;
+
+
             m_uidoc.ActiveView = viewSchedule;
             
 
         }
+
     }
 
 }

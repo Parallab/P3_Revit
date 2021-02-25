@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="bottAnnulla" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="bottCaricaLibreria" xml:space="preserve">
+    <value>Load Library</value>
+  </data>
+  <data name="bottScegliMateriale" xml:space="preserve">
+    <value>Choose Material</value>
+  </data>
+  <data name="formMateriale" xml:space="preserve">
+    <value>Marterial</value>
+  </data>
+  <data name="fromDettagli" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="selSelezionaIsolanti" xml:space="preserve">
+    <value />
+  </data>
+  <data name="taskdAbachiCaricare" xml:space="preserve">
+    <value>This schedule is not present in the project, load the library first</value>
+  </data>
+  <data name="taskdAbachiNoPresenti" xml:space="preserve">
+    <value>Schedules not included in the project</value>
+  </data>
+  <data name="taskdErrore" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="taskdIsolMancanti" xml:space="preserve">
+    <value>Missing insulation</value>
+  </data>
+  <data name="taskdNonCiSonoIsol" xml:space="preserve">
+    <value>There are no isolations in this project</value>
+  </data>
+  <data name="taskdP3StaffCan" xml:space="preserve">
+    <value>P3 duct clamping</value>
+  </data>
+  <data name="taskdParametriNonInseriti" xml:space="preserve">
+    <value>Seismic parameters not included in the project</value>
+  </data>
+  <data name="taskdParametroIsolanteInserire" xml:space="preserve">
+    <value>A parameter associated with the isolation does not exist, add it to the current project?</value>
+  </data>
+  <data name="taskdParametrononEsistente" xml:space="preserve">
+    <value>Associated parameter does not exist</value>
+  </data>
+  <data name="taskdParamInserirli" xml:space="preserve">
+    <value>Seismic parameters not included in the project, enter the seismic parameters?</value>
+  </data>
+  <data name="taskdSelezCondottiManual" xml:space="preserve">
+    <value>Manually select ducts from a view</value>
+  </data>
+  <data name="taskdSelezionareMod" xml:space="preserve">
+    <value>Select the input mode</value>
+  </data>
+  <data name="taskdSelezTuttiCondotti" xml:space="preserve">
+    <value>Select all of the ducts in the current Revit project</value>
+  </data>
+  <data name="taskdStaffeCaricarle" xml:space="preserve">
+    <value>The brackets are not loaded into the project, load the library first</value>
+  </data>
+  <data name="taskdStaffeNonInserite" xml:space="preserve">
+    <value>Brackets not included in the project</value>
+  </data>
+  <data name="taskdSì" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="taskdTipiCanaleCaricare" xml:space="preserve">
+    <value>Types of ducts not included in the project, load the library first</value>
+  </data>
+  <data name="taskdTipiNonPresenti" xml:space="preserve">
+    <value>Types of ducts not included in the project</value>
+  </data>
+  <data name="Temporary" xml:space="preserve">
+    <value>Temporary: e.g. Agricultural buildings</value>
+  </data>
+  <data name="wpfImpAttivo" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="wpfimpoAltezzaMax" xml:space="preserve">
+    <value>MAXIMUM CLAMPING HEIGHT</value>
+  </data>
+  <data name="wpfImpoAttivo" xml:space="preserve">
+    <value>Active</value>
+  </data>
+  <data name="wpfImpoContent" xml:space="preserve">
+    <value>The updater is a function specially developed on this application that allows you to create P3 channels already equipped with insulation and factory characteristics within the current project.
+
+This function reads the operations carried out on the ducts in the back and intervenes when a new one is created, if you think you do not need this function or you encounter excessive slowdowns in your project you can temporarily stop this functionality</value>
+  </data>
+  <data name="wpfimpoImpoAltezza" xml:space="preserve">
+    <value>Sets the maximum height for which duct clamping is required</value>
+  </data>
+  <data name="wpfimpoImposta" xml:space="preserve">
+    <value>Set</value>
+  </data>
+  <data name="wpfimpoImpostazioni" xml:space="preserve">
+    <value>PLUGIN SETTINGS</value>
+  </data>
+  <data name="wpfLChiusura" xml:space="preserve">
+    <value>Endcap</value>
+  </data>
+  <data name="wpfLDerivazioneaIncrocio" xml:space="preserve">
+    <value>Reduction with 2 elbows</value>
+  </data>
+  <data name="wpfLDerivazioneaY" xml:space="preserve">
+    <value>Double elbow</value>
+  </data>
+  <data name="wpfLDerivazioneLaterale" xml:space="preserve">
+    <value>Reduction with elbows</value>
+  </data>
+  <data name="wpfLDerivazioneT" xml:space="preserve">
+    <value>T connector</value>
+  </data>
+  <data name="wpfLGomito" xml:space="preserve">
+    <value>Elbow</value>
+  </data>
+  <data name="wpfLRiduzioneCostante" xml:space="preserve">
+    <value>Simple reduction</value>
+  </data>
+  <data name="wpfLRiduzioneVariabile" xml:space="preserve">
+    <value>Full reduction</value>
+  </data>
+  <data name="wpfPCu1" xml:space="preserve">
+    <value>Temporary: e.g. Agricultural buildings</value>
+  </data>
+  <data name="wpfPCu2" xml:space="preserve">
+    <value>Lightly crowded: e.g. Offices</value>
+  </data>
+  <data name="wpfPCu3" xml:space="preserve">
+    <value>Crowded: e.g. Malls</value>
+  </data>
+  <data name="wpfPCu4" xml:space="preserve">
+    <value>Strategic and crowded: e.g. Hospitals</value>
+  </data>
+  <data name="wpfPDefAcc" xml:space="preserve">
+    <value>DEFINITION OF SEISMIC ACCELERATION</value>
+  </data>
+  <data name="wpfPDefCu" xml:space="preserve">
+    <value>DEFINITION USE CLASS</value>
+  </data>
+  <data name="wpfPrbpCaricareMat" xml:space="preserve">
+    <value>Load the library before choosing the material</value>
+  </data>
+  <data name="wpfPSism1" xml:space="preserve">
+    <value>PGA &gt; 0.25g</value>
+  </data>
+  <data name="wpfPSism2" xml:space="preserve">
+    <value>0.15g &lt; PGA ≤ 0.25g</value>
+  </data>
+  <data name="wpfPSism3" xml:space="preserve">
+    <value>0.05g &lt; PGA ≤ 0.15g</value>
+  </data>
+  <data name="wpfPSism4" xml:space="preserve">
+    <value>PGA ≤ 0.05g</value>
+  </data>
+  <data name="wpfPz1" xml:space="preserve">
+    <value>ZONE 1</value>
+  </data>
+  <data name="wpfPz2" xml:space="preserve">
+    <value>ZONE 2</value>
+  </data>
+  <data name="wpfPz3" xml:space="preserve">
+    <value>ZONE 3</value>
+  </data>
+  <data name="wpfPz4" xml:space="preserve">
+    <value>ZONE 4</value>
+  </data>
+  <data name="wpfPZonaSismica" xml:space="preserve">
+    <value>SEISMIC ZONE</value>
+  </data>
+</root>

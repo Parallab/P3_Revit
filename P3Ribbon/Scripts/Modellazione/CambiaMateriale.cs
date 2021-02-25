@@ -17,9 +17,10 @@ namespace P3Ribbon.Scripts
     [Transaction(TransactionMode.Manual)]
     class CambiaMateriale : IExternalCommand
     {
-        string msg = "Seleziona i canali a cui cambiare isolante";
+        string msg = P3Ribbon.Resources.Lang.lang.selSelezionaIsolanti;
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
+
 
             UIApplication uiApp = commandData.Application;
             UIDocument uiDoc = uiApp.ActiveUIDocument;
@@ -29,10 +30,14 @@ namespace P3Ribbon.Scripts
             List<ElementId> InsulationTypeIds;
             double spiso = Materiale.SpessoreIsolante;
 
+            Supporto.AggiornaDoc(doc);
+
             ISelectionFilter selFilterdc = new FiltraCondotti();
             IList<ElementId> selDuctids = Seleziona(uiDoc, msg, selFilterdc);
 
             InsulationTypeIds = (List<ElementId>)new FilteredElementCollector(doc).WhereElementIsNotElementType().OfCategory(BuiltInCategory.OST_DuctInsulations).ToElementIds();
+
+           
 
             using (Transaction t = new Transaction(doc, "Cambia spessore isolante"))
             {
@@ -51,7 +56,7 @@ namespace P3Ribbon.Scripts
                             try
                             {
                                 doc.GetElement(insId).get_Parameter(BuiltInParameter.RBS_INSULATION_THICKNESS_FOR_DUCT).Set(spiso);
-                                doc.GetElement(insId).ChangeTypeId(Scripts.Materiale.IdInsulTipoPreferito);
+                                doc.GetElement(insId).ChangeTypeId(Materiale.IdInsulTipoPreferito);
                             }
                             catch(System.Exception ex)
                             {
@@ -115,7 +120,14 @@ namespace P3Ribbon.Scripts
             //altrimenti richiedo di selezionare da schermo
             else
             {
-                sel = uiDoc.Selection.PickElementsByRectangle(_filtro, msg).Select(e => e.Id).ToList();
+                try
+                {
+                    sel = uiDoc.Selection.PickElementsByRectangle(_filtro, msg).Select(e => e.Id).ToList();
+                }
+                catch
+                {
+
+                }
             }
             return sel;
         }

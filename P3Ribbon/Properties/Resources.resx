@@ -118,12 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Annotazione 2020-08-04 145532" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Annotazione 2020-08-04 145532.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Annotazione 2020-08-04 1455321" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Annotazione 2020-08-04 1455321.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="Code 804 - 3D insulated1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Code 804 - 3D insulated.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
