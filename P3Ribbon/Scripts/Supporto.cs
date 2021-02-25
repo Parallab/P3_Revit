@@ -21,6 +21,7 @@ namespace P3Ribbon.Scripts
             Supporto.app = _doc.Application;
         }
 
+      
         public static LogicalOrFilter CatFilter(bool insul_or_racc)
         {
             IList<ElementFilter> catfilters = new List<ElementFilter>();
@@ -246,13 +247,19 @@ namespace P3Ribbon.Scripts
                 t.Start();
                 doc.Regenerate();
                 Autodesk.Revit.DB.View CurrView = doc.ActiveView;
+                ViewType viewType = CurrView.ViewType;
+
                 IList<UIView> UlViews = uiDoc.GetOpenUIViews();
                 if (UlViews.Count > 1)
                 {
-                    foreach (UIView pView in UlViews)
+                    if (viewType == ViewType.Schedule)
                     {
-                        if (pView.ViewId.IntegerValue == CurrView.Id.IntegerValue)
+                    foreach (UIView pView in UlViews)
+                    { 
+                        
+                        if (pView.ViewId.IntegerValue == CurrView.Id.IntegerValue)                            
                             pView.Close();
+                    }
                     }
                 }
                 t.Commit();

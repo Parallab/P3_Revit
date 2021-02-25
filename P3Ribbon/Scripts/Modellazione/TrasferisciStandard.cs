@@ -85,7 +85,6 @@ namespace P3Ribbon.Scripts
             CopyPasteOptions option = new CopyPasteOptions();
             option.SetDuplicateTypeNamesHandler(new HideAndAcceptDuplicateTypeNamesHandler());
 
-
             foreach (ElementType type in collTipiRisorsa)
             {
                 try

@@ -286,6 +286,15 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
+        ///   Cerca una stringa localizzata simile a ALTEZZA MASSIMA DI STAFFAGGIO.
+        /// </summary>
+        public static string wpfimpoAltezzaMax {
+            get {
+                return ResourceManager.GetString("wpfimpoAltezzaMax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Cerca una stringa localizzata simile a Attivo.
         /// </summary>
         public static string wpfImpoAttivo {
@@ -302,6 +311,24 @@ namespace P3Ribbon.Resources.Lang {
         public static string wpfImpoContent {
             get {
                 return ResourceManager.GetString("wpfImpoContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Imposta l&apos;altezza massima per la quale è necessario lo staffaggio dei condotti.
+        /// </summary>
+        public static string wpfimpoImpoAltezza {
+            get {
+                return ResourceManager.GetString("wpfimpoImpoAltezza", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Imposta.
+        /// </summary>
+        public static string wpfimpoImposta {
+            get {
+                return ResourceManager.GetString("wpfimpoImposta", resourceCulture);
             }
         }
         

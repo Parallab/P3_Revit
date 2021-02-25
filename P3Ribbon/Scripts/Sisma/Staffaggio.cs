@@ -22,6 +22,8 @@ namespace P3Ribbon.Scripts
         public static List<Element> dclist = new List<Element>();
         public static List<Condotto> condotti = new List<Condotto>();
         public bool Parametri_presenti = false;
+
+        
         public static double offset_iniz_cm { get;set;} = 10;
         
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
@@ -210,6 +212,7 @@ namespace P3Ribbon.Scripts
         }
         public static List<XYZ> coordinate = new List<XYZ>();
 
+
         public void AttivaFamiglia(Document doc)
         {
             Element StaffaP3 = new FilteredElementCollector(doc).OfClass(typeof(FamilySymbol)).FirstOrDefault(x => x.Name == "P3_DuctHanger");
@@ -226,6 +229,7 @@ namespace P3Ribbon.Scripts
     {
         public Element el;
         public ElementId Id;
+        public static double AltezzaStaffaggio { get; set; } = UnitUtils.ConvertToInternalUnits(2, DisplayUnitType.DUT_METERS);
         double spiso {get; set;} = 0;
         double spiso_IM {get; set;} = 0;
         double alt {get; set;} =0;
@@ -429,7 +433,7 @@ namespace P3Ribbon.Scripts
             }
 
             Category p_cat = doc.Settings.Categories.get_Item(BuiltInCategory.OST_Floors);
-
+            
             ElementCategoryFilter filter = new ElementCategoryFilter(BuiltInCategory.OST_Floors);
             ReferenceIntersector ri = new ReferenceIntersector(filter, FindReferenceTarget.All, view3d);
             //beccami anche i modelli linkati
@@ -439,17 +443,27 @@ namespace P3Ribbon.Scripts
             {
                 ReferenceWithContext _ref = ri.FindNearest(pt, XYZ.BasisZ);
 
+
                 if (_ref == null)
                 {
                     ptspavimenti.Add(null);
                 }
                 else
                 {
-                    Reference refel = _ref.GetReference();
-                    //RevitLinkInstance linkinstance = (RevitLinkInstance)doc.GetElement(refel.ElementId); //non serve
-                    XYZ refp = refel.GlobalPoint;
-                    ptspavimenti.Add(refp);
+                    if (_ref.Proximity < AltezzaStaffaggio)
+                    {
+                        Reference refel = _ref.GetReference();
+
+                        XYZ refp = refel.GlobalPoint;
+                        ptspavimenti.Add(refp);
+                    }
+                    else
+                    {
+                        ptspavimenti.Add(null);
+                    }
                 }
+
+              
             }
         }
 

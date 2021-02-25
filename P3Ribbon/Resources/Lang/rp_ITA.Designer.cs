@@ -200,7 +200,7 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Elenca i componenti P3.
+        ///   Cerca una stringa localizzata simile a Elenca i punti di staffaggio.
         /// </summary>
         public static string cmdelencopunti_tt {
             get {

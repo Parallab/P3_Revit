@@ -195,6 +195,9 @@
   <data name="wpfImpAttivo" xml:space="preserve">
     <value>Active</value>
   </data>
+  <data name="wpfimpoAltezzaMax" xml:space="preserve">
+    <value>MAXIMUM CLAMPING HEIGHT</value>
+  </data>
   <data name="wpfImpoAttivo" xml:space="preserve">
     <value>Active</value>
   </data>
@@ -202,6 +205,12 @@
     <value>The updater is a function specially developed on this application that allows you to create P3 channels already equipped with insulation and factory characteristics within the current project.
 
 This function reads the operations carried out on the ducts in the back and intervenes when a new one is created, if you think you do not need this function or you encounter excessive slowdowns in your project you can temporarily stop this functionality</value>
+  </data>
+  <data name="wpfimpoImpoAltezza" xml:space="preserve">
+    <value>Sets the maximum height for which duct clamping is required</value>
+  </data>
+  <data name="wpfimpoImposta" xml:space="preserve">
+    <value>Set</value>
   </data>
   <data name="wpfimpoImpostazioni" xml:space="preserve">
     <value>PLUGIN SETTINGS</value>

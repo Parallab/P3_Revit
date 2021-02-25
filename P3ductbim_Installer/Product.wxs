@@ -106,7 +106,7 @@
         <File Id="P3_InstallerResources_P3___Duct_system_template20.rte" Name="P3 - Duct system template20.rte" Source="$(var.P3Ribbon.TargetDir)P3_InstallerResources\P3 - Duct system template20.rte" />
       </Component>
       <Component Id="P3_InstallerResources_P3_ParamCondivisi.txt.txt" Guid="df6a1ccb-c998-4a3a-9440-6dab552cceeb" Directory="P3_InstallerResources">
-        <File Id="P3_InstallerResources_P3_ParamCondivisi.txt.txt" Name="P3_ParamCondivisi.txt.txt" Source="$(var.P3Ribbon.TargetDir)P3_InstallerResources\P3_ParamCondivisi.txt.txt" />
+        <File Id="P3_InstallerResources_P3_ParamCondivisi.txt.txt" Name="P3_ParamCondivisi.txt" Source="$(var.P3Ribbon.TargetDir)P3_InstallerResources\P3_ParamCondivisi.txt" />
       </Component>
       <Component Id="P3_InstallerResources_P3_TabelleDiPredimensionamento.txt" Guid="f30e76d8-bc80-4dea-a6cb-42ac1939d145" Directory="P3_InstallerResources">
         <File Id="P3_InstallerResources_P3_TabelleDiPredimensionamento.txt" Name="P3_TabelleDiPredimensionamento.txt" Source="$(var.P3Ribbon_TargetDir)P3_InstallerResources\P3_TabelleDiPredimensionamento.txt" />
