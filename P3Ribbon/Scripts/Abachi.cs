@@ -34,62 +34,18 @@ namespace P3Ribbon.Scripts
             else
             {
                 TaskDialog td = new TaskDialog(P3Ribbon.Resources.Lang.lang.taskdErrore);
-
                 td.MainInstruction = P3Ribbon.Resources.Lang.lang.taskdAbachiNoPresenti;
-
                 td.MainContent = P3Ribbon.Resources.Lang.lang.taskdAbachiCaricare;
                 TaskDialogResult result = td.Show();
 
                 GUI.Wpf_Libreria wpf = new GUI.Wpf_Libreria(commandData);
                 using (wpf)
                 {
-
-                    //using (var t = new Transaction(doc, "FinestraInfo"))
-                    //{
-                    //t.Start();
                     wpf.ShowDialog();
-                    //    t.Commit();
-                    //}
-
                     Supporto.ChiudiFinestraCorrente(uiDoc);
                 }
             }
             return Result.Succeeded;
-
-            #region TEST CREO UN NUOVO ABACO
-            //TEST CREO UN NUOVO ABACO///
-            //Transaction trans = new Transaction(doc, "ExComm");
-            //trans.Start();
-
-            //ViewSchedule vs = ViewSchedule.
-            //Schedule(doc, new ElementId(BuiltInCategory.INVALID));
-            //vs.Name = "ElencoPezzi";
-
-            //doc.Regenerate();
-            #endregion
-
-
-            #region TEST LEGGO ABACO ABACO   
-            //ViewSchedule viewSchedule = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault() as ViewSchedule;
-
-            //TableData table = viewSchedule.GetTableData();
-            //TableSectionData section = table.GetSectionData(SectionType.Body);
-            //int nRows = section.NumberOfRows;
-            //int nColumns = section.NumberOfColumns;
-
-            //List<List<string>> scheduleData = new List<List<string>>();
-            //for (int i = 0; i < nRows; i++)
-            //{
-            //    List<string> rowData = new List<string>();
-
-            //    for (int j = 0; j < nColumns; j++)
-            //    {
-            //        rowData.Add(viewSchedule.GetCellText(SectionType.Body, i, j));
-            //    }
-            //    scheduleData.Add(rowData);
-            //}
-            #endregion
-
         }
     }
 
@@ -158,7 +114,6 @@ namespace P3Ribbon.Scripts
             {
                 nome_abaco += " - ENG";
             }
-            //
 
             if (Supporto.ControllaAbachiP3Presenti(nome_abaco))
             {
@@ -218,7 +173,6 @@ namespace P3Ribbon.Scripts
             {
                 nome_abaco += " - ENG";
             }
-            //
             if (Supporto.ControllaAbachiP3Presenti(nome_abaco))
             {
                 ViewSchedule vistaAbacoP3staff = new FilteredElementCollector(doc).OfClass(typeof(ViewSchedule)).FirstOrDefault(x => x.LookupParameter("P3_Nome_i").AsString() == nome_abaco) as ViewSchedule;
