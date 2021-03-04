@@ -247,7 +247,7 @@ Staffaggio</value>
   <data name="Informazioni" xml:space="preserve">
     <value>Info</value>
   </data>
-  <data name="Materiale Riciclato" xml:space="preserve">
+  <data name="MaterialeRiciclato" xml:space="preserve">
     <value>Materiale Riciclato</value>
   </data>
   <data name="Modellazione" xml:space="preserve">
@@ -258,5 +258,29 @@ Staffaggio</value>
   </data>
   <data name="Sisma" xml:space="preserve">
     <value>Sisma</value>
+  </data>
+  <data name="Libreria_3" xml:space="preserve">
+    <value>Riduzione con 2 curve</value>
+  </data>
+  <data name="Libreria_Curva" xml:space="preserve">
+    <value>Curva</value>
+  </data>
+  <data name="Libreria_Fondello" xml:space="preserve">
+    <value>Fondello</value>
+  </data>
+  <data name="Libreria_L" xml:space="preserve">
+    <value>Riduzione con curva</value>
+  </data>
+  <data name="Libreria_Rid1" xml:space="preserve">
+    <value>Riduzione semplice</value>
+  </data>
+  <data name="Libreria_Rid2" xml:space="preserve">
+    <value>Riduzione completa</value>
+  </data>
+  <data name="Libreria_T" xml:space="preserve">
+    <value>Connettore a T</value>
+  </data>
+  <data name="Libreria_Y" xml:space="preserve">
+    <value>Curva doppia</value>
   </data>
 </root>
