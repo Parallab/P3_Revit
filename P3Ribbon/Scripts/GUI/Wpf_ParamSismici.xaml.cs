@@ -30,6 +30,7 @@ namespace P3Ribbon.Scripts.GUI
         public Wpf_ParamSismici()
         {
             InitializeComponent();
+            DataContext = new GUI.SeismicViewModels.Wpf_ScegliZonaAccModel();
             DaPojInfoaWpf();
             ColoraBottoniSeParametriCompilati();
         }
@@ -46,16 +47,16 @@ namespace P3Ribbon.Scripts.GUI
             return rtn;
         }
 
-        private Button TrovaBottoneZona(int z)
-        {
-            System.Windows.Controls.Button rtn = new Button();
-            if (z == 1) rtn = wpfBottZona1;
-            else if (z == 2) rtn = wpfBottZona2;
-            else if (z == 3) rtn = wpfBottZona3;
-            else if (z == 4) rtn = wpfBottZona4;
+        //private Button TrovaBottoneZona(int z)
+        //{
+        //    System.Windows.Controls.Button rtn = new Button();
+        //    if (z == 1) rtn = wpfBottZona1;
+        //    else if (z == 2) rtn = wpfBottZona2;
+        //    else if (z == 3) rtn = wpfBottZona3;
+        //    else if (z == 4) rtn = wpfBottZona4;
 
-            return rtn;
-        }
+        //    return rtn;
+        //}
 
         private void DecimalTextBox_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
@@ -74,43 +75,43 @@ namespace P3Ribbon.Scripts.GUI
         public void AccToClasseUso()
         {
         
-            try
-            {
+            //try
+            //{
                 //double acc;
                 //var texbox = double.TryParse(wpfTexBoxAccell.Text, out acc);
                 double acc;
-                bool b = double.TryParse(wpfTexBoxAccell.Text, NumberStyles.Any, new CultureInfo("en-US"), out acc);
+            //    bool b = double.TryParse(wpfTexBoxAccell.Text, NumberStyles.Any, new CultureInfo("en-US"), out acc);
 
-                if (acc > 0.35)
-                {
-                    ColoraBottoneZona(wpfBottZona1, 1);
-                    wpfTexBoxAccell.Background = Brushes.IndianRed;
-                }
-                else if (acc > 0.25 && acc <= 0.35)
-                {
-                    ColoraBottoneZona(wpfBottZona1, 1);
-                    wpfTexBoxAccell.Background = Brushes.White;
-                }
-                else if ((acc > 0.15 && acc <= 0.25))
-                {
-                    ColoraBottoneZona(wpfBottZona2, 2);
-                    wpfTexBoxAccell.Background = Brushes.White;
-                }
-                else if ((acc > 0.05 && acc <= 0.15))
-                {
-                    ColoraBottoneZona(wpfBottZona3, 3);
-                    wpfTexBoxAccell.Background = Brushes.White;
-                }
-                else if ((acc < 0.05))
-                {
-                    ColoraBottoneZona(wpfBottZona4, 4);
-                    wpfTexBoxAccell.Background = Brushes.White;
-                }
-            }
-            catch
-            {
+            //    if (acc > 0.35)
+            //    {
+            //        ColoraBottoneZona(wpfBottZona1, 1);
+            //        wpfTexBoxAccell.Background = Brushes.IndianRed;
+            //    }
+            //    else if (acc > 0.25 && acc <= 0.35)
+            //    {
+            //        ColoraBottoneZona(wpfBottZona1, 1);
+            //        wpfTexBoxAccell.Background = Brushes.White;
+            //    }
+            //    else if ((acc > 0.15 && acc <= 0.25))
+            //    {
+            //        ColoraBottoneZona(wpfBottZona2, 2);
+            //        wpfTexBoxAccell.Background = Brushes.White;
+            //    }
+            //    else if ((acc > 0.05 && acc <= 0.15))
+            //    {
+            //        ColoraBottoneZona(wpfBottZona3, 3);
+            //        wpfTexBoxAccell.Background = Brushes.White;
+            //    }
+            //    else if ((acc < 0.05))
+            //    {
+            //        ColoraBottoneZona(wpfBottZona4, 4);
+            //        wpfTexBoxAccell.Background = Brushes.White;
+            //    }
+            //}
+            //catch
+            //{
 
-            }
+            //}
             
          
         }
@@ -124,8 +125,8 @@ namespace P3Ribbon.Scripts.GUI
             }
             if (zona_wpf != 666)
             {
-                Button bz = TrovaBottoneZona(zona_wpf);
-                ColoraBottoneZona(bz, zona_wpf);
+               // Button bz = TrovaBottoneZona(zona_wpf);
+                //ColoraBottoneZona(bz, zona_wpf);
             }
         }
 
@@ -133,10 +134,10 @@ namespace P3Ribbon.Scripts.GUI
         {
             //colora i bottoni non selezionati del loro colore originale
             BrushConverter bc = new BrushConverter();
-            wpfBottZona1.Background = (Brush)bc.ConvertFrom("#FF81B2BF");
-            wpfBottZona2.Background = (Brush)bc.ConvertFrom("#FF81B2BF");
-            wpfBottZona3.Background = (Brush)bc.ConvertFrom("#FF81B2BF");
-            wpfBottZona4.Background = (Brush)bc.ConvertFrom("#FF81B2BF");
+            //wpfBottZona1.Background = (Brush)bc.ConvertFrom("#FF81B2BF");
+            //wpfBottZona2.Background = (Brush)bc.ConvertFrom("#FF81B2BF");
+            //wpfBottZona3.Background = (Brush)bc.ConvertFrom("#FF81B2BF");
+            //wpfBottZona4.Background = (Brush)bc.ConvertFrom("#FF81B2BF");
 
             //colora solo il bottone selezionato
             bottone.Background = (Brush)bc.ConvertFrom("#FF31788B");
@@ -158,10 +159,10 @@ namespace P3Ribbon.Scripts.GUI
 
 
         #region Eventi al click dei bottoni ClasseUso e Zona
-        private void WpfbottZona1_Click(object sender, RoutedEventArgs e){ColoraBottoneZona(wpfBottZona1, 1);}
-        private void WpfbottZona2_Click(object sender, RoutedEventArgs e){ColoraBottoneZona(wpfBottZona2, 2);}
-        private void WpfbottZona3_Click(object sender, RoutedEventArgs e){ColoraBottoneZona(wpfBottZona3, 3);}
-        private void WpfbottZona4_Click(object sender, RoutedEventArgs e){ColoraBottoneZona(wpfBottZona4, 4);}
+        //private void WpfbottZona1_Click(object sender, RoutedEventArgs e){ColoraBottoneZona(wpfBottZona1, 1);}
+        //private void WpfbottZona2_Click(object sender, RoutedEventArgs e){ColoraBottoneZona(wpfBottZona2, 2);}
+        //private void WpfbottZona3_Click(object sender, RoutedEventArgs e){ColoraBottoneZona(wpfBottZona3, 3);}
+        //private void WpfbottZona4_Click(object sender, RoutedEventArgs e){ColoraBottoneZona(wpfBottZona4, 4);}
         private void WpfbottCUsoI_Click(object sender, RoutedEventArgs e){ColoraBottoniClasse(wpfBottCUsoI, 1);}
         private void wpfBottCUsoII_Click(object sender, RoutedEventArgs e){ ColoraBottoniClasse(wpfBottCUsoII, 2);}
         private void WpfbottCUsoIII_Click(object sender, RoutedEventArgs e){ ColoraBottoniClasse(wpfBottCUsoIII, 3);}

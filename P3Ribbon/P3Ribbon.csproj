@@ -297,6 +297,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>lang.resx</DependentUpon>
     </Compile>
+    <Compile Include="Scripts\GUI\SeismicViewModels\Wpf_AccellerazioneModel.cs" />
+    <Compile Include="Scripts\GUI\SeismicViewModels\Wpf_ScegliZonaAccModel.cs" />
+    <Compile Include="Scripts\GUI\SeismicViewModels\Wpf_ZonaSismicaModel.cs" />
+    <Compile Include="Scripts\GUI\SeismicViews\WpfScegliZonaAcc.xaml.cs">
+      <DependentUpon>WpfScegliZonaAcc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Scripts\GUI\SeismicViews\Wpf_Accellerazione.xaml.cs">
+      <DependentUpon>Wpf_Accellerazione.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Scripts\GUI\SeismicViews\Wps_ZonaSismica.xaml.cs">
+      <DependentUpon>Wps_ZonaSismica.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Scripts\GUI\Wpf_InfoP3.xaml.cs">
       <DependentUpon>Wpf_InfoP3.xaml</DependentUpon>
     </Compile>
@@ -461,6 +473,18 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <Page Include="Scripts\GUI\SeismicViews\WpfScegliZonaAcc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Scripts\GUI\SeismicViews\Wpf_Accellerazione.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Scripts\GUI\SeismicViews\Wps_ZonaSismica.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Scripts\GUI\Wpf_InfoP3.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
