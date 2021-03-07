@@ -5,43 +5,50 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:P3Ribbon.Scripts.GUI"
              xmlns:language="clr-namespace:P3Ribbon.Resources.Lang"
-             mc:Ignorable="d" MaxHeight="450" MaxWidth="780"  MinHeight="450" MinWidth="780" Height="443.5" Width="769.5"
-        >
+             xmlns:ViewModel ="clr-namespace:P3Ribbon.Scripts.GUI.SeismicViewModels"
+             xmlns:Views ="clr-namespace:P3Ribbon.Scripts.GUI.SeismicViews" 
+             mc:Ignorable="d" MaxHeight="450" MaxWidth="780"  MinHeight="450" MinWidth="780" Height="443.5" Width="769.5">
+
+    <Window.Resources>
+
+        <DataTemplate x:Name="SeismcZonaSimicaTemplate" DataType="{x:Type ViewModel:Wpf_ZonaSismicaModel}">
+            <Views:Wps_ZonaSismica DataContext="{Binding}"/>
+        </DataTemplate>
+        
+        <DataTemplate x:Name="SeismcAccTemplate" DataType="{x:Type ViewModel:Wpf_AccellerazioneModel}">
+            <Views:Wpf_Accellerazione DataContext="{Binding}"/>
+        </DataTemplate>
+
+        <DataTemplate x:Name="ScegliZonaAccTemplate" DataType="{x:Type ViewModel:Wpf_ScegliZonaAccModel}">
+            <Views:WpfScegliZonaAcc DataContext="{Binding}"/>
+        </DataTemplate>
+
+
+    </Window.Resources>
+
     <Grid Margin="0,0,0,1">
         <Grid.RowDefinitions>
-            <RowDefinition Height="15*"/>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="20*"/>
+            <RowDefinition Height="27*"/>
+            <RowDefinition Height="71*"/>
+            <RowDefinition Height="71*"/>
+            <RowDefinition Height="71*"/>
+            <RowDefinition Height="71*"/>
+            <RowDefinition Height="71"/>
+            <RowDefinition Height="36*"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10*"/>
-            <ColumnDefinition Width="40*"/>
-            <ColumnDefinition Width="80*"/>
-            <ColumnDefinition Width="10*"/>
-            <ColumnDefinition Width="40*"/>
-            <ColumnDefinition Width="80*"/>
-            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="29*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="28*"/>
+            <ColumnDefinition Width="114*"/>
+            <ColumnDefinition Width="230*"/>
+            <ColumnDefinition Width="29*"/>
         </Grid.ColumnDefinitions>
         <Rectangle Grid.ColumnSpan="2" Grid.Column="4" Grid.Row="1" Grid.RowSpan="5" Stroke="Black" Fill="#3BB5CAFF"/>
 
-        <Rectangle Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1" Grid.RowSpan="5" Stroke="Black" Width="353" Fill="#3BB5CAFF"/>
-
-
-
-
-        <Button x:Name="wpfBottZona1" Content="{x:Static language:lang.wpfPz1}" Grid.Column="1" 
-                Margin="3,4,3,4" Grid.Row="2" Background="#FF81B2BF" BorderBrush="#00FFFDFD" Click="WpfbottZona1_Click" FontWeight="Bold" FontFamily="Arial" FontSize="13" VerticalAlignment="Center"/>
-        <Button x:Name="wpfBottZona2" Content="{x:Static language:lang.wpfPz2}" Grid.Column="1" 
-                Margin="3,4,3,4" Grid.Row="3" Background="#FF81B2BF" BorderBrush="#00FFFDFD" FontWeight="Bold" FontFamily="Arial" FontSize="13" VerticalAlignment="Center" Click="WpfbottZona2_Click"/>
-        <Button x:Name="wpfBottZona3" Content="{x:Static language:lang.wpfPz3}" Grid.Column="1" 
-                Margin="3,4,3,4" Grid.Row="4" Background="#FF81B2BF" BorderBrush="#00FFFDFD" FontWeight="Bold" FontFamily="Arial" FontSize="13" VerticalAlignment="Center" Click="WpfbottZona3_Click"/>
-        <Button x:Name="wpfBottZona4" Content="{x:Static language:lang.wpfPz4}" Grid.Column="1" 
-                Margin="3,4,3,4" Grid.Row="5" Background="#FF81B2BF" BorderBrush="#00FFFDFD" FontWeight="Bold" FontFamily="Arial" FontSize="13" VerticalAlignment="Center" Click="WpfbottZona4_Click"/>
+        <Rectangle Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1" Grid.RowSpan="5" Stroke="Black" Fill="#3BB5CAFF"/>
         <Button x:Name="wpfBottCUsoIII" Content="III" Grid.Column="4" 
             Margin="1,26,10,26" Grid.Row="4" Background="#FF81B2BF" BorderBrush="#00FFFDFD" FontWeight="Bold" FontFamily="Arial" FontSize="13" VerticalAlignment="Center" Click="WpfbottCUsoIII_Click"/>
         <Button x:Name="wpfBottCUsoII" Content="II" Grid.Column="4" 
@@ -53,10 +60,6 @@
 
         <Button x:Name="wpfButtAnnulla" Content="{x:Static language:lang.bottAnnulla}" Grid.Column="5" Height="28" Margin="10,0,125,0" Grid.Row="6" Width="90" BorderBrush="#00707070" Click="wpfBottAnnulla_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Button x:Name="wpfButtOk" Content="Ok" Grid.Column="5" Height="28" Margin="125,0,10,0" Grid.Row="6" Width="90" BorderBrush="#00707070" Click="wpfBottOk_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="10,26,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="205" TextAlignment="Center" Text="{x:Static language:lang.wpfPSism1}" FontFamily="Arial" FontSize="11"/>
-        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="10,26,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="205" TextAlignment="Center" Text="{x:Static language:lang.wpfPSism2}" FontFamily="Arial" FontSize="11"/>
-        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="10,26,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="205" TextAlignment="Center" Text="{x:Static language:lang.wpfPSism3}" FontFamily="Arial" FontSize="11"/>
-        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Margin="10,26,0,0" Grid.Row="5" TextWrapping="Wrap" VerticalAlignment="Top" Width="205" TextAlignment="Center" Text="{x:Static language:lang.wpfPSism4}" FontFamily="Arial" FontSize="11"/>
 
         <Border Grid.Column="5" Grid.Row="1" BorderBrush="{x:Null}" Height="60">
             <TextBlock  Grid.Column="5" Margin="10,10,0,10" Grid.Row="1" TextWrapping="Wrap" Width="205" Padding="10" TextAlignment="Center" Text="{x:Static language:lang.wpfPCu1}" FontFamily="Arial" FontSize="11"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -71,12 +74,9 @@
         <Border Grid.Column="5" Grid.Row="5" BorderBrush="{x:Null}" Height="60">
             <TextBlock Grid.Column="5" HorizontalAlignment="Center" Grid.Row="5" TextWrapping="Wrap" TextAlignment="Center" FontFamily="Arial" FontSize="11" VerticalAlignment="Center"><Run Text="{x:Static language:lang.wpfPCu4}"/></TextBlock>
         </Border>
-       
-        <TextBox x:Name="wpfTexBoxAccell" Grid.Column="2" HorizontalAlignment="Center" Height="24" Margin="97,27,10,20" Grid.Row="1"  TextChanged="wpfTextBoxAccell_TextChanged" FontFamily="Arial" PreviewTextInput="DecimalTextBox_PreviewTextInput" TextWrapping="NoWrap" VerticalAlignment="Center" Width="118" VerticalContentAlignment="Center"/>
-        <TextBlock Grid.Column="2" HorizontalAlignment="Center"  Height="15" Margin="35,31,128,25" Grid.Row="1" TextWrapping="Wrap" Text="α = αg/g&#x9;" VerticalAlignment="Center" Width="62" FontWeight="Bold" FontFamily="Arial" FontSize="13"/>
-        <TextBlock Grid.Column="1" HorizontalAlignment="Center" Height="12" Margin="0,33,0,26" Grid.Row="1" TextWrapping="Wrap" Text="{x:Static language:lang.wpfPZonaSismica}" VerticalAlignment="Center" Width="113" FontFamily="Arial" FontWeight="Bold" TextAlignment="Center"/>
         <TextBlock HorizontalAlignment="Center" Height="12" Margin="0,13,0,2" TextWrapping="Wrap" VerticalAlignment="Center" Width="338" FontFamily="Arial" FontWeight="Bold" Grid.ColumnSpan="2" Grid.Column="1"><Run Text="{x:Static language:lang.wpfPDefAcc}"/></TextBlock>
         <TextBlock HorizontalAlignment="Center" Height="12" Margin="1,13,27,2" TextWrapping="Wrap" VerticalAlignment="Center" Width="338" FontFamily="Arial" FontWeight="Bold" Grid.ColumnSpan="3" Grid.Column="4"><Run Text="{x:Static language:lang.wpfPDefCu}"/></TextBlock>
 
+        <ContentControl  Content="{Binding}" Grid.ColumnSpan="2" Grid.Column="1" Grid.RowSpan="5" Grid.Row="1"/>
     </Grid>
 </Window>

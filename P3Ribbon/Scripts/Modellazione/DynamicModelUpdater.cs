@@ -45,7 +45,7 @@ namespace P3Ribbon.Scripts
                     }
                     catch (System.Exception ex)
                     {
-                       //TaskDialog.Show("Exception", ex.ToString());
+                       TaskDialog.Show("Exception", ex.ToString());
                     }
                 }
             }

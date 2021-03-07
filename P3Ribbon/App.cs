@@ -248,11 +248,7 @@ namespace P3Ribbon
             UICapp = UiCapplication;
 
             Supporto.ActiveAddInId = UiCapplication.ActiveAddInId;
-            //attiva i registri all'avvio di revit
-            //updater = new DynamicModelUpdater(application.ActiveAddInId);
-            //UpdaterRegistry.RegisterUpdater(updater, true);
-            //LogicalOrFilter f = Supporto.CatFilterDuctAndFitting;
-            //UpdaterRegistry.AddTrigger(updater.GetUpdaterId(), f, Element.GetChangeTypeElementAddition());
+    
             UpdaterAccendi();
             ResourceManager rm = new ResourceManager("items", Assembly.GetExecutingAssembly());
             return Result.Succeeded;

@@ -17,8 +17,8 @@ namespace P3Ribbon.Scripts
 
         public static void AggiornaDoc(Document _doc)
         {
-            Supporto.doc = _doc;
-            Supporto.app = _doc.Application;
+            doc = _doc;
+            app = _doc.Application;
         }
 
       

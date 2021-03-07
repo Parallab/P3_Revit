@@ -37,13 +37,9 @@ namespace P3Ribbon.Scripts
 
             InsulationTypeIds = (List<ElementId>)new FilteredElementCollector(doc).WhereElementIsNotElementType().OfCategory(BuiltInCategory.OST_DuctInsulations).ToElementIds();
 
-           
-
             using (Transaction t = new Transaction(doc, "Cambia spessore isolante"))
             {
-
                 t.Start();
-                //potrei fare il contrario andandomi a prendere l'host  ma non riesco ad otterene la FamilyInstance dell'isol
                 //prendo tutti gli isolanti presenti e il loro rispettivo host(condotto) se il condotto coincide con la selezione 
                 foreach ( var insId in InsulationTypeIds)
                 {
@@ -67,10 +63,8 @@ namespace P3Ribbon.Scripts
 
                     }
                 }
-                  
                     t.Commit();
                     return Result.Succeeded;
-                
             }
         }
 
@@ -91,7 +85,6 @@ namespace P3Ribbon.Scripts
             public bool AllowElement(Element element)
             {
                 double catId = element.Category.Id.IntegerValue;
-                //if (element.Category.Name == "Condotto" || element.Category.Name == "Raccordo") // DA SISTEMARE
                 if (catId == Supporto.doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctFitting).Id.IntegerValue 
                     || catId == Supporto.doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctCurves).Id.IntegerValue)
                 {
