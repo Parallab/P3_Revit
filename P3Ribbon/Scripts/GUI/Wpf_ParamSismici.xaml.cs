@@ -1,4 +1,5 @@
 ﻿using Autodesk.Revit.DB;
+using P3Ribbon.Scripts.GUI.SeismicViews;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -15,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace P3Ribbon.Scripts.GUI
 {
     /// <summary>
@@ -26,15 +28,46 @@ namespace P3Ribbon.Scripts.GUI
         public static int zona_wpf = 4;
         public static int classe_wpf = 1;
         public static bool ok_premuto = false;
+        public static string accValue = "";
+
+        BrushConverter bc = new BrushConverter();
+
+
 
         public Wpf_ParamSismici()
         {
+ 
             InitializeComponent();
-            DataContext = new GUI.SeismicViewModels.Wpf_ScegliZonaAccModel();
+            if (App.lingua_plugin == App.Lingua.ITA)
+            {
+                // DataContext = new GUI.SeismicViewModels.Wpf_ScegliZonaAccModel();
+                wpfButtScegliZona.Background = (Brush)bc.ConvertFromString("#FF81B2BF");
+                DataContext = new GUI.SeismicViewModels.Wpf_ZonaSismicaModel();
+            }
+            else
+            {
+                wpfButtScegliZona.Visibility = System.Windows.Visibility.Hidden;
+                wpfButtScegliAcc.Background = (Brush)bc.ConvertFromString("#FF81B2BF");
+                DataContext = new GUI.SeismicViewModels.Wpf_AccellerazioneModel();
+            }
+            
             DaPojInfoaWpf();
             ColoraBottoniSeParametriCompilati();
+            
         }
 
+        public void CambiaFinestra(bool FinestraAcc)
+        {
+            if(FinestraAcc == true)
+            {
+                DataContext = new GUI.SeismicViewModels.Wpf_AccellerazioneModel();
+            }
+            else
+            {
+               DataContext = new GUI.SeismicViewModels.Wpf_ZonaSismicaModel();
+            }
+            
+        }
 
         private Button TrovaBottoneClasseUso(int c)
         {
@@ -47,16 +80,7 @@ namespace P3Ribbon.Scripts.GUI
             return rtn;
         }
 
-        //private Button TrovaBottoneZona(int z)
-        //{
-        //    System.Windows.Controls.Button rtn = new Button();
-        //    if (z == 1) rtn = wpfBottZona1;
-        //    else if (z == 2) rtn = wpfBottZona2;
-        //    else if (z == 3) rtn = wpfBottZona3;
-        //    else if (z == 4) rtn = wpfBottZona4;
-
-        //    return rtn;
-        //}
+  
 
         private void DecimalTextBox_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
@@ -72,50 +96,6 @@ namespace P3Ribbon.Scripts.GUI
                 e.Handled = true;
         }
 
-        public void AccToClasseUso()
-        {
-        
-            //try
-            //{
-                //double acc;
-                //var texbox = double.TryParse(wpfTexBoxAccell.Text, out acc);
-                double acc;
-            //    bool b = double.TryParse(wpfTexBoxAccell.Text, NumberStyles.Any, new CultureInfo("en-US"), out acc);
-
-            //    if (acc > 0.35)
-            //    {
-            //        ColoraBottoneZona(wpfBottZona1, 1);
-            //        wpfTexBoxAccell.Background = Brushes.IndianRed;
-            //    }
-            //    else if (acc > 0.25 && acc <= 0.35)
-            //    {
-            //        ColoraBottoneZona(wpfBottZona1, 1);
-            //        wpfTexBoxAccell.Background = Brushes.White;
-            //    }
-            //    else if ((acc > 0.15 && acc <= 0.25))
-            //    {
-            //        ColoraBottoneZona(wpfBottZona2, 2);
-            //        wpfTexBoxAccell.Background = Brushes.White;
-            //    }
-            //    else if ((acc > 0.05 && acc <= 0.15))
-            //    {
-            //        ColoraBottoneZona(wpfBottZona3, 3);
-            //        wpfTexBoxAccell.Background = Brushes.White;
-            //    }
-            //    else if ((acc < 0.05))
-            //    {
-            //        ColoraBottoneZona(wpfBottZona4, 4);
-            //        wpfTexBoxAccell.Background = Brushes.White;
-            //    }
-            //}
-            //catch
-            //{
-
-            //}
-            
-         
-        }
-
         private void ColoraBottoniSeParametriCompilati()
         {
             if (classe_wpf != 666)
@@ -123,26 +103,14 @@ namespace P3Ribbon.Scripts.GUI
                 Button bc = TrovaBottoneClasseUso(classe_wpf);
                 ColoraBottoniClasse(bc, classe_wpf);
             }
-            if (zona_wpf != 666)
-            {
-               // Button bz = TrovaBottoneZona(zona_wpf);
-                //ColoraBottoneZona(bz, zona_wpf);
-            }
+            //if (zona_wpf != 666)
+            //{
+            //   Button bz = TrovaBottoneZona(zona_wpf);
+            //    Wpf_Accelerazione.ColoraBottoneZona(bz, zona_wpf);
+            //}
         }
 
-        private void ColoraBottoneZona(System.Windows.Controls.Button bottone, int z)
-        {
-            //colora i bottoni non selezionati del loro colore originale
-            BrushConverter bc = new BrushConverter();
-            //wpfBottZona1.Background = (Brush)bc.ConvertFrom("#FF81B2BF");
-            //wpfBottZona2.Background = (Brush)bc.ConvertFrom("#FF81B2BF");
-            //wpfBottZona3.Background = (Brush)bc.ConvertFrom("#FF81B2BF");
-            //wpfBottZona4.Background = (Brush)bc.ConvertFrom("#FF81B2BF");
-
-            //colora solo il bottone selezionato
-            bottone.Background = (Brush)bc.ConvertFrom("#FF31788B");
-            zona_wpf = z;
-        }
+    
         private void ColoraBottoniClasse(System.Windows.Controls.Button bottone, int c)
         {  
             //colora i bottoni non selezionati del loro colore originale
@@ -169,18 +137,14 @@ namespace P3Ribbon.Scripts.GUI
         private void WpfbottCUsoIV_Click(object sender, RoutedEventArgs e) { ColoraBottoniClasse(wpfBottCUsoIV, 4); }
         #endregion
 
-        private void wpfTextBoxAccell_TextChanged(object sender, TextChangedEventArgs e)
-        {
-          AccToClasseUso();
-        }
         private void wpfBottOk_Click(object sender, RoutedEventArgs e)
         {
             ok_premuto = true;
             ParSismici.classe = classe_wpf;
             ParSismici.zona = zona_wpf;
+
+            accValue = Wpf_Accelerazione.wpftbAcc.Text;
             this.Close();
-            //ParSismici.eng = eng_form;
-            //ParSismici.vita = vita_form;
         }
 
         private void wpfBottAnnulla_Click(object sender, RoutedEventArgs e)
@@ -199,8 +163,6 @@ namespace P3Ribbon.Scripts.GUI
                 Element proj_info = new FilteredElementCollector(Supporto.doc).OfClass(typeof(ProjectInfo)).FirstElement();
 
                 classe_wpf = proj_info.LookupParameter("P3_InfoProg_ClasseUso").AsInteger();
-                //proj_info.LookupParameter("P3_InfoProg_Eng").Set(_eng);
-                //proj_info.LookupParameter("P3_InfoProg_VitaNominale").Set(_vita);
                 zona_wpf = proj_info.LookupParameter("P3_InfoProg_ZonaSismica").AsInteger();
             }
             catch
@@ -212,6 +174,21 @@ namespace P3Ribbon.Scripts.GUI
         private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+        }
+
+        private void wpfButtScegliZona_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new GUI.SeismicViewModels.Wpf_ZonaSismicaModel();
+            ColoraBottoniSeParametriCompilati();
+            wpfButtScegliZona.Background = (Brush)bc.ConvertFromString("#FF81B2BF");
+            wpfButtScegliAcc.Background = (Brush)bc.ConvertFromString("#3BB5CAFF");
+        }
+
+        private void wpfButtScegliAcc_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = new GUI.SeismicViewModels.Wpf_AccellerazioneModel();
+            wpfButtScegliAcc.Background = (Brush)bc.ConvertFromString("#FF81B2BF");
+            wpfButtScegliZona.Background = (Brush)bc.ConvertFromString("#3BB5CAFF");
         }
     }
 }

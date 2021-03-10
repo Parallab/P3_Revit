@@ -181,7 +181,7 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Elenca i canali e i pezzi speciali P3.
+        ///   Cerca una stringa localizzata simile a Elenca i pezzi e i materiali.
         /// </summary>
         public static string cmdelencopezzi_tt {
             get {

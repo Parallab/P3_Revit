@@ -35,9 +35,11 @@ namespace P3Ribbon.Scripts
                     {
                         Element el = doc.GetElement(id);
                         string nome = "";
-                        
+                        Element tempEl = doc.GetElement(el.GetTypeId());
+                        if (tempEl!= null)
+                        {
 						nome = doc.GetElement(el.GetTypeId()).LookupParameter("P3_Nome").AsString();
-
+                        }
                         if (nome.Contains("P3")) 
                         {
                             DuctInsulation.Create(doc, id, Materiale.IdInsulTipoPreferito, Materiale.SpessoreIsolante);

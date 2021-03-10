@@ -181,7 +181,7 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a List the P3 ducts and special pieces.
+        ///   Cerca una stringa localizzata simile a List the pieces and materials.
         /// </summary>
         public static string cmdelencopezzi_tt {
             get {

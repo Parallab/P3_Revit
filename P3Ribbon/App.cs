@@ -404,11 +404,11 @@ namespace P3Ribbon
         private static void AggiungiSplitButtonElencostaff(RibbonPanel rp, string Assemblypath)
         {
             PushButtonData sb3BOne = new PushButtonData("cmdelencostaffaggi", "Elenco" + System.Environment.NewLine + "Staffaggio", Assemblypath, "P3Ribbon.Scripts.ElencoStaffaggio");
-            sb3BOne.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_ElencoStaffaggio_Rosso.png"));
+            sb3BOne.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_ElencoStaffaggio_dettaglio_bianco.png"));
             sb3BOne.ToolTip = "Elenca gli staffaggi utilizzati e la relativa componentistica";
 
             PushButtonData sb3BTwo = new PushButtonData("cmdelencopunti", "Elenco" + System.Environment.NewLine + "Punti", Assemblypath, "P3Ribbon.Scripts.ElencoPunti");
-            sb3BTwo.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_ElencoStaffaggio_Rosso.png"));
+            sb3BTwo.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_ElencoStaffaggio_dettaglio_bianco.png"));
             sb3BTwo.ToolTip = "Elenca i componenti P3";
 
             SplitButtonData sbd3 = new SplitButtonData("splitButtonElencoStaffaggio", "Split");

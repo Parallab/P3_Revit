@@ -277,6 +277,24 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
+        ///   Cerca una stringa localizzata simile a Accelerazione.
+        /// </summary>
+        public static string wpfAccel {
+            get {
+                return ResourceManager.GetString("wpfAccel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Inserisci il valore di accelerazione sismica  αg/g.
+        /// </summary>
+        public static string wpfAccInserireVal {
+            get {
+                return ResourceManager.GetString("wpfAccInserireVal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Cerca una stringa localizzata simile a Attivo.
         /// </summary>
         public static string wpfImpAttivo {
@@ -342,7 +360,7 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Chiusura.
+        ///   Cerca una stringa localizzata simile a Fondello.
         /// </summary>
         public static string wpfLChiusura {
             get {
@@ -351,7 +369,7 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Derivazione a Incrocio.
+        ///   Cerca una stringa localizzata simile a Deviazione con due curve.
         /// </summary>
         public static string wpfLDerivazioneaIncrocio {
             get {
@@ -360,7 +378,7 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Derivazione a Y.
+        ///   Cerca una stringa localizzata simile a Curva doppia.
         /// </summary>
         public static string wpfLDerivazioneaY {
             get {
@@ -369,7 +387,7 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Derivazione Laterale.
+        ///   Cerca una stringa localizzata simile a Riduzione con curva.
         /// </summary>
         public static string wpfLDerivazioneLaterale {
             get {
@@ -378,7 +396,7 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Derivazione a T.
+        ///   Cerca una stringa localizzata simile a Connettore a T.
         /// </summary>
         public static string wpfLDerivazioneT {
             get {
@@ -387,7 +405,7 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Gomito.
+        ///   Cerca una stringa localizzata simile a Curva.
         /// </summary>
         public static string wpfLGomito {
             get {
@@ -396,7 +414,7 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Riduzione costante.
+        ///   Cerca una stringa localizzata simile a Riduzione semplice.
         /// </summary>
         public static string wpfLRiduzioneCostante {
             get {
@@ -405,7 +423,7 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Riduzione Variabile.
+        ///   Cerca una stringa localizzata simile a Riduzione completa.
         /// </summary>
         public static string wpfLRiduzioneVariabile {
             get {
@@ -414,7 +432,8 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Costruzioni con presenza solo occasionale di persone | Edifici agricoli.
+        ///   Cerca una stringa localizzata simile a Costruzioni con presenza solo occasionale di persone 
+        ///| Edifici agricoli.
         /// </summary>
         public static string wpfPCu1 {
             get {
@@ -423,11 +442,8 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Costruzioni cui uso preveda normali 
-        ///affollamenti senza contenuti pericolosi per
-        /// l&apos;ambiente e senza funzioni pubbliche e 
-        ///sociali essenziali. Industie con attività non
-        /// pericolose per l&apos;ambiente | Uffici.
+        ///   Cerca una stringa localizzata simile a Costruzioni cui uso preveda normali affollamenti senza contenuti pericolosi per l&apos;ambiente e senza funzioni pubbliche e  sociali essenziali. Industie con attività non pericolose per l&apos;ambiente 
+        ///| Uffici.
         /// </summary>
         public static string wpfPCu2 {
             get {
@@ -436,9 +452,8 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Costruzioni il cui uso preveda affollamenti 
-        ///signifficativi. Industrie con attività pericolose 
-        ///per l&apos;ambiente | Centri commerciali.
+        ///   Cerca una stringa localizzata simile a Costruzioni il cui uso preveda affollamenti signifficativi. Industrie con attività pericolose per l&apos;ambiente 
+        ///| Centri commerciali.
         /// </summary>
         public static string wpfPCu3 {
             get {
@@ -447,11 +462,8 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Costruzioni con funzioni pubbliche 
-        ///o strategiche importanti, anche con 
-        ///riferimento alla gestione della protezione
-        /// civile in caso di calimità. Industrie con 
-        ///attività particolarmente pericolose | Ospedali.
+        ///   Cerca una stringa localizzata simile a Costruzioni con funzioni pubbliche o strategiche importanti, anche con riferimento alla gestione della protezione civile in caso di calimità. Industrie con attività particolarmente pericolose 
+        ///| Ospedali.
         /// </summary>
         public static string wpfPCu4 {
             get {
@@ -460,11 +472,20 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a DEFINIZIONE ACCELLERAZIONE SISMICA.
+        ///   Cerca una stringa localizzata simile a DEFINIZIONE ACCELERAZIONE SISMICA.
         /// </summary>
         public static string wpfPDefAcc {
             get {
                 return ResourceManager.GetString("wpfPDefAcc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una stringa localizzata simile a Definizione accelerazione sismica αg/g.
+        /// </summary>
+        public static string wpfPDefAccag {
+            get {
+                return ResourceManager.GetString("wpfPDefAccag", resourceCulture);
             }
         }
         
@@ -487,7 +508,8 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Sisimicità alta (0.25 &lt; α  ≤ 0.35).
+        ///   Cerca una stringa localizzata simile a Sisimicità alta 
+        ///(0.25 &lt; α  ≤ 0.35).
         /// </summary>
         public static string wpfPSism1 {
             get {
@@ -496,7 +518,8 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Sisimicità medio-alta (0.15 &lt; α  ≤ 0.25).
+        ///   Cerca una stringa localizzata simile a Sisimicità medio-alta 
+        ///(0.15 &lt; α  ≤ 0.25).
         /// </summary>
         public static string wpfPSism2 {
             get {
@@ -505,7 +528,8 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Sisimicità  medio-bassa (0.05 &lt; α  ≤ 0.15).
+        ///   Cerca una stringa localizzata simile a Sisimicità  medio-bassa 
+        ///(0.05 &lt; α  ≤ 0.15).
         /// </summary>
         public static string wpfPSism3 {
             get {
@@ -514,7 +538,8 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Sisimicità bassa ( α  ≤ 0.05).
+        ///   Cerca una stringa localizzata simile a Sisimicità bassa 
+        ///( α  ≤ 0.05).
         /// </summary>
         public static string wpfPSism4 {
             get {

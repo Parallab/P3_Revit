@@ -192,6 +192,12 @@
   <data name="Temporary" xml:space="preserve">
     <value>Temporary: e.g. Agricultural buildings</value>
   </data>
+  <data name="wpfAccel" xml:space="preserve">
+    <value>Acceleration</value>
+  </data>
+  <data name="wpfAccInserireVal" xml:space="preserve">
+    <value>Enter the seismic acceleration value αg /g</value>
+  </data>
   <data name="wpfImpAttivo" xml:space="preserve">
     <value>Active</value>
   </data>

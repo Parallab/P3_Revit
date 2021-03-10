@@ -39,33 +39,66 @@
         <TextBlock Margin="2,5" Grid.Row="3" Grid.Column="4" TextWrapping="Wrap" Text="{x:Static language:lang.wpfLChiusura}" Width="203" TextAlignment="Center" FontWeight="Bold" FontSize="16" FontFamily="Arial" Background="#C9D5EAEA"/>
 
 
-        <Image Margin="3,3,2,0" Grid.Column="0" Grid.Row="0" Source="/P3Ribbon;component/Resources/Code 803 - 3D insulated.png" OpacityMask="#FF57839C"
+        <Border Grid.Column="0" Grid.Row="0" Background="#FF81B2BF"  Margin="5">
+
+            <Image Margin="3,3,2,0" Grid.Column="0" Grid.Row="0" Source="/P3Ribbon;component/Resources/Code 803 - 3D insulated.png" OpacityMask="#FF57839C"
              RenderOptions.BitmapScalingMode="HighQuality"  />
-        <Image Margin="3,3,0,0" Grid.Column="1" Grid.Row="0" Source="/P3Ribbon;component/Resources/Code 827 - 3D insulated.png" OpacityMask="#FF57839C"
-             RenderOptions.BitmapScalingMode="HighQuality"  />
-        <Image Margin="3,3,0,0" Grid.Column="2" Grid.Row="0" Source="/P3Ribbon;component/Resources/Code 854 - 3D insulated.png" OpacityMask="#FF57839C"
-               RenderOptions.BitmapScalingMode="HighQuality"/>
-        <Image Margin="3,3,0,0" Grid.Column="3" Grid.Row="0" Source="/P3Ribbon;component/Resources/Code 853 - 3D insulated.png" OpacityMask="#FF57839C"
-               RenderOptions.BitmapScalingMode="HighQuality"/>
+        </Border>
 
 
-        <Image Margin="3,3,2,0" Grid.Column="0" Grid.Row="2" Source="/P3Ribbon;component/Resources/Code 802 - 3D insulated.png" OpacityMask="#FF57839C"
+        <Border Grid.Column="1" Grid.Row="0" Background="#FF81B2BF"  Margin="5" >
+            <Image Margin="3,3,0,0" Grid.Column="1" Grid.Row="0" Source="/P3Ribbon;component/Resources/Code 827 - 3D insulated.png" OpacityMask="#FF57839C"
+             RenderOptions.BitmapScalingMode="HighQuality"  />
+        </Border>
+
+
+        <Border Grid.Column="2" Grid.Row="0" Background="#FF81B2BF"  Margin="5" >
+            <Image Margin="3,3,0,0" Grid.Column="2" Grid.Row="0" Source="/P3Ribbon;component/Resources/Code 854 - 3D insulated.png" OpacityMask="#FF57839C"
                RenderOptions.BitmapScalingMode="HighQuality"/>
-        <Image Margin="3,3,3,0" Grid.Column="1" Grid.Row="2" Source="/P3Ribbon;component/Resources/Code 804 - 3D insulated.png" OpacityMask="#FF57839C"
+        </Border>
+
+        <Border Grid.Column="3" Grid.Row="0" Background="#FF81B2BF"  Margin="5" >
+            <Image Margin="3,3,0,0" Grid.Column="3" Grid.Row="0" Source="/P3Ribbon;component/Resources/Code 853 - 3D insulated.png" OpacityMask="#FF57839C"
                RenderOptions.BitmapScalingMode="HighQuality"/>
-        <Image Margin="3,3,2,2" Grid.Column="2" Grid.Row="2" Source="/P3Ribbon;component/Resources/Code 847 - 3D insulated.png" OpacityMask="#FF57839C"
+        </Border>
+
+
+
+
+
+        <Border Grid.Column="0" Grid.Row="2" Background="#FF81B2BF"  Margin="5" >
+            <Image Margin="3,3,2,0" Grid.Column="0" Grid.Row="2" Source="/P3Ribbon;component/Resources/Code 802 - 3D insulated.png" OpacityMask="#FF57839C"
+               RenderOptions.BitmapScalingMode="HighQuality"/>
+        </Border>
+
+        <Border Grid.Column="1" Grid.Row="2" Background="#FF81B2BF"  Margin="5" >
+            <Image Margin="3,3,3,0" Grid.Column="1" Grid.Row="2" Source="/P3Ribbon;component/Resources/Code 804 - 3D insulated.png" OpacityMask="#FF57839C"
+               RenderOptions.BitmapScalingMode="HighQuality"/>
+        </Border>
+
+        <Border Grid.Column="2" Grid.Row="2" Background="#FF81B2BF"  Margin="5" >
+            <Image Margin="3,3,2,2" Grid.Column="2" Grid.Row="2" Source="/P3Ribbon;component/Resources/Code 847 - 3D insulated.png" OpacityMask="#FF57839C"
                RenderOptions.BitmapScalingMode="HighQuality" RenderTransformOrigin="0.5,0.5">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="0.347"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
-        <Image Margin="3,3,0,0" Height="179" Grid.Column="3" Grid.Row="2" Width="197" Source="/P3Ribbon;component/Resources/Code 843 - 3D insulated.png" OpacityMask="#FF57839C"
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="0.347"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+        </Border>
+
+        <Border Grid.Column="3" Grid.Row="2" Background="#FF81B2BF"  Margin="5" >
+            <Image Margin="3,3,0,0.2" Grid.Column="3" Grid.Row="2" Source="/P3Ribbon;component/Resources/Code 843 - 3D insulated.png" OpacityMask="#FF57839C"
                RenderOptions.BitmapScalingMode="HighQuality"/>
+        </Border>
+
+
+
+
+
 
     </Grid>
 </Window>

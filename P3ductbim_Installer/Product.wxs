@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <?define P3Ribbon_TargetDir=$(var.P3Ribbon.TargetDir)?>
-  <Product Id="*" Name="P3Ductbim" Language="1033" Version="1.0.0.0" Manufacturer="P3" UpgradeCode="0172c0fb-2d98-4745-9a73-c96990538a79">
+  <Product Id="*" Name="P3ductbim" Language="1033" Version="1.0.0.0" Manufacturer="P3" UpgradeCode="0172c0fb-2d98-4745-9a73-c96990538a79">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
     <Icon Id="ductbim.ico" SourceFile="$(var.ProjectDir)\Images\ductbim.ico" />
 
@@ -28,7 +28,7 @@
             Order="2">1</Publish>
     </UI>
     
-    <Feature Id="ProductFeature" Title="P3Ductbim" Level="1">
+    <Feature Id="ProductFeature" Title="P3ductbim" Level="1">
       <ComponentGroupRef Id="ProductComponents" />
       <ComponentRef Id="ApplicationShortuct" />
       <ComponentGroupRef Id="ApplicationProgramsFolder_files" />
@@ -62,12 +62,12 @@
         </Directory>
       </Directory>
       <Directory Id="ProgramFilesFolder">
-        <Directory Id="INSTALLFOLDER" Name="P3Ductbim">
+        <Directory Id="INSTALLFOLDER" Name="P3ductbim">
           <Directory Id="P3_InstallerResources" Name="P3_InstallerResources" />
         </Directory>
       </Directory>
       <Directory Id="ProgramMenuFolder">
-        <Directory Id="ApplicationProgramsFolder" Name="P3Ductbim" />
+        <Directory Id="ApplicationProgramsFolder" Name="P3ductbim" />
       </Directory>
     </Directory>
   </Fragment>
@@ -75,7 +75,7 @@
   <Fragment>
     <DirectoryRef Id="ApplicationProgramsFolder">
       <Component Id="ApplicationShortuct" Guid="ea28422e-71c8-11eb-9439-0242ac130002">
-        <Shortcut Id="ApplicationStartMenuShortcut" Name="P3Ductbim" Description="P3Ductbim" Target="[INSTALLFOLDER]"> </Shortcut>
+        <Shortcut Id="ApplicationStartMenuShortcut" Name="P3ductbim" Description="P3ductbim" Target="[INSTALLFOLDER]"> </Shortcut>
         <RemoveFolder Id="RemoveApplicationProgramsFolder" Directory="ApplicationProgramsFolder" On="uninstall" />
         <RegistryValue Root="HKCU" Key="Software\P3Ductbim" Name="InstallFolder" Type="integer" Value="1" KeyPath="yes"> </RegistryValue>
       </Component>

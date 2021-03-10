@@ -206,11 +206,11 @@
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="RevitAPI">
-      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\RevitAPI.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\RevitAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPIUI">
-      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\RevitAPIUI.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\RevitAPIUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -303,11 +303,11 @@
     <Compile Include="Scripts\GUI\SeismicViews\WpfScegliZonaAcc.xaml.cs">
       <DependentUpon>WpfScegliZonaAcc.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Scripts\GUI\SeismicViews\Wpf_Accellerazione.xaml.cs">
-      <DependentUpon>Wpf_Accellerazione.xaml</DependentUpon>
+    <Compile Include="Scripts\GUI\SeismicViews\Wpf_Accelerazione.xaml.cs">
+      <DependentUpon>Wpf_Accelerazione.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Scripts\GUI\SeismicViews\Wps_ZonaSismica.xaml.cs">
-      <DependentUpon>Wps_ZonaSismica.xaml</DependentUpon>
+    <Compile Include="Scripts\GUI\SeismicViews\Wpf_ZonaSismica.xaml.cs">
+      <DependentUpon>Wpf_ZonaSismica.xaml</DependentUpon>
     </Compile>
     <Compile Include="Scripts\GUI\Wpf_InfoP3.xaml.cs">
       <DependentUpon>Wpf_InfoP3.xaml</DependentUpon>
@@ -349,6 +349,8 @@
     <Content Include="P3_InstallerResources\P3_TabelleDiPredimensionamento.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_dettaglio_bianco.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_dettaglio.jpg" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_MaterialeP3bianco.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_MatRIciclatoVerde.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_SismaRosso.png" />
@@ -367,6 +369,7 @@
     <EmbeddedResource Include="Resources\Lang\rp_ENG.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>rp_ENG.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Lang\rp_ITA.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -477,11 +480,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Scripts\GUI\SeismicViews\Wpf_Accellerazione.xaml">
+    <Page Include="Scripts\GUI\SeismicViews\Wpf_Accelerazione.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Scripts\GUI\SeismicViews\Wps_ZonaSismica.xaml">
+    <Page Include="Scripts\GUI\SeismicViews\Wpf_ZonaSismica.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -504,6 +507,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>"C:\Users\maisi\source\repos\P3Plugin\sposta_dll.bat"</PostBuildEvent>
+    <PostBuildEvent>"C:\Users\simon\source\repos\LoamsDw\P3Plugin\sposta_dll.bat"</PostBuildEvent>
   </PropertyGroup>
 </Project>
