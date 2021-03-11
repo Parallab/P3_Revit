@@ -14,7 +14,7 @@ namespace P3Ribbon.Scripts
     [Transaction(TransactionMode.Manual)]
     public class DynamicModelUpdater : IUpdater
     {
-       
+
         static AddInId _appId;
         static UpdaterId _updaterId;
 
@@ -28,31 +28,42 @@ namespace P3Ribbon.Scripts
             Document doc = data.GetDocument();
             Supporto.AggiornaDoc(doc); //potrebbe aiutare
             if (Materiale.IdInsulTipoPreferito != null)
-            {   
+            {
                 foreach (ElementId id in data.GetAddedElementIds())
                 {
                     try
                     {
                         Element el = doc.GetElement(id);
                         string nome = "";
+                        double spiso = 0;
                         Element tempEl = doc.GetElement(el.GetTypeId());
-                        if (tempEl!= null)
+                        Parameter pSpIso = el.get_Parameter(BuiltInParameter.RBS_REFERENCE_INSULATION_THICKNESS);
+
+                        if (pSpIso != null)
+                            spiso = pSpIso.AsDouble();
+
+                        if (spiso == 0)
                         {
-						nome = doc.GetElement(el.GetTypeId()).LookupParameter("P3_Nome").AsString();
+                            if (tempEl != null)
+                            {
+                                nome = doc.GetElement(el.GetTypeId()).LookupParameter("P3_Nome").AsString();
+                            }
+                            if (nome.Contains("P3"))
+                            {
+                                DuctInsulation.Create(doc, id, Materiale.IdInsulTipoPreferito, Materiale.SpessoreIsolante);
+                            }
                         }
-                        if (nome.Contains("P3")) 
-                        {
-                            DuctInsulation.Create(doc, id, Materiale.IdInsulTipoPreferito, Materiale.SpessoreIsolante);
-                        }
+
+
                     }
                     catch (System.Exception ex)
                     {
-                       TaskDialog.Show("Exception", ex.ToString());
+
                     }
                 }
             }
 
-        }       
+        }
         #region metodi dell updater
         public string GetAdditionalInformation()
         {
@@ -82,7 +93,7 @@ namespace P3Ribbon.Scripts
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
 
-        return Result.Succeeded;
+            return Result.Succeeded;
         }
     }
 

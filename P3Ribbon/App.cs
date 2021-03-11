@@ -110,7 +110,7 @@ namespace P3Ribbon
             // QUANTITÀ
             RibbonPanel ribbonPanelQuantità = a.CreateRibbonPanel(tabName, "Quantità");
             #region bottone: elenco pezzi WIP
-            PushButtonData b5Data = new PushButtonData("cmdelencopezzi", "Elenco" + System.Environment.NewLine + "Pezzi", thisAssemblyPath, "P3Ribbon.Scripts.ElencoPezzi");
+            PushButtonData b5Data = new PushButtonData("cmdelencopezzi", "Elenco" + System.Environment.NewLine + "Canali", thisAssemblyPath, "P3Ribbon.Scripts.ElencoPezzi");
             PushButton pb5 = ribbonPanelQuantità.AddItem(b5Data) as PushButton;
             pb5.ToolTip = "Elenca i canali e i pezzi speciali P3";
             BitmapImage pb5Image = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_ElencoPezzi.png"));

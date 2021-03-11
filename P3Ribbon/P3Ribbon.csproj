@@ -410,13 +410,13 @@
     <Content Include="P3_InstallerResources\P3 - Duct system template18.rte">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="P3_InstallerResources\P3 - Duct system template21.rte">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="P3_InstallerResources\P3 - Duct system template19.rte">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="P3_InstallerResources\P3 - Duct system template20.rte">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="P3_InstallerResources\P3 - Duct system template21.rte">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="packages.config" />
