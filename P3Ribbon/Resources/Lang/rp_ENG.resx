@@ -198,12 +198,6 @@ Library</value>
   <data name="cmdlingua" xml:space="preserve">
     <value>Italian</value>
   </data>
-  <data name="cmdLinguaENG" xml:space="preserve">
-    <value>English</value>
-  </data>
-  <data name="cmdLinguaIT" xml:space="preserve">
-    <value>Italian</value>
-  </data>
   <data name="cmdlingua_tt" xml:space="preserve">
     <value>Change language to italian</value>
   </data>

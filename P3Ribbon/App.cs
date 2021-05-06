@@ -372,7 +372,7 @@ namespace P3Ribbon
             PushButtonData sb1Two = new PushButtonData("cmdLinguaIT", "Italiano", Assemblypath, "P3Ribbon.Scripts.LinguaItaliano");
             sb1Two.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_LinguaItaliana.png"));
 
-            PushButtonData sb1Three = new PushButtonData("cmdLinguaENG", "Inglese", Assemblypath, "P3Ribbon.Scripts.LinguaInglese");
+            PushButtonData sb1Three = new PushButtonData("cmdLinguaENG", "English", Assemblypath, "P3Ribbon.Scripts.LinguaInglese");
             sb1Three.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_LinguaInglese.png"));
 
             SplitButtonData sbd1 = new SplitButtonData("splitButtonLingua", "Split");

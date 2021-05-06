@@ -3,17 +3,14 @@ using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Mechanical;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Selection;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Application = Autodesk.Revit.ApplicationServices.Application;
 
 
 namespace P3Ribbon.Scripts
 {
-   
+
     [Transaction(TransactionMode.Manual)]
     class CambiaMateriale : IExternalCommand
     {

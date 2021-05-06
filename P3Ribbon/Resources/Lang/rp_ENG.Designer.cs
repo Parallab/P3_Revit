@@ -301,24 +301,6 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a English.
-        /// </summary>
-        public static string cmdLinguaENG {
-            get {
-                return ResourceManager.GetString("cmdLinguaENG", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a Italian.
-        /// </summary>
-        public static string cmdLinguaIT {
-            get {
-                return ResourceManager.GetString("cmdLinguaIT", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Cerca una stringa localizzata simile a Material
         ///List.
         /// </summary>

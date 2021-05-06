@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-using Autodesk.Revit.ApplicationServices;
-using Autodesk.Revit.Attributes;
-using System.Windows.Forms;
-using System.IO;
+using System.Linq;
 using System.Windows;
+using System.Windows.Forms;
 
 namespace P3Ribbon.Scripts
 {
@@ -45,13 +39,13 @@ namespace P3Ribbon.Scripts
             Document doc = uiDoc.Document;
 
             Scripts.GUI.Wpf_impo wpf = new Scripts.GUI.Wpf_impo(commandData);
-      
-                using (var t = new Transaction(doc, "FinestraImpostazini"))
-                {
-                    t.Start();
-                    wpf.ShowDialog();
-                    t.Commit();
-                }            
+
+            using (var t = new Transaction(doc, "FinestraImpostazini"))
+            {
+                t.Start();
+                wpf.ShowDialog();
+                t.Commit();
+            }
             return Result.Succeeded;
         }
 
@@ -72,7 +66,7 @@ namespace P3Ribbon.Scripts
             {
                 if (MigraAreaIsolamento.parPresenti == true)
                 {
-                    Scripts.GUI.Form_Quantità frm = new Scripts.GUI.Form_Quantità(commandData);
+                    Scripts.GUI.Form_Quantità frm = new GUI.Form_Quantità(commandData);
                     frm.Controls.Find("butt_DettagliQuantità", true).FirstOrDefault().Text = P3Ribbon.Resources.Lang.lang.fromDettagli;
                     DataGridView dgv = frm.Controls.Find("AbacoQuantità", true).FirstOrDefault() as DataGridView;
 
@@ -100,14 +94,14 @@ namespace P3Ribbon.Scripts
             Autodesk.Revit.ApplicationServices.Application app = uiApp.Application;
 
             GUI.Wpf_impo wpf = new GUI.Wpf_impo(commandData);
-            
+
             wpf.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             wpf.ShowDialog();
-         
-             return Result.Succeeded;
+
+            return Result.Succeeded;
         }
 
-       public static void CenterWindowOnScreen(GUI.Wpf_impo wpf)
+        public static void CenterWindowOnScreen(GUI.Wpf_impo wpf)
         {
             double screenWidth = System.Windows.SystemParameters.PrimaryScreenWidth;
             double screenHeight = System.Windows.SystemParameters.PrimaryScreenHeight;
@@ -118,7 +112,7 @@ namespace P3Ribbon.Scripts
         }
     }
 
-    
+
 
     [Transaction(TransactionMode.Manual)]
     class FinestraLibreria : IExternalCommand

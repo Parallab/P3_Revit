@@ -1,16 +1,9 @@
 ﻿using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
-using Autodesk.Revit.UI;
-using Application = Autodesk.Revit.ApplicationServices.Application;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.DB.Mechanical;
-using System.Collections.ObjectModel;
-using Autodesk.Revit.DB.Structure;
+using Autodesk.Revit.UI;
+using System.Linq;
+using Application = Autodesk.Revit.ApplicationServices.Application;
 
 namespace P3Ribbon.Scripts
 {

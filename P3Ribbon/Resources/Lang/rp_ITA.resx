@@ -198,12 +198,6 @@ Libreria</value>
   <data name="cmdlingua" xml:space="preserve">
     <value>Italiano</value>
   </data>
-  <data name="cmdLinguaENG" xml:space="preserve">
-    <value>Inglese</value>
-  </data>
-  <data name="cmdLinguaIT" xml:space="preserve">
-    <value>Italiano</value>
-  </data>
   <data name="cmdlingua_tt" xml:space="preserve">
     <value>Cambia la lingua in italiano</value>
   </data>

@@ -1,15 +1,8 @@
-﻿using Autodesk.Revit.ApplicationServices;
-using Autodesk.Revit.Attributes;
+﻿using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
 using P3Ribbon.Scripts;
-using System;
-using System.IO;
-using System.Reflection;
-using System.Collections.Generic;
-using System.Windows.Forms;
 using Application = Autodesk.Revit.ApplicationServices.Application;
-using System.Text.RegularExpressions;
 
 namespace P3Ribbon
 {
