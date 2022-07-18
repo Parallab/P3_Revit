@@ -30,11 +30,15 @@ namespace P3Ribbon.Scripts
             // guardo i tipi nel documento template
             ICollection<ElementId> IdTipiDaCopiare = new Collection<ElementId>();
             Document docSource = null;
+            if (app.VersionNumber == "2022")
+            {
+                docSource = app.OpenDocumentFile(Supporto.TrovaPercorsoRisorsa("P3 - Duct system template22.rte"));
+            }
             if (app.VersionNumber == "2021")
             {
                 docSource = app.OpenDocumentFile(Supporto.TrovaPercorsoRisorsa("P3 - Duct system template21.rte"));
             }
-            if (app.VersionNumber == "2020")
+            else if (app.VersionNumber == "2020")
             {
                 docSource = app.OpenDocumentFile(Supporto.TrovaPercorsoRisorsa("P3 - Duct system template20.rte"));
             }
@@ -48,10 +52,8 @@ namespace P3Ribbon.Scripts
             }
             else
             {
-                docSource = app.OpenDocumentFile(Supporto.TrovaPercorsoRisorsa("P3 - Duct system template21.rte"));
+                docSource = app.OpenDocumentFile(Supporto.TrovaPercorsoRisorsa("P3 - Duct system template22.rte"));
             }
-
-
 
             //IMPORTO INSUL E TIPI DI CONDOTTI 
             List<string> nomiTipiPresenti = new List<string>();

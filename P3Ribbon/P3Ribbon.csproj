@@ -152,8 +152,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>lang.resx</DependentUpon>
     </Compile>
-    <Compile Include="Scripts\GUI\SeismicViewModels\Wpf_AccellerazioneModel.cs" />
-    <Compile Include="Scripts\GUI\SeismicViewModels\Wpf_ScegliZonaAccModel.cs" />
+    <Compile Include="Scripts\GUI\SeismicViewModels\WpfScegliZonaAccModel.cs" />
+    <Compile Include="Scripts\GUI\SeismicViewModels\Wpf_AccelerazioneModel.cs" />
     <Compile Include="Scripts\GUI\SeismicViewModels\Wpf_ZonaSismicaModel.cs" />
     <Compile Include="Scripts\GUI\SeismicViews\WpfScegliZonaAcc.xaml.cs">
       <DependentUpon>WpfScegliZonaAcc.xaml</DependentUpon>

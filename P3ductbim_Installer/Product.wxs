@@ -52,6 +52,8 @@
         <Directory Id="Autodesk" Name="Autodesk">
           <Directory Id="AutodekRevit" Name="Revit">
             <Directory Id="AutodekRevitAddin" Name="Addins">
+              <Directory Id="Addins2024" Name="2024" />
+              <Directory Id="Addins2023" Name="2023" />
               <Directory Id="Addins2022" Name="2022" />
               <Directory Id="Addins2021" Name="2021" />
               <Directory Id="Addins2020" Name="2020" />
@@ -107,6 +109,9 @@
       </Component>
 		<Component Id="P3_InstallerResources_P3___Duct_system_template21.rte" Guid="fbbac554-bb3a-4303-a45e-265a4604c1aa" Directory="P3_InstallerResources">
 			<File Id="P3_InstallerResources_P3___Duct_system_template21.rte" Name="P3 - Duct system template21.rte" Source="$(var.CustomAction.TargetDir)P3_InstallerResources\P3 - Duct system template21.rte" />
+		</Component>
+		<Component Id="P3_InstallerResources_P3___Duct_system_template22.rte" Guid="ec1b0f20-b74a-449a-accb-86a741937c8c" Directory="P3_InstallerResources">
+			<File Id="P3_InstallerResources_P3___Duct_system_template22.rte" Name="P3 - Duct system template22.rte" Source="$(var.CustomAction.TargetDir)P3_InstallerResources\P3 - Duct system template22.rte" />
 		</Component>
       <Component Id="P3_InstallerResources_P3_ParamCondivisi.txt.txt" Guid="df6a1ccb-c998-4a3a-9440-6dab552cceeb" Directory="P3_InstallerResources">
         <File Id="P3_InstallerResources_P3_ParamCondivisi.txt.txt" Name="P3_ParamCondivisi.txt" Source="$(var.CustomAction.TargetDir)P3_InstallerResources\P3_ParamCondivisi.txt" />

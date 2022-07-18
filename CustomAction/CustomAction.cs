@@ -11,7 +11,7 @@ namespace CustomAction
     {
         public static string commonAppData = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
         public static string filepath_orig = commonAppData + @"\Autodesk\Revit\Addins\_anno_\P3Ribbon.addin";
-        public static string[] anni = new string[] { "2018", "2019", "2020", "2021", "2022" };
+        public static string[] anni = new string[] { "2018", "2019", "2020", "2021", "2022", "2023", "2024" };
 
         [CustomAction]
         public static ActionResult ManifestAddinScrivi(Session session)

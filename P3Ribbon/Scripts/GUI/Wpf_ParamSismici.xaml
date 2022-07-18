@@ -11,15 +11,15 @@
 
     <Window.Resources>
 
-        <DataTemplate x:Name="SeismcZonaSimicaTemplate" DataType="{x:Type ViewModel:Wpf_ZonaSismicaModel}">
+        <DataTemplate x:Name="SeismcZonaSimicaTemplate" DataType="{x:Type ViewModel:Wpf_ZonaSismicaModels}">
             <Views:Wpf_ZonaSismica DataContext="{Binding}"/>
         </DataTemplate>
 
-        <DataTemplate x:Name="SeismcAccTemplate" DataType="{x:Type ViewModel:Wpf_AccellerazioneModel}">
+        <DataTemplate x:Name="SeismcAccTemplate" DataType="{x:Type ViewModel:Wpf_AccelerazioneModels}">
             <Views:Wpf_Accelerazione DataContext="{Binding}"/>
         </DataTemplate>
 
-        <DataTemplate x:Name="ScegliZonaAccTemplate" DataType="{x:Type ViewModel:Wpf_ScegliZonaAccModel}">
+        <DataTemplate x:Name="ScegliZonaAccTemplate" DataType="{x:Type ViewModel:WpfScegliZonaAccModels}">
             <Views:WpfScegliZonaAcc DataContext="{Binding}"/>
         </DataTemplate>
 

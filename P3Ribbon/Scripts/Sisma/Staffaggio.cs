@@ -464,7 +464,6 @@ namespace P3Ribbon.Scripts
               
             }
         }
-
         public void PosizionaStaffe(Document doc, FamilySymbol _fs)
         {
             XYZ pt;

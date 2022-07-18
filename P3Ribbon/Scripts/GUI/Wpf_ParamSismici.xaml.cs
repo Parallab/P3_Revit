@@ -42,13 +42,13 @@ namespace P3Ribbon.Scripts.GUI
             {
                 // DataContext = new GUI.SeismicViewModels.Wpf_ScegliZonaAccModel();
                 wpfButtScegliZona.Background = (Brush)bc.ConvertFromString("#FF81B2BF");
-                DataContext = new GUI.SeismicViewModels.Wpf_ZonaSismicaModel();
+                DataContext = new GUI.SeismicViewModels.Wpf_ZonaSismicaModels();
             }
             else
             {
                 wpfButtScegliZona.Visibility = System.Windows.Visibility.Hidden;
                 wpfButtScegliAcc.Background = (Brush)bc.ConvertFromString("#FF81B2BF");
-                DataContext = new GUI.SeismicViewModels.Wpf_AccellerazioneModel();
+                DataContext = new GUI.SeismicViewModels.Wpf_AccelerazioneModels();
             }
             
             DaPojInfoaWpf();
@@ -60,11 +60,11 @@ namespace P3Ribbon.Scripts.GUI
         {
             if(FinestraAcc == true)
             {
-                DataContext = new GUI.SeismicViewModels.Wpf_AccellerazioneModel();
+                DataContext = new GUI.SeismicViewModels.Wpf_AccelerazioneModels();
             }
             else
             {
-               DataContext = new GUI.SeismicViewModels.Wpf_ZonaSismicaModel();
+               DataContext = new GUI.SeismicViewModels.Wpf_ZonaSismicaModels();
             }
             
         }
@@ -178,7 +178,7 @@ namespace P3Ribbon.Scripts.GUI
 
         private void wpfButtScegliZona_Click(object sender, RoutedEventArgs e)
         {
-            DataContext = new GUI.SeismicViewModels.Wpf_ZonaSismicaModel();
+            DataContext = new GUI.SeismicViewModels.Wpf_ZonaSismicaModels();
             ColoraBottoniSeParametriCompilati();
             wpfButtScegliZona.Background = (Brush)bc.ConvertFromString("#FF81B2BF");
             wpfButtScegliAcc.Background = (Brush)bc.ConvertFromString("#3BB5CAFF");
@@ -186,7 +186,7 @@ namespace P3Ribbon.Scripts.GUI
 
         private void wpfButtScegliAcc_Click(object sender, RoutedEventArgs e)
         {
-            DataContext = new GUI.SeismicViewModels.Wpf_AccellerazioneModel();
+            DataContext = new GUI.SeismicViewModels.Wpf_AccelerazioneModels();
             wpfButtScegliAcc.Background = (Brush)bc.ConvertFromString("#FF81B2BF");
             wpfButtScegliZona.Background = (Brush)bc.ConvertFromString("#3BB5CAFF");
         }
