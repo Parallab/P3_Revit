@@ -181,7 +181,7 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a Elenca i canali e i pezzi speciali P3.
+        ///   Cerca una stringa localizzata simile a Elenca i pezzi e i materiali.
         /// </summary>
         public static string cmdelencopezzi_tt {
             get {
@@ -297,24 +297,6 @@ namespace P3Ribbon.Resources.Lang {
         public static string cmdlingua_tt {
             get {
                 return ResourceManager.GetString("cmdlingua_tt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a Inglese.
-        /// </summary>
-        public static string cmdLinguaENG {
-            get {
-                return ResourceManager.GetString("cmdLinguaENG", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a Italiano.
-        /// </summary>
-        public static string cmdLinguaIT {
-            get {
-                return ResourceManager.GetString("cmdLinguaIT", resourceCulture);
             }
         }
         

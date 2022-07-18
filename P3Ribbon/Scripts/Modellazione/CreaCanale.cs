@@ -1,16 +1,9 @@
 ﻿using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
-using Autodesk.Revit.UI;
-using Application = Autodesk.Revit.ApplicationServices.Application;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.DB.Mechanical;
-using System.Collections.ObjectModel;
-using Autodesk.Revit.DB.Structure;
+using Autodesk.Revit.UI;
+using System.Linq;
+using Application = Autodesk.Revit.ApplicationServices.Application;
 
 namespace P3Ribbon.Scripts
 {
@@ -30,11 +23,14 @@ namespace P3Ribbon.Scripts
             {
                 string nome = App.rbbCboMateriali.Current.Name;
                 Materiale.AggiornaTendinaRibbon(nome);
-
-                DuctType ductDynamicType = new FilteredElementCollector(doc).OfClass(typeof(DuctType)).FirstOrDefault(x => x.Name.Contains("P3 - Preinsulated panels system - Dynamic")) as DuctType;
-
+                try
+                {
+                DuctType ductDynamicType = new FilteredElementCollector(doc).OfClass(typeof(DuctType)).FirstOrDefault(x => x.LookupParameter("P3_Nome").AsString() == "P3 - Preinsulated panels system - Dynamic -  ε 0.03mm") as DuctType;
                 //richiedo che sia il prossimo tipo di default
                 uiDoc.PostRequestForElementTypePlacement(ductDynamicType);
+                }
+                catch { }
+
                 using (Transaction t = new Transaction(doc, "Crea un canale di tipo dinamico"))
                 {
 
@@ -84,11 +80,13 @@ namespace P3Ribbon.Scripts
             {
             string nome = App.rbbCboMateriali.Current.Name;
             Materiale.AggiornaTendinaRibbon(nome);
-
-                DuctType ductTapType = new FilteredElementCollector(doc).OfClass(typeof(DuctType)).FirstOrDefault(x => x.Name.Contains("P3 - Preinsulated panels system - Tap")) as DuctType;
-
+                try
+                {
+                    DuctType ductTapType = new FilteredElementCollector(doc).OfClass(typeof(DuctType)).FirstOrDefault(x => x.LookupParameter("P3_Nome").AsString() == "P3 - Preinsulated panels system - Tap -  ε 0.03mm") as DuctType;
+                    uiDoc.PostRequestForElementTypePlacement(ductTapType);
+                }
+                catch { }
                 //richiedo che sia il prossimo tipo di default
-                uiDoc.PostRequestForElementTypePlacement(ductTapType);
 
                 using (Transaction t = new Transaction(doc, "Crea un canale di tipo scarpetta"))
                 {

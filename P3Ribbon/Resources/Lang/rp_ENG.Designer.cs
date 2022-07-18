@@ -181,7 +181,7 @@ namespace P3Ribbon.Resources.Lang {
         }
         
         /// <summary>
-        ///   Cerca una stringa localizzata simile a List the P3 ducts and special pieces.
+        ///   Cerca una stringa localizzata simile a List the pieces and materials.
         /// </summary>
         public static string cmdelencopezzi_tt {
             get {
@@ -297,24 +297,6 @@ namespace P3Ribbon.Resources.Lang {
         public static string cmdlingua_tt {
             get {
                 return ResourceManager.GetString("cmdlingua_tt", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a English.
-        /// </summary>
-        public static string cmdLinguaENG {
-            get {
-                return ResourceManager.GetString("cmdLinguaENG", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Cerca una stringa localizzata simile a Italian.
-        /// </summary>
-        public static string cmdLinguaIT {
-            get {
-                return ResourceManager.GetString("cmdLinguaIT", resourceCulture);
             }
         }
         

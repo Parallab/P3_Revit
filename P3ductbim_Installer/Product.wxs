@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <?define P3Ribbon_TargetDir=$(var.P3Ribbon.TargetDir)?>
-  <Product Id="*" Name="P3Ductbim" Language="1033" Version="1.0.0.0" Manufacturer="P3" UpgradeCode="0172c0fb-2d98-4745-9a73-c96990538a79">
+  <Product Id="*" Name="P3ductbim" Language="1033" Version="1.0.0.0" Manufacturer="P3" UpgradeCode="0172c0fb-2d98-4745-9a73-c96990538a79">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
     <Icon Id="ductbim.ico" SourceFile="$(var.ProjectDir)\Images\ductbim.ico" />
 
@@ -28,7 +28,7 @@
             Order="2">1</Publish>
     </UI>
     
-    <Feature Id="ProductFeature" Title="P3Ductbim" Level="1">
+    <Feature Id="ProductFeature" Title="P3ductbim" Level="1">
       <ComponentGroupRef Id="ProductComponents" />
       <ComponentRef Id="ApplicationShortuct" />
       <ComponentGroupRef Id="ApplicationProgramsFolder_files" />
@@ -52,6 +52,8 @@
         <Directory Id="Autodesk" Name="Autodesk">
           <Directory Id="AutodekRevit" Name="Revit">
             <Directory Id="AutodekRevitAddin" Name="Addins">
+              <Directory Id="Addins2024" Name="2024" />
+              <Directory Id="Addins2023" Name="2023" />
               <Directory Id="Addins2022" Name="2022" />
               <Directory Id="Addins2021" Name="2021" />
               <Directory Id="Addins2020" Name="2020" />
@@ -62,12 +64,12 @@
         </Directory>
       </Directory>
       <Directory Id="ProgramFilesFolder">
-        <Directory Id="INSTALLFOLDER" Name="P3Ductbim">
+        <Directory Id="INSTALLFOLDER" Name="P3ductbim">
           <Directory Id="P3_InstallerResources" Name="P3_InstallerResources" />
         </Directory>
       </Directory>
       <Directory Id="ProgramMenuFolder">
-        <Directory Id="ApplicationProgramsFolder" Name="P3Ductbim" />
+        <Directory Id="ApplicationProgramsFolder" Name="P3ductbim" />
       </Directory>
     </Directory>
   </Fragment>
@@ -75,7 +77,7 @@
   <Fragment>
     <DirectoryRef Id="ApplicationProgramsFolder">
       <Component Id="ApplicationShortuct" Guid="ea28422e-71c8-11eb-9439-0242ac130002">
-        <Shortcut Id="ApplicationStartMenuShortcut" Name="P3Ductbim" Description="P3Ductbim" Target="[INSTALLFOLDER]"> </Shortcut>
+        <Shortcut Id="ApplicationStartMenuShortcut" Name="P3ductbim" Description="P3ductbim" Target="[INSTALLFOLDER]"> </Shortcut>
         <RemoveFolder Id="RemoveApplicationProgramsFolder" Directory="ApplicationProgramsFolder" On="uninstall" />
         <RegistryValue Root="HKCU" Key="Software\P3Ductbim" Name="InstallFolder" Type="integer" Value="1" KeyPath="yes"> </RegistryValue>
       </Component>
@@ -97,20 +99,26 @@
   <Fragment>
     <ComponentGroup Id="ApplicationProgramsFolder_files">
       <Component Id="P3_InstallerResources_P3___Duct_system_template18.rte" Guid="9b755f9c-6cd3-401b-b44c-2e1738d84515" Directory="P3_InstallerResources">
-        <File Id="P3_InstallerResources_P3___Duct_system_template18.rte" Name="P3 - Duct system template18.rte" Source="$(var.P3Ribbon.TargetDir)P3_InstallerResources\P3 - Duct system template18.rte" />
+        <File Id="P3_InstallerResources_P3___Duct_system_template18.rte" Name="P3 - Duct system template18.rte" Source="$(var.CustomAction.TargetDir)P3_InstallerResources\P3 - Duct system template18.rte" />
       </Component>
       <Component Id="P3_InstallerResources_P3___Duct_system_template19.rte" Guid="acd556c6-c745-41ee-9545-6582d7e699df" Directory="P3_InstallerResources">
-        <File Id="P3_InstallerResources_P3___Duct_system_template19.rte" Name="P3 - Duct system template19.rte" Source="$(var.P3Ribbon.TargetDir)P3_InstallerResources\P3 - Duct system template19.rte" />
+        <File Id="P3_InstallerResources_P3___Duct_system_template19.rte" Name="P3 - Duct system template19.rte" Source="$(var.CustomAction.TargetDir)P3_InstallerResources\P3 - Duct system template19.rte" />
       </Component>
       <Component Id="P3_InstallerResources_P3___Duct_system_template20.rte" Guid="04064917-6caf-4574-9858-8ba01bf87214" Directory="P3_InstallerResources">
-        <File Id="P3_InstallerResources_P3___Duct_system_template20.rte" Name="P3 - Duct system template20.rte" Source="$(var.P3Ribbon.TargetDir)P3_InstallerResources\P3 - Duct system template20.rte" />
+        <File Id="P3_InstallerResources_P3___Duct_system_template20.rte" Name="P3 - Duct system template20.rte" Source="$(var.CustomAction.TargetDir)P3_InstallerResources\P3 - Duct system template20.rte" />
       </Component>
+		<Component Id="P3_InstallerResources_P3___Duct_system_template21.rte" Guid="fbbac554-bb3a-4303-a45e-265a4604c1aa" Directory="P3_InstallerResources">
+			<File Id="P3_InstallerResources_P3___Duct_system_template21.rte" Name="P3 - Duct system template21.rte" Source="$(var.CustomAction.TargetDir)P3_InstallerResources\P3 - Duct system template21.rte" />
+		</Component>
+		<Component Id="P3_InstallerResources_P3___Duct_system_template22.rte" Guid="ec1b0f20-b74a-449a-accb-86a741937c8c" Directory="P3_InstallerResources">
+			<File Id="P3_InstallerResources_P3___Duct_system_template22.rte" Name="P3 - Duct system template22.rte" Source="$(var.CustomAction.TargetDir)P3_InstallerResources\P3 - Duct system template22.rte" />
+		</Component>
       <Component Id="P3_InstallerResources_P3_ParamCondivisi.txt.txt" Guid="df6a1ccb-c998-4a3a-9440-6dab552cceeb" Directory="P3_InstallerResources">
-        <File Id="P3_InstallerResources_P3_ParamCondivisi.txt.txt" Name="P3_ParamCondivisi.txt" Source="$(var.P3Ribbon.TargetDir)P3_InstallerResources\P3_ParamCondivisi.txt" />
+        <File Id="P3_InstallerResources_P3_ParamCondivisi.txt.txt" Name="P3_ParamCondivisi.txt" Source="$(var.CustomAction.TargetDir)P3_InstallerResources\P3_ParamCondivisi.txt" />
       </Component>
       <Component Id="P3_InstallerResources_P3_TabelleDiPredimensionamento.txt" Guid="f30e76d8-bc80-4dea-a6cb-42ac1939d145" Directory="P3_InstallerResources">
-        <File Id="P3_InstallerResources_P3_TabelleDiPredimensionamento.txt" Name="P3_TabelleDiPredimensionamento.txt" Source="$(var.P3Ribbon_TargetDir)P3_InstallerResources\P3_TabelleDiPredimensionamento.txt" />
-      </Component>
+        <File Id="P3_InstallerResources_P3_TabelleDiPredimensionamento.txt" Name="P3_TabelleDiPredimensionamento.txt" Source="$(var.CustomAction.TargetDir)P3_InstallerResources\P3_TabelleDiPredimensionamento.txt" />
+      </Component> 
     </ComponentGroup>
   </Fragment>
 </Wix>

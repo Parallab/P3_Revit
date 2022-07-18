@@ -11,15 +11,15 @@
 
     <Window.Resources>
 
-        <DataTemplate x:Name="SeismcZonaSimicaTemplate" DataType="{x:Type ViewModel:Wpf_ZonaSismicaModel}">
-            <Views:Wps_ZonaSismica DataContext="{Binding}"/>
-        </DataTemplate>
-        
-        <DataTemplate x:Name="SeismcAccTemplate" DataType="{x:Type ViewModel:Wpf_AccellerazioneModel}">
-            <Views:Wpf_Accellerazione DataContext="{Binding}"/>
+        <DataTemplate x:Name="SeismcZonaSimicaTemplate" DataType="{x:Type ViewModel:Wpf_ZonaSismicaModels}">
+            <Views:Wpf_ZonaSismica DataContext="{Binding}"/>
         </DataTemplate>
 
-        <DataTemplate x:Name="ScegliZonaAccTemplate" DataType="{x:Type ViewModel:Wpf_ScegliZonaAccModel}">
+        <DataTemplate x:Name="SeismcAccTemplate" DataType="{x:Type ViewModel:Wpf_AccelerazioneModels}">
+            <Views:Wpf_Accelerazione DataContext="{Binding}"/>
+        </DataTemplate>
+
+        <DataTemplate x:Name="ScegliZonaAccTemplate" DataType="{x:Type ViewModel:WpfScegliZonaAccModels}">
             <Views:WpfScegliZonaAcc DataContext="{Binding}"/>
         </DataTemplate>
 
@@ -33,7 +33,6 @@
             <RowDefinition Height="71*"/>
             <RowDefinition Height="71*"/>
             <RowDefinition Height="71*"/>
-            <RowDefinition Height="71"/>
             <RowDefinition Height="36*"/>
         </Grid.RowDefinitions>
 
@@ -46,37 +45,87 @@
             <ColumnDefinition Width="230*"/>
             <ColumnDefinition Width="29*"/>
         </Grid.ColumnDefinitions>
-        <Rectangle Grid.ColumnSpan="2" Grid.Column="4" Grid.Row="1" Grid.RowSpan="5" Stroke="Black" Fill="#3BB5CAFF"/>
+        <Rectangle Grid.ColumnSpan="2" Grid.Column="4" Grid.Row="1" Grid.RowSpan="4" Stroke="Black" Fill="#3BB5CAFF"/>
 
-        <Rectangle Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1" Grid.RowSpan="5" Stroke="Black" Fill="#3BB5CAFF"/>
-        <Button x:Name="wpfBottCUsoIII" Content="III" Grid.Column="4" 
-            Margin="1,26,10,26" Grid.Row="4" Background="#FF81B2BF" BorderBrush="#00FFFDFD" FontWeight="Bold" FontFamily="Arial" FontSize="13" VerticalAlignment="Center" Click="WpfbottCUsoIII_Click"/>
-        <Button x:Name="wpfBottCUsoII" Content="II" Grid.Column="4" 
-            Grid.Row="2" Background="#FF81B2BF" BorderBrush="#00FFFDFD" FontWeight="Bold" FontFamily="Arial" FontSize="13" Margin="1,62,10,62" Grid.RowSpan="2" VerticalAlignment="Center" Click="wpfBottCUsoII_Click"/>
-        <Button x:Name="wpfBottCUsoIV" Content="IV" Grid.Column="4" 
-            Grid.Row="5" Background="#FF81B2BF" BorderBrush="#00FFFDFD" FontWeight="Bold" FontFamily="Arial" FontSize="13" VerticalAlignment="Center" Margin="1,26,10,26" Click="WpfbottCUsoIV_Click"/>
-        <Button x:Name="wpfBottCUsoI" Content="I" Grid.Column="4" 
-            Grid.Row="1" Background="#FF81B2BF" BorderBrush="#00FFFDFD" FontWeight="Bold" FontFamily="Arial" FontSize="13" VerticalAlignment="Center" Margin="1,26,10,26" Click="WpfbottCUsoI_Click"/>
+        <Rectangle Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1" Grid.RowSpan="4" Stroke="Black" Fill="White"/>
+
+        <Button x:Name="wpfBottCUsoI"  Grid.Column="4" Margin="15,3,15,3"
+            Grid.Row="1" Grid.ColumnSpan="2" Background="#FF81B2BF" BorderBrush="#00FFFDFD"  FontFamily="Arial" FontSize="12" VerticalAlignment="Stretch"  Click="WpfbottCUsoI_Click">
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="I" TextAlignment="Justify" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="30,0,0,0" FontSize="14" FontWeight="Bold"/>
+                <Border BorderBrush="{x:Null}" Margin="60,0,0,0">
+                    <TextBlock TextWrapping="Wrap" Text="{x:Static language:lang.wpfPCu1}" FontFamily="Arial" FontSize="11"  VerticalAlignment="Center" TextAlignment="Justify" Width="201"  />
+                </Border>
+            </StackPanel>
+
+        </Button>
+
+        <Button x:Name="wpfBottCUsoII" Grid.Column="4" Grid.ColumnSpan="2" Margin="15,3,15,3"
+            Grid.Row="2" Background="#FF81B2BF" BorderBrush="#00FFFDFD" FontFamily="Arial" FontSize="12" VerticalAlignment="Stretch" Click="wpfBottCUsoII_Click">
+
+            <StackPanel Orientation="Horizontal">
+
+                <TextBlock Text="II" TextAlignment="Justify" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="33,0,0,0" FontSize="14" FontWeight="Bold"/>
+                
+                <Border  BorderBrush="{x:Null}" Margin="57,0,0,0" >
+                    <TextBlock TextWrapping="Wrap" FontFamily="Arial" FontSize="11"  Text="{x:Static language:lang.wpfPCu2}" TextAlignment="Justify" Width="204" />
+                </Border>
+            </StackPanel>
+   
+        </Button>
+
+        <Button x:Name="wpfBottCUsoIII"  Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="3"  Margin="15,3,15,3"
+             Background="#FF81B2BF" BorderBrush="#00FFFDFD" FontFamily="Arial" FontSize="12" VerticalAlignment="Stretch" Click="WpfbottCUsoIII_Click">
+
+            <StackPanel Orientation="Horizontal" >
+                <TextBlock Text="III" TextAlignment="Justify" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="36,0,0,0" FontSize="14" FontWeight="Bold"/>
+            <Border Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="3" BorderBrush="{x:Null}" Margin="54,0,00,0">
+                <TextBlock  TextWrapping="Wrap"  FontFamily="Arial" FontSize="11" HorizontalAlignment="Center" TextAlignment="Justify" VerticalAlignment="Center" Text="{x:Static language:lang.wpfPCu3}" Width="206"/>
+            </Border>
+                
+            </StackPanel>
+
+
+        </Button>
+
+
+        <Button x:Name="wpfBottCUsoIV" Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="4" Margin="15,3,15,4"
+             Background="#FF81B2BF" BorderBrush="#00FFFDFD"  FontFamily="Arial" FontSize="12" VerticalAlignment="Stretch" Click="WpfbottCUsoIV_Click">
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="IV" TextAlignment="Justify" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="30,0,0,0" FontSize="14" FontWeight="Bold"/>
+            <Border Grid.Column="4" Grid.ColumnSpan="2" Grid.Row="4" BorderBrush="{x:Null}" Margin="51,0,0,0" >
+                <TextBlock Grid.Column="5" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Justify" FontFamily="Arial" FontSize="11"  VerticalAlignment="Center" Width="203" >   <Run Text="{x:Static language:lang.wpfPCu4}"></Run> </TextBlock>
+            </Border>
+                
+            </StackPanel>
+        </Button>
+
 
         <Button x:Name="wpfButtAnnulla" Content="{x:Static language:lang.bottAnnulla}" Grid.Column="5" Height="28" Margin="10,0,125,0" Grid.Row="6" Width="90" BorderBrush="#00707070" Click="wpfBottAnnulla_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Button x:Name="wpfButtOk" Content="Ok" Grid.Column="5" Height="28" Margin="125,0,10,0" Grid.Row="6" Width="90" BorderBrush="#00707070" Click="wpfBottOk_Click" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
-        <Border Grid.Column="5" Grid.Row="1" BorderBrush="{x:Null}" Height="60">
-            <TextBlock  Grid.Column="5" Margin="10,10,0,10" Grid.Row="1" TextWrapping="Wrap" Width="205" Padding="10" TextAlignment="Center" Text="{x:Static language:lang.wpfPCu1}" FontFamily="Arial" FontSize="11"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        </Border>
 
-        <Border Grid.Column="5" Grid.Row="2" Grid.RowSpan="2" BorderBrush="{x:Null}" Height="60">
-            <TextBlock Grid.Column="5" Grid.Row="2" TextWrapping="Wrap" Width="229" FontFamily="Arial" FontSize="11" Grid.RowSpan="2" VerticalAlignment="Center" Text="{x:Static language:lang.wpfPCu2}" HorizontalAlignment="Center" TextAlignment="Center"/>
-        </Border>
-        <Border Grid.Column="5" Grid.Row="4" BorderBrush="{x:Null}" Height="70">
-            <TextBlock Grid.Column="5" Grid.Row="4" TextWrapping="Wrap" TextAlignment="Center" FontFamily="Arial" FontSize="11" HorizontalAlignment="Center" Margin="0,17"><Run Text="{x:Static language:lang.wpfPCu3}"/></TextBlock>
-        </Border>
-        <Border Grid.Column="5" Grid.Row="5" BorderBrush="{x:Null}" Height="60">
-            <TextBlock Grid.Column="5" HorizontalAlignment="Center" Grid.Row="5" TextWrapping="Wrap" TextAlignment="Center" FontFamily="Arial" FontSize="11" VerticalAlignment="Center"><Run Text="{x:Static language:lang.wpfPCu4}"/></TextBlock>
-        </Border>
-        <TextBlock HorizontalAlignment="Center" Height="12" Margin="0,13,0,2" TextWrapping="Wrap" VerticalAlignment="Center" Width="338" FontFamily="Arial" FontWeight="Bold" Grid.ColumnSpan="2" Grid.Column="1"><Run Text="{x:Static language:lang.wpfPDefAcc}"/></TextBlock>
-        <TextBlock HorizontalAlignment="Center" Height="12" Margin="1,13,27,2" TextWrapping="Wrap" VerticalAlignment="Center" Width="338" FontFamily="Arial" FontWeight="Bold" Grid.ColumnSpan="3" Grid.Column="4"><Run Text="{x:Static language:lang.wpfPDefCu}"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Bottom" Width="338" FontFamily="Arial" FontWeight="Bold" Grid.ColumnSpan="2" Grid.Column="1"><Run Text="{x:Static language:lang.wpfPDefAcc}"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Height="12"  TextWrapping="Wrap" VerticalAlignment="Bottom" Width="338" FontFamily="Arial" FontWeight="Bold" Grid.ColumnSpan="3" Grid.Column="4"><Run Text="{x:Static language:lang.wpfPDefCu}"/></TextBlock>
 
-        <ContentControl  Content="{Binding}" Grid.ColumnSpan="2" Grid.Column="1" Grid.RowSpan="5" Grid.Row="1"/>
+        <ContentControl  Content="{Binding}" Grid.ColumnSpan="2" Grid.Column="1" Grid.RowSpan="4" Grid.Row="1"/>
+
+        <Button x:Name="wpfButtScegliZona" Grid.Column="0" Grid.Row="2" Height="20"  HorizontalAlignment="Right" VerticalAlignment="Stretch"  Background="#3BB5CAFF"
+                FontSize="12" Content="Zona Sismica" Click="wpfButtScegliZona_Click">
+
+            <Button.LayoutTransform>
+                <RotateTransform Angle="-90"/>
+            </Button.LayoutTransform>
+        </Button>
+
+        <Button x:Name="wpfButtScegliAcc" Grid.Column="0" Grid.Row="1" Height="20"  Margin="0,0,0,0" HorizontalAlignment="Right" VerticalAlignment="Stretch"  Background="#3BB5CAFF" 
+                 FontSize="12" Content="{x:Static language:lang.wpfAccel}" Click="wpfButtScegliAcc_Click" >
+            <Button.LayoutTransform>
+                <RotateTransform Angle="-90"/>
+            </Button.LayoutTransform>
+        </Button>
+
     </Grid>
 </Window>

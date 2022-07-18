@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Autodesk.Revit.Attributes;
+﻿using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
-using Autodesk.Revit.DB.Structure;
 using Autodesk.Revit.DB.Mechanical;
+using Autodesk.Revit.DB.Structure;
 using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Selection;
-using Autodesk.Revit.DB.Events;
-using Application = Autodesk.Revit.ApplicationServices.Application;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 
 namespace P3Ribbon.Scripts
@@ -466,7 +464,6 @@ namespace P3Ribbon.Scripts
               
             }
         }
-
         public void PosizionaStaffe(Document doc, FamilySymbol _fs)
         {
             XYZ pt;

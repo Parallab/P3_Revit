@@ -189,6 +189,12 @@
   <data name="taskdTipiNonPresenti" xml:space="preserve">
     <value>Tipi di canale non inseriti nel progetto</value>
   </data>
+  <data name="wpfAccel" xml:space="preserve">
+    <value>Accelerazione</value>
+  </data>
+  <data name="wpfAccInserireVal" xml:space="preserve">
+    <value>Inserisci il valore di accelerazione sismica  αg/g</value>
+  </data>
   <data name="wpfImpAttivo" xml:space="preserve">
     <value>Attivo</value>
   </data>
@@ -213,53 +219,50 @@ Questa funzione legge in backround le operazione svolte sui condotti e intervien
     <value>IMPOSTAZIONI PLUGIN</value>
   </data>
   <data name="wpfLChiusura" xml:space="preserve">
-    <value>Chiusura</value>
+    <value>Fondello</value>
   </data>
   <data name="wpfLDerivazioneaIncrocio" xml:space="preserve">
-    <value>Derivazione a Incrocio</value>
+    <value>Deviazione con due curve</value>
   </data>
   <data name="wpfLDerivazioneaY" xml:space="preserve">
-    <value>Derivazione a Y</value>
+    <value>Curva doppia</value>
   </data>
   <data name="wpfLDerivazioneLaterale" xml:space="preserve">
-    <value>Derivazione Laterale</value>
+    <value>Riduzione con curva</value>
   </data>
   <data name="wpfLDerivazioneT" xml:space="preserve">
-    <value>Derivazione a T</value>
+    <value>Connettore a T</value>
   </data>
   <data name="wpfLGomito" xml:space="preserve">
-    <value>Gomito</value>
+    <value>Curva</value>
   </data>
   <data name="wpfLRiduzioneCostante" xml:space="preserve">
-    <value>Riduzione costante</value>
+    <value>Riduzione semplice</value>
   </data>
   <data name="wpfLRiduzioneVariabile" xml:space="preserve">
-    <value>Riduzione Variabile</value>
+    <value>Riduzione completa</value>
   </data>
   <data name="wpfPCu1" xml:space="preserve">
-    <value>Costruzioni con presenza solo occasionale di persone | Edifici agricoli</value>
+    <value>Costruzioni con presenza solo occasionale di persone 
+| Edifici agricoli</value>
   </data>
   <data name="wpfPCu2" xml:space="preserve">
-    <value>Costruzioni cui uso preveda normali 
-affollamenti senza contenuti pericolosi per
- l'ambiente e senza funzioni pubbliche e 
-sociali essenziali. Industie con attività non
- pericolose per l'ambiente | Uffici</value>
+    <value>Costruzioni cui uso preveda normali affollamenti senza contenuti pericolosi per l'ambiente e senza funzioni pubbliche e  sociali essenziali. Industie con attività non pericolose per l'ambiente 
+| Uffici</value>
   </data>
   <data name="wpfPCu3" xml:space="preserve">
-    <value>Costruzioni il cui uso preveda affollamenti 
-signifficativi. Industrie con attività pericolose 
-per l'ambiente | Centri commerciali</value>
+    <value>Costruzioni il cui uso preveda affollamenti signifficativi. Industrie con attività pericolose per l'ambiente 
+| Centri commerciali</value>
   </data>
   <data name="wpfPCu4" xml:space="preserve">
-    <value>Costruzioni con funzioni pubbliche 
-o strategiche importanti, anche con 
-riferimento alla gestione della protezione
- civile in caso di calimità. Industrie con 
-attività particolarmente pericolose | Ospedali</value>
+    <value>Costruzioni con funzioni pubbliche o strategiche importanti, anche con riferimento alla gestione della protezione civile in caso di calimità. Industrie con attività particolarmente pericolose 
+| Ospedali</value>
   </data>
   <data name="wpfPDefAcc" xml:space="preserve">
-    <value>DEFINIZIONE ACCELLERAZIONE SISMICA</value>
+    <value>DEFINIZIONE ACCELERAZIONE SISMICA</value>
+  </data>
+  <data name="wpfPDefAccag" xml:space="preserve">
+    <value>Definizione accelerazione sismica αg/g</value>
   </data>
   <data name="wpfPDefCu" xml:space="preserve">
     <value>DEFINIZIONE CLASSE D'USO</value>
@@ -268,16 +271,20 @@ attività particolarmente pericolose | Ospedali</value>
     <value>Caricare la libreria prima di scegliere il materiale</value>
   </data>
   <data name="wpfPSism1" xml:space="preserve">
-    <value>Sisimicità alta (0.25 &lt; α  ≤ 0.35)</value>
+    <value>Sisimicità alta 
+(0.25 &lt; α  ≤ 0.35)</value>
   </data>
   <data name="wpfPSism2" xml:space="preserve">
-    <value>Sisimicità medio-alta (0.15 &lt; α  ≤ 0.25)</value>
+    <value>Sisimicità medio-alta 
+(0.15 &lt; α  ≤ 0.25)</value>
   </data>
   <data name="wpfPSism3" xml:space="preserve">
-    <value>Sisimicità  medio-bassa (0.05 &lt; α  ≤ 0.15)</value>
+    <value>Sisimicità  medio-bassa 
+(0.05 &lt; α  ≤ 0.15)</value>
   </data>
   <data name="wpfPSism4" xml:space="preserve">
-    <value>Sisimicità bassa ( α  ≤ 0.05)</value>
+    <value>Sisimicità bassa 
+( α  ≤ 0.05)</value>
   </data>
   <data name="wpfPz1" xml:space="preserve">
     <value>ZONA 1</value>

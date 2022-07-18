@@ -160,7 +160,7 @@ Componenti</value>
 Pezzi</value>
   </data>
   <data name="cmdelencopezzi_tt" xml:space="preserve">
-    <value>Elenca i canali e i pezzi speciali P3</value>
+    <value>Elenca i pezzi e i materiali</value>
   </data>
   <data name="cmdelencopunti" xml:space="preserve">
     <value>Elenco
@@ -196,12 +196,6 @@ Libreria</value>
     <value>Carica gli oggetti BIM P3 e i relativi materiali</value>
   </data>
   <data name="cmdlingua" xml:space="preserve">
-    <value>Italiano</value>
-  </data>
-  <data name="cmdLinguaENG" xml:space="preserve">
-    <value>Inglese</value>
-  </data>
-  <data name="cmdLinguaIT" xml:space="preserve">
     <value>Italiano</value>
   </data>
   <data name="cmdlingua_tt" xml:space="preserve">
