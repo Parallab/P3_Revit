@@ -150,7 +150,7 @@ namespace P3Ribbon.Scripts
                 app.SharedParametersFilename = originalFile;
             }
             return output;
-        }
+        } 
         public static bool ControllaTipiP3Presenti(string nometipo)
         {
             List<string> IsolatiECondottiP3Presenti = new List<string>();
