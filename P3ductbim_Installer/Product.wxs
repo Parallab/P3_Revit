@@ -45,6 +45,7 @@
     <CustomAction Id="ca_ManifestAddinScrivi" Impersonate="no" BinaryKey="CustomActionBinary" DllEntry="ManifestAddinScrivi" Return="check" />
     <CustomAction Id="ca_ManifestAddinCancella" Impersonate="no" BinaryKey="CustomActionBinary" DllEntry="ManifestAddinCancella" Return="check" />
   </Fragment>
+
 	
 <!-- RELASE 2021 IN POI -->
 	    <Fragment>
@@ -59,6 +60,7 @@
                   <Directory Id="Addins2021" Name="2021" />
                 </Directory>
               </Directory>
+
             </Directory>
           </Directory>
           <Directory Id="ProgramFilesFolder">
@@ -149,11 +151,13 @@
 		<Component Id="P3_InstallerResources_P3___Duct_system_template21.rte" Guid="FBBAC554-BB3A-4303-A45E-265A4604C1AA" Directory="P3_InstallerResources">
 			<File Id="P3_InstallerResources_P3___Duct_system_template21.rte" Name="P3 - Duct system template21.rte" Source="$(var.CustomAction.TargetDir)P3_InstallerResources\P3 - Duct system template21.rte" KeyPath="yes" />
 		</Component>
+
 		<Component Id="P3_InstallerResources_P3___Duct_system_template22.rte" Guid="EC1B0F20-B74A-449A-ACCB-86A741937C8C" Directory="P3_InstallerResources">
 			<File Id="P3_InstallerResources_P3___Duct_system_template22.rte" Name="P3 - Duct system template22.rte" Source="$(var.CustomAction.TargetDir)P3_InstallerResources\P3 - Duct system template22.rte" KeyPath="yes"/>
 		</Component>
       <Component Id="P3_InstallerResources_P3_ParamCondivisi.txt.txt" Guid="DF6A1CCB-C998-4A3A-9440-6DAB552CCEEB" Directory="P3_InstallerResources">
         <File Id="P3_InstallerResources_P3_ParamCondivisi.txt.txt" Name="P3_ParamCondivisi.txt" Source="$(var.CustomAction.TargetDir)P3_InstallerResources\P3_ParamCondivisi.txt" KeyPath="yes"/>
+
       </Component>
       <Component Id="P3_InstallerResources_P3_TabelleDiPredimensionamento.txt" Guid="F30E76D8-BC80-4DEA-A6CB-42AC1939D145" Directory="P3_InstallerResources">
         <File Id="P3_InstallerResources_P3_TabelleDiPredimensionamento.txt" Name="P3_TabelleDiPredimensionamento.txt" Source="$(var.CustomAction.TargetDir)P3_InstallerResources\P3_TabelleDiPredimensionamento.txt" KeyPath="yes"/>

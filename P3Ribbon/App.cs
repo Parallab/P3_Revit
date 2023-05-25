@@ -143,7 +143,6 @@ namespace P3Ribbon
             pb2.LargeImage = pb2Image;
             #endregion
 
-
             #region Split button Elenco staffaggi
             AggiungiSplitButtonElencostaff(ribbonPanelSisma, thisAssemblyPath);
 
@@ -163,7 +162,6 @@ namespace P3Ribbon
             #endregion
 
             #endregion
-
 
             // MATERIALE RICICLATO
             RibbonPanel ribbonPanelMaterialeRiciclato = a.CreateRibbonPanel(tabName, "Materiale Riciclato");
