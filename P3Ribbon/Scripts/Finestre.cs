@@ -1,7 +1,9 @@
 ﻿using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Forms;
 
@@ -10,6 +12,9 @@ namespace P3Ribbon.Scripts
     [Transaction(TransactionMode.Manual)]
     class FinestraInfo : IExternalCommand
     {
+        public static FileInfo oFileInfo = null;
+        public static string percorsoCartelladwg = "";
+
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
             UIApplication uiApp = commandData.Application;
@@ -17,11 +22,16 @@ namespace P3Ribbon.Scripts
             Document doc = uiDoc.Document;
             Autodesk.Revit.ApplicationServices.Application app = uiApp.Application;
 
+            string assemblyFolder = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            string filePath = Assembly.GetExecutingAssembly().Location;
+            oFileInfo = new FileInfo(filePath);
+            percorsoCartelladwg = oFileInfo.DirectoryName;
+
             Scripts.GUI.Wpf_InfoP3 wpf = new Scripts.GUI.Wpf_InfoP3();
             using (wpf)
             {
-
-
+                wpf.tb_Dimensione.Text = ((((double)oFileInfo.Length) / 1024) / 1024).ToString("0.00") + " MB";
+                wpf.tb_PercorsoCartella.Text = oFileInfo.DirectoryName;
                 wpf.ShowDialog();
 
             }

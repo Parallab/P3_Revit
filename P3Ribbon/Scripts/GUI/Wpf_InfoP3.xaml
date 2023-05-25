@@ -10,12 +10,29 @@
             <RowDefinition Height="111*"/>
             <RowDefinition Height="308*"/>
         </Grid.RowDefinitions>
-        <WebBrowser HorizontalAlignment="Left" Height="350" VerticalAlignment="Top" Width="545" Margin="305,34,0,0" MaxHeight="350" MinHeight="350" MaxWidth="550" MinWidth="550"
-         Source="https://www.google.it/maps/place/P3+srl/@45.4627018,11.7720038,17z/data=!3m1!4b1!4m5!3m4!1s0x477ed718eafe32e1:0x6b2acaf9f8ad15bc!8m2!3d45.4627018!4d11.7741925?hl=it" Grid.RowSpan="2"/>
+        <WebBrowser Height="350" VerticalAlignment="Top" Width="525" Margin="331,34,-15,0" MaxHeight="350" MinHeight="350" MaxWidth="550" MinWidth="550"
+         Source="https://www.google.it/maps/place/P3+srl/@45.4627018,11.7720038,17z/data=!3m1!4b1!4m5!3m4!1s0x477ed718eafe32e1:0x6b2acaf9f8ad15bc!8m2!3d45.4627018!4d11.7741925?hl=it" Grid.RowSpan="2" HorizontalAlignment="Left"/>
         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="P3ductualBIM" VerticalAlignment="Top" Margin="10,15,0,0" Width="269" FontFamily="Arial" FontWeight="Bold" Height="14"/>
-        <Rectangle Fill="#3BB5CAFF" HorizontalAlignment="Left" Height="350" Margin="10,34,0,0" Stroke="Black" VerticalAlignment="Top" Width="290" Grid.RowSpan="2"/>
-        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="20,36,0,0" Width="275" Height="78" FontFamily="Arial" FontSize="11" TextAlignment="Justify" Grid.RowSpan="2"><Run Text="Via Salvo  D'Acquisto, 5  "/><LineBreak/><Run Text="35010 Villafranca Padovana – Loc. Ronchi – Padova (PD)"/><LineBreak/><Run Text="Tel. +39 049 90.70.301        "/><LineBreak/><Run Text="Fax +39 049 90.70.302"/><LineBreak/><Run Text="e-"/><Run Text="m"/><Run Text="ail: p3italy@p3italy.it"/></TextBlock>
-        <TextBlock HorizontalAlignment="Left" Margin="22,3,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="264" Width="267" FontFamily="Arial" FontSize="11" FontWeight="Bold"><Run Text="Per raggiungere P3 seguire i seguenti itinerari:"/><LineBreak/><Run FontWeight="Normal"/><LineBreak/><Run FontWeight="Normal" Text="-"/><Run FontWeight="Normal" Text="Da Milano (Autostrada A4 – uscita Grisignano Di Zocco), imboccare la Strada Statale SS 11 Padana "/><LineBreak/><Run FontWeight="Normal" Text="Superiore in direzione Padova. All'incrocio dopo Mestrino, girare a sinistra per Ronchi di Villafranca e proseguire per circa 2 Km"/><LineBreak/><Run FontWeight="Normal"/><LineBreak/><Run FontWeight="Normal" Text="-Da Bologna (Autostrada A13 – uscita Padova Sud), imboccare la Strada Statale SS 11 Padana Superiore in direzione Vicenza. All'incrocio prima di Mestrino, girare a destra per Ronchi di Villafranca e proseguire per circa 2 Km"/><LineBreak/><Run FontWeight="Normal"/><LineBreak/><Run FontWeight="Normal" Text="-"/><Run FontWeight="Normal" Text="Da Venezia (Autostrada A4 – uscita Padova Ovest), imboccare la Strada Statale SS 11 Padana Superiore in direzione Padova. All'incrocio prima di Mestrino, girare a destra per Ronchi di Villafranca e proseguire per circa 2 Km."/><LineBreak/><Run FontWeight="Normal"/><LineBreak/><Run FontWeight="Normal"/><LineBreak/><Run/></TextBlock>
+        <Rectangle Fill="#3BB5CAFF" HorizontalAlignment="Left" Height="350" Margin="10,34,0,0" Stroke="Black" VerticalAlignment="Top" Width="316" Grid.RowSpan="2"/>
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Margin="15,45,0,45" Width="143" Height="22" FontFamily="Arial" FontSize="11" TextAlignment="Justify" Text="Versione plugin:"></TextBlock>
+        <TextBox x:Name="tb_Versione"  TextWrapping="Wrap" Text="v 1.1.0" Margin="129,41,550,50"/>
+
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Margin="15,69,0,21" Width="143" Height="22" FontFamily="Arial" FontSize="11" TextAlignment="Justify" Text="Percorso plugin:"></TextBlock>
+        <TextBox x:Name="tb_PercorsoCartella"  TextWrapping="Wrap" Text=" " Margin="129,67,550,26"/>
+
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Margin="15,94,0,1" Width="143" Height="17" FontFamily="Arial" FontSize="11" TextAlignment="Justify" Text="Dimensioni Plugin:"/>
+        <TextBox x:Name="tb_Dimensione"  TextWrapping="Wrap" Text=" " Margin="129,91,550,2"/>
+
+
+
+        <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Margin="20,10,0,0" Width="296" Height="62" FontFamily="Arial" FontSize="11" TextAlignment="Justify" Grid.Row="1"><Run Text="Via Salvo  D'Acquisto, 5  "/><LineBreak/><Run Text="35010 Villafranca Padovana – Loc. Ronchi – Padova (PD)"/><LineBreak/><Run Text="Tel. +39 049 90.70.301        "/><LineBreak/><Run Text="Fax +39 049 90.70.302"/><LineBreak/><Run Text="e-"/><Run Text="m"/><Run Text="ail: p3italy@p3italy.it"/></TextBlock>
+        <TextBlock HorizontalAlignment="Left" Margin="22,77,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="190" Width="294" FontFamily="Arial" FontSize="11" FontWeight="Bold"><Run Text="Per raggiungere P3 seguire i seguenti itinerari:"/><LineBreak/><Run FontWeight="Normal"/><LineBreak/><Run FontWeight="Normal" Text="-"/><Run FontWeight="Normal" Text="Da Milano (Autostrada A4 – uscita Grisignano Di Zocco), imboccare la Strada Statale SS 11 Padana "/><LineBreak/><Run FontWeight="Normal" Text="Superiore in direzione Padova. All'incrocio dopo Mestrino, girare a sinistra per Ronchi di Villafranca e proseguire per circa 2 Km"/><LineBreak/><Run FontWeight="Normal" Text="-Da Bologna (Autostrada A13 – uscita Padova Sud), imboccare la Strada Statale SS 11 Padana Superiore in direzione Vicenza. All'incrocio prima di Mestrino, girare a destra per Ronchi di Villafranca e proseguire per circa 2 Km"/><LineBreak/><Run FontWeight="Normal" Text="-"/><Run FontWeight="Normal" Text="Da Venezia (Autostrada A4 – uscita Padova Ovest), imboccare la Strada Statale SS 11 Padana Superiore in direzione Padova. All'incrocio prima di Mestrino, girare a destra per Ronchi di Villafranca e proseguire per circa 2 Km."/><LineBreak/><Run FontWeight="Normal"/><LineBreak/><Run/></TextBlock>
+
+        <Line
+    X1="20" Y1="120"
+    X2="310" Y2="120"
+    Stroke="Black"
+    StrokeThickness="1" />
 
     </Grid>
 </Window>

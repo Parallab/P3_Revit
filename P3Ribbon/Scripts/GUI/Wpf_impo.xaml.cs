@@ -15,7 +15,10 @@ namespace P3Ribbon.Scripts.GUI
     {
         private Document m_doc;
         private Application m_app;
-        private DisplayUnitType currentUnit = Supporto.doc.GetUnits().GetFormatOptions(UnitType.UT_Length).DisplayUnits;
+#if RELASE2021
+        //private UnitTypeId currentUnit = Supporto.doc.GetUnits().GetFormatOptions(SpecTypeId.Length).;
+        ForgeTypeId currentUnit = Supporto.doc.GetUnits().GetFormatOptions(SpecTypeId.Length).GetUnitTypeId();
+
         public Wpf_impo(ExternalCommandData commandData)
         {
             UIApplication uiApp = commandData.Application;
@@ -30,6 +33,24 @@ namespace P3Ribbon.Scripts.GUI
             CheckUpgrade.IsChecked = Properties.Settings.Default.updaterAttivo;
             
         }
+#else
+        private DisplayUnitType currentUnit = Supporto.doc.GetUnits().GetFormatOptions(UnitType.UT_Length).DisplayUnits;
+
+          public Wpf_impo(ExternalCommandData commandData)
+        {
+            UIApplication uiApp = commandData.Application;
+            m_app = uiApp.Application;
+            UIDocument uiDoc = uiApp.ActiveUIDocument;
+            m_doc = uiDoc.Document;
+
+            InitializeComponent();
+
+            this.wpfTexBoxDistazaMaxStaffaggio.Text = UnitUtils.ConvertFromInternalUnits(Condotto.AltezzaStaffaggio,currentUnit).ToString();
+            this.Units.Text = UnitàDiProgetto();
+            CheckUpgrade.IsChecked = Properties.Settings.Default.updaterAttivo;
+            
+        }
+#endif
 
 
         private void DecimalTextBox_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
@@ -73,6 +94,26 @@ namespace P3Ribbon.Scripts.GUI
 
         public string UnitàDiProgetto()
         {
+#if RELASE2021
+            string rtn = "units";
+            if (currentUnit == UnitTypeId.Millimeters)
+            {
+                rtn = "mm";
+            }
+            else if (currentUnit == UnitTypeId.Centimeters)
+            {
+                rtn = "cm";
+            }
+            else if (currentUnit == UnitTypeId.Decimeters)
+            {
+                rtn = "dm";
+            }
+            else if (currentUnit == UnitTypeId.Meters)
+            {
+                rtn = "m";
+            }
+            return rtn;
+#else
             string rtn = "units";
             if (currentUnit == DisplayUnitType.DUT_MILLIMETERS)
             {
@@ -91,6 +132,8 @@ namespace P3Ribbon.Scripts.GUI
                 rtn = "m";
             }
             return rtn;
+#endif
+
         }
 
         private void wpfbButtImposta_Click(object sender, RoutedEventArgs e)

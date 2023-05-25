@@ -32,7 +32,7 @@ namespace P3Ribbon
             ITA = 0,
             ENG = 1
         }
-        public static Lingua lingua_plugin = Lingua.ITA;
+        public static Lingua lingua_plugin = Lingua.ENG;
         public static Lingua lingua_arrivo;
 
         public static string tabName = "P3duct𝗯𝗶𝗺";
@@ -230,6 +230,9 @@ namespace P3Ribbon
         {
             Properties.Settings.Default.updaterAttivo = true;
             Properties.Settings.Default.Save();
+            UICapp = UiCapplication;
+            Capp = UICapp.ControlledApplication;
+            LeggiLingua(Capp);
 
             try
             {   //creo degli eventhandler all'aeprtura di un documento e alla creazione di uno nuovo
@@ -242,15 +245,14 @@ namespace P3Ribbon
             {
                 return Result.Failed;
             }
-            var langCode = Properties.Settings.Default.languageCode;
-            Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(langCode);
-            AddRibbonPanel(UiCapplication);
-            UICapp = UiCapplication;
-
+            //var langCode = Properties.Settings.Default.languageCode;
+            //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(langCode);
+            AddRibbonPanel(UiCapplication);           
             Supporto.ActiveAddInId = UiCapplication.ActiveAddInId;
     
             UpdaterAccendi();
             ResourceManager rm = new ResourceManager("items", Assembly.GetExecutingAssembly());
+            Supporto.CambiaLingua(UICapp);
             return Result.Succeeded;
         }
 
@@ -292,6 +294,7 @@ namespace P3Ribbon
             {
                 //throw;
             }
+            Supporto.CambiaLingua(UICapp);
 
 
         }
@@ -349,7 +352,9 @@ namespace P3Ribbon
             {
                 rs = res_eng;
             }
-            return rs.GetObject(Var).ToString();
+            
+                return rs.GetObject(Var).ToString();
+        
         }
 
         public static string Res_ValoreLingua(string Var)

@@ -227,7 +227,12 @@ namespace P3Ribbon.Scripts
     {
         public Element el;
         public ElementId Id;
+#if RELASE2021
+        public static double AltezzaStaffaggio { get; set; } = UnitUtils.ConvertToInternalUnits(2, UnitTypeId.Meters);
+#else
         public static double AltezzaStaffaggio { get; set; } = UnitUtils.ConvertToInternalUnits(2, DisplayUnitType.DUT_METERS);
+
+#endif
         double spiso {get; set;} = 0;
         double spiso_IM {get; set;} = 0;
         double alt {get; set;} =0;
@@ -248,13 +253,13 @@ namespace P3Ribbon.Scripts
         public XYZ dir = XYZ.Zero;
         public XYZ vectorX = XYZ.BasisX;
 
-        #region Valori dimenzionali Excel
+#region Valori dimenzionali Excel
         public double InterasseControventoTras = 0;
         public double InterasseControventoLong = 0;
         public double StaffaSupLato = 0;
         public double StaffaSupDist = 0;
         public double ControventoBarre = 0;
-        #endregion
+#endregion
 
 
         public List<XYZ> ptspavimenti = new List<XYZ>();
@@ -281,13 +286,18 @@ namespace P3Ribbon.Scripts
             this.angoloRispY = CalcolaAngolosuY(_el);
             this.lc = _el.Location as LocationCurve;
         }
-        #region funzioni che mi calcolano gli attributti belli della classe condotto
+#region funzioni che mi calcolano gli attributti belli della classe condotto
         public double CalcolaSpessoreIsolamento(Element dc, Boolean metrico)
         {
             double dc_spiso = dc.get_Parameter(BuiltInParameter.RBS_REFERENCE_INSULATION_THICKNESS).AsDouble() * 2;
             if (metrico)
             {
+
+#if RELASE2021
+                dc_spiso = UnitUtils.ConvertFromInternalUnits(dc_spiso, UnitTypeId.Centimeters);
+#else
                 dc_spiso = UnitUtils.ConvertFromInternalUnits(dc_spiso, DisplayUnitType.DUT_CENTIMETERS);
+#endif
             }
             return dc_spiso;
         }
@@ -296,7 +306,11 @@ namespace P3Ribbon.Scripts
             double dc_largh = dc.get_Parameter(BuiltInParameter.RBS_CURVE_WIDTH_PARAM).AsDouble();
             if (metrico)
             {
+#if RELASE2021
+                dc_largh = UnitUtils.ConvertFromInternalUnits(dc_largh, UnitTypeId.Centimeters);
+#else
                 dc_largh = UnitUtils.ConvertFromInternalUnits(dc_largh, DisplayUnitType.DUT_CENTIMETERS);
+#endif
             }
             return dc_largh;
         }
@@ -305,14 +319,24 @@ namespace P3Ribbon.Scripts
             double dc_alt = dc.get_Parameter(BuiltInParameter.RBS_CURVE_HEIGHT_PARAM).AsDouble();
             if (metrico)
             {
+#if RELASE2021
+                dc_alt = UnitUtils.ConvertFromInternalUnits(dc_alt, UnitTypeId.Centimeters);
+#else
                 dc_alt = UnitUtils.ConvertFromInternalUnits(dc_alt, DisplayUnitType.DUT_CENTIMETERS);
+#endif
             }
             return dc_alt;
         }
         public double CalcolaLunghezza(Element dc)
         {
             double dc_lungh_IM = dc.get_Parameter(BuiltInParameter.CURVE_ELEM_LENGTH).AsDouble();
+#if RELASE2021
+
+            double dc_lungh = UnitUtils.ConvertFromInternalUnits(dc_lungh_IM, UnitTypeId.Centimeters);
+#else
+
             double dc_lungh = UnitUtils.ConvertFromInternalUnits(dc_lungh_IM, DisplayUnitType.DUT_CENTIMETERS);
+#endif
             return dc_lungh;
         }
         public double CalcolaPerimetro(double largh, double alt)
@@ -385,7 +409,7 @@ namespace P3Ribbon.Scripts
                 return Passomax;
             }
         }
-        #endregion
+#endregion
 
         public void CalcolaPuntiStaffe()
         {
@@ -507,7 +531,13 @@ namespace P3Ribbon.Scripts
                     //dipende dalla direzione del condotto, quindi verso quale quadrante si rivolge (di conseguenza dal verso del vettore ovvero i click con cui è stato creato)
                     // staffa superiore
                     double distanzaControff = fi.LookupParameter("P3_Dynamo_Top2Ceiling").AsDouble();
+#if RELASE2021
+
+                    distanzaControff = UnitUtils.ConvertFromInternalUnits(distanzaControff, UnitTypeId.Centimeters);
+#else
                     distanzaControff = UnitUtils.ConvertFromInternalUnits(distanzaControff, DisplayUnitType.DUT_CENTIMETERS);
+
+#endif
                     if (Math.Max(largh, alt) > StaffaSupLato || distanzaControff > StaffaSupDist)
                     {
                         fi.LookupParameter("P3_UpperSupport").Set(1);
