@@ -20,7 +20,6 @@ namespace P3Ribbon.Scripts
             doc = _doc;
             app = _doc.Application;
         }
-
       
         public static LogicalOrFilter CatFilter(bool insul_or_racc)
         {
@@ -46,7 +45,13 @@ namespace P3Ribbon.Scripts
         {
             Assembly a = Assembly.GetExecutingAssembly();
             string PathAssembly = Assembly.GetExecutingAssembly().Location;
-            string PercorsoRisorsa = PathAssembly.Replace("P3Ribbon.dll", "P3_InstallerResources\\" + NomeFile);
+#if RELASE2021
+
+            string PercorsoRisorsa = PathAssembly.Replace("V2021\\P3Ribbon.dll", "P3_InstallerResources\\" + NomeFile);
+#else
+            string PercorsoRisorsa = PathAssembly.Replace("V2020\\P3Ribbon.dll", "P3_InstallerResources\\" + NomeFile);
+
+#endif
             return PercorsoRisorsa;
         }
 
@@ -300,22 +305,22 @@ namespace P3Ribbon.Scripts
 
             App.Lingua lingua_attuale = App.lingua_plugin;
 
-            if (lingua_attuale != App.lingua_arrivo)
-            {
+            //if (lingua_attuale != App.lingua_arrivo)
+            //{
 
                 if (lingua_attuale == App.Lingua.ITA)
                 {
                     App.lingua_arrivo = App.Lingua.ENG;
-                    var langCode = Properties.Settings.Default.languageCode = "en-US";
-                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(langCode);
+                    //var langCode = Properties.Settings.Default.languageCode = "en-US";
+                    //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(langCode);
 
                 }
                 else
                 {
                     App.lingua_arrivo = App.Lingua.ITA;
-                    var langCode = Properties.Settings.Default.languageCode = "it-IT";
-                    Properties.Settings.Default.Save();
-                    Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(langCode);
+                    //var langCode = Properties.Settings.Default.languageCode = "it-IT";
+                    //Properties.Settings.Default.Save();
+                    //Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo(langCode);
                 }
 
                 foreach (RibbonPanel rp in a.GetRibbonPanels(App.tabName))
@@ -357,7 +362,7 @@ namespace P3Ribbon.Scripts
                 }
 
                 App.lingua_plugin = App.lingua_arrivo;
-            }
+            //}
         }
        
 

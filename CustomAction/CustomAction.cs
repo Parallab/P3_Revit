@@ -11,13 +11,22 @@ namespace CustomAction
     {
         public static string commonAppData = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData);
         public static string filepath_orig = commonAppData + @"\Autodesk\Revit\Addins\_anno_\P3Ribbon.addin";
-        public static string[] anni = new string[] { "2018", "2019", "2020", "2021", "2022", "2023", "2024" };
+
+#if RELASE2021
+        public static string[] anni = new string[] { "2021", "2022", "2023", "2024" };
+#else
+        public static string[] anni = new string[] { "2018", "2019", "2020"};
+#endif
 
         [CustomAction]
         public static ActionResult ManifestAddinScrivi(Session session)
         {
             session.Log("Begin CustomAction");
-            string input = session["INSTALLFOLDER"];
+#if RELASE2021
+            string input = session["V2021"];
+#else
+      string input = session["V2020"];
+#endif
 
 
             //MessageBox.Show(filepath_orig);
