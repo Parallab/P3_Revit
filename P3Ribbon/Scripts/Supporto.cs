@@ -150,10 +150,16 @@ namespace P3Ribbon.Scripts
 							InstanceBinding newIB = app.Create.NewInstanceBinding(categorySet);
 
 						// c'è dal 2022...forse dovrei fare Rel_21 da sola? o solo Rel_25 da sola che in futuro ci saranno altri cambiamenti?
-						https://www.revitapidocs.com/2022/a2fe7c6f-e5e2-bafe-23c8-819ba6a6c9b9.htm
+						//
+						//https://www.revitapidocs.com/2022/a2fe7c6f-e5e2-bafe-23c8-819ba6a6c9b9.htm
+							//dovrebbe andare già dal 2024... :
+							//https://www.revitapidocs.com/2024/a2fe7c6f-e5e2-bafe-23c8-819ba6a6c9b9.htm
+							//https://www.revitapidocs.com/2024/c3bed87a-956f-47c3-060c-0294c7ef43e7.htm
 							doc.ParameterBindings.Insert(externalDefinitionCU, newIB, BuiltInParameterGroup.INVALID);//non va piu bene in r2025
 							doc.ParameterBindings.Insert(externalDefinitionVN, newIB, BuiltInParameterGroup.INVALID);//non va piu bene in r2025
 							doc.ParameterBindings.Insert(externalDefinitionZS, newIB, BuiltInParameterGroup.INVALID);//non va piu bene in r2025
+
+
 
 							t.Commit();
 						}
