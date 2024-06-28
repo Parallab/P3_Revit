@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace P3Ribbon.Scripts
 {
@@ -27,12 +28,18 @@ namespace P3Ribbon.Scripts
             oFileInfo = new FileInfo(filePath);
             percorsoCartelladwg = oFileInfo.DirectoryName;
 
-            Scripts.GUI.Wpf_InfoP3 wpf = new Scripts.GUI.Wpf_InfoP3();
+			// Get the version info of the DLL file
+			FileVersionInfo fileVersionInfo = FileVersionInfo.GetVersionInfo(filePath);
+
+
+
+			Scripts.GUI.Wpf_InfoP3 wpf = new Scripts.GUI.Wpf_InfoP3();
             using (wpf)
             {
                 wpf.tb_Dimensione.Text = ((((double)oFileInfo.Length) / 1024) / 1024).ToString("0.00") + " MB";
                 wpf.tb_PercorsoCartella.Text = oFileInfo.DirectoryName;
-                wpf.ShowDialog();
+				wpf.tb_Versione.Text = fileVersionInfo.FileVersion;
+				wpf.ShowDialog();
 
             }
             return Result.Succeeded;

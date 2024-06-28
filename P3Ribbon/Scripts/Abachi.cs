@@ -6,6 +6,7 @@ using System.Linq;
 
 
 
+
 namespace P3Ribbon.Scripts
 {
 
@@ -18,7 +19,7 @@ namespace P3Ribbon.Scripts
                 UIApplication uiApp = commandData.Application;
                 UIDocument uiDoc = uiApp.ActiveUIDocument;
                 Document doc = uiDoc.Document;
-                Element nlist = null;
+                //Element nlist = null;
            
 
             if (Supporto.ControllaAbachiP3Presenti("P3 - Duct Fitting Schedule - All"))

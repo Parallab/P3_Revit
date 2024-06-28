@@ -32,7 +32,7 @@ namespace P3Ribbon.Scripts
             if (P3InsulationTypeIds.Count != 0) //testare eventuali errori
             {
                 double _spessore;
-                int i = 0;
+                //int i = 0;
 
                 comboBoxMemberDatas.Clear();
                 foreach (ElementId id in P3InsulationTypeIds)

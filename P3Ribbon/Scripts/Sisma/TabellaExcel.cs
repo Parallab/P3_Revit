@@ -15,7 +15,7 @@ namespace P3Ribbon.Scripts
             int ZonaSismica = proj_info.LookupParameter("P3_InfoProg_ZonaSismica").AsInteger();
 
             List<List<double>> tabella_leggera = new List<List<double>>();
-            var lines = System.IO.File.ReadAllLines(Supporto.TrovaPercorsoRisorsa("P3_TabelleDiPredimensionamento.txt"));
+            var lines = System.IO.File.ReadAllLines(Supporto.TrovaPercorsoRisorsaInstaller("P3_TabelleDiPredimensionamento.txt"));
             for (int i_r = 0; i_r < lines.Length; i_r++)
             {
                 List<double> sottoLista = new List<double>();

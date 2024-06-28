@@ -20,7 +20,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -36,6 +36,7 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
+  <!--  
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x64\Debug\</OutputPath>
@@ -73,30 +74,30 @@
     <PlatformTarget>x86</PlatformTarget>
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
-  </PropertyGroup>
+  </PropertyGroup> -->
   <PropertyGroup>
     <ApplicationIcon>20041_P3_Inkscape_Icona_Libreria_2_logoP3+ductbim.ico</ApplicationIcon>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2020|AnyCPU'">
-    <OutputPath>bin\2020\</OutputPath>
-    <DefineConstants>RELASE2020</DefineConstants>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Rel_19_20|AnyCPU' ">
+    <OutputPath>bin\Rel_19_20\</OutputPath>
+    <DefineConstants>Rel_19_20</DefineConstants>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2020|x64'">
+  <!--   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2020|x64'">
     <OutputPath>bin\x64\2020\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2020|x86'">
     <OutputPath>bin\x86\2020\</OutputPath>
+  </PropertyGroup> -->
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Rel_21_24|AnyCPU' ">
+    <OutputPath>bin\Rel_21_24\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;Rel_21_24</DefineConstants>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2021|AnyCPU' ">
-    <OutputPath>bin\2021\</OutputPath>
-    <DefineConstants>RELASE2021</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2021|x64' ">
+  <!--   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2021|x64' ">
     <OutputPath>bin\x64\2022\</OutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2021|x86' ">
     <OutputPath>bin\x86\2022\</OutputPath>
-  </PropertyGroup>
+  </PropertyGroup> -->
   <ItemGroup>
     <Reference Include="Microsoft.Deployment.WindowsInstaller, Version=3.0.0.0, Culture=neutral, PublicKeyToken=ce35f76fcda82bad, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -110,20 +111,30 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="RevitAPI" Condition="'$(Configuration)' == '2021'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2021\RevitAPI.dll</HintPath>
+    <Reference Include="RevitAPI" Condition=" '$(Configuration)' == 'Debug'">
+      <HintPath>E:\Program Files\Autodesk\Revit 2021\RevitAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == '2021'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2021\RevitAPIUI.dll</HintPath>
+    <Reference Include="RevitAPI" Condition=" '$(Configuration)' == 'Rel_21_24'">
+      <HintPath>E:\Program Files\Autodesk\Revit 2021\RevitAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="RevitAPI" Condition="'$(Configuration)' == '2020'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\RevitAPI.dll</HintPath>
+    <Reference Include="RevitAPI" Condition=" '$(Configuration)' == 'Rel_19_20'">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Program Files\Autodesk\Revit 2020\RevitAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="RevitAPIUI" Condition="'$(Configuration)' == '2020'">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\RevitAPIUI.dll</HintPath>
+    <Reference Include="RevitAPIUI" Condition=" '$(Configuration)' == 'Debug'">
+      <HintPath>E:\Program Files\Autodesk\Revit 2021\RevitAPIUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPIUI" Condition=" '$(Configuration)' == 'Rel_21_24'">
+      <HintPath>E:\Program Files\Autodesk\Revit 2021\RevitAPIUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPIUI" Condition=" '$(Configuration)' == 'Rel_19_20'">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Program Files\Autodesk\Revit 2020\RevitAPIUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="sysglobl" />
@@ -232,6 +243,12 @@
     <Compile Include="Scripts\Modellazione\TrasferisciStandard.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Code 852 - 3D insulated plenum.png" />
+    <Resource Include="Resources\Code vvv - 3D insulated cross.png" />
+    <Resource Include="Resources\Code www - 3D insulated.png" />
+    <Resource Include="Resources\Code xxx - 3D insulated.png" />
+    <Resource Include="Resources\Code yyy - 3D insulated.png" />
+    <Resource Include="Resources\Code zzz - 3D.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_dettaglio_bianco.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_dettaglio.jpg" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_MaterialeP3bianco.png" />
@@ -351,6 +368,9 @@
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>"C:\Users\simon\source\repos\LoamsDw\P3Plugin\sposta_dll.bat"</PostBuildEvent>
+    <PostBuildEvent>if "$(ConfigurationName)" == "Debug" (
+xcopy "$(TargetDir)\" "%25Appdata%25\Autodesk\Revit\Addins\2024" /s /y /z  /I
+xcopy "\\pLAB\Lavori_Attivi\20041_P3 Plugin\0_Digitalizzazione\P3_Addin\WIP\P3Plugin\CustomAction\P3_InstallerResources\" "%25Appdata%25\Autodesk\Revit\Addins\2024\P3_InstallerResources" /s /y /z /I 
+)</PostBuildEvent>
   </PropertyGroup>
 </Project>

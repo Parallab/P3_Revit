@@ -1,0 +1,363 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CDBBAD43-E90B-43E3-8CC6-0401B22FB54F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>P3Ribbon</RootNamespace>
+    <AssemblyName>P3Ribbon</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>20041_P3_Inkscape_Icona_Libreria_2_logoP3+ductbim.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2020|AnyCPU'">
+    <OutputPath>bin\2020\</OutputPath>
+    <DefineConstants>RELASE2020</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2020|x64'">
+    <OutputPath>bin\x64\2020\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2020|x86'">
+    <OutputPath>bin\x86\2020\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2021|AnyCPU' ">
+    <OutputPath>bin\2021\</OutputPath>
+    <DefineConstants>RELASE2021</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2021|x64' ">
+    <OutputPath>bin\x64\2022\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2021|x86' ">
+    <OutputPath>bin\x86\2022\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2024|AnyCPU'">
+    <OutputPath>bin\2024\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2024|x64'">
+    <OutputPath>bin\x64\2024\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2024|x86'">
+    <OutputPath>bin\x86\2024\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Deployment.WindowsInstaller, Version=3.0.0.0, Culture=neutral, PublicKeyToken=ce35f76fcda82bad, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\WiX Toolset v3.11\bin\Microsoft.Deployment.WindowsInstaller.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.Deployment.WindowsInstaller.Package, Version=3.0.0.0, Culture=neutral, PublicKeyToken=ce35f76fcda82bad, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\WiX Toolset v3.11\bin\Microsoft.Deployment.WindowsInstaller.Package.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="RevitAPI">
+      <HintPath>E:\Program Files\Autodesk\Revit 2024\RevitAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="RevitAPI, Version=24.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Program Files\Autodesk\Revit 2020\RevitAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="RevitAPIUI">
+      <HintPath>E:\Program Files\Autodesk\Revit 2024\RevitAPIUI.dll</HintPath>
+    </Reference>
+    <Reference Include="RevitAPIUI, Version=24.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>E:\Program Files\Autodesk\Revit 2020\RevitAPIUI.dll</HintPath>
+    </Reference>
+    <Reference Include="sysglobl" />
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Activities" />
+    <Reference Include="System.Activities.Core.Presentation" />
+    <Reference Include="System.Activities.DurableInstancing" />
+    <Reference Include="System.Activities.Presentation" />
+    <Reference Include="System.AddIn" />
+    <Reference Include="System.AddIn.Contract" />
+    <Reference Include="System.Collections.Immutable, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Security.AccessControl, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Threading.AccessControl, Version=4.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Controls.Ribbon" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Lang\lang.en.Designer.cs">
+      <DependentUpon>lang.en.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Lang\rp_ENG.Designer.cs">
+      <DependentUpon>rp_ENG.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Lang\rp_ITA.Designer.cs">
+      <DependentUpon>rp_ITA.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Resources\Lang\lang.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lang.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Scripts\GUI\SeismicViewModels\WpfScegliZonaAccModel.cs" />
+    <Compile Include="Scripts\GUI\SeismicViewModels\Wpf_AccelerazioneModel.cs" />
+    <Compile Include="Scripts\GUI\SeismicViewModels\Wpf_ZonaSismicaModel.cs" />
+    <Compile Include="Scripts\GUI\SeismicViews\WpfScegliZonaAcc.xaml.cs">
+      <DependentUpon>WpfScegliZonaAcc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Scripts\GUI\SeismicViews\Wpf_Accelerazione.xaml.cs">
+      <DependentUpon>Wpf_Accelerazione.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Scripts\GUI\SeismicViews\Wpf_ZonaSismica.xaml.cs">
+      <DependentUpon>Wpf_ZonaSismica.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Scripts\GUI\Wpf_InfoP3.xaml.cs">
+      <DependentUpon>Wpf_InfoP3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Scripts\GUI\Wpf_ParamSismici.xaml.cs">
+      <DependentUpon>Wpf_ParamSismici.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Scripts\Modellazione\CambiaMateriale.cs" />
+    <Compile Include="Scripts\Abachi.cs" />
+    <Compile Include="Scripts\GUI\Form_Quantità.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Scripts\GUI\Form_Quantità.Designer.cs">
+      <DependentUpon>Form_Quantità.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Scripts\GUI\Wpf_Libreria.xaml.cs">
+      <DependentUpon>Wpf_Libreria.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Scripts\GUI\Wpf_impo.xaml.cs">
+      <DependentUpon>Wpf_impo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Scripts\Modellazione\Materiale.cs" />
+    <Compile Include="Scripts\Modellazione\Lingua.cs" />
+    <Compile Include="Scripts\Modellazione\DynamicModelUpdater.cs" />
+    <Compile Include="Scripts\Supporto.cs" />
+    <Compile Include="Scripts\Modellazione\CreaCanale.cs" />
+    <Compile Include="Scripts\Finestre.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scripts\Modellazione\MigraAreaIsolamento.cs" />
+    <Compile Include="Scripts\Sisma\ParSismici.cs" />
+    <Compile Include="Scripts\Sisma\Staffaggio.cs" />
+    <Compile Include="Scripts\Sisma\TabellaExcel.cs" />
+    <Compile Include="Scripts\Modellazione\TrasferisciStandard.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_dettaglio_bianco.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_dettaglio.jpg" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_MaterialeP3bianco.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_MatRIciclatoVerde.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_SismaRosso.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_Rosso.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_CanaleStaffatoRosso.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaInglese32.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaItaliana32.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_MatRIciclato.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_FrecciaGiù.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_FrecciaGiù16.png" />
+    <EmbeddedResource Include="Resources\Lang\lang.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>lang.en.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Lang\rp_ENG.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>rp_ENG.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Lang\rp_ITA.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>rp_ITA.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Scripts\GUI\Form_Quantità.resx">
+      <DependentUpon>Form_Quantità.cs</DependentUpon>
+    </EmbeddedResource>
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoComponenti.png" />
+    <Resource Include="Resources\Icons\20041_p3_inkscape_icona_Setting.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Setting16.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Info.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_info16.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale16.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaItaliana.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaInglese.png" />
+    <Resource Include="Resources\Code 803 - 3D insulated.png" />
+    <Resource Include="Resources\Code 804 - 3D insulated.png" />
+    <Resource Include="Resources\Code 802 - 3D insulated.png" />
+    <Resource Include="Resources\Code 827 - 3D insulated.png" />
+    <Resource Include="Resources\Code 843 - 3D insulated.png" />
+    <Resource Include="Resources\Code 847 - 3D insulated.png" />
+    <Resource Include="Resources\Code 853 - 3D insulated.png" />
+    <Resource Include="Resources\Code 854 - 3D insulated.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale_bianco.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoMateriali.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoPezzi.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoPezzi_2.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_2.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Libreria_1_logo+P3ductbim.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Libreria_2_logoP3+ductbim.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Libreria_3_logoP3.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Lingua.png" />
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Quantità.png" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_staffe.png" />
+    <None Include="App.config" />
+    <Content Include="20041_P3_Inkscape_Icona_Libreria_2_logoP3+ductbim.ico" />
+    <Content Include="P3Ribbon.addin">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Sisma.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Lang\lang.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>lang.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Scripts\GUI\SeismicViews\WpfScegliZonaAcc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Scripts\GUI\SeismicViews\Wpf_Accelerazione.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Scripts\GUI\SeismicViews\Wpf_ZonaSismica.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Scripts\GUI\Wpf_InfoP3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Scripts\GUI\Wpf_Libreria.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Scripts\GUI\Wpf_impo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Scripts\GUI\Wpf_ParamSismici.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>"\\pLAB\Lavori_Attivi\20041_P3 Plugin\0_Digitalizzazione\P3_Addin\WIP\P3Plugin\sposta_dll_2024.bat"</PostBuildEvent>
+  </PropertyGroup>
+</Project>

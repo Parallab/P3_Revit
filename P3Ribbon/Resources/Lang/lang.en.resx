@@ -133,7 +133,7 @@
     <value>Details</value>
   </data>
   <data name="selSelezionaIsolanti" xml:space="preserve">
-    <value />
+    <value>Select P3 ducts in order to change the insulation</value>
   </data>
   <data name="taskdAbachiCaricare" xml:space="preserve">
     <value>This schedule is not present in the project, load the library first</value>
@@ -292,5 +292,123 @@ This function reads the operations carried out on the ducts in the back and inte
   </data>
   <data name="wpfPZonaSismica" xml:space="preserve">
     <value>SEISMIC ZONE</value>
+  </data>
+  <data name="wpfLDerivazioneTsector" xml:space="preserve">
+    <value>T connector with sectors</value>
+  </data>
+  <data name="wpfLGomito90" xml:space="preserve">
+    <value>Raw edge elbow</value>
+  </data>
+  <data name="wpfLGomitoSector" xml:space="preserve">
+    <value>Elbow with sectors</value>
+  </data>
+  <data name="wpfLScarpetta" xml:space="preserve">
+    <value>Tap</value>
+  </data>
+  <data name="test" xml:space="preserve">
+    <value>test</value>
+    <comment>wip</comment>
+  </data>
+  <data name="test2" xml:space="preserve">
+    <value>test2</value>
+    <comment>wip</comment>
+  </data>
+  <data name="log_Condotto" xml:space="preserve">
+    <value>Duct</value>
+  </data>
+  <data name="log_Staffaggio_Controv" xml:space="preserve">
+    <value>Bracing for vertical threaded rods mandatory when the distance of the duct from the ceiling is greater than</value>
+  </data>
+  <data name="log_Staffaggio_InterasseLong" xml:space="preserve">
+    <value>Longitudinal bracing distance</value>
+  </data>
+  <data name="log_Staffaggio_InterasseTrasv" xml:space="preserve">
+    <value>Transversal bracing distance</value>
+  </data>
+  <data name="log_Staffaggio_Nessuno" xml:space="preserve">
+    <value>NONE</value>
+  </data>
+  <data name="log_Staffaggio_passo_max" xml:space="preserve">
+    <value>Maximum step</value>
+  </data>
+  <data name="log_Staffaggio_passo_min" xml:space="preserve">
+    <value>Minimum step</value>
+  </data>
+  <data name="log_Staffaggio_PavVisibili" xml:space="preserve">
+    <value>Visible floors above the duct in the 3D view:</value>
+  </data>
+  <data name="log_Staffaggio_Perim" xml:space="preserve">
+    <value>Duct perimeter</value>
+  </data>
+  <data name="log_Staffaggio_Punto" xml:space="preserve">
+    <value>Point</value>
+  </data>
+  <data name="log_Staffaggio_SupDist" xml:space="preserve">
+    <value>Upper bracket mandatory when the distance of the duct from the ceiling is greater than:</value>
+  </data>
+  <data name="log_Staffaggio_SupLato" xml:space="preserve">
+    <value>Upper bracket mandatory when a duct side is greater than:</value>
+  </data>
+  <data name="log_Staffaggio_TroppoLontano" xml:space="preserve">
+    <value>TOO FAR AWAY</value>
+  </data>
+  <data name="log_Staffaggio_Vista3D1" xml:space="preserve">
+    <value>The following 3D view will be used for positioning the hangers</value>
+  </data>
+  <data name="log_Staffaggio_Vista3D2" xml:space="preserve">
+    <value>(the floors must be visible in order to correctly place the hangers) :</value>
+  </data>
+  <data name="log_Staffaggio_Vista3D_No" xml:space="preserve">
+    <value>No 3D view was found</value>
+  </data>
+  <data name="selezione_condotti" xml:space="preserve">
+    <value>Select P3 ducts</value>
+  </data>
+  <data name="taskdErrore_AttivazioneFam" xml:space="preserve">
+    <value>The P3_DuctHanger family could not be found and/or activated</value>
+  </data>
+  <data name="taskdErrore_NoCanali" xml:space="preserve">
+    <value>No ducts have been selected or there are none in the project</value>
+  </data>
+  <data name="taskdErrore_NonPosizionati1" xml:space="preserve">
+    <value>No hangers have been placed: check the 3D view,</value>
+  </data>
+  <data name="taskdErrore_NonPosizionati2" xml:space="preserve">
+    <value>the visibility of the floors and their distance from the channels</value>
+  </data>
+  <data name="test3" xml:space="preserve">
+    <value>test3</value>
+    <comment>wip</comment>
+  </data>
+  <data name="transaction_PosizionaStaffaggio" xml:space="preserve">
+    <value>Hanger placement</value>
+  </data>
+  <data name="wpfPDefAccag" xml:space="preserve">
+    <value>Definition of seismic acceleration αg/g</value>
+    <comment>wip</comment>
+  </data>
+  <data name="log_Staffaggio_Output2" xml:space="preserve">
+    <value>See calculation details?</value>
+  </data>
+  <data name="log_Staffaggio_Output1" xml:space="preserve">
+    <value>Hangers placed</value>
+  </data>
+  <data name="log_Staffaggio_Controv_Long" xml:space="preserve">
+    <value>Longitudinal bracing</value>
+  </data>
+  <data name="log_Staffaggio_Controv_Trasv" xml:space="preserve">
+    <value>Transversal bracing</value>
+  </data>
+  <data name="log_Staffaggio_Sup" xml:space="preserve">
+    <value>Upper bracket</value>
+  </data>
+  <data name="wpfLIncrocioSector" xml:space="preserve">
+    <value>4 way cross</value>
+  </data>
+  <data name="wpfLPlenum" xml:space="preserve">
+    <value>Plenum</value>
+  </data>
+  <data name="taskdErroreFileMancante" xml:space="preserve">
+    <value>Please uninstall and reinstall the program. The following file was not found: </value>
   </data>
 </root>

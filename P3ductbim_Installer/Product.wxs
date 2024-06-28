@@ -1,101 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-  <?define P3Ribbon_TargetDir=$(var.P3Ribbon.TargetDir)?>
-  <Product Id="*" Name="P3ductbim" Language="1033" Version="1.0.0.0" Manufacturer="P3" UpgradeCode="0172C0FB-2D98-4745-9A73-C96990538A79">
-    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
-    <Icon Id="ductbim.ico" SourceFile="$(var.ProjectDir)\Images\ductbim.ico" />
+	<?define P3Ribbon_TargetDir=$(var.P3Ribbon.TargetDir)?>
+	<!--<?define Vers=$(var.P3Ribbon.AssemblyVersion)?>-->
 
-    <WixVariable Id="WixUIBannerBmp" Value="Images\20041_P3_Illustrator_TemplateBanner_Wizard.bmp" />
-    <WixVariable Id="WixUIDialogBmp" Value="Images\20041_P3_Illustrator_Template_Wqizard.bmp" />
-
-    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
-    <UIRef Id="WixUI_InstallDir"/>
-    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
-    <MediaTemplate EmbedCab="yes" />
-
-
-    <UI>
-      <UIRef Id="WixUI_InstallDir" />
-      <Publish Dialog="WelcomeDlg"
-            Control="Next"
-            Event="NewDialog"
-            Value="InstallDirDlg"
-            Order="2">1</Publish>
-      <Publish Dialog="InstallDirDlg"
-            Control="Back"
-            Event="NewDialog"
-            Value="WelcomeDlg"
-            Order="2">1</Publish>
-    </UI>
-    
-    <Feature Id="ProductFeature" Title="P3ductbim" Level="1">
-      <ComponentGroupRef Id="ProductComponents" />
-      <ComponentRef Id="ApplicationShortuct" />
-      <ComponentGroupRef Id="ApplicationProgramsFolder_files" />
-    </Feature>
-        <InstallExecuteSequence>
-          <Custom Action="ca_ManifestAddinScrivi" After="InstallFinalize" >NOT Installed AND NOT REMOVE</Custom>
-          <Custom Action="ca_ManifestAddinCancella" Before="RemoveFiles" >(REMOVE~="ALL") AND (NOT UPGRADINGPRODUCTCODE)</Custom>
-        </InstallExecuteSequence>
-  </Product>
-  <!--https://codingbee.net/wix/wix-the-installation-sequence!-->
-  <!--https://wixtoolset.org/documentation/manual/v3/xsd/wix/majorupgrade.html-->
-  <Fragment>
-    <Binary Id="CustomActionBinary" SourceFile="$(var.CustomAction.TargetDir)$(var.CustomAction.TargetName).CA.dll" />
-    <CustomAction Id="ca_ManifestAddinScrivi" Impersonate="no" BinaryKey="CustomActionBinary" DllEntry="ManifestAddinScrivi" Return="check" />
-    <CustomAction Id="ca_ManifestAddinCancella" Impersonate="no" BinaryKey="CustomActionBinary" DllEntry="ManifestAddinCancella" Return="check" />
-  </Fragment>
-
+	<?if $(var.Configuration) = Rel_21_24 ?>
+	<?define ProductName = "P3ductbim 2021-24" ?>
+	<?define ProductId = "437FA977-96B5-4E68-94D9-561A58694446" ?>
 	
-<!-- RELASE 2021 IN POI -->
-	    <Fragment>
-        <Directory Id="TARGETDIR" Name="SourceDir">
-          <Directory Id="CommonAppDataFolder" >
-            <Directory Id="Autodesk" Name="Autodesk">
-              <Directory Id="AutodekRevit" Name="Revit">
-                <Directory Id="AutodekRevitAddin" Name="Addins">
-                  <Directory Id="Addins2024" Name="2024" />
-                  <Directory Id="Addins2023" Name="2023" />
-                  <Directory Id="Addins2022" Name="2022" />
-                  <Directory Id="Addins2021" Name="2021" />
-                </Directory>
-              </Directory>
-
-            </Directory>
-          </Directory>
-          <Directory Id="ProgramFilesFolder">
-            <Directory Id="INSTALLFOLDER" Name="P3ductbim">
-              <Directory Id="P3_InstallerResources" Name="P3_InstallerResources" />
-		      <Directory Id="V2021" Name="V2021" />
-		      <Directory Id="V2020" Name="V2020" />
-            </Directory>
-          </Directory>
-          <Directory Id="ProgramMenuFolder">
-            <Directory Id="ApplicationProgramsFolder" Name="P3ductbim" />
-          </Directory>
-        </Directory>
-      </Fragment>   
-
+	<?elseif $(var.Configuration) = Rel_19_20?>
+	<?define ProductName = "P3ductbim 2019-20" ?>
+	<?define ProductId = "C6E65699-06A1-49D3-B1B6-800E53F68BD2" ?>
 	
-<!-- RELASE 2018-2020 
+	<?endif?>
+
+	<!--<Product Id="*" Name="P3ductbim" Language="1033" Version="1.0.0.0" Manufacturer="P3" UpgradeCode="0172C0FB-2D98-4745-9A73-C96990538A79">
+	provo a togliere name per impostarlo dentro configurtaion, cambio anche l id che prima era generato random e forse faceva casino su installazioni applicazioni-->
+	<Product Id="$(var.ProductId)" Name="$(var.ProductName)" Language="1033" Version="4.0.0.0" Manufacturer="P3" UpgradeCode="0172C0FB-2D98-4745-9A73-C96990538A79">
+
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+		<Icon Id="ductbim.ico" SourceFile="$(var.ProjectDir)\Images\ductbim.ico" />
+
+		<WixVariable Id="WixUIBannerBmp" Value="Images\20041_P3_Illustrator_TemplateBanner_Wizard.bmp" />
+		<WixVariable Id="WixUIDialogBmp" Value="Images\20041_P3_Illustrator_Template_Wqizard.bmp" />
+
+		<Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+		<UIRef Id="WixUI_InstallDir"/>
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes" />
+
+
+
+		<UI>
+			<UIRef Id="WixUI_InstallDir" />
+			<Publish Dialog="WelcomeDlg"
+						Control="Next"
+						Event="NewDialog"
+						Value="InstallDirDlg"
+						Order="2">1</Publish>
+			<Publish Dialog="InstallDirDlg"
+						Control="Back"
+						Event="NewDialog"
+						Value="WelcomeDlg"
+						Order="2">1</Publish>
+		</UI>
+
+		<Feature Id="ProductFeature" Title="P3ductbim" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+			<ComponentRef Id="ApplicationShortuct" />
+			<ComponentGroupRef Id="ApplicationProgramsFolder_files" />
+		</Feature>
+		<InstallExecuteSequence>
+			<Custom Action="ca_ManifestAddinScrivi" After="InstallFinalize" >NOT Installed AND NOT REMOVE</Custom>
+			<Custom Action="ca_ManifestAddinCancella" Before="RemoveFiles" >(REMOVE~="ALL") AND (NOT UPGRADINGPRODUCTCODE)</Custom>
+		</InstallExecuteSequence>
+	</Product>
+	<!--https://codingbee.net/wix/wix-the-installation-sequence!-->
+	<!--https://wixtoolset.org/documentation/manual/v3/xsd/wix/majorupgrade.html-->
+	<Fragment>
+		<Binary Id="CustomActionBinary" SourceFile="$(var.CustomAction.TargetDir)$(var.CustomAction.TargetName).CA.dll" />
+		<CustomAction Id="ca_ManifestAddinScrivi" Impersonate="yes" BinaryKey="CustomActionBinary" DllEntry="ManifestAddinScrivi" Return="check" />
+		<CustomAction Id="ca_ManifestAddinCancella" Impersonate="yes" BinaryKey="CustomActionBinary" DllEntry="ManifestAddinCancella" Return="check" />
+	</Fragment>
+
+
 	<Fragment>
 		<Directory Id="TARGETDIR" Name="SourceDir">
 			<Directory Id="CommonAppDataFolder" >
 				<Directory Id="Autodesk" Name="Autodesk">
 					<Directory Id="AutodekRevit" Name="Revit">
 						<Directory Id="AutodekRevitAddin" Name="Addins">
-							<Directory Id="Addins2023" Name="2020" />
-							<Directory Id="Addins2022" Name="2029" />
-							<Directory Id="Addins2021" Name="2018" />
+							<?if $(var.Configuration) = Rel_21_24?>
+							<Directory Id="Addins2024" Name="2024" />
+							<Directory Id="Addins2023" Name="2023" />
+							<Directory Id="Addins2022" Name="2022" />
+							<Directory Id="Addins2021" Name="2021" />
+							<?else?>
+							<Directory Id="Addins2020" Name="2020" />
+							<Directory Id="Addins2019" Name="2019" />
+							<?endif?>
 						</Directory>
 					</Directory>
+
 				</Directory>
 			</Directory>
 			<Directory Id="ProgramFilesFolder">
 				<Directory Id="INSTALLFOLDER" Name="P3ductbim">
+					<Directory Id="en" Name="en" />
 					<Directory Id="P3_InstallerResources" Name="P3_InstallerResources" />
-					<Directory Id="V2021" Name="V2021" />
-					<Directory Id="V2020" Name="V2020" />
+					<!--<Directory Id="V2021" Name="V2021">
+						<Directory Id="en_21" Name="en" />
+					</Directory>
+					<Directory Id="V2020" Name="V2020">
+						<Directory Id="en_20" Name="en" />
+					</Directory>-->
 				</Directory>
 			</Directory>
 			<Directory Id="ProgramMenuFolder">
@@ -103,65 +100,107 @@
 			</Directory>
 		</Directory>
 	</Fragment>
--->
+
 
 	<Fragment>
-    <DirectoryRef Id="ApplicationProgramsFolder">
-      <Component Id="ApplicationShortuct" Guid="EA28422E-71C8-11EB-9439-0242AC130002">
-        <Shortcut Id="ApplicationStartMenuShortcut" Name="P3ductbim" Description="P3ductbim" Target="[INSTALLFOLDER]"> </Shortcut>
-        <RemoveFolder Id="RemoveApplicationProgramsFolder" Directory="ApplicationProgramsFolder" On="uninstall" />
-        <RegistryValue Root="HKCU" Key="Software\P3Ductbim" Name="InstallFolder" Type="integer" Value="1" KeyPath="yes"> </RegistryValue>
-      </Component>
-    </DirectoryRef>
-  </Fragment>
+		<DirectoryRef Id="ApplicationProgramsFolder">
+			<Component Id="ApplicationShortuct" Guid="EA28422E-71C8-11EB-9439-0242AC130002">
+				<Shortcut Id="ApplicationStartMenuShortcut" Name="P3ductbim" Description="P3ductbim" Target="[INSTALLFOLDER]"> </Shortcut>
+				<RemoveFolder Id="RemoveApplicationProgramsFolder" Directory="ApplicationProgramsFolder" On="uninstall" />
+				<RegistryValue Root="HKCU" Key="Software\P3Ductbim" Name="InstallFolder" Type="integer" Value="1" KeyPath="yes"> </RegistryValue>
+			</Component>
+		</DirectoryRef>
+	</Fragment>
 
-  <Fragment>
-    <ComponentGroup Id="ProductComponents">
-      <!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
-      <!-- <Component Id="ProductComponent"> -->
-      <!-- TODO: Insert files, registry keys, and other resources here. -->
-      <!-- </Component> -->
-     <!--
+	<Fragment>
+		<ComponentGroup Id="ProductComponents">
+			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+			<!-- <Component Id="ProductComponent"> -->
+			<!-- TODO: Insert files, registry keys, and other resources here. -->
+			<!-- </Component> -->
+			<!--			
+		2024/04/08
 		<?if $(var.Configuration)=RELASE2021?>
-          <Component Id="P3Ribbon.dll" Guid="22da2d52-24a9-429a-813e-c084b3ec5a5b" Directory="V2020">
-            <File Id="P3Ribbon.dll" Name="P3Ribbon.dll" Source="$(var.P3Ribbon_TargetDir)P3Ribbon.dll" KeyPath="yes" />
-          </Component>
-	  <?else?>
-	 -->
-		<Component Id="P3Ribbon.dll" Guid="22DA2D52-24A9-429A-813E-C084B3EC5A5B" Directory="V2021">
-			<File Id="P3Ribbon.dll" Name="P3Ribbon.dll" Source="$(var.P3Ribbon_TargetDir)P3Ribbon.dll" KeyPath="yes" />
-		</Component>
-	  <!--
-		<?endif?>
-	  -->
-    </ComponentGroup>
-  </Fragment>
+		
+		
+In WiX (.wxs) files, conditional compilation directives such as <?if ... ?>, <?else?>, and <?endif?> are not directly highlighted or greyed out in the Visual Studio editor by default.
 
-  <Fragment>
-    <ComponentGroup Id="ApplicationProgramsFolder_files">
-      <Component Id="P3_InstallerResources_P3___Duct_system_template18.rte" Guid="9B755F9C-6CD3-401B-B44C-2E1738D84515" Directory="P3_InstallerResources">
-        <File Id="P3_InstallerResources_P3___Duct_system_template18.rte" Name="P3 - Duct system template18.rte" Source="$(var.CustomAction.TargetDir)P3_InstallerResources\P3 - Duct system template18.rte" KeyPath="yes"/>
-      </Component>
-      <Component Id="P3_InstallerResources_P3___Duct_system_template19.rte" Guid="ACD556C6-C745-41EE-9545-6582D7E699DF" Directory="P3_InstallerResources">
-        <File Id="P3_InstallerResources_P3___Duct_system_template19.rte" Name="P3 - Duct system template19.rte" Source="$(var.CustomAction.TargetDir)P3_InstallerResources\P3 - Duct system template19.rte" KeyPath="yes" />
-      </Component>
-      <Component Id="P3_InstallerResources_P3___Duct_system_template20.rte" Guid="04064917-6CAF-4574-9858-8BA01BF87214" Directory="P3_InstallerResources">
-        <File Id="P3_InstallerResources_P3___Duct_system_template20.rte" Name="P3 - Duct system template20.rte" Source="$(var.CustomAction.TargetDir)P3_InstallerResources\P3 - Duct system template20.rte" KeyPath="yes" />
-      </Component>
-		<Component Id="P3_InstallerResources_P3___Duct_system_template21.rte" Guid="FBBAC554-BB3A-4303-A45E-265A4604C1AA" Directory="P3_InstallerResources">
-			<File Id="P3_InstallerResources_P3___Duct_system_template21.rte" Name="P3 - Duct system template21.rte" Source="$(var.CustomAction.TargetDir)P3_InstallerResources\P3 - Duct system template21.rte" KeyPath="yes" />
-		</Component>
 
-		<Component Id="P3_InstallerResources_P3___Duct_system_template22.rte" Guid="EC1B0F20-B74A-449A-ACCB-86A741937C8C" Directory="P3_InstallerResources">
-			<File Id="P3_InstallerResources_P3___Duct_system_template22.rte" Name="P3 - Duct system template22.rte" Source="$(var.CustomAction.TargetDir)P3_InstallerResources\P3 - Duct system template22.rte" KeyPath="yes"/>
-		</Component>
-      <Component Id="P3_InstallerResources_P3_ParamCondivisi.txt.txt" Guid="DF6A1CCB-C998-4A3A-9440-6DAB552CCEEB" Directory="P3_InstallerResources">
-        <File Id="P3_InstallerResources_P3_ParamCondivisi.txt.txt" Name="P3_ParamCondivisi.txt" Source="$(var.CustomAction.TargetDir)P3_InstallerResources\P3_ParamCondivisi.txt" KeyPath="yes"/>
+		-->
+			<!--volevo prvoare a fare tutto nella stessa cartella ma dovrei poi sistemare anche la custom action, 
+			sarebbe stato piu bello anche per copiare le risorse en-->
+			<?if $(var.Configuration) = Rel_21_24 Or $(var.Configuration) = Debug?>
+			<!--<Component Id="P3Ribbon.dll" Guid="22da2d52-24a9-429a-813e-c084b3ec5a5b" Directory="V2021">
+				<File Id="P3Ribbon.dll" Name="P3Ribbon.dll" Source="$(var.P3Ribbon_TargetDir)P3Ribbon.dll" KeyPath="yes" />
+			</Component>-->
+			<Component Id="P3Ribbon_2021_24.dll" Guid="22da2d52-24a9-429a-813e-c084b3ec5a5b" Directory="INSTALLFOLDER">
+				<File Id="P3Ribbon_2021_24.dll" Name="P3Ribbon_2021-24.dll" Source="$(var.P3Ribbon_TargetDir)P3Ribbon.dll" KeyPath="yes" />
+			</Component>
+			<!--<Component Id="P3Ribbon.resources.dll" Guid="E95D618B-533D-45BA-82B1-B0E01B4CEDFF" Directory="en_21">
+				<File Id="P3Ribbon.resources.dll" Name="P3Ribbon.resources.dll" Source="$(var.P3Ribbon_TargetDir)\en\P3Ribbon.resources.dll" KeyPath="yes" />
+			</Component>-->
+			<Component Id="P3Ribbon.resources.dll" Guid="E95D618B-533D-45BA-82B1-B0E01B4CEDFF" Directory="en">
+				<File Id="P3Ribbon.resources.dll" Name="P3Ribbon.resources.dll" Source="$(var.P3Ribbon_TargetDir)\en\P3Ribbon.resources.dll" KeyPath="yes" />
+			</Component>
+			
+			<?else?>
+			<!--<Component Id="P3Ribbon.dll" Guid="22DA2D52-24A9-429A-813E-C084B3EC5A5B" Directory="V2020">
+				<File Id="P3Ribbon.dll" Name="P3Ribbon.dll" Source="$(var.P3Ribbon_TargetDir)P3Ribbon.dll" KeyPath="yes" />
+			</Component>-->
+			<Component Id="P3Ribbon_2019_20.dll" Guid="22DA2D52-24A9-429A-813E-C084B3EC5A5B" Directory="INSTALLFOLDER">
+				<File Id="P3Ribbon_2019_20.dll" Name="P3Ribbon_2019-20.dll" Source="$(var.P3Ribbon_TargetDir)P3Ribbon.dll" KeyPath="yes" />
+			</Component>
+			<!--<Component Id="P3Ribbon.resources.dll" Guid="731CD8B3-B2C3-4E0E-AE96-E72523B4B26D" Directory="en_20">
+				<File Id="P3Ribbon.resources.dll" Name="P3Ribbon.resources.dll" Source="$(var.P3Ribbon_TargetDir)\en\P3Ribbon.resources.dll" KeyPath="yes" />
+			</Component>-->
+			<Component Id="P3Ribbon.resources.dll" Guid="731CD8B3-B2C3-4E0E-AE96-E72523B4B26D" Directory="en">
+				<File Id="P3Ribbon.resources.dll" Name="P3Ribbon.resources.dll" Source="$(var.P3Ribbon_TargetDir)\en\P3Ribbon.resources.dll" KeyPath="yes" />
+			</Component>
+			
+			<?endif?>
+			
+			
+			<!--2024 04 05 forse risolto-->
+		</ComponentGroup>
+	</Fragment>
 
-      </Component>
-      <Component Id="P3_InstallerResources_P3_TabelleDiPredimensionamento.txt" Guid="F30E76D8-BC80-4DEA-A6CB-42AC1939D145" Directory="P3_InstallerResources">
-        <File Id="P3_InstallerResources_P3_TabelleDiPredimensionamento.txt" Name="P3_TabelleDiPredimensionamento.txt" Source="$(var.CustomAction.TargetDir)P3_InstallerResources\P3_TabelleDiPredimensionamento.txt" KeyPath="yes"/>
-      </Component> 
-    </ComponentGroup>
-  </Fragment>
+	<Fragment>
+		<ComponentGroup Id="ApplicationProgramsFolder_files">
+			<?if $(var.Configuration) = Rel_21_24 Or $(var.Configuration) = Debug?>
+
+			<Component Id="P3_InstallerResources_P3___Duct_system_template21.rte" Guid="FBBAC554-BB3A-4303-A45E-265A4604C1AA" Directory="P3_InstallerResources">
+				<File Id="P3_InstallerResources_P3___Duct_system_template21.rte" Name="P3 - Duct system template21.rte" Source="$(var.CustomAction.TargetDir)P3_InstallerResources\P3 - Duct system template21.rte" KeyPath="yes" />
+			</Component>
+			<Component Id="P3_InstallerResources_P3___Duct_system_template22.rte" Guid="EC1B0F20-B74A-449A-ACCB-86A741937C8C" Directory="P3_InstallerResources">
+				<File Id="P3_InstallerResources_P3___Duct_system_template22.rte" Name="P3 - Duct system template22.rte" Source="$(var.CustomAction.TargetDir)P3_InstallerResources\P3 - Duct system template22.rte" KeyPath="yes"/>
+			</Component>
+			<Component Id="P3_InstallerResources_P3___Duct_system_template23.rte" Guid="9043BE31-FBF4-44E5-BE3F-C2C2D400C95A" Directory="P3_InstallerResources">
+				<File Id="P3_InstallerResources_P3___Duct_system_template23.rte" Name="P3 - Duct system template23.rte" Source="$(var.CustomAction.TargetDir)P3_InstallerResources\P3 - Duct system template23.rte" KeyPath="yes" />
+			</Component>
+			<Component Id="P3_InstallerResources_P3___Duct_system_template24.rte" Guid="C5920DA3-6BC0-4783-9632-A7A25046EA8B" Directory="P3_InstallerResources">
+				<File Id="P3_InstallerResources_P3___Duct_system_template24.rte" Name="P3 - Duct system template24.rte" Source="$(var.CustomAction.TargetDir)P3_InstallerResources\P3 - Duct system template24.rte" KeyPath="yes"/>
+			</Component>
+
+			<?else?>
+			<!--<Component Id="P3_InstallerResources_P3___Duct_system_template18.rte" Guid="9B755F9C-6CD3-401B-B44C-2E1738D84515" Directory="P3_InstallerResources">
+					<File Id="P3_InstallerResources_P3___Duct_system_template18.rte" Name="P3 - Duct system template18.rte" Source="$(var.CustomAction.TargetDir)P3_InstallerResources\P3 - Duct system template18.rte" KeyPath="yes"/>
+				</Component>-->
+			<Component Id="P3_InstallerResources_P3___Duct_system_template19.rte" Guid="ACD556C6-C745-41EE-9545-6582D7E699DF" Directory="P3_InstallerResources">
+				<File Id="P3_InstallerResources_P3___Duct_system_template19.rte" Name="P3 - Duct system template19.rte" Source="$(var.CustomAction.TargetDir)P3_InstallerResources\P3 - Duct system template19.rte" KeyPath="yes" />
+			</Component>
+			<Component Id="P3_InstallerResources_P3___Duct_system_template20.rte" Guid="04064917-6CAF-4574-9858-8BA01BF87214" Directory="P3_InstallerResources">
+				<File Id="P3_InstallerResources_P3___Duct_system_template20.rte" Name="P3 - Duct system template20.rte" Source="$(var.CustomAction.TargetDir)P3_InstallerResources\P3 - Duct system template20.rte" KeyPath="yes" />
+			</Component>
+
+			<?endif?>
+
+			<Component Id="P3_InstallerResources_P3_ParamCondivisi.txt.txt" Guid="DF6A1CCB-C998-4A3A-9440-6DAB552CCEEB" Directory="P3_InstallerResources">
+				<File Id="P3_InstallerResources_P3_ParamCondivisi.txt.txt" Name="P3_ParamCondivisi.txt" Source="$(var.CustomAction.TargetDir)P3_InstallerResources\P3_ParamCondivisi.txt" KeyPath="yes"/>
+
+			</Component>
+			<Component Id="P3_InstallerResources_P3_TabelleDiPredimensionamento.txt" Guid="F30E76D8-BC80-4DEA-A6CB-42AC1939D145" Directory="P3_InstallerResources">
+				<File Id="P3_InstallerResources_P3_TabelleDiPredimensionamento.txt" Name="P3_TabelleDiPredimensionamento.txt" Source="$(var.CustomAction.TargetDir)P3_InstallerResources\P3_TabelleDiPredimensionamento.txt" KeyPath="yes"/>
+			</Component>
+		</ComponentGroup>
+	</Fragment>
 </Wix>

@@ -301,4 +301,122 @@ Questa funzione legge in backround le operazione svolte sui condotti e intervien
   <data name="wpfPZonaSismica" xml:space="preserve">
     <value>ZONA SISMICA</value>
   </data>
+  <data name="wpfLDerivazioneTsector" xml:space="preserve">
+    <value>Connettore a T a settori</value>
+  </data>
+  <data name="wpfLGomito90" xml:space="preserve">
+    <value>Gomito</value>
+  </data>
+  <data name="wpfLGomitoSector" xml:space="preserve">
+    <value>Curva a settori</value>
+  </data>
+  <data name="wpfLScarpetta" xml:space="preserve">
+    <value>Scarpetta</value>
+  </data>
+  <data name="test" xml:space="preserve">
+    <value>1</value>
+    <comment>wip</comment>
+  </data>
+  <data name="log_Condotto" xml:space="preserve">
+    <value>Condotto</value>
+  </data>
+  <data name="log_Staffaggio_Controv" xml:space="preserve">
+    <value>Controvento per barre filettate verticali obbligatorio quando la distanza del canale dal soffitto è maggiore di</value>
+  </data>
+  <data name="log_Staffaggio_InterasseLong" xml:space="preserve">
+    <value>Interasse controvento longitudinale</value>
+  </data>
+  <data name="log_Staffaggio_InterasseTrasv" xml:space="preserve">
+    <value>Interasse controvento trasversale</value>
+  </data>
+  <data name="log_Staffaggio_Nessuno" xml:space="preserve">
+    <value>NESSUNO</value>
+  </data>
+  <data name="log_Staffaggio_passo_max" xml:space="preserve">
+    <value>Passo massimo</value>
+  </data>
+  <data name="log_Staffaggio_passo_min" xml:space="preserve">
+    <value>Passo minimo</value>
+  </data>
+  <data name="log_Staffaggio_PavVisibili" xml:space="preserve">
+    <value>Pavimenti visibili nella vista 3D al di sopra del canale:</value>
+  </data>
+  <data name="log_Staffaggio_Perim" xml:space="preserve">
+    <value>Perimetro condotto</value>
+  </data>
+  <data name="log_Staffaggio_Punto" xml:space="preserve">
+    <value>Punto</value>
+  </data>
+  <data name="log_Staffaggio_SupDist" xml:space="preserve">
+    <value>Staffa superiore obbligatoria quando la distanza del canale dal soffitto è maggiore di</value>
+  </data>
+  <data name="log_Staffaggio_SupLato" xml:space="preserve">
+    <value>Staffa superiore obbligatoria quando un lato del canale è maggiore di</value>
+  </data>
+  <data name="log_Staffaggio_TroppoLontano" xml:space="preserve">
+    <value>TROPPO LONTANO</value>
+  </data>
+  <data name="log_Staffaggio_Vista3D1" xml:space="preserve">
+    <value>Per il posizionamento degli staffaggi sarà utilizzata la seguente vista 3D di supporto,</value>
+  </data>
+  <data name="log_Staffaggio_Vista3D2" xml:space="preserve">
+    <value>nella quale dovranno essere visibili i pavimenti a cui agganciarsi:</value>
+  </data>
+  <data name="log_Staffaggio_Vista3D_No" xml:space="preserve">
+    <value>Non è stata trovata alcuna vista 3D</value>
+  </data>
+  <data name="selezione_condotti" xml:space="preserve">
+    <value>seleziona solo i condotti P3</value>
+  </data>
+  <data name="taskdErrore_AttivazioneFam" xml:space="preserve">
+    <value>Non è stato possibile trovare e/o attivare la famiglia P3_DuctHanger</value>
+  </data>
+  <data name="taskdErrore_NoCanali" xml:space="preserve">
+    <value>Non sono stati selezionati condotti o non ce ne sono all'interno del progetto</value>
+  </data>
+  <data name="taskdErrore_NonPosizionati1" xml:space="preserve">
+    <value>Non sono stati posizionati staffaggi : controllare la vista 3D,</value>
+  </data>
+  <data name="taskdErrore_NonPosizionati2" xml:space="preserve">
+    <value>la visibilità dei pavimenti e la loro distanza dai canali</value>
+  </data>
+  <data name="Temporary" xml:space="preserve">
+    <value>Temporanee</value>
+    <comment>wip</comment>
+  </data>
+  <data name="test2" xml:space="preserve">
+    <value>test2</value>
+    <comment>wip</comment>
+  </data>
+  <data name="test3" xml:space="preserve">
+    <value>test3</value>
+    <comment>wip</comment>
+  </data>
+  <data name="transaction_PosizionaStaffaggio" xml:space="preserve">
+    <value>Posiziona staffaggio</value>
+  </data>
+  <data name="log_Staffaggio_Output2" xml:space="preserve">
+    <value>Vedere dettaglio operazioni?</value>
+  </data>
+  <data name="log_Staffaggio_Output1" xml:space="preserve">
+    <value>Staffaggi posizionati</value>
+  </data>
+  <data name="log_Staffaggio_Controv_Long" xml:space="preserve">
+    <value>Controvento longitudinale</value>
+  </data>
+  <data name="log_Staffaggio_Controv_Trasv" xml:space="preserve">
+    <value>Controvento trasversale</value>
+  </data>
+  <data name="log_Staffaggio_Sup" xml:space="preserve">
+    <value>Staffa superiore</value>
+  </data>
+  <data name="wpfLIncrocioSector" xml:space="preserve">
+    <value>Incrocio a 4 vie</value>
+  </data>
+  <data name="wpfLPlenum" xml:space="preserve">
+    <value>Plenum</value>
+  </data>
+  <data name="taskdErroreFileMancante" xml:space="preserve">
+    <value>Provare a disinstallare e rinstallare il programma. Non è stato trovato il file </value>
+  </data>
 </root>

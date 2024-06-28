@@ -63,7 +63,7 @@ namespace P3Ribbon.Scripts.GUI
             int nRows = section.NumberOfRows;
             int nColumns = section.NumberOfColumns;
            
-            int ir = 0;
+            //int ir = 0;
             int cr = nColumns;
 
             List<List<string>> scheduleData = new List<List<string>>();

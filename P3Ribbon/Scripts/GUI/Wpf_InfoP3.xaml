@@ -15,7 +15,7 @@
         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="P3ductualBIM" VerticalAlignment="Top" Margin="10,15,0,0" Width="269" FontFamily="Arial" FontWeight="Bold" Height="14"/>
         <Rectangle Fill="#3BB5CAFF" HorizontalAlignment="Left" Height="350" Margin="10,34,0,0" Stroke="Black" VerticalAlignment="Top" Width="316" Grid.RowSpan="2"/>
         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Margin="15,45,0,45" Width="143" Height="22" FontFamily="Arial" FontSize="11" TextAlignment="Justify" Text="Versione plugin:"></TextBlock>
-        <TextBox x:Name="tb_Versione"  TextWrapping="Wrap" Text="v 1.1.0" Margin="129,41,550,50"/>
+        <TextBox x:Name="tb_Versione"  TextWrapping="Wrap" Text=" " Margin="129,41,550,50"/>
 
         <TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Margin="15,69,0,21" Width="143" Height="22" FontFamily="Arial" FontSize="11" TextAlignment="Justify" Text="Percorso plugin:"></TextBlock>
         <TextBox x:Name="tb_PercorsoCartella"  TextWrapping="Wrap" Text=" " Margin="129,67,550,26"/>

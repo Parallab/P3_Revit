@@ -17,26 +17,26 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <OutputPath>.\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>3</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;RELASE2020</DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2020|x86'">
-    <OutputPath>bin\x86\2020\</OutputPath>
-    <DefineConstants>RELASE2020</DefineConstants>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Rel_19_20|x86' ">
+    <OutputPath>.\</OutputPath>
+    <DefineConstants>Rel_19_20</DefineConstants>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2021|x86' ">
-    <OutputPath>bin\x86\2021\</OutputPath>
-    <DefineConstants>RELASE2021</DefineConstants>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Rel_21_24|x86' ">
+    <OutputPath>.\</OutputPath>
+    <DefineConstants>Rel_21_24</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />
@@ -55,14 +55,6 @@
     <Reference Include="Microsoft.VisualBasic.Compatibility.Data" />
     <Reference Include="Microsoft.VisualC" />
     <Reference Include="Microsoft.VisualC.STLCLR" />
-    <Reference Include="RevitAPI">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\RevitAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPIUI">
-      <HintPath>..\..\..\..\..\..\..\Program Files\Autodesk\Revit 2020\RevitAPIUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="sysglobl" />
     <Reference Include="System" />
     <Reference Include="System.Activities" />
@@ -134,7 +126,9 @@
   <ItemGroup>
     <Compile Include="CustomAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="CustomAction.config" />
+    <Content Include="CustomAction.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Resource Include="P3_InstallerResources\P3_ParamCondivisi.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -143,9 +137,6 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="P3_InstallerResources\P3 - Duct system template18.rte">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
     <Resource Include="P3_InstallerResources\P3 - Duct system template19.rte">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -153,6 +144,17 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="P3_InstallerResources\P3 - Duct system template21.rte">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="P3_InstallerResources\P3 - Duct system template22.rte">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="P3_InstallerResources\P3 - Duct system template23.rte">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="P3_InstallerResources\P3 - Duct system template24.rte">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

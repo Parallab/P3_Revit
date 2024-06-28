@@ -12,11 +12,6 @@ namespace P3Ribbon.Scripts
             public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
             {
                 App.lingua_arrivo = App.Lingua.ENG;
-                UIApplication uiApp = commandData.Application;
-                UIDocument uiDoc = uiApp.ActiveUIDocument;
-                Document doc = uiDoc.Document;
-                Application app = uiApp.Application;
-
                 Supporto.CambiaLingua(App.UICapp);
 
                 return Result.Succeeded;
@@ -30,11 +25,6 @@ namespace P3Ribbon.Scripts
             public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
             {
                 App.lingua_arrivo = App.Lingua.ITA;
-                UIApplication uiApp = commandData.Application;
-                UIDocument uiDoc = uiApp.ActiveUIDocument;
-                Document doc = uiDoc.Document;
-                Application app = uiApp.Application;
-
                 Supporto.CambiaLingua(App.UICapp);
 
                 return Result.Succeeded;
