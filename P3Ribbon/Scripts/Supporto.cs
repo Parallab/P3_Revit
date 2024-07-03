@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Resources;
 using System.Threading;
 using System.Globalization;
+using System;
 
 namespace P3Ribbon.Scripts
 {
@@ -47,7 +48,7 @@ namespace P3Ribbon.Scripts
 		{
 			Assembly a = Assembly.GetExecutingAssembly();
 			string PathAssembly = Assembly.GetExecutingAssembly().Location; //percorso dll
-			// Get the directory of the assembly
+																			// Get the directory of the assembly
 			string DirectoryAssembly = System.IO.Path.GetDirectoryName(PathAssembly);
 			string PercorsoRisorsa = System.IO.Path.Combine(DirectoryAssembly, "P3_InstallerResources\\", NomeFile);
 
@@ -149,17 +150,21 @@ namespace P3Ribbon.Scripts
 							t.Start();
 							InstanceBinding newIB = app.Create.NewInstanceBinding(categorySet);
 
-						// c'è dal 2022...forse dovrei fare Rel_21 da sola? o solo Rel_25 da sola che in futuro ci saranno altri cambiamenti?
-						//
-						//https://www.revitapidocs.com/2022/a2fe7c6f-e5e2-bafe-23c8-819ba6a6c9b9.htm
+							// c'è dal 2022...forse dovrei fare Rel_21 da sola? o solo Rel_25 da sola che in futuro ci saranno altri cambiamenti?
+							//
+							//https://www.revitapidocs.com/2022/a2fe7c6f-e5e2-bafe-23c8-819ba6a6c9b9.htm
 							//dovrebbe andare già dal 2024... :
 							//https://www.revitapidocs.com/2024/a2fe7c6f-e5e2-bafe-23c8-819ba6a6c9b9.htm
 							//https://www.revitapidocs.com/2024/c3bed87a-956f-47c3-060c-0294c7ef43e7.htm
-							doc.ParameterBindings.Insert(externalDefinitionCU, newIB, BuiltInParameterGroup.INVALID);//non va piu bene in r2025
-							doc.ParameterBindings.Insert(externalDefinitionVN, newIB, BuiltInParameterGroup.INVALID);//non va piu bene in r2025
-							doc.ParameterBindings.Insert(externalDefinitionZS, newIB, BuiltInParameterGroup.INVALID);//non va piu bene in r2025
+							//https://forums.autodesk.com/t5/revit-api-forum/revit-2024-grouptypeid-missing-parametergroup-other-invalid/td-p/12288651
+							//https://forums.autodesk.com/t5/revit-api-forum/revit-2024-other-parameter-group/td-p/12086226
 
-
+							//doc.ParameterBindings.Insert(externalDefinitionCU, newIB, BuiltInParameterGroup.INVALID);//non va piu bene in r2025
+							//doc.ParameterBindings.Insert(externalDefinitionVN, newIB, BuiltInParameterGroup.INVALID);//non va piu bene in r2025
+							//doc.ParameterBindings.Insert(externalDefinitionZS, newIB, BuiltInParameterGroup.INVALID);//non va piu bene in r2025
+							AggiungiParametroProgetto(doc, externalDefinitionCU, newIB, Supporto.BuiltInParameterGroup_OR_GroupTypeId.ALTRO);
+							AggiungiParametroProgetto(doc, externalDefinitionVN, newIB, Supporto.BuiltInParameterGroup_OR_GroupTypeId.ALTRO);
+							AggiungiParametroProgetto(doc, externalDefinitionZS, newIB, Supporto.BuiltInParameterGroup_OR_GroupTypeId.ALTRO);
 
 							t.Commit();
 						}
@@ -178,6 +183,85 @@ namespace P3Ribbon.Scripts
 			}
 			return output;
 		}
+
+		public enum BuiltInParameterGroup_OR_GroupTypeId
+		{//FACCIO A MANO PER GESTIRE PASSAGGIO DA 
+			AREA,
+			ALTRO
+		}
+
+		//		public object ParseParameterGroupOrGroupTypeId(string input)
+		//		{
+		//#if (Rel_25)
+		//			return ParseStaticType(typeof(GroupTypeId), input);
+		//#else
+		//        return ParseStaticType(typeof(BuiltInParameterGroup), input);
+		//#endif
+		//		}
+
+		//		private object ParseStaticType(Type type, string input)
+		//		{
+		//			// Get all public static fields or properties from the type
+		//			var members = type.GetMembers(BindingFlags.Public | BindingFlags.Static)
+		//				.Where(m => m.MemberType == MemberTypes.Field || m.MemberType == MemberTypes.Property)
+		//				.ToArray();
+
+		//			foreach (var member in members)
+		//			{
+		//				if (member.Name.Equals(input, StringComparison.OrdinalIgnoreCase))
+		//				{
+		//					if (member.MemberType == MemberTypes.Field)
+		//					{
+		//						return ((FieldInfo)member).GetValue(null);
+		//					}
+		//					else if (member.MemberType == MemberTypes.Property)
+		//					{
+		//						return ((PropertyInfo)member).GetValue(null);
+		//					}
+		//				}
+		//			}
+
+		//			throw new ArgumentException($"Input string does not correspond to a valid {type.Name}.", nameof(input));
+		//		}
+
+		public static object BuiltInParameterGroup_OR_GroupTypeId_Converti(BuiltInParameterGroup_OR_GroupTypeId nome)
+		{
+#if (Rel_25)
+			switch (nome)
+			{
+				case BuiltInParameterGroup_OR_GroupTypeId.AREA:
+					return GroupTypeId.Area;
+				case BuiltInParameterGroup_OR_GroupTypeId.ALTRO:
+					return new ForgeTypeId(string.Empty);
+				default:
+					return new ForgeTypeId(string.Empty);
+			}
+#else
+			switch (nome)
+			{
+				case BuiltInParameterGroup_OR_GroupTypeId.AREA:
+					return BuiltInParameterGroup.PG_AREA;
+				case BuiltInParameterGroup_OR_GroupTypeId.ALTRO:
+					return BuiltInParameterGroup.INVALID;
+			default:
+			return BuiltInParameterGroup.INVALID;
+			}
+#endif
+		}
+
+
+		public static void AggiungiParametroProgetto(Document _doc, ExternalDefinition _extdef, InstanceBinding _newIB, BuiltInParameterGroup_OR_GroupTypeId gruppo) //<T> T gruppo 
+		{ 
+			//ho messo _doc perchè lo stesso metodo è usato su migra area isolamento, da testare se si può allinear etutto a supporto.doc
+#if (Rel_25)
+			ForgeTypeId gruppo_forge = (ForgeTypeId)BuiltInParameterGroup_OR_GroupTypeId_Converti(gruppo);
+			_doc.ParameterBindings.Insert(_extdef, _newIB, gruppo_forge);
+#else
+			BuiltInParameterGroup gruppo_builtin = (BuiltInParameterGroup)BuiltInParameterGroup_OR_GroupTypeId_Converti(gruppo);
+			_doc.ParameterBindings.Insert(_extdef, _newIB, gruppo_builtin);//non va piu bene in r2025
+#endif
+		}
+
 		public static bool ControllaTipiP3Presenti(string nometipo)
 		{
 			List<string> IsolatiECondottiP3Presenti = new List<string>();
@@ -427,7 +511,7 @@ namespace P3Ribbon.Scripts
 		public static double ConvertiInterne2cm(double interne)
 		{
 			double cm = 0;
-#if (Rel_21_24 || DEBUG)
+#if (Rel_25 || Rel_21_24 || DEBUG)
 
 			cm = UnitUtils.ConvertFromInternalUnits(interne, UnitTypeId.Centimeters);
 #else

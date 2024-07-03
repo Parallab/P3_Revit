@@ -82,22 +82,14 @@
     <OutputPath>bin\Rel_19_20\</OutputPath>
     <DefineConstants>Rel_19_20</DefineConstants>
   </PropertyGroup>
-  <!--   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2020|x64'">
-    <OutputPath>bin\x64\2020\</OutputPath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2020|x86'">
-    <OutputPath>bin\x86\2020\</OutputPath>
-  </PropertyGroup> -->
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Rel_21_24|AnyCPU' ">
     <OutputPath>bin\Rel_21_24\</OutputPath>
     <DefineConstants>TRACE;DEBUG;Rel_21_24</DefineConstants>
   </PropertyGroup>
-  <!--   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2021|x64' ">
-    <OutputPath>bin\x64\2022\</OutputPath>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Rel_25|AnyCPU'">
+    <OutputPath>bin\Rel_25\</OutputPath>
+    <DefineConstants>Rel_25</DefineConstants>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2021|x86' ">
-    <OutputPath>bin\x86\2022\</OutputPath>
-  </PropertyGroup> -->
   <ItemGroup>
     <Reference Include="Microsoft.Deployment.WindowsInstaller, Version=3.0.0.0, Culture=neutral, PublicKeyToken=ce35f76fcda82bad, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -115,6 +107,10 @@
       <HintPath>E:\Program Files\Autodesk\Revit 2021\RevitAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="RevitAPI" Condition=" '$(Configuration)' == 'Rel_25'">
+      <HintPath>E:\Program Files\Autodesk\Revit 2025\RevitAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="RevitAPI" Condition=" '$(Configuration)' == 'Rel_21_24'">
       <HintPath>E:\Program Files\Autodesk\Revit 2021\RevitAPI.dll</HintPath>
       <Private>False</Private>
@@ -126,6 +122,10 @@
     </Reference>
     <Reference Include="RevitAPIUI" Condition=" '$(Configuration)' == 'Debug'">
       <HintPath>E:\Program Files\Autodesk\Revit 2021\RevitAPIUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPIUI" Condition=" '$(Configuration)' == 'Rel_25'">
+      <HintPath>E:\Program Files\Autodesk\Revit 2025\RevitAPIUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPIUI" Condition=" '$(Configuration)' == 'Rel_21_24'">
@@ -208,6 +208,9 @@
     </Compile>
     <Compile Include="Scripts\GUI\SeismicViews\Wpf_ZonaSismica.xaml.cs">
       <DependentUpon>Wpf_ZonaSismica.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Scripts\GUI\UserControl1.xaml.cs">
+      <DependentUpon>UserControl1.xaml</DependentUpon>
     </Compile>
     <Compile Include="Scripts\GUI\Wpf_InfoP3.xaml.cs">
       <DependentUpon>Wpf_InfoP3.xaml</DependentUpon>
@@ -345,6 +348,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Scripts\GUI\SeismicViews\Wpf_ZonaSismica.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Scripts\GUI\UserControl1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

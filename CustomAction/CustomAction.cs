@@ -13,7 +13,9 @@ namespace CustomAction
 		public static string filepath_orig = commonAppData + @"\Autodesk\Revit\Addins\_anno_\P3Ribbon.addin";
 		//C:\ProgramData\Autodesk\Revit\Addins
 
-#if (Rel_21_24 || DEBUG)
+#if (Rel_25)
+		public static string[] anni = new string[] { "2025" };
+#elif (Rel_21_24 || DEBUG)
 		public static string[] anni = new string[] { "2021", "2022", "2023", "2024" };
 #else
 		public static string[] anni = new string[] { "2019", "2020"}; //2018 tolto
@@ -23,7 +25,10 @@ namespace CustomAction
 		public static ActionResult ManifestAddinScrivi(Session session)
 		{
 			session.Log("Begin CustomAction");
-#if (Rel_21_24 || DEBUG)
+
+#if (Rel_25)
+			string percorsodll = session["INSTALLFOLDER"] + "P3Ribbon_2025.dll";
+#elif (Rel_21_24 || DEBUG)
 			//dovrei sistemare questa key..non capisco da dove venga?
 			string percorsodll = session["INSTALLFOLDER"]+"P3Ribbon_2021-24.dll";
 			//string input = session["V2021"];

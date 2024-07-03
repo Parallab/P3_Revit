@@ -10,6 +10,7 @@
              mc:Ignorable="d" 
               MaxHeight="450" MaxWidth="360" MinHeight="450" MinWidth="360" Width="360" Height="450"
              WindowState="Maximized" ResizeMode="CanMinimize">
+	<!--su Rel_25 dà problemi...probo a fare una modifica casuale, come questo commento, salvo e chiudo-->
     <Grid Height="400" Margin="19,10,14,11">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>

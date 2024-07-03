@@ -390,7 +390,7 @@ namespace P3Ribbon.Scripts
 		public Element el;
 		public ElementId Id;
 
-#if (Rel_21_24 || DEBUG)
+#if (Rel_25 || Rel_21_24 || DEBUG)
 		//2 è l altezza massima?? da controllare!
 		public static double AltezzaStaffaggio { get; set; } = UnitUtils.ConvertToInternalUnits(2, UnitTypeId.Meters);
 #else
@@ -456,12 +456,6 @@ namespace P3Ribbon.Scripts
 			double dc_spiso = dc.get_Parameter(BuiltInParameter.RBS_REFERENCE_INSULATION_THICKNESS).AsDouble() * 2;
 			if (metrico)
 			{
-
-				//#if (RELEASE2021 || DEBUG)
-				//				dc_spiso = UnitUtils.ConvertFromInternalUnits(dc_spiso, UnitTypeId.Centimeters);
-				//#else
-				//                dc_spiso = UnitUtils.ConvertFromInternalUnits(dc_spiso, DisplayUnitType.DUT_CENTIMETERS);
-				//#endif
 				dc_spiso = Supporto.ConvertiInterne2cm(dc_spiso);
 			}
 			return dc_spiso;
@@ -471,11 +465,6 @@ namespace P3Ribbon.Scripts
 			double dc_largh = dc.get_Parameter(BuiltInParameter.RBS_CURVE_WIDTH_PARAM).AsDouble();
 			if (metrico)
 			{
-				//#if (RELEASE2021 || DEBUG)
-				//				dc_largh = UnitUtils.ConvertFromInternalUnits(dc_largh, UnitTypeId.Centimeters);
-				//#else
-				//                dc_largh = UnitUtils.ConvertFromInternalUnits(dc_largh, DisplayUnitType.DUT_CENTIMETERS);
-				//#endif
 				dc_largh = Supporto.ConvertiInterne2cm(dc_largh);
 			}
 			return dc_largh;
@@ -485,11 +474,6 @@ namespace P3Ribbon.Scripts
 			double dc_alt = dc.get_Parameter(BuiltInParameter.RBS_CURVE_HEIGHT_PARAM).AsDouble();
 			if (metrico)
 			{
-				//#if (RELEASE2021 || DEBUG)
-				//				dc_alt = UnitUtils.ConvertFromInternalUnits(dc_alt, UnitTypeId.Centimeters);
-				//#else
-				//                dc_alt = UnitUtils.ConvertFromInternalUnits(dc_alt, DisplayUnitType.DUT_CENTIMETERS);
-				//#endif
 				dc_alt = Supporto.ConvertiInterne2cm(dc_alt);
 			}
 			return dc_alt;
@@ -497,13 +481,6 @@ namespace P3Ribbon.Scripts
 		public double CalcolaLunghezza(Element dc)
 		{
 			double dc_lungh_IM = dc.get_Parameter(BuiltInParameter.CURVE_ELEM_LENGTH).AsDouble();
-			//#if (RELEASE2021 || DEBUG)
-
-			//			double dc_lungh = UnitUtils.ConvertFromInternalUnits(dc_lungh_IM, UnitTypeId.Centimeters);
-			//#else
-
-			//            double dc_lungh = UnitUtils.ConvertFromInternalUnits(dc_lungh_IM, DisplayUnitType.DUT_CENTIMETERS);
-			//#endif
 			double dc_lungh = Supporto.ConvertiInterne2cm(dc_lungh_IM);
 			return dc_lungh;
 		}
@@ -732,13 +709,6 @@ namespace P3Ribbon.Scripts
 					//dipende dalla direzione del condotto, quindi verso quale quadrante si rivolge (di conseguenza dal verso del vettore ovvero i click con cui è stato creato)
 					// staffa superiore
 					double distanzaControff = fi.LookupParameter("P3_Dynamo_Top2Ceiling").AsDouble();
-					//#if (RELEASE2021 || DEBUG)
-
-					//					distanzaControff = UnitUtils.ConvertFromInternalUnits(distanzaControff, UnitTypeId.Centimeters);
-					//#else
-					//                    distanzaControff = UnitUtils.ConvertFromInternalUnits(distanzaControff, DisplayUnitType.DUT_CENTIMETERS);
-
-					//#endif
 					distanzaControff = Supporto.ConvertiInterne2cm(distanzaControff);
 					if (Math.Max(largh, alt) > StaffaSupLato || distanzaControff > StaffaSupDist)
 					{

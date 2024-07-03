@@ -3,6 +3,15 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+
+CustomAction/CustomAction.CA.dll
+CustomAction/CustomAction.dll
+CustomAction/obj/
+
+#devo anche togliere..
+#git rm --cached CustomAction/CustomAction.CA.dll
+#git rm --cached CustomAction/CustomAction.dll
+
 # User-specific files
 *.rsuser
 *.suo
