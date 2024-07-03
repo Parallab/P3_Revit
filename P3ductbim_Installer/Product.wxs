@@ -69,7 +69,9 @@
 				<Directory Id="Autodesk" Name="Autodesk">
 					<Directory Id="AutodekRevit" Name="Revit">
 						<Directory Id="AutodekRevitAddin" Name="Addins">
-							<?if $(var.Configuration) = Rel_21_24?>
+							<?if $(var.Configuration) = Rel_25?>
+							<Directory Id="Addins2024" Name="2025" />
+							<?elseif $(var.Configuration) = Rel_21_24?>
 							<Directory Id="Addins2024" Name="2024" />
 							<Directory Id="Addins2023" Name="2023" />
 							<Directory Id="Addins2022" Name="2022" />
@@ -129,45 +131,38 @@ In WiX (.wxs) files, conditional compilation directives such as <?if ... ?>, <?e
 		-->
 			<!--volevo prvoare a fare tutto nella stessa cartella ma dovrei poi sistemare anche la custom action, 
 			sarebbe stato piu bello anche per copiare le risorse en-->
-			<?if $(var.Configuration) = Rel_21_24 Or $(var.Configuration) = Debug?>
-			<!--<Component Id="P3Ribbon.dll" Guid="22da2d52-24a9-429a-813e-c084b3ec5a5b" Directory="V2021">
-				<File Id="P3Ribbon.dll" Name="P3Ribbon.dll" Source="$(var.P3Ribbon_TargetDir)P3Ribbon.dll" KeyPath="yes" />
-			</Component>-->
+			<?if $(var.Configuration) = Rel_25?>
+			<Component Id="P3Ribbon_2025.dll" Guid="22da2d52-24a9-429a-813e-c084b3ec5a5b" Directory="INSTALLFOLDER">
+				<File Id="P3Ribbon_2025.dll" Name="P3Ribbon_2025.dll" Source="$(var.P3Ribbon_TargetDir)P3Ribbon.dll" KeyPath="yes" />
+			</Component>
+
+			<?elseif $(var.Configuration) = Rel_21_24 Or $(var.Configuration) = Debug?>
 			<Component Id="P3Ribbon_2021_24.dll" Guid="22da2d52-24a9-429a-813e-c084b3ec5a5b" Directory="INSTALLFOLDER">
 				<File Id="P3Ribbon_2021_24.dll" Name="P3Ribbon_2021-24.dll" Source="$(var.P3Ribbon_TargetDir)P3Ribbon.dll" KeyPath="yes" />
 			</Component>
-			<!--<Component Id="P3Ribbon.resources.dll" Guid="E95D618B-533D-45BA-82B1-B0E01B4CEDFF" Directory="en_21">
-				<File Id="P3Ribbon.resources.dll" Name="P3Ribbon.resources.dll" Source="$(var.P3Ribbon_TargetDir)\en\P3Ribbon.resources.dll" KeyPath="yes" />
-			</Component>-->
-			<Component Id="P3Ribbon.resources.dll" Guid="E95D618B-533D-45BA-82B1-B0E01B4CEDFF" Directory="en">
-				<File Id="P3Ribbon.resources.dll" Name="P3Ribbon.resources.dll" Source="$(var.P3Ribbon_TargetDir)\en\P3Ribbon.resources.dll" KeyPath="yes" />
-			</Component>
 			
 			<?else?>
-			<!--<Component Id="P3Ribbon.dll" Guid="22DA2D52-24A9-429A-813E-C084B3EC5A5B" Directory="V2020">
-				<File Id="P3Ribbon.dll" Name="P3Ribbon.dll" Source="$(var.P3Ribbon_TargetDir)P3Ribbon.dll" KeyPath="yes" />
-			</Component>-->
 			<Component Id="P3Ribbon_2019_20.dll" Guid="22DA2D52-24A9-429A-813E-C084B3EC5A5B" Directory="INSTALLFOLDER">
 				<File Id="P3Ribbon_2019_20.dll" Name="P3Ribbon_2019-20.dll" Source="$(var.P3Ribbon_TargetDir)P3Ribbon.dll" KeyPath="yes" />
 			</Component>
-			<!--<Component Id="P3Ribbon.resources.dll" Guid="731CD8B3-B2C3-4E0E-AE96-E72523B4B26D" Directory="en_20">
-				<File Id="P3Ribbon.resources.dll" Name="P3Ribbon.resources.dll" Source="$(var.P3Ribbon_TargetDir)\en\P3Ribbon.resources.dll" KeyPath="yes" />
-			</Component>-->
+			
+			<?endif?>
+<!--3/7/24 ho tirato fuori queto e aggiunto sopra rel_25-->
 			<Component Id="P3Ribbon.resources.dll" Guid="731CD8B3-B2C3-4E0E-AE96-E72523B4B26D" Directory="en">
 				<File Id="P3Ribbon.resources.dll" Name="P3Ribbon.resources.dll" Source="$(var.P3Ribbon_TargetDir)\en\P3Ribbon.resources.dll" KeyPath="yes" />
 			</Component>
-			
-			<?endif?>
-			
-			
 			<!--2024 04 05 forse risolto-->
 		</ComponentGroup>
 	</Fragment>
 
 	<Fragment>
 		<ComponentGroup Id="ApplicationProgramsFolder_files">
-			<?if $(var.Configuration) = Rel_21_24 Or $(var.Configuration) = Debug?>
-
+			<?if $(var.Configuration) = Rel_25?>
+			<Component Id="P3_InstallerResources_P3___Duct_system_template25.rte" Guid="97D508E9-07A4-40AD-8FCC-5A03675B3FFD" Directory="P3_InstallerResources">
+				<File Id="P3_InstallerResources_P3___Duct_system_template25.rte" Name="P3 - Duct system template25.rte" Source="$(var.CustomAction.TargetDir)P3_InstallerResources\P3 - Duct system template25.rte" KeyPath="yes" />
+			</Component>
+			
+			<?elseif $(var.Configuration) = Rel_21_24 Or $(var.Configuration) = Debug?>
 			<Component Id="P3_InstallerResources_P3___Duct_system_template21.rte" Guid="FBBAC554-BB3A-4303-A45E-265A4604C1AA" Directory="P3_InstallerResources">
 				<File Id="P3_InstallerResources_P3___Duct_system_template21.rte" Name="P3 - Duct system template21.rte" Source="$(var.CustomAction.TargetDir)P3_InstallerResources\P3 - Duct system template21.rte" KeyPath="yes" />
 			</Component>

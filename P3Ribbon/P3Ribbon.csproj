@@ -395,13 +395,17 @@
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Libreria_3_logoP3.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Lingua.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Quantità.png" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_staffe.png" />
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="20041_P3_Inkscape_Icona_Libreria_2_logoP3+ductbim.ico" />
     <Content Include="P3Ribbon.addin">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
