@@ -460,7 +460,7 @@ namespace P3Ribbon
 			//}
 			object resourceObject = rs.GetObject(Var);
 			if (resourceObject == null)
-				return " ";
+				return " ";//prima andava lo stesso? ah forse non rinominavo in inglese o italiano..
 			return resourceObject.ToString();
 		}
 

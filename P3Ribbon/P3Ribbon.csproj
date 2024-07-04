@@ -8,7 +8,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <UseWPF>true</UseWPF>
     <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-    <Configurations>Debug;Release;Rel_19_20;Rel_21_24;Rel_25</Configurations>
+    <Configurations>Debug;Release;Rel_19_20;Rel_21_24;Rel_25;Debug_25</Configurations>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
@@ -32,6 +32,11 @@
     <DefineConstants>$(DefineConstants);Rel_25</DefineConstants>
 	<TargetFramework>net8.0-windows</TargetFramework>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_25|AnyCPU'">
+    <BaseOutputPath>bin\Rel_25\</BaseOutputPath>
+    <DefineConstants>$(DefineConstants);Rel_25</DefineConstants>
+    <TargetFramework>net8.0-windows</TargetFramework>
+  </PropertyGroup>
 	<!--4/7/24-->
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <BaseOutputPath>bin\Debug\</BaseOutputPath>
@@ -48,6 +53,10 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPI" Condition=" '$(Configuration)' == 'Rel_25'">
+      <HintPath>E:\Program Files\Autodesk\Revit 2025\RevitAPI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPI" Condition="'$(Configuration)'=='Debug_25'">
       <HintPath>E:\Program Files\Autodesk\Revit 2025\RevitAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
@@ -69,6 +78,10 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="RevitAPIUI" Condition=" '$(Configuration)' == 'Rel_25'">
+      <HintPath>E:\Program Files\Autodesk\Revit 2025\RevitAPIUI.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="RevitAPIUI" Condition="'$(Configuration)'=='Debug_25'">
       <HintPath>E:\Program Files\Autodesk\Revit 2025\RevitAPIUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
@@ -170,7 +183,12 @@ xcopy "$(TargetDir)\" "%Appdata%\Autodesk\Revit\Addins\2024" /s /y /z  /I
 ::xcopy "\\pLAB\Lavori_Attivi\20041_P3 Plugin\0_Digitalizzazione\P3_Addin\WIP\P3Plugin\CustomAction\P3_InstallerResources\" "%25Appdata%25\Autodesk\Revit\Addins\2024\P3_InstallerResources" /s /y /z /I 
 )</PostBuildEvent>
     <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
-    <!--<AssemblyVersion>4.1.0.0</AssemblyVersion>-->
+		<!--<AssemblyVersion>4.0.0.0</AssemblyVersion>-->
+		<!--<AssemblyVersion>4.1.0.0</AssemblyVersion>--> 
+		<!--non è più compatibile con le wpf!-->
+		<!--<AssemblyFileVersion>4.1.0.0</AssemblyFileVersion>-->
+		<!--assemblyfileversion va ma non compare nel plugin info-->
     <Title>P3ductbim</Title>
+    <FileVersion>4.0.0.1</FileVersion>
   </PropertyGroup>
 </Project>

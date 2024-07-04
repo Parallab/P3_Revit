@@ -38,7 +38,8 @@ namespace P3Ribbon.Scripts
 			{
 				wpf.tb_Dimensione.Text = ((((double)oFileInfo.Length) / 1024) / 1024).ToString("0.00") + " MB";
 				wpf.tb_PercorsoCartella.Text = oFileInfo.DirectoryName;
-				wpf.tb_Versione.Text = fileVersionInfo.FileVersion;
+				//wpf.tb_Versione.Text = fileVersionInfo.FileVersion; //questo punta ad assemblyversion che su vs22 mi blocca i wpf..
+				wpf.tb_Versione.Text = fileVersionInfo.ProductVersion; //questo punta ad assemblyversion che su vs22 mi blocca i wpf..
 				wpf.ShowDialog();
 
 			}

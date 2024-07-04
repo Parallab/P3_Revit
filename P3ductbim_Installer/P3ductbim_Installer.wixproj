@@ -12,7 +12,7 @@
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DefineConstants>Configuration=DEBUG</DefineConstants>
     <OutputPath>bin\2021\</OutputPath>
-    <Configurations>Debug;Release</Configurations>
+    <Configurations>Debug;Release;Debug_25;Debug_25</Configurations>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Rel_19_20|AnyCPU' ">
     <OutputPath>bin\Rel_19_20\</OutputPath>
