@@ -33,7 +33,7 @@ namespace P3Ribbon.Scripts
 			Document docSource = null;
 			//string path_rte = "P3 - Duct system template19.rte";
 			// 2024/02/06
-			string nome_rte ="P3 - Duct system template" + app.VersionNumber.Substring(2, 2) + ".rte";
+			string nome_rte = "P3 - Duct system template" + app.VersionNumber.Substring(2, 2) + ".rte";
 			string path_rte = Supporto.TrovaPercorsoRisorsaInstaller(nome_rte);
 			//vorrei già provare ad aprire..
 			if (!File.Exists(path_rte))
@@ -41,7 +41,7 @@ namespace P3Ribbon.Scripts
 				TaskDialog td = new TaskDialog(P3Ribbon.Resources.Lang.lang.taskdErrore);
 				//file non trovati
 				//td.MainInstruction = Resources.Lang.lang.taskdParametriNonInseriti;
-				td.MainContent = Resources.Lang.lang.taskdErroreFileMancante+ " " + path_rte;
+				td.MainContent = Resources.Lang.lang.taskdErroreFileMancante + " " + path_rte;
 				//td.CommonButtons = TaskDialogCommonButtons.Ok | TaskDialogCommonButtons.No;
 
 				TaskDialogResult result = td.Show();
@@ -51,7 +51,7 @@ namespace P3Ribbon.Scripts
 
 			//try
 			//{
-				docSource = app.OpenDocumentFile(Supporto.TrovaPercorsoRisorsaInstaller(path_rte));
+			docSource = app.OpenDocumentFile(Supporto.TrovaPercorsoRisorsaInstaller(path_rte));
 			//}
 			//catch
 			//{
@@ -77,15 +77,17 @@ namespace P3Ribbon.Scripts
 			{
 				try
 				{
-					string nome = type.LookupParameter("P3_Nome").AsString();
+					string nome = type.LookupParameter("P3_Nome")?.AsString();
+					if (nome == null)
+						continue;
 					if (nome.StartsWith("P3"))
 					{
 						nomiTipiPresenti.Add(nome);
 					}
 				}
-				catch
+				catch (Exception ex)
 				{
-
+					DebugUtils.PrintExceptionInfo(ex);
 				}
 			}
 
@@ -98,7 +100,9 @@ namespace P3Ribbon.Scripts
 			{
 				try
 				{
-					string nome = type.LookupParameter("P3_Nome").AsString();
+					string nome = type.LookupParameter("P3_Nome")?.AsString();
+					if (nome == null)
+						continue;
 					if (nome.StartsWith("P3"))
 					{
 						// contollRE SE ESISTE NEL DOC
@@ -109,9 +113,9 @@ namespace P3Ribbon.Scripts
 
 					}
 				}
-				catch
+				catch (Exception ex)
 				{
-
+					DebugUtils.PrintExceptionInfo(ex);
 				}
 			}
 
@@ -122,13 +126,17 @@ namespace P3Ribbon.Scripts
 			{
 				try
 				{
-					if (type.LookupParameter("P3_Nome").AsString() == "P3_DuctHanger")
+					string nome = type.LookupParameter("P3_Nome")?.AsString();
+					if (nome == null)
+						continue;
+					if (nome == "P3_DuctHanger")
 					{
 						nomiTipiPresenti.Add(type.Name);
 					}
 				}
-				catch
+				catch (Exception ex)
 				{
+					DebugUtils.PrintExceptionInfo(ex);
 				}
 
 			}
@@ -161,17 +169,18 @@ namespace P3Ribbon.Scripts
 			{
 				try
 				{
-					string nome = schedule.LookupParameter("P3_Nome_i").AsString();
+					string nome = schedule.LookupParameter("P3_Nome_i")?.AsString();
+					if (nome == null)
+						continue;
 
 					if (nome.StartsWith("P3"))
 					{
 						nomiAbachiPresenti.Add(nome);
-
 					}
 				}
-				catch
+				catch (Exception ex)
 				{
-
+					DebugUtils.PrintExceptionInfo(ex);
 				}
 			}
 
@@ -206,7 +215,7 @@ namespace P3Ribbon.Scripts
 			}
 			catch (Exception ex)
 			{
-
+				DebugUtils.PrintExceptionInfo(ex);
 			}
 			collAbachiRisorsa.Clear();
 			IdTipiDaCopiare.Clear();

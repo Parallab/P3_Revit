@@ -1,7 +1,7 @@
 ﻿using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
+using System;
 using System.Windows;
-using System.Windows.Controls;
 
 using Application = Autodesk.Revit.ApplicationServices.Application;
 
@@ -52,7 +52,7 @@ namespace P3Ribbon.Scripts.GUI
 		//    this.wpfTexBoxDistazaMaxStaffaggio.Text = UnitUtils.ConvertFromInternalUnits(Condotto.AltezzaStaffaggio,currentUnit).ToString();
 		//    this.Units.Text = UnitàDiProgetto();
 		//    CheckUpgrade.IsChecked = Properties.Settings.Default.updaterAttivo;
-			
+
 		//}
 #endif
 
@@ -102,8 +102,9 @@ namespace P3Ribbon.Scripts.GUI
 			{
 				UpdaterRegistry.DisableUpdater(App.updater.GetUpdaterId());
 			}
-			catch 
-			{ 
+			catch (Exception ex)
+			{
+				DebugUtils.PrintExceptionInfo(ex);
 			}
 			Properties.Settings.Default.updaterAttivo = false;
 			Properties.Settings.Default.Save();

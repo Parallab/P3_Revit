@@ -1,6 +1,6 @@
 ﻿namespace P3Ribbon.Scripts.GUI.SeismicViewModels
 {
-    public class Wpf_AccelerazioneModels
-    {
-    }
+	public class Wpf_AccelerazioneModels
+	{
+	}
 }

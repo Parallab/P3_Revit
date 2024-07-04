@@ -3,8 +3,6 @@ using Autodesk.Revit.UI;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Resources;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -52,7 +50,7 @@ namespace P3Ribbon.Scripts.GUI
 			using (var t = new Transaction(_doc, "Carica libreria"))
 			{
 				t.Start();
-				TrasferisciStandard.TrasferisciTipiDoc(_app, _doc);  
+				TrasferisciStandard.TrasferisciTipiDoc(_app, _doc);
 				WpfAggiornaLibreria();
 
 				App.rbbCboMateriali_Aggiorna();
@@ -86,8 +84,9 @@ namespace P3Ribbon.Scripts.GUI
 					{
 						wpfCboMateriali.Items.Clear();
 					}
-					catch
+					catch (Exception ex)
 					{
+						DebugUtils.PrintExceptionInfo(ex);
 					}
 					wpfCboMateriali.ItemsSource = null;
 					wpfCboMateriali.ItemsSource = wpfcboItems;
@@ -123,21 +122,22 @@ namespace P3Ribbon.Scripts.GUI
 			string nomeInsul_nascosto = "";
 			//combobox wpf -> combobox ribbon
 
-			if (App.rbbCboMateriali != null) 
+			if (App.rbbCboMateriali != null)
 			//if (App.ribbCboMembers != null) //la prima volta che pocarico la libreria parte uesto ma non ho ancora scritto comboboxMembers_ribbon quindi giusto che salti
 			{
 				try
 				{
-				nomeInsul_nascosto = Supporto.doc.GetElement(Materiale.IdInsulTipoPreferito).LookupParameter("P3_Nome").AsString();
-					
+					nomeInsul_nascosto = Supporto.doc.GetElement(Materiale.IdInsulTipoPreferito).LookupParameter("P3_Nome").AsString();
+
 				}
-				catch
+				catch (Exception ex)
 				{
+					DebugUtils.PrintExceptionInfo(ex);
 				}
 				//potrebbe stare dentro il try..
 				foreach (ComboBoxMember cbm in App.rbbCboMateriali.GetItems())
 				{
-					string cbm_nome_totale = cbm.Name; 
+					string cbm_nome_totale = cbm.Name;
 					if (cbm_nome_totale == nomeInsul_nascosto)
 					{
 						App.rbbCboMateriali.Current = cbm;

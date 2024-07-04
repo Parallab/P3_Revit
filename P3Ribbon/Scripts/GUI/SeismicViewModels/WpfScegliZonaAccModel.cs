@@ -1,6 +1,6 @@
 ﻿namespace P3Ribbon.Scripts.GUI.SeismicViewModels
 {
-    public class WpfScegliZonaAccModels
-    {
-    }
+	public class WpfScegliZonaAccModels
+	{
+	}
 }

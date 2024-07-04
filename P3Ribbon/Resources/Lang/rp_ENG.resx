@@ -253,4 +253,8 @@ Pre-sizing</value>
   <data name="Sisma" xml:space="preserve">
     <value>Seism</value>
   </data>
+  <data name="splitButtonElencoStaffaggio" xml:space="preserve">
+    <value>Bracketing
+List</value>
+  </data>
 </root>

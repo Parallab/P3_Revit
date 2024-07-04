@@ -155,7 +155,7 @@ namespace P3Ribbon.Scripts
 					logTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
 					logTextBox.Location = new System.Drawing.Point(0, 0);
 					logTextBox.Size = new System.Drawing.Size(500, 500);
-					logTextBox.Dock = System.Windows.Forms.DockStyle.Fill; 
+					logTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
 					logTextBox.ReadOnly = true;
 					logTextBox.Text = sb_log.ToString();
 					mainForm.Controls.Add(logTextBox);
@@ -354,8 +354,9 @@ namespace P3Ribbon.Scripts
 				{
 					fs.Activate();
 				}
-				catch
+				catch (Exception ex)
 				{
+					DebugUtils.PrintExceptionInfo(ex);
 					return false;
 				}
 			}
@@ -394,7 +395,7 @@ namespace P3Ribbon.Scripts
 		//2 è l altezza massima?? da controllare!
 		public static double AltezzaStaffaggio { get; set; } = UnitUtils.ConvertToInternalUnits(2, UnitTypeId.Meters);
 #else
-        public static double AltezzaStaffaggio { get; set; } = UnitUtils.ConvertToInternalUnits(2, DisplayUnitType.DUT_METERS);
+		public static double AltezzaStaffaggio { get; set; } = UnitUtils.ConvertToInternalUnits(2, DisplayUnitType.DUT_METERS);
 
 #endif
 		double spiso { get; set; } = 0;

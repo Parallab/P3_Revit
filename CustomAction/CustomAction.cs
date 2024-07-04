@@ -1,10 +1,3 @@
-using Microsoft.Deployment.WindowsInstaller;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Windows.Forms;
-
 namespace CustomAction
 {
 	public class CustomActions
@@ -18,7 +11,7 @@ namespace CustomAction
 #elif (Rel_21_24 || DEBUG)
 		public static string[] anni = new string[] { "2021", "2022", "2023", "2024" };
 #else
-		public static string[] anni = new string[] { "2019", "2020"}; //2018 tolto
+		public static string[] anni = new string[] { "2019", "2020" }; //2018 tolto
 #endif
 
 		[CustomAction]
@@ -33,7 +26,7 @@ namespace CustomAction
 			string percorsodll = session["INSTALLFOLDER"]+"P3Ribbon_2021-24.dll";
 			//string input = session["V2021"];
 #else
-			string percorsodll = session["INSTALLFOLDER"]+"P3Ribbon_2019-20.dll";
+			string percorsodll = session["INSTALLFOLDER"] + "P3Ribbon_2019-20.dll";
 			//string input = session["V2020"];
 #endif
 
@@ -91,9 +84,9 @@ namespace CustomAction
 
 			return ActionResult.Success;
 		}
- 
-	[CustomAction]
-	public static ActionResult ManifestAddinCancella(Session session)
+
+		[CustomAction]
+		public static ActionResult ManifestAddinCancella(Session session)
 		{
 			//MessageBox.Show("inizio a cancellare");
 			session.Log("Begin CustomAction");
@@ -114,7 +107,7 @@ namespace CustomAction
 				}
 			}
 			catch (Exception e)
-			{ MessageBox.Show("Errore. "+e.Message); }
+			{ MessageBox.Show("Errore. " + e.Message); }
 
 			return ActionResult.Success;
 		}

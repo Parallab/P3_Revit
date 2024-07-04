@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Autodesk.Revit.DB;
+﻿using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-using Application = Autodesk.Revit.ApplicationServices.Application;
-using System.Reflection;
-using System.Resources;
-using System.Threading;
-using System.Globalization;
 using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Reflection;
+using System.Threading;
+using System.Diagnostics;
+using Application = Autodesk.Revit.ApplicationServices.Application;
 
 namespace P3Ribbon.Scripts
 {
@@ -172,8 +172,9 @@ namespace P3Ribbon.Scripts
 				}
 				output = true;
 			}
-			catch
+			catch (Exception ex)
 			{
+				DebugUtils.PrintExceptionInfo(ex);
 				output = false;
 			}
 			finally
@@ -243,15 +244,15 @@ namespace P3Ribbon.Scripts
 					return BuiltInParameterGroup.PG_AREA;
 				case BuiltInParameterGroup_OR_GroupTypeId.ALTRO:
 					return BuiltInParameterGroup.INVALID;
-			default:
-			return BuiltInParameterGroup.INVALID;
+				default:
+					return BuiltInParameterGroup.INVALID;
 			}
 #endif
 		}
 
 
 		public static void AggiungiParametroProgetto(Document _doc, ExternalDefinition _extdef, InstanceBinding _newIB, BuiltInParameterGroup_OR_GroupTypeId gruppo) //<T> T gruppo 
-		{ 
+		{
 			//ho messo _doc perchè lo stesso metodo è usato su migra area isolamento, da testare se si può allinear etutto a supporto.doc
 #if (Rel_25)
 			ForgeTypeId gruppo_forge = (ForgeTypeId)BuiltInParameterGroup_OR_GroupTypeId_Converti(gruppo);
@@ -275,16 +276,19 @@ namespace P3Ribbon.Scripts
 				//Leggo il parametro nascosto che corrisponde all'attuale nome del tipo
 				try
 				{
-					string nome = type.LookupParameter("P3_Nome").AsString();
+
+					string nome = type.LookupParameter("P3_Nome")?.AsString();
+					if (nome == null)
+						continue;
 
 					if (nome.StartsWith("P3"))
 					{
 						IsolatiECondottiP3Presenti.Add(nome);
 					}
 				}
-				catch
+				catch (Exception ex)
 				{
-
+					DebugUtils.PrintExceptionInfo(ex);
 				}
 			}
 			if (IsolatiECondottiP3Presenti.Contains(nometipo))
@@ -311,16 +315,17 @@ namespace P3Ribbon.Scripts
 				try
 				{
 					//leggo il parametro nascosto
-					string nome = el.LookupParameter("P3_Nome_i").AsString();
-
+					string nome = el.LookupParameter("P3_Nome_i")?.AsString();
+					if (nome == null)
+						continue;
 					if (nome.StartsWith("P3"))
 					{
 						AbachiP3Presenti.Add(nome);
 					}
 				}
-				catch
+				catch (Exception ex)
 				{
-
+					DebugUtils.PrintExceptionInfo(ex);
 				}
 			}
 			if (AbachiP3Presenti.Contains(AbacoNome))
@@ -431,16 +436,16 @@ namespace P3Ribbon.Scripts
 							bottone.ToolTip = App.Res_ValoreLingua(bottone.Name + "_tt", App.lingua_arrivo);
 
 						}
-						catch
+						catch (Exception ex)
 						{
-
+							DebugUtils.PrintExceptionInfo(ex);
 						}
 					}
 
 				}
-				catch
+				catch (Exception ex)
 				{
-
+					DebugUtils.PrintExceptionInfo(ex);
 				}
 			}
 		}
@@ -531,6 +536,16 @@ namespace P3Ribbon.Scripts
 
 	}
 
+	public static class DebugUtils
+	{
+		public static void PrintExceptionInfo(Exception ex)
+		{
+			// Get the method that called this function
+			MethodBase callingMethod = new StackTrace().GetFrame(1).GetMethod();
 
+			Debug.WriteLine($"Errore dentro {callingMethod.Name}: {ex.Message}");
+			Debug.WriteLine($"Stack Trace: {ex.StackTrace}");
+		}
+	}
 }
 

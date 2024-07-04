@@ -2,6 +2,7 @@
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Mechanical;
 using Autodesk.Revit.UI;
+using System;
 using System.Linq;
 using Application = Autodesk.Revit.ApplicationServices.Application;
 
@@ -22,7 +23,7 @@ namespace P3Ribbon.Scripts
 
 			//non era aggiornato? ma andava nel video? forse problema git..ah no il p3 nome era rimasto uguale!
 			if (Supporto.ControllaTipiP3Presenti("P3 - Preinsulated panels system - Dynamic -  ε 0.03mm") || Supporto.ControllaTipiP3Presenti("P3ductal - Dynamic -  ε 0.03mm"))
-				{
+			{
 				string nome = App.rbbCboMateriali.Current.Name;
 				Materiale.AggiornaTendinaRibbon(nome);
 				try
@@ -32,7 +33,7 @@ namespace P3Ribbon.Scripts
 					//provo il nome vecchio:
 					if (ductDynamicType is null)
 						ductDynamicType = new FilteredElementCollector(doc).OfClass(typeof(DuctType)).FirstOrDefault(x => x.LookupParameter("P3_Nome").AsString() == "P3 - Preinsulated panels system - Dynamic -  ε 0.03mm") as DuctType;
-					
+
 					//richiedo che sia il prossimo tipo di default
 
 					//devo guardare se c è il canale 500micron..
@@ -47,10 +48,10 @@ namespace P3Ribbon.Scripts
 								ductDynamicType = new FilteredElementCollector(doc).OfClass(typeof(DuctType)).FirstOrDefault(x => x.LookupParameter("P3_Nome").AsString() == "P3ductal - Dynamic -  500µm") as DuctType;
 							}
 						}
-					}					
+					}
 					uiDoc.PostRequestForElementTypePlacement(ductDynamicType);
 				}
-				catch { }
+				catch (Exception ex) { DebugUtils.PrintExceptionInfo(ex); }
 
 				using (Transaction t = new Transaction(doc, "Crea un canale di tipo dinamico"))
 				{
@@ -98,7 +99,7 @@ namespace P3Ribbon.Scripts
 
 			//non era aggiornato? ma andava nel video? forse problema git..ah no il p3 nome era rimasto uguale!
 			if (Supporto.ControllaTipiP3Presenti("P3 - Preinsulated panels system - Tap -  ε 0.03mm") || Supporto.ControllaTipiP3Presenti("P3ductal - Dynamic -  ε 0.03mm"))
-				{
+			{
 				string nome = App.rbbCboMateriali.Current.Name;
 				Materiale.AggiornaTendinaRibbon(nome);
 				try
@@ -126,7 +127,7 @@ namespace P3Ribbon.Scripts
 
 					uiDoc.PostRequestForElementTypePlacement(ductTapType);
 				}
-				catch { }
+				catch (Exception ex) { DebugUtils.PrintExceptionInfo(ex); }
 				//richiedo che sia il prossimo tipo di default
 
 				using (Transaction t = new Transaction(doc, "Crea un canale di tipo scarpetta"))

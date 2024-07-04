@@ -1,162 +1,48 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CDBBAD43-E90B-43E3-8CC6-0401B22FB54F}</ProjectGuid>
+    <!-- <TargetFramework>net8.0-windows</TargetFramework> -->
+		<!--tolgo per vedere se non mi crea la cartella dopo bin-->
     <OutputType>Library</OutputType>
-    <RootNamespace>P3Ribbon</RootNamespace>
-    <AssemblyName>P3Ribbon</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+		<PlatformTarget>AnyCPU</PlatformTarget>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+    <Configurations>Debug;Release;Rel_19_20;Rel_21_24;Rel_25</Configurations>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
-  <!--  
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x64\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>bin\x64\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\x86\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
-    <OutputPath>bin\x86\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x86</PlatformTarget>
-    <LangVersion>7.3</LangVersion>
-    <ErrorReport>prompt</ErrorReport>
-  </PropertyGroup> -->
   <PropertyGroup>
     <ApplicationIcon>20041_P3_Inkscape_Icona_Libreria_2_logoP3+ductbim.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Rel_19_20|AnyCPU' ">
-    <OutputPath>bin\Rel_19_20\</OutputPath>
-    <DefineConstants>Rel_19_20</DefineConstants>
+    <BaseOutputPath>bin\Rel_19_20\</BaseOutputPath>
+    <DefineConstants>$(DefineConstants);Rel_19_20</DefineConstants>
+	<TargetFramework>net47</TargetFramework>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Rel_21_24|AnyCPU' ">
-    <OutputPath>bin\Rel_21_24\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;Rel_21_24</DefineConstants>
+    <BaseOutputPath>bin\Rel_21_24\</BaseOutputPath>
+	<!-- prima era solo outputhpath senza base -->
+    <DefineConstants>$(DefineConstants);Rel_21_24</DefineConstants>
+	<TargetFramework>net48</TargetFramework>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Rel_25|AnyCPU'">
-    <OutputPath>bin\Rel_25\</OutputPath>
-    <DefineConstants>Rel_25</DefineConstants>
+    <BaseOutputPath>bin\Rel_25\</BaseOutputPath>
+    <DefineConstants>$(DefineConstants);Rel_25</DefineConstants>
+	<TargetFramework>net8.0-windows</TargetFramework>
   </PropertyGroup>
+	<!--4/7/24-->
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <BaseOutputPath>bin\Debug\</BaseOutputPath>
+		<DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
+		<TargetFramework>net48</TargetFramework>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<DefineConstants>$(DefineConstants);REL</DefineConstants>
+	</PropertyGroup>
+	<!-- 4/7/24 -->
   <ItemGroup>
-    <Reference Include="Microsoft.AspNetCore.Authorization, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNetCore.Authorization.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Authorization.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNetCore.Http, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNetCore.Http.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNetCore.Http.Features, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNetCore.Http.Features.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Http.Features.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNetCore.Routing, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNetCore.Routing.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.Routing.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNetCore.WebUtilities, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.AspNetCore.WebUtilities.2.2.0\lib\netstandard2.0\Microsoft.AspNetCore.WebUtilities.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Deployment.WindowsInstaller, Version=3.0.0.0, Culture=neutral, PublicKeyToken=ce35f76fcda82bad, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\WiX Toolset v3.11\bin\Microsoft.Deployment.WindowsInstaller.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.Deployment.WindowsInstaller.Package, Version=3.0.0.0, Culture=neutral, PublicKeyToken=ce35f76fcda82bad, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\WiX Toolset v3.11\bin\Microsoft.Deployment.WindowsInstaller.Package.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Microsoft.DotNet.PlatformAbstractions, Version=2.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.DotNet.PlatformAbstractions.2.1.0\lib\net45\Microsoft.DotNet.PlatformAbstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.2.2.0\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.DependencyModel, Version=2.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.DependencyModel.2.1.0\lib\net451\Microsoft.Extensions.DependencyModel.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.FileProviders.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.FileProviders.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.FileProviders.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Hosting.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Hosting.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Hosting.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.ObjectPool, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.ObjectPool.2.2.0\lib\netstandard2.0\Microsoft.Extensions.ObjectPool.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Options, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Options.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Primitives, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Primitives.2.2.0\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Net.Http.Headers, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Net.Http.Headers.2.2.0\lib\netstandard2.0\Microsoft.Net.Http.Headers.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
     <Reference Include="RevitAPI" Condition=" '$(Configuration)' == 'Debug'">
       <HintPath>E:\Program Files\Autodesk\Revit 2021\RevitAPI.dll</HintPath>
       <Private>False</Private>
@@ -174,6 +60,10 @@
       <HintPath>E:\Program Files\Autodesk\Revit 2020\RevitAPI.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <!-- <Reference Include="RevitAPI"> -->
+      <!-- <HintPath>E:\Program Files\Autodesk\Revit 2021\RevitAPI.dll</HintPath> -->
+      <!-- <Private>False</Private> -->
+    <!-- </Reference> -->
     <Reference Include="RevitAPIUI" Condition=" '$(Configuration)' == 'Debug'">
       <HintPath>E:\Program Files\Autodesk\Revit 2021\RevitAPIUI.dll</HintPath>
       <Private>False</Private>
@@ -191,143 +81,10 @@
       <HintPath>E:\Program Files\Autodesk\Revit 2020\RevitAPIUI.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="sysglobl" />
-    <Reference Include="System" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Activities" />
-    <Reference Include="System.Activities.Core.Presentation" />
-    <Reference Include="System.Activities.DurableInstancing" />
-    <Reference Include="System.Activities.Presentation" />
-    <Reference Include="System.AddIn" />
-    <Reference Include="System.AddIn.Contract" />
-    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Collections.Immutable, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ComponentModel.Annotations.4.5.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
-    </Reference>
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Configuration.Install" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Design" />
-    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.5.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Memory.4.5.1\lib\netstandard2.0\System.Memory.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net" />
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Numerics.Vectors, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.1\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.0.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System.Security.AccessControl, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System.Text.Encodings.Web, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Text.Encodings.Web.4.5.0\lib\netstandard2.0\System.Text.Encodings.Web.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Threading.AccessControl, Version=4.0.5.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.1\lib\netstandard2.0\System.Threading.Tasks.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Windows" />
-    <Reference Include="System.Windows.Controls.Ribbon" />
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="WindowsBase" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="App.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>Settings.settings</DependentUpon>
-    </Compile>
-    <Compile Include="Resources\Lang\lang.en.Designer.cs">
-      <DependentUpon>lang.en.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Resources\Lang\rp_ENG.Designer.cs">
-      <DependentUpon>rp_ENG.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Resources\Lang\rp_ITA.Designer.cs">
-      <DependentUpon>rp_ITA.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Resources\Lang\lang.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>lang.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Scripts\GUI\SeismicViewModels\WpfScegliZonaAccModel.cs" />
-    <Compile Include="Scripts\GUI\SeismicViewModels\Wpf_AccelerazioneModel.cs" />
-    <Compile Include="Scripts\GUI\SeismicViewModels\Wpf_ZonaSismicaModel.cs" />
-    <Compile Include="Scripts\GUI\SeismicViews\WpfScegliZonaAcc.xaml.cs">
-      <DependentUpon>WpfScegliZonaAcc.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Scripts\GUI\SeismicViews\Wpf_Accelerazione.xaml.cs">
-      <DependentUpon>Wpf_Accelerazione.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Scripts\GUI\SeismicViews\Wpf_ZonaSismica.xaml.cs">
-      <DependentUpon>Wpf_ZonaSismica.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Scripts\GUI\UserControl1.xaml.cs">
-      <DependentUpon>UserControl1.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Scripts\GUI\Wpf_InfoP3.xaml.cs">
-      <DependentUpon>Wpf_InfoP3.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Scripts\GUI\Wpf_ParamSismici.xaml.cs">
-      <DependentUpon>Wpf_ParamSismici.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Scripts\Modellazione\CambiaMateriale.cs" />
-    <Compile Include="Scripts\Abachi.cs" />
-    <Compile Include="Scripts\GUI\Form_Quantità.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Scripts\GUI\Form_Quantità.Designer.cs">
-      <DependentUpon>Form_Quantità.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Scripts\GUI\Wpf_Libreria.xaml.cs">
-      <DependentUpon>Wpf_Libreria.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Scripts\GUI\Wpf_impo.xaml.cs">
-      <DependentUpon>Wpf_impo.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Scripts\Modellazione\Materiale.cs" />
-    <Compile Include="Scripts\Modellazione\Lingua.cs" />
-    <Compile Include="Scripts\Modellazione\DynamicModelUpdater.cs" />
-    <Compile Include="Scripts\Supporto.cs" />
-    <Compile Include="Scripts\Modellazione\CreaCanale.cs" />
-    <Compile Include="Scripts\Finestre.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Scripts\Modellazione\MigraAreaIsolamento.cs" />
-    <Compile Include="Scripts\Sisma\ParSismici.cs" />
-    <Compile Include="Scripts\Sisma\Staffaggio.cs" />
-    <Compile Include="Scripts\Sisma\TabellaExcel.cs" />
-    <Compile Include="Scripts\Modellazione\TrasferisciStandard.cs" />
+    <!-- <Reference Include="RevitAPIUI"> -->
+      <!-- <HintPath>E:\Program Files\Autodesk\Revit 2021\RevitAPIUI.dll</HintPath> -->
+      <!-- <Private>False</Private> -->
+    <!-- </Reference> -->
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Code 852 - 3D insulated plenum.png" />
@@ -348,24 +105,6 @@
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_MatRIciclato.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_FrecciaGiù.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_FrecciaGiù16.png" />
-    <EmbeddedResource Include="Resources\Lang\lang.en.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>lang.en.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Lang\rp_ENG.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>rp_ENG.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Lang\rp_ITA.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>rp_ITA.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Scripts\GUI\Form_Quantità.resx">
-      <DependentUpon>Form_Quantità.cs</DependentUpon>
-    </EmbeddedResource>
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoComponenti.png" />
     <Resource Include="Resources\Icons\20041_p3_inkscape_icona_Setting.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Setting16.png" />
@@ -395,17 +134,7 @@
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Libreria_3_logoP3.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Lingua.png" />
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Quantità.png" />
-    <None Include="packages.config">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_staffe.png" />
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="20041_P3_Inkscape_Icona_Libreria_2_logoP3+ductbim.ico" />
     <Content Include="P3Ribbon.addin">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -415,57 +144,33 @@
     <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Sisma.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <SubType>Designer</SubType>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Lang\lang.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>lang.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="8.0.1" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
+    <PackageReference Include="System.Text.Encodings.Web" Version="8.0.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Scripts\GUI\SeismicViews\WpfScegliZonaAcc.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Scripts\GUI\SeismicViews\Wpf_Accelerazione.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Scripts\GUI\SeismicViews\Wpf_ZonaSismica.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Scripts\GUI\UserControl1.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Scripts\GUI\Wpf_InfoP3.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Scripts\GUI\Wpf_Libreria.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Scripts\GUI\Wpf_impo.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Scripts\GUI\Wpf_ParamSismici.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <Compile Remove="Resources\Langs\str_EN.Designer.cs" />
+    <Compile Remove="Resources\Langs\str_IT.Designer.cs" />
+    <Compile Remove="Scripts\Crea_ParSism.cs" />
+    <Compile Remove="Scripts\GUI\Param_Sism.cs" />
+    <Compile Remove="Scripts\Modellazione\InserisciFlange.cs" />
+    <Compile Remove="Scripts\Modellazione\TrasferisciStandard_BKP.cs" />
+    <Compile Remove="Scripts\Sisma\Staffaggio_BKP.cs" />
+    <EmbeddedResource Remove="Resources\Langs\str_EN.resx" />
   </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if "$(ConfigurationName)" == "Debug" (
-xcopy "$(TargetDir)\" "%25Appdata%25\Autodesk\Revit\Addins\2024" /s /y /z  /I
-xcopy "\\pLAB\Lavori_Attivi\20041_P3 Plugin\0_Digitalizzazione\P3_Addin\WIP\P3Plugin\CustomAction\P3_InstallerResources\" "%25Appdata%25\Autodesk\Revit\Addins\2024\P3_InstallerResources" /s /y /z /I 
+    <PostBuildEvent>call "L:\20041_P3 Plugin\0_Digitalizzazione\P3_Addin\WIP\P3Plugin\temp sposta debug.bat"
+
+if "$(ConfigurationName)" == "Debug" (
+echo test sono dentro
+xcopy "$(TargetDir)\" "%Appdata%\Autodesk\Revit\Addins\2024" /s /y /z  /I
+::xcopy "$(TargetDir)\" "%25Appdata%25\Autodesk\Revit\Addins\2024" /s /y /z  /I
+::xcopy "\\pLAB\Lavori_Attivi\20041_P3 Plugin\0_Digitalizzazione\P3_Addin\WIP\P3Plugin\CustomAction\P3_InstallerResources\" "%25Appdata%25\Autodesk\Revit\Addins\2024\P3_InstallerResources" /s /y /z /I 
 )</PostBuildEvent>
+    <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+    <!--<AssemblyVersion>4.1.0.0</AssemblyVersion>-->
+    <Title>P3ductbim</Title>
   </PropertyGroup>
 </Project>

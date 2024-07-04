@@ -277,4 +277,11 @@ Staffaggio</value>
   <data name="Libreria_Y" xml:space="preserve">
     <value>Curva doppia</value>
   </data>
+  <data name="Materiale Riciclato" xml:space="preserve">
+    <value>Materiale Riciclato</value>
+  </data>
+  <data name="splitButtonElencoStaffaggio" xml:space="preserve">
+    <value>Elenco 
+Staffaggi</value>
+  </data>
 </root>

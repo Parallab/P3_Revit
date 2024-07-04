@@ -1,21 +1,19 @@
 ﻿
-using Autodesk.Revit.DB;
-using Autodesk.Revit.UI;
-using System;
-using System.Globalization;
-using System.Resources;
 using Autodesk.Revit.ApplicationServices;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Windows.Media.Imaging;
+using Autodesk.Revit.DB;
+using Autodesk.Revit.DB.Events;
+using Autodesk.Revit.UI;
 using Autodesk.Revit.UI.Events;
 using P3Ribbon.Scripts;
-using Autodesk.Revit.DB.Events;
-using System.Threading;
-using System.IO;
-using System.Diagnostics;
-using System.Linq;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Globalization;
+using System.Linq;
+using System.Reflection;
+using System.Resources;
+using System.Windows.Media.Imaging;
 
 namespace P3Ribbon
 {
@@ -237,7 +235,7 @@ namespace P3Ribbon
 
 				List<Element> P3InsulationTypes = obs_materiali_aggiornati.Select(e => Supporto.doc.GetElement(e.ID)).ToList();
 				List<string> P3InsulationTypes_p3Nomi = obs_materiali_aggiornati.Select(e => Supporto.doc.GetElement(e.ID).LookupParameter("P3_Nome").AsString()).ToList(); //può essere diverso dal nome del materiale?
-				//List<string> P3InsulationTypes_p3Nomi = obs_materiali_aggiornati.Select(m => m.name).ToList(); //forse è meglio questo che è più pulito..?anche se è "parallelo"?
+																																											//List<string> P3InsulationTypes_p3Nomi = obs_materiali_aggiornati.Select(m => m.name).ToList(); //forse è meglio questo che è più pulito..?anche se è "parallelo"?
 
 				//-----------------------------------------AGGIORNO SE COMBOBOX È VUOTO
 				if (App.rbbCboMateriali.GetItems().Count == 0)
@@ -305,8 +303,10 @@ namespace P3Ribbon
 					}
 				}
 			}
-			catch
-			{ }
+			catch (Exception ex)
+			{
+				DebugUtils.PrintExceptionInfo(ex);
+			}
 		}
 
 
@@ -319,6 +319,11 @@ namespace P3Ribbon
 			}
 		}
 
+		private System.Reflection.Assembly CurrentDomain_AssemblyResolve_xDebug(object sender, ResolveEventArgs args)
+		{
+			Debug.WriteLine("Resolving Assembly: " + args.Name);
+			return null; // You can return a loaded assembly if needed
+		}
 
 		public Result OnStartup(UIControlledApplication UiCapplication)
 		{
@@ -328,7 +333,7 @@ namespace P3Ribbon
 			Capp = UICapp.ControlledApplication;
 
 			LeggiLingua(Capp);
-
+			AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_AssemblyResolve_xDebug;
 			try
 			{   //creo degli eventhandler all'aeprtura di un documento e alla creazione di uno nuovo
 				UiCapplication.ControlledApplication.DocumentOpened += new EventHandler<Autodesk.Revit.DB.Events.DocumentOpenedEventArgs>(Application_DocumentOpened);
@@ -336,8 +341,9 @@ namespace P3Ribbon
 				//application.ControlledApplication.DocumentChanged += new EventHandler<Autodesk.Revit.DB.Events.DocumentChangedEventArgs>(Application_DocumentChanged);
 				UiCapplication.ViewActivated += new EventHandler<ViewActivatedEventArgs>(OnViewActivated);
 			}
-			catch
+			catch (Exception ex)
 			{
+				DebugUtils.PrintExceptionInfo(ex);
 				return Result.Failed;
 			}
 			//var langCode = Properties.Settings.Default.languageCode;
@@ -443,18 +449,19 @@ namespace P3Ribbon
 
 		public static string Res_ValoreLingua(string Var, Lingua l)
 		{
-			ResourceSet rs = null;
+			ResourceSet rs = res_eng;
 			if (l == Lingua.ITA)
 			{
 				rs = res_ita;
 			}
-			else if (l == Lingua.ENG)
-			{
-				rs = res_eng;
-			}
-
-			return rs.GetObject(Var).ToString();
-
+			//else if (l == Lingua.ENG)
+			//{
+			//rs = res_eng;
+			//}
+			object resourceObject = rs.GetObject(Var);
+			if (resourceObject == null)
+				return " ";
+			return resourceObject.ToString();
 		}
 
 		public static string Res_ValoreLingua(string Var)
