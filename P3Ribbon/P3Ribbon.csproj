@@ -384,20 +384,21 @@
 
 
 	<ItemGroup>
-	  <EmbeddedResource Include="Resources\Code 802 - 3D insulated.png" />
-	  <EmbeddedResource Include="Resources\Code 803 - 3D insulated.png" />
-	  <EmbeddedResource Include="Resources\Code 804 - 3D insulated.png" />
-	  <EmbeddedResource Include="Resources\Code 827 - 3D insulated.png" />
-	  <EmbeddedResource Include="Resources\Code 843 - 3D insulated.png" />
-	  <EmbeddedResource Include="Resources\Code 847 - 3D insulated.png" />
-	  <EmbeddedResource Include="Resources\Code 852 - 3D insulated plenum.png" />
-	  <EmbeddedResource Include="Resources\Code 853 - 3D insulated.png" />
-	  <EmbeddedResource Include="Resources\Code 854 - 3D insulated.png" />
-	  <EmbeddedResource Include="Resources\Code vvv - 3D insulated cross.png" />
-	  <EmbeddedResource Include="Resources\Code www - 3D insulated.png" />
-	  <EmbeddedResource Include="Resources\Code xxx - 3D insulated.png" />
-	  <EmbeddedResource Include="Resources\Code yyy - 3D insulated.png" />
-	  <EmbeddedResource Include="Resources\Code zzz - 3D.png" />
+	  <EmbeddedResource Include="Properties\Resources.resx" />
+	  <EmbeddedResource Include="Resources\Icons\Code 802 - 3D insulated.png" />
+	  <EmbeddedResource Include="Resources\Icons\Code 803 - 3D insulated.png" />
+	  <EmbeddedResource Include="Resources\Icons\Code 804 - 3D insulated.png" />
+	  <EmbeddedResource Include="Resources\Icons\Code 827 - 3D insulated.png" />
+	  <EmbeddedResource Include="Resources\Icons\Code 843 - 3D insulated.png" />
+	  <EmbeddedResource Include="Resources\Icons\Code 847 - 3D insulated.png" />
+	  <EmbeddedResource Include="Resources\Icons\Code 852 - 3D insulated plenum.png" />
+	  <EmbeddedResource Include="Resources\Icons\Code 853 - 3D insulated.png" />
+	  <EmbeddedResource Include="Resources\Icons\Code 854 - 3D insulated.png" />
+	  <EmbeddedResource Include="Resources\Icons\Code vvv - 3D insulated cross.png" />
+	  <EmbeddedResource Include="Resources\Icons\Code www - 3D insulated.png" />
+	  <EmbeddedResource Include="Resources\Icons\Code xxx - 3D insulated.png" />
+	  <EmbeddedResource Include="Resources\Icons\Code yyy - 3D insulated.png" />
+	  <EmbeddedResource Include="Resources\Icons\Code zzz - 3D.png" />
 	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale.png" />
 	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_CanaleStaffatoRosso.png" />
 	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale.png" />
@@ -437,24 +438,25 @@
 	  <EmbeddedResource Include="Resources\Lang\lang.resx" />
 	  <EmbeddedResource Include="Resources\Lang\rp_ENG.resx" />
 	  <EmbeddedResource Include="Resources\Lang\rp_ITA.resx" />
+	  <EmbeddedResource Include="Scripts\GUI\Form_Quantità.resx" />
 	</ItemGroup>
 
 <!--TEST A MANO DUPLICO TUTTO PERCHE SU PLAB È DOPPIO FORSE PER ERRORE MA VA-->
 	<ItemGroup>
-		<Resource Include="Resources\Code 802 - 3D insulated.png" />
-		<Resource Include="Resources\Code 803 - 3D insulated.png" />
-		<Resource Include="Resources\Code 804 - 3D insulated.png" />
-		<Resource Include="Resources\Code 827 - 3D insulated.png" />
-		<Resource Include="Resources\Code 843 - 3D insulated.png" />
-		<Resource Include="Resources\Code 847 - 3D insulated.png" />
-		<Resource Include="Resources\Code 852 - 3D insulated plenum.png" />
-		<Resource Include="Resources\Code 853 - 3D insulated.png" />
-		<Resource Include="Resources\Code 854 - 3D insulated.png" />
-		<Resource Include="Resources\Code vvv - 3D insulated cross.png" />
-		<Resource Include="Resources\Code www - 3D insulated.png" />
-		<Resource Include="Resources\Code xxx - 3D insulated.png" />
-		<Resource Include="Resources\Code yyy - 3D insulated.png" />
-		<Resource Include="Resources\Code zzz - 3D.png" />
+		<Resource Include="Resources\Icons\Code 802 - 3D insulated.png" />
+		<Resource Include="Resources\Icons\Code 803 - 3D insulated.png" />
+		<Resource Include="Resources\Icons\Code 804 - 3D insulated.png" />
+		<Resource Include="Resources\Icons\Code 827 - 3D insulated.png" />
+		<Resource Include="Resources\Icons\Code 843 - 3D insulated.png" />
+		<Resource Include="Resources\Icons\Code 847 - 3D insulated.png" />
+		<Resource Include="Resources\Icons\Code 852 - 3D insulated plenum.png" />
+		<Resource Include="Resources\Icons\Code 853 - 3D insulated.png" />
+		<Resource Include="Resources\Icons\Code 854 - 3D insulated.png" />
+		<Resource Include="Resources\Icons\Code vvv - 3D insulated cross.png" />
+		<Resource Include="Resources\Icons\Code www - 3D insulated.png" />
+		<Resource Include="Resources\Icons\Code xxx - 3D insulated.png" />
+		<Resource Include="Resources\Icons\Code yyy - 3D insulated.png" />
+		<Resource Include="Resources\Icons\Code zzz - 3D.png" />
 		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale.png" />
 		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_CanaleStaffatoRosso.png" />
 		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale.png" />
