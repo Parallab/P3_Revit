@@ -3,31 +3,34 @@
 	<!--Sdk="Microsoft.NET.Sdk" prima era così-->
 	<PropertyGroup>
 		<TargetFramework>net8.0-windows</TargetFramework>
-		<Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+		<!--<Platform Condition=" '$(Platform)' == '' ">x86</Platform>-->
 		<OutputType>Library</OutputType>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<UseWindowsForms>true</UseWindowsForms>
 		<UseWPF>true</UseWPF>
 		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-		<Configurations>Debug;Release;Rel_19_20;Rel_25;Rel_21_24</Configurations>
+		<Configurations>Release;Rel_19_20;Rel_25;Rel_21_24</Configurations>
 		<PlatformTarget>x64</PlatformTarget>
+		<WixCATargetsImported>true</WixCATargetsImported>
 	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+	
+	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
 		<OutputPath>.\</OutputPath>
 		<WarningLevel>3</WarningLevel>
 	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Rel_19_20|x86' ">
+	<PropertyGroup Condition=" '$(Configuration)' == 'Rel_19_20' ">
 		<OutputPath>.\</OutputPath>
 		<DefineConstants>Rel_19_20</DefineConstants>
 	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Rel_21_24|x86' ">
+	<PropertyGroup Condition=" '$(Configuration)' == 'Rel_21_24' ">
 		<OutputPath>.\</OutputPath>
 		<DefineConstants>Rel_21_24</DefineConstants>
 	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Rel_25|x86'">
+	<PropertyGroup Condition="'$(Configuration)' == 'Rel_25'">
 		<OutputPath>.\</OutputPath>
 		<DefineConstants>Rel_25</DefineConstants>
 	</PropertyGroup>
+	
 	<ItemGroup>
 		<Content Include="CustomAction.config">
 			<SubType>Designer</SubType>
@@ -39,6 +42,7 @@
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Resource>
 	</ItemGroup>
+	
 	<ItemGroup>
 		<Resource Include="P3_InstallerResources\P3 - Duct system template19.rte">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -50,6 +54,7 @@
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Resource>
 	</ItemGroup>
+	
 	<ItemGroup>
 		<Resource Include="P3_InstallerResources\P3 - Duct system template22.rte">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

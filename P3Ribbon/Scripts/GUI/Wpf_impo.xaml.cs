@@ -16,7 +16,7 @@ namespace P3Ribbon.Scripts.GUI
 		private Document m_doc;
 		private Application m_app;
 
-#if (Rel_25 || Rel_21_24 || DEBUG)
+#if (Rel_25 || Rel_21_24 || DEBUG || Debug_25)
 		//private UnitTypeId currentUnit = Supporto.doc.GetUnits().GetFormatOptions(SpecTypeId.Length).;
 		ForgeTypeId currentUnit = Supporto.doc.GetUnits().GetFormatOptions(SpecTypeId.Length).GetUnitTypeId();
 
@@ -113,7 +113,7 @@ namespace P3Ribbon.Scripts.GUI
 
 		public string UnitàDiProgetto()
 		{
-#if (Rel_25 || Rel_21_24 || DEBUG)
+#if (Rel_25 || Rel_21_24 || DEBUG || Debug_25)
 			string rtn = "units";
 			if (currentUnit == UnitTypeId.Millimeters)
 			{

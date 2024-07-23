@@ -1,194 +1,361 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <!-- <TargetFramework>net8.0-windows</TargetFramework> -->
-		<!--tolgo per vedere se non mi crea la cartella dopo bin-->
-    <OutputType>Library</OutputType>
-		<PlatformTarget>AnyCPU</PlatformTarget>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <UseWindowsForms>true</UseWindowsForms>
-    <UseWPF>true</UseWPF>
-    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-    <Configurations>Debug;Release;Rel_19_20;Rel_21_24;Rel_25;Debug_25</Configurations>
-  </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>20041_P3_Inkscape_Icona_Libreria_2_logoP3+ductbim.ico</ApplicationIcon>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Rel_19_20|AnyCPU' ">
-    <BaseOutputPath>bin\Rel_19_20\</BaseOutputPath>
-    <DefineConstants>$(DefineConstants);Rel_19_20</DefineConstants>
-	<TargetFramework>net47</TargetFramework>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Rel_21_24|AnyCPU' ">
-    <BaseOutputPath>bin\Rel_21_24\</BaseOutputPath>
-	<!-- prima era solo outputhpath senza base -->
-    <DefineConstants>$(DefineConstants);Rel_21_24</DefineConstants>
-	<TargetFramework>net48</TargetFramework>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Rel_25|AnyCPU'">
-    <BaseOutputPath>bin\Rel_25\</BaseOutputPath>
-    <DefineConstants>$(DefineConstants);Rel_25</DefineConstants>
-	<TargetFramework>net8.0-windows</TargetFramework>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_25|AnyCPU'">
-    <BaseOutputPath>bin\Rel_25\</BaseOutputPath>
-    <DefineConstants>$(DefineConstants);Rel_25</DefineConstants>
-    <TargetFramework>net8.0-windows</TargetFramework>
-  </PropertyGroup>
-	<!--4/7/24-->
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <BaseOutputPath>bin\Debug\</BaseOutputPath>
-		<DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
-		<TargetFramework>net48</TargetFramework>
+	<PropertyGroup>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<UseWindowsForms>true</UseWindowsForms>
+		<UseWPF>true</UseWPF>
+		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+		<Configurations>Debug;Release;Rel_19_20;Rel_21_24;Rel_25;Debug_25</Configurations>
 	</PropertyGroup>
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<DefineConstants>$(DefineConstants);REL</DefineConstants>
-	</PropertyGroup>
-	<!-- 4/7/24 -->
-  <ItemGroup>
-    <Reference Include="RevitAPI" Condition=" '$(Configuration)' == 'Debug'">
-      <HintPath>E:\Program Files\Autodesk\Revit 2021\RevitAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPI" Condition=" '$(Configuration)' == 'Rel_25'">
-      <HintPath>E:\Program Files\Autodesk\Revit 2025\RevitAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPI" Condition="'$(Configuration)'=='Debug_25'">
-      <HintPath>E:\Program Files\Autodesk\Revit 2025\RevitAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPI" Condition=" '$(Configuration)' == 'Rel_21_24'">
-      <HintPath>E:\Program Files\Autodesk\Revit 2021\RevitAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPI" Condition=" '$(Configuration)' == 'Rel_19_20'">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\Program Files\Autodesk\Revit 2020\RevitAPI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <!-- <Reference Include="RevitAPI"> -->
-      <!-- <HintPath>E:\Program Files\Autodesk\Revit 2021\RevitAPI.dll</HintPath> -->
-      <!-- <Private>False</Private> -->
-    <!-- </Reference> -->
-    <Reference Include="RevitAPIUI" Condition=" '$(Configuration)' == 'Debug'">
-      <HintPath>E:\Program Files\Autodesk\Revit 2021\RevitAPIUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPIUI" Condition=" '$(Configuration)' == 'Rel_25'">
-      <HintPath>E:\Program Files\Autodesk\Revit 2025\RevitAPIUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPIUI" Condition="'$(Configuration)'=='Debug_25'">
-      <HintPath>E:\Program Files\Autodesk\Revit 2025\RevitAPIUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPIUI" Condition=" '$(Configuration)' == 'Rel_21_24'">
-      <HintPath>E:\Program Files\Autodesk\Revit 2021\RevitAPIUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="RevitAPIUI" Condition=" '$(Configuration)' == 'Rel_19_20'">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\Program Files\Autodesk\Revit 2020\RevitAPIUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <!-- <Reference Include="RevitAPIUI"> -->
-      <!-- <HintPath>E:\Program Files\Autodesk\Revit 2021\RevitAPIUI.dll</HintPath> -->
-      <!-- <Private>False</Private> -->
-    <!-- </Reference> -->
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Code 852 - 3D insulated plenum.png" />
-    <Resource Include="Resources\Code vvv - 3D insulated cross.png" />
-    <Resource Include="Resources\Code www - 3D insulated.png" />
-    <Resource Include="Resources\Code xxx - 3D insulated.png" />
-    <Resource Include="Resources\Code yyy - 3D insulated.png" />
-    <Resource Include="Resources\Code zzz - 3D.png" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_dettaglio_bianco.png" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_dettaglio.jpg" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_MaterialeP3bianco.png" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_MatRIciclatoVerde.png" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_SismaRosso.png" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_Rosso.png" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_CanaleStaffatoRosso.png" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaInglese32.png" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaItaliana32.png" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_MatRIciclato.png" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_FrecciaGiù.png" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_FrecciaGiù16.png" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoComponenti.png" />
-    <Resource Include="Resources\Icons\20041_p3_inkscape_icona_Setting.png" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Setting16.png" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Info.png" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_info16.png" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale16.png" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaItaliana.png" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaInglese.png" />
-    <Resource Include="Resources\Code 803 - 3D insulated.png" />
-    <Resource Include="Resources\Code 804 - 3D insulated.png" />
-    <Resource Include="Resources\Code 802 - 3D insulated.png" />
-    <Resource Include="Resources\Code 827 - 3D insulated.png" />
-    <Resource Include="Resources\Code 843 - 3D insulated.png" />
-    <Resource Include="Resources\Code 847 - 3D insulated.png" />
-    <Resource Include="Resources\Code 853 - 3D insulated.png" />
-    <Resource Include="Resources\Code 854 - 3D insulated.png" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale.png" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale.png" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale_bianco.png" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoMateriali.png" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoPezzi.png" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoPezzi_2.png" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio.png" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_2.png" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Libreria_1_logo+P3ductbim.png" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Libreria_2_logoP3+ductbim.png" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Libreria_3_logoP3.png" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Lingua.png" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Quantità.png" />
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_staffe.png" />
-    <Content Include="20041_P3_Inkscape_Icona_Libreria_2_logoP3+ductbim.ico" />
-    <Content Include="P3Ribbon.addin">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Sisma.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="System.Diagnostics.DiagnosticSource" Version="8.0.1" />
-    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
-    <PackageReference Include="System.Text.Encodings.Web" Version="8.0.0" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="Resources\Langs\str_EN.Designer.cs" />
-    <Compile Remove="Resources\Langs\str_IT.Designer.cs" />
-    <Compile Remove="Scripts\Crea_ParSism.cs" />
-    <Compile Remove="Scripts\GUI\Param_Sism.cs" />
-    <Compile Remove="Scripts\Modellazione\InserisciFlange.cs" />
-    <Compile Remove="Scripts\Modellazione\TrasferisciStandard_BKP.cs" />
-    <Compile Remove="Scripts\Sisma\Staffaggio_BKP.cs" />
-    <EmbeddedResource Remove="Resources\Langs\str_EN.resx" />
-  </ItemGroup>
-  <PropertyGroup>
-    <PostBuildEvent>call "L:\20041_P3 Plugin\0_Digitalizzazione\P3_Addin\WIP\P3Plugin\temp sposta debug.bat"
 
-if "$(ConfigurationName)" == "Debug" (
-echo test sono dentro
-xcopy "$(TargetDir)\" "%Appdata%\Autodesk\Revit\Addins\2024" /s /y /z  /I
-::xcopy "$(TargetDir)\" "%25Appdata%25\Autodesk\Revit\Addins\2024" /s /y /z  /I
-::xcopy "\\pLAB\Lavori_Attivi\20041_P3 Plugin\0_Digitalizzazione\P3_Addin\WIP\P3Plugin\CustomAction\P3_InstallerResources\" "%25Appdata%25\Autodesk\Revit\Addins\2024\P3_InstallerResources" /s /y /z /I 
-)</PostBuildEvent>
-    <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+	<PropertyGroup>
+		<ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+		<OutputType>Library</OutputType>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<PlatformTarget>x64</PlatformTarget>
+		<EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+		<UseWindowsForms>true</UseWindowsForms>
+		<UseWPF>true</UseWPF>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<ProduceReferenceAssembly>False</ProduceReferenceAssembly>
 		<!--<AssemblyVersion>4.0.0.0</AssemblyVersion>-->
-		<!--<AssemblyVersion>4.1.0.0</AssemblyVersion>--> 
+		<!--<AssemblyVersion>4.1.0.0</AssemblyVersion>-->
 		<!--non è più compatibile con le wpf!-->
 		<!--<AssemblyFileVersion>4.1.0.0</AssemblyFileVersion>-->
 		<!--assemblyfileversion va ma non compare nel plugin info-->
-    <Title>P3ductbim</Title>
-    <FileVersion>4.0.0.1</FileVersion>
-  </PropertyGroup>
+		<Title>P3ductbim</Title>
+		<FileVersion>4.0.0.1</FileVersion>
+	</PropertyGroup>
+
+	<!--Revit version and framework-->
+	<Choose>
+		<!--<When Condition="$(Configuration.Contains('2019'))">
+			<PropertyGroup>
+				<RevitVersion>2019</RevitVersion>
+				<TargetFramework>net48</TargetFramework>
+				-->
+		<!--net47?-->
+		<!--
+			</PropertyGroup>
+		</When>-->
+
+		<When Condition="$(Configuration.Contains('20'))">
+			<PropertyGroup>
+				<RevitVersion>2020</RevitVersion>
+				<RevitVersionShort>20</RevitVersionShort>
+				<RevitVersions>19_20</RevitVersions>
+				<TargetFramework>net48</TargetFramework>
+				<!--net47?-->
+			</PropertyGroup>
+		</When>
+
+		<When Condition="$(Configuration.Contains('21'))">
+			<PropertyGroup>
+				<RevitVersion>2021</RevitVersion>
+				<RevitVersionShort>21</RevitVersionShort>
+				<RevitVersions>21_24</RevitVersions>
+				<TargetFramework>net48</TargetFramework>
+			</PropertyGroup>
+		</When>
+
+		<!--<When Condition="$(Configuration.Contains('2022'))">
+			<PropertyGroup>
+				<RevitVersion>2022</RevitVersion>
+				<TargetFramework>net48</TargetFramework>
+			</PropertyGroup>
+		</When>
+
+		<When Condition="$(Configuration.Contains('2023'))">
+			<PropertyGroup>
+				<RevitVersion>2023</RevitVersion>
+				<TargetFramework>net48</TargetFramework>
+			</PropertyGroup>
+		</When>
+
+		<When Condition="$(Configuration.Contains('2024'))">
+			<PropertyGroup>
+				<RevitVersion>2024</RevitVersion>
+				<TargetFramework>net48</TargetFramework>
+			</PropertyGroup>
+		</When>-->
+
+		<When Condition="$(Configuration.Contains('25'))">
+			<PropertyGroup>
+				<RevitVersion>2025</RevitVersion>
+				<RevitVersionShort>25</RevitVersionShort>
+				<RevitVersions>25</RevitVersions>
+				<TargetFramework>net8.0-windows</TargetFramework>
+				<!--da sistemare penso-->
+			</PropertyGroup>
+		</When>
+
+		<Otherwise>
+			<PropertyGroup>
+				<RevitVersion>2024</RevitVersion>
+				<RevitVersions>21_24</RevitVersions>
+				<TargetFramework>net48</TargetFramework>
+			</PropertyGroup>
+		</Otherwise>
+	</Choose>
+
+	<!--ric-->
+	<!-- Net Core -->
+	<PropertyGroup Condition="!$(TargetFramework.StartsWith('net4'))">
+		<EnableDynamicLoading>true</EnableDynamicLoading>
+		<GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
+		<GenerateDependencyFile>false</GenerateDependencyFile>
+	</PropertyGroup>
+
+	<!--nuget-->
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+		<PackageReference Include="Revit_All_Main_Versions_API_x64" Version="$(RevitVersion).*" IncludeAssets="build; compile" PrivateAssets="ALL" />
+		<PackageReference Include="System.Diagnostics.DiagnosticSource" Version="8.0.1" />
+		<PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="6.0.0" />
+		<PackageReference Include="System.Text.Encodings.Web" Version="8.0.0" />
+		<PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
+	</ItemGroup>
+
+
+	<PropertyGroup>
+		<ApplicationIcon>20041_P3_Inkscape_Icona_Libreria_2_logoP3+ductbim.ico</ApplicationIcon>
+	</PropertyGroup>
+
+
+	<!--Debug-->
+	<PropertyGroup Condition="$(Configuration.Contains('Debug'))">
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>full</DebugType>
+		<Optimize>false</Optimize>
+		<OutputPath>bin\Debug\</OutputPath>
+		<DefineConstants>DEBUG;TRACE;REVIT$(RevitVersion);Debug_(RevitVersionShort)</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+
+	<!--Release-->
+
+	<PropertyGroup Condition="$(Configuration.Contains('Rel'))">
+		<DebugType>pdbonly</DebugType>
+		<Optimize>true</Optimize>
+		<OutputPath>bin\Rel_$(RevitVersions)</OutputPath>
+		<DefineConstants>$(DefineConstants);TRACE;REVIT$(RevitVersion);Rel_$(RevitVersions)</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+
+
+	<!--<PropertyGroup Condition=" '$(Configuration)' == 'Rel_19_20 ">
+		<BaseOutputPath>bin\Rel_19_20\</BaseOutputPath>
+		<DefineConstants>$(DefineConstants);Rel_19_20</DefineConstants>
+		<TargetFramework>net47</TargetFramework>
+	</PropertyGroup>
+
+	<PropertyGroup Condition=" '$(Configuration)' == 'Rel_21_24' ">
+		<BaseOutputPath>bin\Rel_21_24\</BaseOutputPath>
+		-->
+	<!-- prima era solo outputhpath senza base -->
+	<!--
+		<DefineConstants>$(DefineConstants);Rel_21_24</DefineConstants>
+		<TargetFramework>net48</TargetFramework>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)' == 'Rel_25'">
+		<BaseOutputPath>bin\Rel_25\</BaseOutputPath>
+		<DefineConstants>$(DefineConstants);Rel_25</DefineConstants>
+		<TargetFramework>net8.0-windows</TargetFramework>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug_25|AnyCPU'">
+		<BaseOutputPath>bin\Debug_25\</BaseOutputPath>
+		<DefineConstants>$(DefineConstants);Debug_25</DefineConstants>
+		<TargetFramework>net8.0-windows</TargetFramework>
+	</PropertyGroup>-->
+
+	<!--Open Revit-->
+	<PropertyGroup>
+		<StartAction>Program</StartAction>
+		<StartProgram>E:\Program Files\Autodesk\Revit $(RevitVersion)\Revit.exe</StartProgram>
+	</PropertyGroup>
+
+
+	<!--4/7/24-->
+	<!--<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<BaseOutputPath>bin\Debug\</BaseOutputPath>
+		<DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
+		<TargetFramework>net48</TargetFramework>
+		<Optimize>False</Optimize>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+		<DefineConstants>$(DefineConstants);REL</DefineConstants>
+		<Optimize>False</Optimize>
+	</PropertyGroup>-->
+
+	<!-- 4/7/24 -->
+	<!--<ItemGroup>
+		<Reference Include="RevitAPI" Condition=" '$(Configuration)' == 'Debug'">
+			<HintPath>E:\Program Files\Autodesk\Revit 2021\RevitAPI.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="RevitAPI" Condition=" '$(Configuration)' == 'Rel_25'">
+			<HintPath>E:\Program Files\Autodesk\Revit 2025\RevitAPI.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="RevitAPI" Condition="'$(Configuration)'=='Debug_25'">
+			<HintPath>E:\Program Files\Autodesk\Revit 2025\RevitAPI.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="RevitAPI" Condition=" '$(Configuration)' == 'Rel_21_24'">
+			<HintPath>E:\Program Files\Autodesk\Revit 2021\RevitAPI.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="RevitAPI" Condition=" '$(Configuration)' == 'Rel_19_20'">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>E:\Program Files\Autodesk\Revit 2020\RevitAPI.dll</HintPath>
+			<Private>False</Private>
+		</Reference>-->
+
+	<!-- <Reference Include="RevitAPI"> -->
+	<!-- <HintPath>E:\Program Files\Autodesk\Revit 2021\RevitAPI.dll</HintPath> -->
+	<!-- <Private>False</Private> -->
+	<!-- </Reference> -->
+	<!--<Reference Include="RevitAPIUI" Condition=" '$(Configuration)' == 'Debug'">
+			<HintPath>E:\Program Files\Autodesk\Revit 2021\RevitAPIUI.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="RevitAPIUI" Condition=" '$(Configuration)' == 'Rel_25'">
+			<HintPath>E:\Program Files\Autodesk\Revit 2025\RevitAPIUI.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="RevitAPIUI" Condition="'$(Configuration)'=='Debug_25'">
+			<HintPath>E:\Program Files\Autodesk\Revit 2025\RevitAPIUI.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="RevitAPIUI" Condition=" '$(Configuration)' == 'Rel_21_24'">
+			<HintPath>E:\Program Files\Autodesk\Revit 2021\RevitAPIUI.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="RevitAPIUI" Condition=" '$(Configuration)' == 'Rel_19_20'">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>E:\Program Files\Autodesk\Revit 2020\RevitAPIUI.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		-->
+	<!-- <Reference Include="RevitAPIUI"> -->
+	<!--
+		-->
+	<!-- <HintPath>E:\Program Files\Autodesk\Revit 2021\RevitAPIUI.dll</HintPath> -->
+	<!--
+		-->
+	<!-- <Private>False</Private> -->
+	<!--
+		-->
+	<!-- </Reference> -->
+	<!--
+	</ItemGroup>-->
+
+
+	<ItemGroup>
+		<Content Include="20041_P3_Inkscape_Icona_Libreria_2_logoP3+ductbim.ico" />
+		<Content Include="P3Ribbon.addin">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Resource Include="Resources\Code 852 - 3D insulated plenum.png" />
+		<Resource Include="Resources\Code vvv - 3D insulated cross.png" />
+		<Resource Include="Resources\Code www - 3D insulated.png" />
+		<Resource Include="Resources\Code xxx - 3D insulated.png" />
+		<Resource Include="Resources\Code yyy - 3D insulated.png" />
+		<Resource Include="Resources\Code zzz - 3D.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_dettaglio_bianco.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_dettaglio.jpg" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_MaterialeP3bianco.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_MatRIciclatoVerde.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_SismaRosso.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_Rosso.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_CanaleStaffatoRosso.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaInglese32.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaItaliana32.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_MatRIciclato.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_FrecciaGiù.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_FrecciaGiù16.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoComponenti.png" />
+		<Resource Include="Resources\Icons\20041_p3_inkscape_icona_Setting.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Setting16.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Info.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_info16.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale16.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaItaliana.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaInglese.png" />
+		<Resource Include="Resources\Code 803 - 3D insulated.png" />
+		<Resource Include="Resources\Code 804 - 3D insulated.png" />
+		<Resource Include="Resources\Code 802 - 3D insulated.png" />
+		<Resource Include="Resources\Code 827 - 3D insulated.png" />
+		<Resource Include="Resources\Code 843 - 3D insulated.png" />
+		<Resource Include="Resources\Code 847 - 3D insulated.png" />
+		<Resource Include="Resources\Code 853 - 3D insulated.png" />
+		<Resource Include="Resources\Code 854 - 3D insulated.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale_bianco.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoMateriali.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoPezzi.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoPezzi_2.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_2.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Libreria_1_logo+P3ductbim.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Libreria_2_logoP3+ductbim.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Libreria_3_logoP3.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Lingua.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Quantità.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_staffe.png" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Sisma.png" />
+	</ItemGroup>
+
+
+
+	<ItemGroup>
+		<Compile Remove="Resources\Langs\str_EN.Designer.cs" />
+		<Compile Remove="Resources\Langs\str_IT.Designer.cs" />
+		<Compile Remove="Scripts\Crea_ParSism.cs" />
+		<Compile Remove="Scripts\GUI\Param_Sism.cs" />
+		<Compile Remove="Scripts\Modellazione\InserisciFlange.cs" />
+		<Compile Remove="Scripts\Modellazione\TrasferisciStandard_BKP.cs" />
+		<Compile Remove="Scripts\Sisma\Staffaggio_BKP.cs" />
+		<EmbeddedResource Remove="Resources\Langs\str_EN.resx" />
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<Compile Update="Properties\Settings.Designer.cs">
+			<DesignTimeSharedInput>True</DesignTimeSharedInput>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Settings.settings</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+
+	<ItemGroup>
+		<None Update="Properties\Settings.settings">
+			<Generator>SettingsSingleFileGenerator</Generator>
+			<LastGenOutput>Settings.Designer.cs</LastGenOutput>
+		</None>
+	</ItemGroup>
+
+
+	<PropertyGroup>
+		<PostBuildEvent>
+			call "L:\20041_P3 Plugin\0_Digitalizzazione\P3_Addin\WIP\P3Plugin\temp sposta debug_r25.bat"
+
+			if "$(ConfigurationName)" == "Debug" (
+			echo test sono dentro
+			xcopy "$(TargetDir)\" "%Appdata%\Autodesk\Revit\Addins\2024" /s /y /z  /I
+			::xcopy "$(TargetDir)\" "%25Appdata%25\Autodesk\Revit\Addins\2024" /s /y /z  /I
+			::xcopy "\\pLAB\Lavori_Attivi\20041_P3 Plugin\0_Digitalizzazione\P3_Addin\WIP\P3Plugin\CustomAction\P3_InstallerResources\" "%25Appdata%25\Autodesk\Revit\Addins\2024\P3_InstallerResources" /s /y /z /I
+			)
+		</PostBuildEvent>
+	</PropertyGroup>
 </Project>

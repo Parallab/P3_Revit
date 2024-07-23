@@ -1,94 +1,98 @@
 <Project Sdk="WixToolset.Sdk/5.0.0">
-  <!--prima non era specificato l sdk-->
-  <!--Sdk="WixToolset.Sdk/5.0.0"-->
-  <!--<PropertyGroup Condition=" '$(Configuration)' == 'Rel_19_20' ">
-    <OutputPath>bin\2020\</OutputPath>
-    <DefineConstants>Configuration=Rel_19_20</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Rel_21_24' ">
-    <OutputPath>bin\2021\</OutputPath>
-    <DefineConstants>Configuration=Rel_21_24</DefineConstants>
-  </PropertyGroup>-->
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <DefineConstants>Configuration=DEBUG</DefineConstants>
-    <OutputPath>bin\2021\</OutputPath>
-    <Configurations>Debug;Release;Debug_25;Debug_25</Configurations>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Rel_19_20|AnyCPU' ">
-    <OutputPath>bin\Rel_19_20\</OutputPath>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Rel_19_20|x86' ">
-    <OutputPath>bin\Rel_19_20\</OutputPath>
-    <VerboseOutput>True</VerboseOutput>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Rel_21_24|AnyCPU' ">
-    <OutputPath>bin\Rel_21_24\</OutputPath>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Rel_21_24|x86' ">
-    <OutputPath>bin\Rel_21_24\</OutputPath>
-  </PropertyGroup>
-  <!-- 2024/07/03 -->
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Rel_25|AnyCPU' ">
-    <OutputPath>bin\Rel_25\</OutputPath>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Rel_25|x86' ">
-    <OutputPath>bin\Rel_25\</OutputPath>
-  </PropertyGroup>
-  <!--2024/4/8 ho cambiato i nomi configuration..
+	<!--prima non era specificato l sdk-->
+	<!--Sdk="WixToolset.Sdk/5.0.0"-->
+	<!--<PropertyGroup Condition=" '$(Configuration)' == 'Rel_19_20' ">
+		<OutputPath>bin\2020\</OutputPath>
+		<DefineConstants>Configuration=Rel_19_20</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)' == 'Rel_21_24' ">
+		<OutputPath>bin\2021\</OutputPath>
+		<DefineConstants>Configuration=Rel_21_24</DefineConstants>
+	</PropertyGroup>-->
+	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+		<DefineConstants>Configuration=DEBUG</DefineConstants>
+		<OutputPath>bin\2021\</OutputPath>
+		<Configurations>Debug;Release;Debug_25;Debug_25</Configurations>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Rel_19_20|AnyCPU' ">
+		<OutputPath>bin\Rel_19_20\</OutputPath>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Rel_19_20|x86' ">
+		<OutputPath>bin\Rel_19_20\</OutputPath>
+		<VerboseOutput>True</VerboseOutput>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Rel_21_24|AnyCPU' ">
+		<OutputPath>bin\Rel_21_24\</OutputPath>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Rel_21_24|x86' ">
+		<OutputPath>bin\Rel_21_24\</OutputPath>
+	</PropertyGroup>
+	<!-- 2024/07/03 -->
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Rel_25|AnyCPU' ">
+		<OutputPath>bin\Rel_25\</OutputPath>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Rel_25|x86' ">
+		<OutputPath>bin\Rel_25\</OutputPath>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<WixCATargetsImported>true</WixCATargetsImported>
+	</PropertyGroup>
+	<!--2024/4/8 ho cambiato i nomi configuration..
 	
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <OutputPath>bin\$(Configuration)\</OutputPath>
-    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
-    <DefineConstants>Debug</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <OutputPath>bin\$(Configuration)\</OutputPath>
-    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
-    <DefineConstants>RELASE2022</DefineConstants>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2021|x86' ">
-    <OutputPath>bin\2021\</OutputPath>
-    <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
-    <DefineConstants>RELEASE2021</DefineConstants>
-    <WixVariables>RELEASE2021</WixVariables>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2021|AnyCPU' ">
-    <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
-    <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2021|AnyCPU' ">
-    <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
-    <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2020|x86' ">
-    <OutputPath>bin\2020\</OutputPath>
-    <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
-    <DefineConstants>RELEASE2020</DefineConstants>
-    <SuppressAllWarnings>False</SuppressAllWarnings>
-    <Pedantic>True</Pedantic>
-    <WixVariables>RELEASE2020</WixVariables>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2020|AnyCPU' ">
-    <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
-    <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2020|Any CPU' ">
-    <OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
-    <IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
-  </PropertyGroup>-->
-  <ItemGroup>
-    <Content Include="P3ductbim_Installer.wax" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="WixToolset.UI.wixext" Version="5.0.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CustomAction\CustomAction.csproj" />
-    <ProjectReference Include="..\P3Ribbon\P3Ribbon.csproj" />
-  </ItemGroup>
-  <!--<Import Project="$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets" Condition=" '$(WixTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets') " />-->
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\WiX\v5.x\Wix.targets" Condition=" '$(WixTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\WiX\v5.x\Wix.targets') " />
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="if &quot;$(ConfigurationName)&quot; == &quot;Rel_19_20&quot; (&#xA;    if exist &quot;$(TargetDir)$(TargetName)_2019-20.msi&quot; (&#xA;        del &quot;$(TargetDir)$(TargetName)_2019-20.msi&quot;&#xA;    )&#xA;    ren &quot;$(TargetDir)$(TargetName).msi&quot; &quot;$(TargetName)_2019-20.msi&quot;&#xA;) else if &quot;$(ConfigurationName)&quot; == &quot;Rel_21_24&quot; (&#xA;    if exist &quot;$(TargetDir)$(TargetName)_2021-24.msi&quot; (&#xA;        del &quot;$(TargetDir)$(TargetName)_2021-24.msi&quot;&#xA;    )&#xA;    ren &quot;$(TargetDir)$(TargetName).msi&quot; &quot;$(TargetName)_2021-24.msi&quot;&#xA;) else if &quot;$(ConfigurationName)&quot; == &quot;Rel_25&quot; (&#xA;    if exist &quot;$(TargetDir)$(TargetName)_2025.msi&quot; (&#xA;        del &quot;$(TargetDir)$(TargetName)_2025.msi&quot;&#xA;    )&#xA;    ren &quot;$(TargetDir)$(TargetName).msi&quot; &quot;$(TargetName)_2025.msi&quot;&#xA;)" />
-  </Target>
+		<OutputPath>bin\$(Configuration)\</OutputPath>
+		<IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+		<DefineConstants>Debug</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+		<OutputPath>bin\$(Configuration)\</OutputPath>
+		<IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
+		<DefineConstants>RELASE2022</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2021|x86' ">
+		<OutputPath>bin\2021\</OutputPath>
+		<IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
+		<DefineConstants>RELEASE2021</DefineConstants>
+		<WixVariables>RELEASE2021</WixVariables>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2021|AnyCPU' ">
+		<OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
+		<IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2021|AnyCPU' ">
+		<OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
+		<IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2020|x86' ">
+		<OutputPath>bin\2020\</OutputPath>
+		<IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
+		<DefineConstants>RELEASE2020</DefineConstants>
+		<SuppressAllWarnings>False</SuppressAllWarnings>
+		<Pedantic>True</Pedantic>
+		<WixVariables>RELEASE2020</WixVariables>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2020|AnyCPU' ">
+		<OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
+		<IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == '2020|Any CPU' ">
+		<OutputPath>bin\$(Platform)\$(Configuration)\</OutputPath>
+		<IntermediateOutputPath>obj\$(Platform)\$(Configuration)\</IntermediateOutputPath>
+	</PropertyGroup>-->
+	<ItemGroup>
+		<Content Include="P3ductbim_Installer.wax" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="WixToolset.UI.wixext" Version="5.0.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\CustomAction\CustomAction.csproj" />
+		<ProjectReference Include="..\P3Ribbon\P3Ribbon.csproj" />
+	</ItemGroup>
+	<!--<Import Project="$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets" Condition=" '$(WixTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\WiX\v3.x\Wix.targets') " />-->
+	<Import Project="$(MSBuildExtensionsPath32)\Microsoft\WiX\v5.x\Wix.targets" Condition=" '$(WixTargetsPath)' == '' AND Exists('$(MSBuildExtensionsPath32)\Microsoft\WiX\v5.x\Wix.targets') " />
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="if &quot;$(ConfigurationName)&quot; == &quot;Rel_19_20&quot; (&#xA;    if exist &quot;$(TargetDir)$(TargetName)_2019-20.msi&quot; (&#xA;        del &quot;$(TargetDir)$(TargetName)_2019-20.msi&quot;&#xA;    )&#xA;    ren &quot;$(TargetDir)$(TargetName).msi&quot; &quot;$(TargetName)_2019-20.msi&quot;&#xA;) else if &quot;$(ConfigurationName)&quot; == &quot;Rel_21_24&quot; (&#xA;    if exist &quot;$(TargetDir)$(TargetName)_2021-24.msi&quot; (&#xA;        del &quot;$(TargetDir)$(TargetName)_2021-24.msi&quot;&#xA;    )&#xA;    ren &quot;$(TargetDir)$(TargetName).msi&quot; &quot;$(TargetName)_2021-24.msi&quot;&#xA;) else if &quot;$(ConfigurationName)&quot; == &quot;Rel_25&quot; (&#xA;    if exist &quot;$(TargetDir)$(TargetName)_2025.msi&quot; (&#xA;        del &quot;$(TargetDir)$(TargetName)_2025.msi&quot;&#xA;    )&#xA;    ren &quot;$(TargetDir)$(TargetName).msi&quot; &quot;$(TargetName)_2025.msi&quot;&#xA;)" />
+	</Target>
 </Project>

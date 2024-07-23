@@ -108,7 +108,7 @@ namespace P3Ribbon.Scripts
 						sb_log.AppendLine("--------------------------------");
 						sb_log.AppendLine($"{Resources.Lang.lang.log_Condotto} : {c.el.Name}");
 						sb_log.AppendLine($"{c.largh}x{c.alt}cm");
-						sb_log.AppendLine($"ID : {c.el.Id.IntegerValue.ToString()}");
+						sb_log.AppendLine($"ID : {Supporto.exIntegerValue(c.el.Id).ToString()}");
 						c.DimensionaDaTabella(doc, sb_log);//classe diversa.. devo "iniettare" sb_log
 						c.CalcolaPuntiStaffe(sb_log);//classe diversa.. devo "iniettare" sb_log
 						c.TrovaPavimento(doc, view3d, sb_log);//classe diversa.. devo "iniettare" sb_log
@@ -264,7 +264,7 @@ namespace P3Ribbon.Scripts
 			{
 				//if (element.get_Parameter(BuiltInParameter.RBS_CURVE_HEIGHT_PARAM) is null)
 				//	return false;
-				if (element.Category.Id.IntegerValue == Supporto.doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctCurves).Id.IntegerValue)
+				if (Supporto.exIntegerValue(element.Category.Id) == Supporto.exIntegerValue(Supporto.doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctCurves).Id))
 					return true;
 				//return false; //ho rigirato
 				//controllare anche cosa succede per quando si selezionano tutti i canali, e provare ad uniformare, lì avevamo usato questo:
@@ -391,7 +391,7 @@ namespace P3Ribbon.Scripts
 		public Element el;
 		public ElementId Id;
 
-#if (Rel_25 || Rel_21_24 || DEBUG)
+#if (Rel_25 || Rel_21_24 || DEBUG || Debug_25)
 		//2 è l altezza massima?? da controllare!
 		public static double AltezzaStaffaggio { get; set; } = UnitUtils.ConvertToInternalUnits(2, UnitTypeId.Meters);
 #else
@@ -689,7 +689,7 @@ namespace P3Ribbon.Scripts
 					// posiziona
 					fi = doc.Create.NewFamilyInstance(pt, _fs, this.livello, StructuralType.NonStructural);
 					this.staffaggi.Add(fi);
-					_sb_log.Append($"ID : {fi.Id.IntegerValue.ToString()}");
+					_sb_log.Append($"ID : {Supporto.exIntegerValue(fi.Id).ToString()}");
 					// dimensiona
 					fi.LookupParameter("P3_Dynamo_Center2Ceiling").Set(Math.Abs(pt.Z - pt_pav.Z));
 					fi.LookupParameter("P3_Duct_Width").Set(this.largh_IM);
@@ -780,7 +780,7 @@ namespace P3Ribbon.Scripts
 					{
 						owner = conn_collegato.Owner;
 
-						if (owner.Category.Id.IntegerValue == doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctFitting).Id.IntegerValue)
+						if (Supporto.exIntegerValue(owner.Category.Id) == Supporto.exIntegerValue(doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctFitting).Id))
 						{
 							Element e = doc.GetElement(owner.GetTypeId());
 							string NameFittingFamily = (e as FamilySymbol).FamilyName;

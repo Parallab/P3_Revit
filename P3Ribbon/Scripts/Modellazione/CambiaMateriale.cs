@@ -44,7 +44,7 @@ namespace P3Ribbon.Scripts
 					ductId = (doc.GetElement(insId) as DuctInsulation).HostElementId;
 					foreach (var selId in selDuctids)
 					{
-						if (ductId.IntegerValue == selId.IntegerValue)
+						if (Supporto.exIntegerValue(ductId) == Supporto.exIntegerValue(selId))
 						{
 
 							try
@@ -83,9 +83,9 @@ namespace P3Ribbon.Scripts
 		{
 			public bool AllowElement(Element element)
 			{
-				double catId = element.Category.Id.IntegerValue;
-				if (catId == Supporto.doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctFitting).Id.IntegerValue
-					|| catId == Supporto.doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctCurves).Id.IntegerValue)
+				double catId = Supporto.exIntegerValue(element.Category.Id);
+				if (catId == Supporto.exIntegerValue(Supporto.doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctFitting).Id)
+					|| catId == Supporto.exIntegerValue(Supporto.doc.Settings.Categories.get_Item(BuiltInCategory.OST_DuctCurves).Id))
 				{
 					return true;
 				}

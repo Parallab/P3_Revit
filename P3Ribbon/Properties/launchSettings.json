@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "DEBUG_OLD_GUARDA_CSPROJ_USER": {
+      "commandName": "Project"
+    },
+    "DEBUG_NEW_BRUTTO": {
+      "commandName": "Executable",
+      "executablePath": "E:\\Program Files\\Autodesk\\Revit 2025\\Revit.exe"
+    }
+  }
+}

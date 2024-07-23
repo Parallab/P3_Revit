@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "Debug_R24_OLD": {
+      "commandName": "Project"
+    },
+    "Debug_R24_OLD_Duplicato": {
+      "commandName": "Project"
+    },
+    "Debug_R25_NEW": {
+      "commandName": "Executable",
+      "executablePath": "E:\\Program Files\\Autodesk\\Revit 2025\\Revit.exe"
+    }
+  }
+}

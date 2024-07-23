@@ -227,7 +227,7 @@ namespace P3Ribbon.Scripts
 
 		public static object BuiltInParameterGroup_OR_GroupTypeId_Converti(BuiltInParameterGroup_OR_GroupTypeId nome)
 		{
-#if (Rel_25)
+#if (Rel_25 || Debug_25)
 			switch (nome)
 			{
 				case BuiltInParameterGroup_OR_GroupTypeId.AREA:
@@ -254,7 +254,7 @@ namespace P3Ribbon.Scripts
 		public static void AggiungiParametroProgetto(Document _doc, ExternalDefinition _extdef, InstanceBinding _newIB, BuiltInParameterGroup_OR_GroupTypeId gruppo) //<T> T gruppo 
 		{
 			//ho messo _doc perchè lo stesso metodo è usato su migra area isolamento, da testare se si può allinear etutto a supporto.doc
-#if (Rel_25)
+#if (Rel_25 || Debug_25)
 			ForgeTypeId gruppo_forge = (ForgeTypeId)BuiltInParameterGroup_OR_GroupTypeId_Converti(gruppo);
 			_doc.ParameterBindings.Insert(_extdef, _newIB, gruppo_forge);
 #else
@@ -373,7 +373,7 @@ namespace P3Ribbon.Scripts
 						foreach (UIView pView in UlViews)
 						{
 
-							if (pView.ViewId.IntegerValue == CurrView.Id.IntegerValue)
+							if (Supporto.exIntegerValue(pView.ViewId) == Supporto.exIntegerValue(CurrView.Id))
 								pView.Close();
 						}
 					}
@@ -516,7 +516,7 @@ namespace P3Ribbon.Scripts
 		public static double ConvertiInterne2cm(double interne)
 		{
 			double cm = 0;
-#if (Rel_25 || Rel_21_24 || DEBUG)
+#if (Rel_25 || Rel_21_24 || DEBUG || Debug_25)
 
 			cm = UnitUtils.ConvertFromInternalUnits(interne, UnitTypeId.Centimeters);
 #else
@@ -534,7 +534,27 @@ namespace P3Ribbon.Scripts
 			return $"{x_cm}, {y_cm}, {z_cm}";
 		}
 
+
+		public static int exIntegerValue(ElementId id)
+		{
+#if (Rel_19_20 || Rel_21_24)
+			return id.IntegerValue;//anche x 24?
+#else
+			return (int)id.Value; //sarebbe un long...lo converto?
+#endif
+		}
+
+		public static ElementId exElementId(int id_int)
+		{
+#if (Rel_19_20 || Rel_21_24)
+			return new ElementId(id_int);//anche x 24?
+#else
+			return new ElementId((long)id_int); //sarebbe un long...lo converto?
+#endif
+		}
 	}
+
+}
 
 	public static class DebugUtils
 	{
