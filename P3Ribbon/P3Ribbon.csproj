@@ -1,29 +1,23 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-		<UseWindowsForms>true</UseWindowsForms>
-		<UseWPF>true</UseWPF>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+	<!--<PropertyGroup>
+
 		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-		<Configurations>Debug;Release;Rel_19_20;Rel_21_24;Rel_25;Debug_25</Configurations>
-	</PropertyGroup>
+	</PropertyGroup>-->
 
 	<PropertyGroup>
 		<ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>None</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
 		<OutputType>Library</OutputType>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<PlatformTarget>x64</PlatformTarget>
+		<Configurations>Debug;Release;Rel_19_20;Rel_21_24;Rel_25;Debug_25</Configurations>
+		
+		
 		<EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
 		<UseWindowsForms>true</UseWindowsForms>
 		<UseWPF>true</UseWPF>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<ProduceReferenceAssembly>False</ProduceReferenceAssembly>
-		<!--<AssemblyVersion>4.0.0.0</AssemblyVersion>-->
-		<!--<AssemblyVersion>4.1.0.0</AssemblyVersion>-->
-		<!--non è più compatibile con le wpf!-->
-		<!--<AssemblyFileVersion>4.1.0.0</AssemblyFileVersion>-->
-		<!--assemblyfileversion va ma non compare nel plugin info-->
-		<Title>P3ductbim</Title>
-		<FileVersion>4.0.0.1</FileVersion>
 <!--per non avere avvisi che non funzionerà su versioni di windows vecchie-->
 		<NoWarn>$(NoWarn);CA1416</NoWarn>
 	</PropertyGroup>
@@ -53,7 +47,7 @@
 		<When Condition="$(Configuration.Contains('21_24'))">
 			<PropertyGroup>
 				<RevitVersion>2021</RevitVersion>
-				<RevitVersionShort>21</RevitVersionShort>
+				<RevitVersionShort>24</RevitVersionShort>
 				<RevitVersions>21_24</RevitVersions>
 				<TargetFramework>net48</TargetFramework>
 			</PropertyGroup>
@@ -107,6 +101,8 @@
 		<GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
 		<GenerateDependencyFile>false</GenerateDependencyFile>
 	</PropertyGroup>
+	
+	<!--FARE PULIZIA-->
 	<ItemGroup>
 	  <Compile Remove="Resources\P3_InstallerResources_CANC GUARDA CUSTOM\**" />
 	  <None Remove="Resources\P3_InstallerResources_CANC GUARDA CUSTOM\**" />
@@ -126,6 +122,34 @@
 
 	<PropertyGroup>
 		<ApplicationIcon>20041_P3_Inkscape_Icona_Libreria_2_logoP3+ductbim.ico</ApplicationIcon>
+	</PropertyGroup>
+
+	<!--Assembly-->
+	<PropertyGroup>
+		<!--<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+		preso da plab forse da generare nuovo in caso
+		<ProjectGuid>{90ED67C3-8E27-480B-B3DD-1E708196AF03}</ProjectGuid>-->
+
+		<AppDesignerFolder>Properties</AppDesignerFolder>
+		<!--<AssemblyVersion>4.0.0.0</AssemblyVersion>-->
+		<!--<AssemblyVersion>4.1.0.0</AssemblyVersion>-->
+		<!--non è più compatibile con le wpf!-->
+		<!--<AssemblyFileVersion>4.1.0.0</AssemblyFileVersion>-->
+		<!--assemblyfileversion va ma non compare nel plugin info-->
+		<Title>P3ductbim</Title>
+		<!--fatto a caso guardando vecchio dll-->
+		<AssemblyTitle>P3Ribbon</AssemblyTitle>
+		<AssemblyProduct>P3Ribbon</AssemblyProduct>
+		<!--fine fatto a caso-->
+		<AssemblyName>P3Ribbon</AssemblyName>
+		<!--<RootNamespace>P3Ribbon</RootNamespace>-->
+		<FileVersion>4.0.0.1</FileVersion>
+		<!--<TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>-->
+		<!--<FileAlignment>512</FileAlignment>
+		<NuGetPackageImportStamp>
+		</NuGetPackageImportStamp>
+		<TargetFrameworkProfile />-->
 	</PropertyGroup>
 
 
@@ -182,7 +206,8 @@
 	<!--Open Revit-->
 	<PropertyGroup>
 		<StartAction>Program</StartAction>
-		<StartProgram>E:\Program Files\Autodesk\Revit $(RevitVersion)\Revit.exe</StartProgram>
+		<!--ho dovuto far sto schifo perchè qua ho 21-24 e debuggo con 24..forse potrei fare un nuovo parametro debugrevitversion-->
+		<StartProgram>E:\Program Files\Autodesk\Revit 20$(RevitVersionShort)\Revit.exe</StartProgram>
 	</PropertyGroup>
 
 
@@ -268,64 +293,80 @@
 		<Content Include="P3Ribbon.addin">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<EmbeddedResource Include="Resources\Code 852 - 3D insulated plenum.png" />
-		<EmbeddedResource Include="Resources\Code vvv - 3D insulated cross.png" />
-		<EmbeddedResource Include="Resources\Code www - 3D insulated.png" />
-		<EmbeddedResource Include="Resources\Code xxx - 3D insulated.png" />
-		<EmbeddedResource Include="Resources\Code yyy - 3D insulated.png" />
-		<EmbeddedResource Include="Resources\Code zzz - 3D.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_dettaglio_bianco.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_dettaglio.jpg" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_MaterialeP3bianco.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_MatRIciclatoVerde.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_SismaRosso.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_Rosso.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_CanaleStaffatoRosso.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaInglese32.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaItaliana32.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_MatRIciclato.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_FrecciaGiù.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_FrecciaGiù16.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoComponenti.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_p3_inkscape_icona_Setting.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Setting16.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Info.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_info16.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale16.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaItaliana.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaInglese.png" />
-		<EmbeddedResource Include="Resources\Code 803 - 3D insulated.png" />
-		<EmbeddedResource Include="Resources\Code 804 - 3D insulated.png" />
-		<EmbeddedResource Include="Resources\Code 802 - 3D insulated.png" />
-		<EmbeddedResource Include="Resources\Code 827 - 3D insulated.png" />
-		<EmbeddedResource Include="Resources\Code 843 - 3D insulated.png" />
-		<EmbeddedResource Include="Resources\Code 847 - 3D insulated.png" />
-		<EmbeddedResource Include="Resources\Code 853 - 3D insulated.png" />
-		<EmbeddedResource Include="Resources\Code 854 - 3D insulated.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale_bianco.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoMateriali.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoPezzi.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoPezzi_2.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_2.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Libreria_1_logo+P3ductbim.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Libreria_2_logoP3+ductbim.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Libreria_3_logoP3.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Lingua.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Quantità.png" />
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_staffe.png" />
 	</ItemGroup>
 
-
+	
+	<!--test copiato da plab x risolvere problema resources non lette-->
 	<ItemGroup>
-		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Sisma.png" />
+		<Reference Include="PresentationCore">
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="PresentationFramework">
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="System">
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="System.Core">
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="System.Drawing">
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="System.Windows.Forms">
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="System.Xaml">
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="System.Xml.Linq">
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="System.Data.DataSetExtensions">
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="Microsoft.CSharp">
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="System.Data">
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="System.Net.Http">
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="System.Xml">
+			<Private>false</Private>
+		</Reference>
+		<Reference Include="WindowsBase">
+			<Private>false</Private>
+		</Reference>
+		<!--qui sotto s erano creati 3 item group seprati ma metto tutto insieme-->
+		<!--qua è false ma non salva mai "CopyLocal = No"-->
+		<!--prima era update, provo a mettere include-->
+		<Reference Include="System.IO.Compression.FileSystem">
+			<Private>false</Private>
+			<SpecificVersion>false</SpecificVersion>
+		</Reference>
+		<Reference Include="System.Numerics">
+			<Private>false</Private>
+			<SpecificVersion>false</SpecificVersion>
+		</Reference>
+		<Reference Include="System.Runtime.Serialization">
+			<Private>false</Private>
+			<SpecificVersion>false</SpecificVersion>
+		</Reference>
+	</ItemGroup>	
+		
+	<!--<ItemGroup>
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Sisma.png">
+		  <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</EmbeddedResource>
 		<EmbeddedResource Include="Resources\Lang\lang.en.resx" />
 		<EmbeddedResource Include="Resources\Lang\lang.resx" />
 		<EmbeddedResource Include="Resources\Lang\rp_ENG.resx" />
 		<EmbeddedResource Include="Resources\Lang\rp_ITA.resx" />
-	</ItemGroup>
+		<EmbeddedResource Include="Scripts\GUI\Form_Quantità.resx" />
+	</ItemGroup>-->
 
 
 
@@ -337,9 +378,119 @@
 		<Compile Remove="Scripts\Modellazione\InserisciFlange.cs" />
 		<Compile Remove="Scripts\Modellazione\TrasferisciStandard_BKP.cs" />
 		<Compile Remove="Scripts\Sisma\Staffaggio_BKP.cs" />
-		<EmbeddedResource Remove="Resources\Langs\str_EN.resx" />
+		<!--<EmbeddedResource Remove="Resources\Langs\str_EN.resx" />-->
 	</ItemGroup>
 
+
+
+	<ItemGroup>
+	  <EmbeddedResource Include="Resources\Code 802 - 3D insulated.png" />
+	  <EmbeddedResource Include="Resources\Code 803 - 3D insulated.png" />
+	  <EmbeddedResource Include="Resources\Code 804 - 3D insulated.png" />
+	  <EmbeddedResource Include="Resources\Code 827 - 3D insulated.png" />
+	  <EmbeddedResource Include="Resources\Code 843 - 3D insulated.png" />
+	  <EmbeddedResource Include="Resources\Code 847 - 3D insulated.png" />
+	  <EmbeddedResource Include="Resources\Code 852 - 3D insulated plenum.png" />
+	  <EmbeddedResource Include="Resources\Code 853 - 3D insulated.png" />
+	  <EmbeddedResource Include="Resources\Code 854 - 3D insulated.png" />
+	  <EmbeddedResource Include="Resources\Code vvv - 3D insulated cross.png" />
+	  <EmbeddedResource Include="Resources\Code www - 3D insulated.png" />
+	  <EmbeddedResource Include="Resources\Code xxx - 3D insulated.png" />
+	  <EmbeddedResource Include="Resources\Code yyy - 3D insulated.png" />
+	  <EmbeddedResource Include="Resources\Code zzz - 3D.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_CanaleStaffatoRosso.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale16.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_MaterialeP3bianco.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale_bianco.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoComponenti.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoMateriali.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoPezzi.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoPezzi_2.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_2.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_dettaglio.jpg" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_dettaglio_bianco.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_Rosso.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_FrecciaGiù.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_FrecciaGiù16.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Info.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_info16.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Libreria_1_logo+P3ductbim.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Libreria_2_logoP3+ductbim.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Libreria_3_logoP3.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Lingua.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaInglese.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaInglese32.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaItaliana.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaItaliana32.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_MatRIciclato.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_MatRIciclatoVerde.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Quantità.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_p3_inkscape_icona_Setting.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Setting16.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Sisma.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_SismaRosso.png" />
+	  <EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_staffe.png" />
+	  <EmbeddedResource Include="Resources\Lang\lang.en.resx" />
+	  <EmbeddedResource Include="Resources\Lang\lang.resx" />
+	  <EmbeddedResource Include="Resources\Lang\rp_ENG.resx" />
+	  <EmbeddedResource Include="Resources\Lang\rp_ITA.resx" />
+	</ItemGroup>
+
+<!--TEST A MANO DUPLICO TUTTO PERCHE SU PLAB È DOPPIO FORSE PER ERRORE MA VA-->
+	<ItemGroup>
+		<Resource Include="Resources\Code 802 - 3D insulated.png" />
+		<Resource Include="Resources\Code 803 - 3D insulated.png" />
+		<Resource Include="Resources\Code 804 - 3D insulated.png" />
+		<Resource Include="Resources\Code 827 - 3D insulated.png" />
+		<Resource Include="Resources\Code 843 - 3D insulated.png" />
+		<Resource Include="Resources\Code 847 - 3D insulated.png" />
+		<Resource Include="Resources\Code 852 - 3D insulated plenum.png" />
+		<Resource Include="Resources\Code 853 - 3D insulated.png" />
+		<Resource Include="Resources\Code 854 - 3D insulated.png" />
+		<Resource Include="Resources\Code vvv - 3D insulated cross.png" />
+		<Resource Include="Resources\Code www - 3D insulated.png" />
+		<Resource Include="Resources\Code xxx - 3D insulated.png" />
+		<Resource Include="Resources\Code yyy - 3D insulated.png" />
+		<Resource Include="Resources\Code zzz - 3D.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_CanaleStaffatoRosso.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale16.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_MaterialeP3bianco.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale_bianco.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoComponenti.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoMateriali.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoPezzi.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoPezzi_2.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_2.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_dettaglio.jpg" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_dettaglio_bianco.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_Rosso.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_FrecciaGiù.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_FrecciaGiù16.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Info.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_info16.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Libreria_1_logo+P3ductbim.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Libreria_2_logoP3+ductbim.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Libreria_3_logoP3.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Lingua.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaInglese.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaInglese32.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaItaliana.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaItaliana32.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_MatRIciclato.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_MatRIciclatoVerde.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Quantità.png" />
+		<Resource Include="Resources\Icons\20041_p3_inkscape_icona_Setting.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Setting16.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Sisma.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_SismaRosso.png" />
+		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_staffe.png" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<Compile Update="Properties\Settings.Designer.cs">

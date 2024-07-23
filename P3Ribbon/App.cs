@@ -478,7 +478,8 @@ namespace P3Ribbon
 		private static void AggiungiSplitButtonLingua(RibbonPanel rp, string Assemblypath)
 		{
 			PushButtonData sb1One = new PushButtonData("cmdCaricaLibreria", "Carica Libreria", Assemblypath, "P3Ribbon.Scripts.FinestraLibreria");
-			sb1One.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Libreria_3_logoP3.png"));
+			//sb1One.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/P3Ribbon.Resources.Icons.20041_P3_Inkscape_Icona_Libreria_3_logoP3.png", UriKind.Absolute));
+			sb1One.LargeImage = new BitmapImage(new Uri("pack://application:,,,/P3Ribbon;component/Resources/Icons/20041_P3_Inkscape_Icona_Libreria_3_logoP3.png"));//, UriKind.Absolute));
 			sb1One.ToolTip = "Carica le famiglie e i materiali P3";
 
 			PushButtonData sb1Two = new PushButtonData("cmdLinguaIT", "Italiano", Assemblypath, "P3Ribbon.Scripts.LinguaItaliano");
