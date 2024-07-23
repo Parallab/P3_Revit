@@ -11,7 +11,7 @@ namespace P3Ribbon
 	class ParSismici : IExternalCommand
 	{
 		public static int classe;
-		//public static int vita;
+		public static int vita;
 		public static int zona;
 
 		//FORM//

@@ -24,6 +24,8 @@
 		<!--assemblyfileversion va ma non compare nel plugin info-->
 		<Title>P3ductbim</Title>
 		<FileVersion>4.0.0.1</FileVersion>
+<!--per non avere avvisi che non funzionerà su versioni di windows vecchie-->
+		<NoWarn>$(NoWarn);CA1416</NoWarn>
 	</PropertyGroup>
 
 	<!--Revit version and framework-->
@@ -38,7 +40,7 @@
 			</PropertyGroup>
 		</When>-->
 
-		<When Condition="$(Configuration.Contains('20'))">
+		<When Condition="$(Configuration.Contains('19_20'))">
 			<PropertyGroup>
 				<RevitVersion>2020</RevitVersion>
 				<RevitVersionShort>20</RevitVersionShort>
@@ -48,7 +50,7 @@
 			</PropertyGroup>
 		</When>
 
-		<When Condition="$(Configuration.Contains('21'))">
+		<When Condition="$(Configuration.Contains('21_24'))">
 			<PropertyGroup>
 				<RevitVersion>2021</RevitVersion>
 				<RevitVersionShort>21</RevitVersionShort>
@@ -91,7 +93,8 @@
 		<Otherwise>
 			<PropertyGroup>
 				<RevitVersion>2024</RevitVersion>
-				<RevitVersions>21_24</RevitVersions>
+				<RevitVersionShort>21</RevitVersionShort>
+				<RevitVersions>err</RevitVersions>
 				<TargetFramework>net48</TargetFramework>
 			</PropertyGroup>
 		</Otherwise>
@@ -104,6 +107,11 @@
 		<GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
 		<GenerateDependencyFile>false</GenerateDependencyFile>
 	</PropertyGroup>
+	<ItemGroup>
+	  <Compile Remove="Resources\P3_InstallerResources_CANC GUARDA CUSTOM\**" />
+	  <None Remove="Resources\P3_InstallerResources_CANC GUARDA CUSTOM\**" />
+	  <Page Remove="Resources\P3_InstallerResources_CANC GUARDA CUSTOM\**" />
+	</ItemGroup>
 
 	<!--nuget-->
 	<ItemGroup>
@@ -260,59 +268,63 @@
 		<Content Include="P3Ribbon.addin">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<Resource Include="Resources\Code 852 - 3D insulated plenum.png" />
-		<Resource Include="Resources\Code vvv - 3D insulated cross.png" />
-		<Resource Include="Resources\Code www - 3D insulated.png" />
-		<Resource Include="Resources\Code xxx - 3D insulated.png" />
-		<Resource Include="Resources\Code yyy - 3D insulated.png" />
-		<Resource Include="Resources\Code zzz - 3D.png" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_dettaglio_bianco.png" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_dettaglio.jpg" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_MaterialeP3bianco.png" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_MatRIciclatoVerde.png" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_SismaRosso.png" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_Rosso.png" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_CanaleStaffatoRosso.png" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaInglese32.png" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaItaliana32.png" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_MatRIciclato.png" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_FrecciaGiù.png" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_FrecciaGiù16.png" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoComponenti.png" />
-		<Resource Include="Resources\Icons\20041_p3_inkscape_icona_Setting.png" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Setting16.png" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Info.png" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_info16.png" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale16.png" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaItaliana.png" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaInglese.png" />
-		<Resource Include="Resources\Code 803 - 3D insulated.png" />
-		<Resource Include="Resources\Code 804 - 3D insulated.png" />
-		<Resource Include="Resources\Code 802 - 3D insulated.png" />
-		<Resource Include="Resources\Code 827 - 3D insulated.png" />
-		<Resource Include="Resources\Code 843 - 3D insulated.png" />
-		<Resource Include="Resources\Code 847 - 3D insulated.png" />
-		<Resource Include="Resources\Code 853 - 3D insulated.png" />
-		<Resource Include="Resources\Code 854 - 3D insulated.png" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale.png" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale.png" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale_bianco.png" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoMateriali.png" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoPezzi.png" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoPezzi_2.png" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio.png" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_2.png" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Libreria_1_logo+P3ductbim.png" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Libreria_2_logoP3+ductbim.png" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Libreria_3_logoP3.png" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Lingua.png" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Quantità.png" />
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_staffe.png" />
+		<EmbeddedResource Include="Resources\Code 852 - 3D insulated plenum.png" />
+		<EmbeddedResource Include="Resources\Code vvv - 3D insulated cross.png" />
+		<EmbeddedResource Include="Resources\Code www - 3D insulated.png" />
+		<EmbeddedResource Include="Resources\Code xxx - 3D insulated.png" />
+		<EmbeddedResource Include="Resources\Code yyy - 3D insulated.png" />
+		<EmbeddedResource Include="Resources\Code zzz - 3D.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_dettaglio_bianco.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_dettaglio.jpg" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_MaterialeP3bianco.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_MatRIciclatoVerde.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_SismaRosso.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_Rosso.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_CanaleStaffatoRosso.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaInglese32.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaItaliana32.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_MatRIciclato.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_FrecciaGiù.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_FrecciaGiù16.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoComponenti.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_p3_inkscape_icona_Setting.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Setting16.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Info.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_info16.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale16.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaItaliana.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_LinguaInglese.png" />
+		<EmbeddedResource Include="Resources\Code 803 - 3D insulated.png" />
+		<EmbeddedResource Include="Resources\Code 804 - 3D insulated.png" />
+		<EmbeddedResource Include="Resources\Code 802 - 3D insulated.png" />
+		<EmbeddedResource Include="Resources\Code 827 - 3D insulated.png" />
+		<EmbeddedResource Include="Resources\Code 843 - 3D insulated.png" />
+		<EmbeddedResource Include="Resources\Code 847 - 3D insulated.png" />
+		<EmbeddedResource Include="Resources\Code 853 - 3D insulated.png" />
+		<EmbeddedResource Include="Resources\Code 854 - 3D insulated.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Canale_Materiale_bianco.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoMateriali.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoPezzi.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoPezzi_2.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_ElencoStaffaggio_2.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Libreria_1_logo+P3ductbim.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Libreria_2_logoP3+ductbim.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Libreria_3_logoP3.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Lingua.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Quantità.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_staffe.png" />
 	</ItemGroup>
 
 
 	<ItemGroup>
-		<Resource Include="Resources\Icons\20041_P3_Inkscape_Icona_Sisma.png" />
+		<EmbeddedResource Include="Resources\Icons\20041_P3_Inkscape_Icona_Sisma.png" />
+		<EmbeddedResource Include="Resources\Lang\lang.en.resx" />
+		<EmbeddedResource Include="Resources\Lang\lang.resx" />
+		<EmbeddedResource Include="Resources\Lang\rp_ENG.resx" />
+		<EmbeddedResource Include="Resources\Lang\rp_ITA.resx" />
 	</ItemGroup>
 
 
@@ -348,14 +360,40 @@
 
 	<PropertyGroup>
 		<PostBuildEvent>
-			call "L:\20041_P3 Plugin\0_Digitalizzazione\P3_Addin\WIP\P3Plugin\temp sposta debug_r25.bat"
+			echo PostBuildEvent:
+			echo ConfigurationName : "%ConfigurationName%" non va
+			echo Configuration : "$(Configuration)"
+			echo RevitVersion : $(RevitVersion)
+			echo RevitVersionShort : $(RevitVersionShort)
+			echo RevitVersions : $(RevitVersions)
+			echo ProjectDir: $(ProjectDir) non va
+			echo SolutionDir: $(SolutionDir)
+			echo TargetDir: $(TargetDir) non va
+			echo tot : $(SolutionDir)$(AssemblyName)\$(OutputPath)\
 
-			if "$(ConfigurationName)" == "Debug" (
-			echo test sono dentro
-			xcopy "$(TargetDir)\" "%Appdata%\Autodesk\Revit\Addins\2024" /s /y /z  /I
-			::xcopy "$(TargetDir)\" "%25Appdata%25\Autodesk\Revit\Addins\2024" /s /y /z  /I
-			::xcopy "\\pLAB\Lavori_Attivi\20041_P3 Plugin\0_Digitalizzazione\P3_Addin\WIP\P3Plugin\CustomAction\P3_InstallerResources\" "%25Appdata%25\Autodesk\Revit\Addins\2024\P3_InstallerResources" /s /y /z /I
+			::test per debuggare..
+			if "$(Configuration)" == "Rel_25" (
+			::call "L:\20041_P3 Plugin\0_Digitalizzazione\P3_Addin\WIP\P3Plugin\temp sposta debug_r25.bat"
+			echo F|xcopy /S /Q /Y /F "$(SolutionDir)$(AssemblyName)\$(OutputPath)\P3Ribbon.dll" "E:\Program Files (x86)\P3ductbim\P3Ribbon_2025.dll"
 			)
+			
+			if "$(Configuration)" == "Rel_21_24" (
+			echo test rel_21_24
+			echo F|xcopy /S /Q /Y /F "$(SolutionDir)$(AssemblyName)\$(OutputPath)\P3Ribbon.dll" "E:\Program Files (x86)\P3ductbim\P3Ribbon_2021-24.dll"
+			)
+			
+			if "$(Configuration)" == "Rel_19_20" (
+			echo test rel_19_20
+			echo F|xcopy /S /Q /Y /F "$(SolutionDir)$(AssemblyName)\$(OutputPath)\P3Ribbon.dll" "E:\Program Files (x86)\P3ductbim\P3Ribbon_2019-20.dll"
+			)
+			
+
+			::if "$(Configuration)" == "Debug_24" (
+			::echo test sono dentro debug
+			::xcopy "$(TargetDir)\" "%Appdata%\Autodesk\Revit\Addins\2024" /s /y /z  /I
+			::xcopy "$(TargetDir)\" "%25Appdata%25\Autodesk\Revit\Addins\2024" /s /y /z  /I
+			::xcopy "\\pLAB\Lavori_Attivi\20041_P3 Plugin\0_Digitalizzazione\P3_Addin\WIP\P3Plugin\CustomAction\P3_InstallerResources\" "%25Appdata%25\Autodesk\Revit\Addins\2024\P3_InstallerResources" /s /y /z /e /i
+			::)
 		</PostBuildEvent>
 	</PropertyGroup>
 </Project>
